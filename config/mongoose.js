@@ -14,7 +14,7 @@ const {
 
 const url = `mongodb://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}`;
 
-module.export = mongoose.connect(
+module.exports = mongoose.connect(
 	url,
 	{
 		auth: {
