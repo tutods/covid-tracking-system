@@ -12,7 +12,7 @@ const multer = require('multer');
 const cors = require('cors');
 
 // API Routes
-const apiRoutes = require('./src/routes');
+const apiRoutes = require('./api/routes');
 
 const app = express();
 
