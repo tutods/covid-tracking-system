@@ -9,7 +9,7 @@ mongoose
 		try {
 			const result = await Role.insertMany(rolesList);
 
-			console.log(result);
+			console.log('[ROLES INSERTED WITH SUCCESS]');
 		} catch (error) {
 			console.error(error);
 		}
