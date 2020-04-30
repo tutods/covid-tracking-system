@@ -54,3 +54,7 @@ Covid Tracking System
 <a href="https://nodei.co/npm/bcryptjs/">
 	<img src="https://nodei.co/npm/bcryptjs.png?compact=true" alt="BCrypt" width="250px">
 </a>
+
+<a href="https://nodei.co/npm/cors/">
+	<img src="https://nodei.co/npm/cors.png?compact=true" alt="Cors" width="250px">
+</a>

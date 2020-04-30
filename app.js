@@ -9,6 +9,7 @@ require('./config/mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
 const multer = require('multer');
+const cors = require('cors');
 
 // API Routes
 const apiRoutes = require('./src/routes');
@@ -16,6 +17,9 @@ const apiRoutes = require('./src/routes');
 const app = express();
 
 app
+	// Cors
+	.use(cors())
+
 	// Set body-parser
 	.use(bodyParser.json())
 
