@@ -41,7 +41,7 @@ const genericController = (model) => {
 		model.findOneAndUpdate(id, data, (error, data) => {
 			const response = error
 				? { code: 500, body: error }
-				: { code: 200, body: `Updated id ${data.id}` };
+				: { code: 200, body: data.id;
 
 			res.status(response.status).send({ status: response.body });
 		});
@@ -53,7 +53,7 @@ const genericController = (model) => {
 		model.findOneAndDelete(id, (error, data) => {
 			const response = error
 				? { code: 500, body: error }
-				: { code: 200, body: `Deleted id ${data.id}` };
+				: { code: 200, body: data.id };
 
 			res.status(response.code).send(response.body);
 		});
