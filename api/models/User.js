@@ -22,7 +22,10 @@ const userSchema = new Schema({
 		required: true,
 		unique: true,
 	},
-	role: {},
+	role: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Role',
+	},
 	meta: {
 		createdAt: {
 			type: Date,
