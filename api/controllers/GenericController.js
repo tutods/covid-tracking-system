@@ -47,10 +47,10 @@ const genericController = (model) => {
 		});
 	};
 
-	const getOndeAndDelete = (req, red) => {
+	const getOneAndDelete = (req, red) => {
 		const id = req.params.id;
 
-		model.findOndeAndDelete(id, (error, data) => {
+		model.findOneAndDelete(id, (error, data) => {
 			const response = error
 				? { code: 500, body: error }
 				: { code: 200, body: `Deleted id ${data.id}` };
