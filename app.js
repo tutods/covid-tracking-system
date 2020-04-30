@@ -17,6 +17,9 @@ const apiRoutes = require('./api/routes');
 const app = express();
 
 app
+	// Static Files
+	.use(express.static('./public'))
+
 	// Cors
 	.use(cors())
 
