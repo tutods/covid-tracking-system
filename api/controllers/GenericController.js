@@ -6,7 +6,7 @@ const genericController = (model) => {
 				? { code: 500, body: error }
 				: { code: 200, body: data };
 
-			res.status(response.status).json(response.body);
+			res.status(response.status).send(response.body);
 		});
 	};
 
@@ -18,7 +18,7 @@ const genericController = (model) => {
 				? { code: 500, body: error }
 				: { code: 200, body: data };
 
-			res.status(response.status).json(response.body);
+			res.status(response.status).send(response.body);
 		});
 	};
 
@@ -30,7 +30,7 @@ const genericController = (model) => {
 				? { code: 500, body: error }
 				: { code: 200, body: data };
 
-			res.status(response.status).json(response.body);
+			res.status(response.status).send(response.body);
 		});
 	};
 
@@ -43,7 +43,7 @@ const genericController = (model) => {
 				? { code: 500, body: error }
 				: { code: 200, body: `Updated id ${data.id}` };
 
-			res.status(response.status).json({ status: response.body });
+			res.status(response.status).send({ status: response.body });
 		});
 	};
 
@@ -55,7 +55,7 @@ const genericController = (model) => {
 				? { code: 500, body: error }
 				: { code: 200, body: `Deleted id ${data.id}` };
 
-			res.status(response.code).json(response.body);
+			res.status(response.code).send(response.body);
 		});
 	};
 
