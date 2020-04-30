@@ -11,7 +11,7 @@ const bodyParser = require('body-parser');
 const multer = require('multer');
 
 // API Routes
-const apiRoutes = require('./api/routes');
+const apiRoutes = require('./src/routes');
 
 const app = express();
 

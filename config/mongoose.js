@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const mongoose = require('mongoose');
 
-// Get ENV variables
+// Get ENV variables - Object Destructuring ES6
 const {
 	MONGO_HOST = 'localhost',
 	MONGO_PORT = 27017,
