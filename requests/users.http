@@ -1,0 +1,14 @@
+### All Users Requests ###
+
+#--> Get All
+GET http://localhost:3000/api/users/
+
+#--> Create
+POST http://localhost:3000/api/users/
+content-type: application/json
+
+{
+    "name": "Daniel Sousa",
+    "email": "exemplo@email.com",
+	"password": "t123"
+}

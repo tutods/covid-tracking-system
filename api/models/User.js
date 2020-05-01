@@ -17,14 +17,14 @@ const userSchema = new Schema({
 		required: true,
 		unique: true,
 	},
-	username: {
-		type: String,
-		required: true,
-		unique: true,
-	},
 	role: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Role',
+	},
+	password: {
+		type: String,
+		required: true,
+		unique: true,
 	},
 	meta: {
 		createdAt: {
