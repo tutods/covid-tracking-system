@@ -39,17 +39,13 @@ const userController = () => {
 	const register = (req, res) => {
 		const data = req.body;
 
-		if (User.findOne({ email: data.email })) {
-			res.status(500).send({ error: 'Email exist' });
-		} else {
-			new User(data).save((err, data) => {
-				const response = err
-					? { status: 500, body: err }
-					: { status: 200, body: data };
+		new User(data).save((err, data) => {
+			const response = err
+				? { status: 500, body: err }
+				: { status: 200, body: data };
 
-				res.status(response.status).send(response.body);
-			});
-		}
+			res.status(response.status).send(response.body);
+		});
 	};
 
 	return { login, register };
