@@ -1,17 +1,10 @@
-const status = {
-    PENDING: 'Pending',
-    INPROGRESS: 'In Progress',
-    FINISHED: 'Finished',
-
-}
 // Mongoose Package
 const mongoose = require('mongoose');
 const {
     Schema
 } = mongoose;
 
-//remove after patient schema
-//const patient = require('Patient.js');
+const patient = require('Patient.js');
 const user = require('User.js');
 
 // Set Schema
@@ -21,11 +14,10 @@ const covidTestSchema = new Schema({
         required: true,
         unique: true,
     },
-    //change after patient schema
-    /*patient: {
+    patient: {
 		type: ,
 		required: true,
-    },*/
+    },
     notes: {
         type: String,
     },
