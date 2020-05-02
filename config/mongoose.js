@@ -28,9 +28,7 @@ module.exports = mongoose.connect(
 		useFindAndModify: true,
 	},
 	(error) => {
-		const msg = error
-			? '[ERROR ON DATABASE CONNECTION]'
-			: '[DATABASE CONNECTED]';
+		const msg = error ? `[ERROR: ${error}]` : '[DATABASE CONNECTED]';
 
 		console.log(msg);
 	}
