@@ -39,40 +39,63 @@ Covid Tracking System
 <img src="https://img.shields.io/badge/MongoDB-✓-blue" alt="MongoDB">
 </a>
 
-### Packages
-<a href="https://nodei.co/npm/express/">
-	<img src="https://nodei.co/npm/express.png?compact=true" alt="Express" width="250px">
-</a>
+### 📦️ Packages
 
-<a href="https://nodei.co/npm/nodemon/">
-	<img src="https://nodei.co/npm/nodemon.png?compact=true" alt="Nodemon" width="250px">
-</a>
+<div style="display:flex;">
+<div width="50%" style="border-right: 1px solid gray; padding-right: 20px;">
 
-<a href="https://nodei.co/npm/multer/">
-	<img src="https://nodei.co/npm/multer.png?compact=true" alt="Multer" width="250px">
-</a>
+#### Express
++ **[URL](http://expressjs.com)**
++ **How to install**?
+  + `npm install express`
 
-<a href="https://nodei.co/npm/dotenv/">
-	<img src="https://nodei.co/npm/dotenv.png?compact=true" alt="Dotenv" width="250px">
-</a>
+#### Mongoose
++ **[URL](https://mongoosejs.com)**
++ **How to install**?
+  + `npm install mongoose`
 
-<a href="https://nodei.co/npm/body-parser/">
-	<img src="https://nodei.co/npm/body-parser.png?compact=true" alt="Body-parser" width="250px">
-</a>
 
-<a href="https://nodei.co/npm/mongoose/">
-	<img src="https://nodei.co/npm/mongoose.png?compact=true" alt="Mongoose" width="250px">
-</a>
+#### DotENV
++ **[URL](https://www.npmjs.com/package/dotenv)**
++ **How to install**?
+  + `npm install dotenv`
 
-<a href="https://nodei.co/npm/bcryptjs/">
-	<img src="https://nodei.co/npm/bcryptjs.png?compact=true" alt="BCrypt" width="250px">
-</a>
+#### BCrypt
++ **[URL](https://www.npmjs.com/package/bcryptjs)**
++ **How to install**?
+  + `npm install bcryptjs`
 
-<a href="https://nodei.co/npm/cors/">
-	<img src="https://nodei.co/npm/cors.png?compact=true" alt="Cors" width="250px">
-</a>
+</div>
 
-### How to run
+<div width="50%" style="padding-left: 20px;">
+
+#### Nodemon
++ **[URL](http://nodemon.io)**
++ **How to install**?
+  + `npm install -D nodemon` *or* `npm install -g nodemon`
+    + **`-D`** to install only for dev
+    + **`-g`** to install package globally
+
+#### Multer
++ **[URL](https://www.npmjs.com/package/multer)**
++ **How to install**?
+  + `npm install --save multer`
+
+#### Body Parser
++ **[URL](https://www.npmjs.com/package/body-parser)**
++ **How to install**?
+  + `npm install body-parser`
+
+#### Cors
++ **[URL](https://www.npmjs.com/package/cors)**
++ **How to install**?
+  + `npm install cors`
+
+</div>
+</div>
+
+
+### ℹ️ How to run
 1. Execute (on terminal) the command `npm install`
 1. Create `.env` file with this code:
 	```env
@@ -90,7 +113,7 @@ Covid Tracking System
 
 1. To run **NodeJS** server (with **Nodemon**) execute (on terminal) `npm run dev`
 
-### How to test requests on VSCode
+### ℹ️ How to test requests on VSCode
 1. Install [**REST Client** extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
 1. Open file `.http` in `requests/` folder
 1. Click in `Send Request` or press `CTRL/CMD + SHIFT + P` and search for `Rest Client: Send Request`
@@ -104,7 +127,7 @@ Covid Tracking System
 <img src="https://img.shields.io/badge/Angular-✓-red" alt="Angular" />
 </a>
 
-### How to run
+### ℹ️ How to run
 1. Change to `webapp/` folder (on terminal: `cd webapp`)
 1. Execute (on terminal) the command `npm install`
 1. Execute (on terminal) the command `ng serve` to run **Angular** application
