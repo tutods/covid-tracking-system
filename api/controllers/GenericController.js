@@ -55,7 +55,7 @@ const genericController = (model) => {
 				? { status: 500, body: error }
 				: { status: 200, body: data.id };
 
-			res.status(response.code).send(response.body);
+			res.status(response.status).send({ status: response.body });
 		});
 	};
 

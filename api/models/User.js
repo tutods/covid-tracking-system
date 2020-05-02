@@ -30,6 +30,7 @@ const userSchema = new Schema({
 	password: {
 		type: String,
 		required: true,
+		// TODO: same password appear error
 		unique: true,
 	},
 	meta: {

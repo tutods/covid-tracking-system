@@ -5,14 +5,28 @@ GET http://localhost:3000/api/users/
 
 ### Create
 POST http://localhost:3000/api/users/
-content-type: application/json
+Content-Type: application/json
 
 {
-    "name": "sample",
-	"email": "sadmpl@email.com",
-	"password": "e123",
+    "name": "sample user",
+	"email": "samplemail@email.com",
+	"password": "e12323",
 	"role": "5eab455703ebb27158a48fc5"
 }
 
 ### Get By Id
 GET http://localhost:3000/api/users/5eadad03b57e631b6b7c724d
+
+### Get One and Update
+PUT http://localhost:3000/api/users/5eadad03b57e631b6b7c724d
+Content-Type: application/json
+
+{
+    "name": "João",
+	"email": "sample@email.com",
+	"password": "3125",
+	"role": "5eadb0973ef3a91f7addc11a"
+}
+
+### Get One And Delete
+DELETE http://localhost:3000/api/users/5eadb0f69ed027205e69169f

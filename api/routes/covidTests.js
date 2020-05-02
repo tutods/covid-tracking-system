@@ -7,14 +7,14 @@ const model = require('../models/CovidTest');
 
 // Controllers
 const {
-    create,
-    getAll,
-    getById,
-    getOneAndUpdate,
-    getOneAndDelete,
+	create,
+	getAll,
+	getById,
+	getOneAndUpdate,
+	getOneAndDelete,
 } = require('../controllers/GenericController')(model);
 
-router.post('/',create);
+router.post('/', create);
 
 router.get('/', getAll);
 
