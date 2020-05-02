@@ -17,11 +17,6 @@ const url = `mongodb://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}`;
 module.exports = mongoose.connect(
 	url,
 	{
-		auth: {
-			authSource: 'admin',
-		},
-		user: MONGO_USER,
-		pass: MONGO_PASSWORD,
 		useNewUrlParser: true,
 		useCreateIndex: true,
 		useUnifiedTopology: true,
