@@ -8,5 +8,30 @@ POST http://localhost:3000/api/patients/
 Content-Type: application/json
 
 {
-	
+	"name": "Daniel Sousa",
+	"patientNumber": 123123123,
+	"birthayDate": "1995/12/12",
+	"contacts": {
+		"email": "8160334@estg.ipp.pt",
+		"phone": 123123123
+	},
+	"symptoms": [
+		"cough"
+	]
 }
+
+### Get By ID
+GET http://localhost:3000/api/patients/5eadd9ad850cdf3bae0bb77c
+
+### Get One And Update
+PUT http://localhost:3000/api/patients/5eadd9ad850cdf3bae0bb77c
+Content-Type: application/json
+
+{
+	"contacts": {
+		"phone": 918139471
+	}
+}
+
+### Get One And Delete
+DELETE http://localhost:3000/api/patients/5eadd9ad850cdf3bae0bb77c

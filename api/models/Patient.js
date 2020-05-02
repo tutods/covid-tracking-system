@@ -6,15 +6,16 @@ const { Schema } = mongoose;
 const patientSchema = new Schema({
 	name: {
 		type: String,
-		required: true,
+		require: true,
 	},
-	birthday_date: {
+	birthdayDate: {
 		type: Date,
-		required: true,
+		require: true,
 	},
-	patient_number: {
+	patientNumber: {
+		// N.º de Utente
 		type: Number,
-		required: true,
+		require: true,
 		unique: true,
 	},
 	status: {
@@ -25,12 +26,27 @@ const patientSchema = new Schema({
 	contacts: {
 		phone: {
 			type: Number,
-			require: true,
+			min: 9,
+			max: 12,
+			validate: {
+				validator: function (data) {
+					return /^\d{9}$/.test(data);
+				},
+				message: (props) =>
+					`${props.value} is not a valid contact phone`,
+			},
+			require: [true, 'User contact require'],
 			unique: true,
 		},
 		email: {
 			type: String,
-			require: true,
+			validate: {
+				validator: function (data) {
+					return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(data);
+				},
+				message: (props) => `${props.value} is not a valid email!`,
+			},
+			require: [true, 'User email require'],
 			unique: true,
 		},
 	},
