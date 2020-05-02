@@ -43,21 +43,23 @@ const covidTestSchema = new Schema({
         required: true,
     },
     meta: {
-        createdBy: {
-            type: user,
-        },
         createdAt: {
             type: Date,
             default: Date.now(),
         },
-        updatedBy: {
-            type: user,
-        },
         updatedAt: {
             type: Date,
-            default: Date.now(),
         },
     },
+});
+
+// Not use arrow function because to use "this""
+covidTestSchema.pre('save', function (next) {
+	if (this.isNew) {
+		this.meta.createdAt = this.meta.updatedAt = Date.now();
+	} else {
+		this.meta.updatedAt = Date.now();
+	}
 });
 
 module.exports = mongoose.model('CovidTest', covidTestSchema);
