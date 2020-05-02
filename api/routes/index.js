@@ -4,6 +4,7 @@ const router = express.Router();
 
 // Routes
 const userRoutes = require('./users');
+const patientRoutes = require('./patients');
 
 // Middlewares
 const logger = require('../middlewares/logger');
@@ -15,5 +16,6 @@ router.get('/', (req, res, next) => {
 });
 
 router.use('/users', userRoutes);
+router.use('/patients',patientRoutes);
 
 module.exports = router;
