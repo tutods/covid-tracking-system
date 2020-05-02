@@ -9,7 +9,10 @@ content-type: application/json
 
 {
     "name": "sample",
-	"email": "sample@email.com",
+	"email": "sadmpl@email.com",
 	"password": "e123",
 	"role": "5eab455703ebb27158a48fc5"
 }
+
+### Get By Id
+GET http://localhost:3000/api/users/5eadad03b57e631b6b7c724d

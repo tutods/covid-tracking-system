@@ -11,7 +11,7 @@ const genericController = (model) => {
 	};
 
 	const getById = (req, res) => {
-		const id = red.params.id;
+		const id = req.params.id;
 
 		model.findOne({ _id: id }, (error, data) => {
 			const response = error
@@ -47,7 +47,7 @@ const genericController = (model) => {
 		});
 	};
 
-	const getOneAndDelete = (req, red) => {
+	const getOneAndDelete = (req, res) => {
 		const id = req.params.id;
 
 		model.findOneAndDelete(id, (error, data) => {
