@@ -1,0 +1,12 @@
+### All Patient Requests ###
+
+### Get All
+GET http://localhost:3000/api/patients/
+
+### Create
+POST http://localhost:3000/api/patients/
+Content-Type: application/json
+
+{
+	
+}

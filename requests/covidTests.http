@@ -1,0 +1,13 @@
+### All COVID Tests Requests ###
+
+### Get All
+GET http://localhost:3000/api/covid-tests/
+
+### CREATE
+POST http://localhost:3000/api/covid-tests/
+Content-Type: application/json
+
+{
+	"notes": "Test!",
+	"date": "2020/4/21"
+}

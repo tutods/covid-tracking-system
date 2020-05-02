@@ -20,6 +20,6 @@ router.use('/users', userRoutes);
 
 router.use('/patients', patientRoutes);
 
-router.use('/covid-test', covidTestRoutes);
+router.use('/covid-tests', covidTestRoutes);
 
 module.exports = router;

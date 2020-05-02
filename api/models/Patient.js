@@ -2,7 +2,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-
 // Set Schema
 const patientSchema = new Schema({
 	name: {
@@ -12,43 +11,64 @@ const patientSchema = new Schema({
 	birthday_date: {
 		type: Date,
 		required: true,
-    },
-    patient_number:{
-        type: Number,
-        required: true,
-        unique: true,
-    },
+	},
+	patient_number: {
+		type: Number,
+		required: true,
+		unique: true,
+	},
 	status: {
-        type: String,
+		type: String,
 		enum: ['Suspect', 'Infected', 'Non Infected'],
 		default: 'Suspect',
-    },
+	},
 	contacts: {
 		phone: {
 			type: Number,
-            require: true,
-            unique: true,
+			require: true,
+			unique: true,
 		},
 		email: {
-            type: String,
-            require: true,
-            unique: true,
+			type: String,
+			require: true,
+			unique: true,
 		},
-    },
-    symptoms: [{
-        type: String,
-        enum: ['cough','fever','shortness of breathe','lack of smell','lack of taste','tiredness','burning eyes','headaches','diarrhea'],
-    }],
-    meta: {
+	},
+	symptoms: [
+		{
+			type: String,
+			enum: [
+				'cough',
+				'fever',
+				'shortness of breathe',
+				'lack of smell',
+				'lack of taste',
+				'tiredness',
+				'burning eyes',
+				'headaches',
+				'diarrhea',
+			],
+		},
+	],
+	meta: {
 		createdAt: {
 			type: Date,
 			default: Date.now(),
-        },
-        updatedAt: {
+		},
+		updatedAt: {
 			type: Date,
-		}
-    }
+		},
+	},
 });
 
+patientSchema.pre('save', function (next) {
+	if (this.isNew) {
+		this.meta.createdAt = this.meta.updatedAt = Date.now();
+	} else {
+		this.meta.updatedAt = Date.now();
+	}
+
+	next();
+});
 
 module.exports = mongoose.model('Patient', patientSchema);
