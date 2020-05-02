@@ -5,7 +5,6 @@ const {
 } = mongoose;
 
 const patient = require('Patient.js');
-const user = require('User.js');
 
 // Set Schema
 const covidTestSchema = new Schema({
@@ -15,7 +14,7 @@ const covidTestSchema = new Schema({
         unique: true,
     },
     patient: {
-		type: ,
+		type: patient,
 		required: true,
     },
     notes: {
