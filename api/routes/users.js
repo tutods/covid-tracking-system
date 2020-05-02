@@ -20,7 +20,7 @@ router.get('/', getAll);
 
 router.get('/:id', getById);
 
-router.put('/:id', getOneAndDelete);
+router.put('/:id', getOneAndUpdate);
 
 router.delete('/:id', getOneAndDelete);
 
