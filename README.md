@@ -1,8 +1,9 @@
-<h1 style="text-algin:center;">
-<a style="text-align: center;display:block;">
-<img src="https://bit.ly/3bSHdAi" alt="Covid" width="50px">
+<h1 align="center">
+<a style="display:block;">
+<img src="https://bit.ly/3bSHdAi" alt="Covid" width="100px">
 </a>
-Covid Tracking System
+
+COVID Tracking System
 </h1>
 
 ## Project Structure
@@ -75,7 +76,7 @@ Covid Tracking System
 + **[URL](https://www.npmjs.com/package/bcryptjs)**
 + **How to install**?
   + `npm install bcryptjs`
-  
+
 </td>
 </tr>
 <tr>
