@@ -41,58 +41,83 @@ Covid Tracking System
 
 ### 📦️ Packages
 
-<div style="display:flex;">
-<div width="50%" style="border-right: 1px solid gray; padding-right: 20px;">
+<table>
+<tr>
+<td>
 
 #### Express
 + **[URL](http://expressjs.com)**
 + **How to install**?
   + `npm install express`
 
+</td>
+<td>
+
 #### Mongoose
 + **[URL](https://mongoosejs.com)**
 + **How to install**?
   + `npm install mongoose`
 
+</td>
+</tr>
+<tr>
+<td>
 
 #### DotENV
 + **[URL](https://www.npmjs.com/package/dotenv)**
 + **How to install**?
   + `npm install dotenv`
 
+</td>
+<td>
+
 #### BCrypt
 + **[URL](https://www.npmjs.com/package/bcryptjs)**
 + **How to install**?
   + `npm install bcryptjs`
-
-</div>
-
-<div width="50%" style="padding-left: 20px;">
+  
+</td>
+</tr>
+<tr>
+<td>
 
 #### Nodemon
 + **[URL](http://nodemon.io)**
 + **How to install**?
-  + `npm install -D nodemon` *or* `npm install -g nodemon`
+  + `npm install -D nodemon`
+  + `npm install -g nodemon`
     + **`-D`** to install only for dev
     + **`-g`** to install package globally
+
+</td>
+<td>
 
 #### Multer
 + **[URL](https://www.npmjs.com/package/multer)**
 + **How to install**?
   + `npm install --save multer`
 
+</td>
+</tr>
+<tr>
+<td>
+
 #### Body Parser
 + **[URL](https://www.npmjs.com/package/body-parser)**
 + **How to install**?
   + `npm install body-parser`
+
+</td>
+<td>
 
 #### Cors
 + **[URL](https://www.npmjs.com/package/cors)**
 + **How to install**?
   + `npm install cors`
 
-</div>
-</div>
+</td>
+</tr>
+</table>
 
 
 ### ℹ️ How to run
