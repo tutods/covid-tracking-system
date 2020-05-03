@@ -26,8 +26,8 @@ const patientSchema = new Schema({
 	contacts: {
 		phone: {
 			type: Number,
-			min: 9,
-			max: 9,
+			minlength: 9,
+			maxlength: 9,
 			validate: {
 				validator: function (data) {
 					return /^\d{9}$/.test(data);
