@@ -135,13 +135,10 @@ COVID Tracking System
 	MONGO_HOST=localhost
 	MONGO_PORT=27017
 	MONGO_DB=mongo_collection
-	MONGO_USER=mongo_user
-	MONGO_PASSWORD=mongo_user_password
 	```
 	+ The `MONGO_PORT=27017` is default value;
-	+ `MONGO_USER` and `MONGO_PASSWORD` not required (only need if you have authentication enabled).
 
-1. To run **NodeJS** server (with **Nodemon**) execute (on terminal) `npm run dev`
+2. To run **NodeJS** server (with **Nodemon**) execute (on terminal) `npm run dev`
 
 ### ℹ️ How to test requests on VSCode
 1. Install [**REST Client** extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
