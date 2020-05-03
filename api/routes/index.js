@@ -4,7 +4,6 @@ const router = express.Router();
 
 // Routes
 const userRoutes = require('./users');
-const patientRoutes = require('./patients');
 const covidTestRoutes = require('./covidTests');
 
 // Middlewares
@@ -18,8 +17,6 @@ router.get('/', (req, res, next) => {
 
 router.use('/users', userRoutes);
 
-router.use('/patients', patientRoutes);
-
-router.use('/covid-tests', covidTestRoutes);
+router.use('/covid-test', covidTestRoutes);
 
 module.exports = router;

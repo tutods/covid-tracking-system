@@ -49,11 +49,7 @@ const covidTestSchema = new Schema({
 
 // Not use arrow function because to use "this""
 covidTestSchema.pre('save', function (next) {
-	// console.log(uuidv4());
-
 	if (this.isNew) {
-		// this.code = uuidv4();
-
 		this.meta.createdAt = this.meta.updatedAt = Date.now();
 	} else {
 		this.meta.updatedAt = Date.now();
