@@ -52,12 +52,99 @@ router.post('/', register);
  */
 router.get('/', getAll);
 
+/**
+ * @swagger
+ * /api/users/{id}:
+ *  get:
+ *    tags:
+ *       ['Users']
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        required: true
+ *        schema:
+ *          type: string
+ *          format: uuid
+ *    summary: Get one
+ *    description: Get one user by id in parameter
+ *    responses:
+ *      '200':
+ *        description: Return the user with id in parameters
+ *        schema:
+ *           $ref: '#/definitions/User'
+ *      '500':
+ *        description: Return error(s)
+ *
+ */
 router.get('/:id', getById);
 
+/**
+ * @swagger
+ * /api/users/{id}:
+ *  put:
+ *    tags:
+ *       ['Users']
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        required: true
+ *        schema:
+ *          type: string
+ *          format: uuid
+ *    summary: Get one user and update
+ *    description: Get one user by id and update the fields in body
+ *    responses:
+ *      '200':
+ *        description: Return the id of user
+ *        schema:
+ *           $ref: '#/definitions/User'
+ *      '500':
+ *        description: Return error(s)
+ *
+ */
 router.put('/:id', getOneAndUpdate);
 
+/**
+ * @swagger
+ * /api/users/{id}:
+ *  delete:
+ *    tags:
+ *       ['Users']
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        required: true
+ *        schema:
+ *          type: string
+ *          format: uuid
+ *    summary: Get one user and delete
+ *    description: Get one user by id and delete that user
+ *    responses:
+ *      '200':
+ *        description: Return the id of user deleted
+ *        schema:
+ *           $ref: '#/definitions/User'
+ *      '500':
+ *        description: Return error(s)
+ *
+ */
 router.delete('/:id', getOneAndDelete);
 
+/**
+ * @swagger
+ * /api/users/login:
+ *  post:
+ *    tags:
+ *       ['Users']
+ *    summary: Login with data in request body
+ *    description: Validated all data send by form, and (if login data is valid) create authentication token
+ *    responses:
+ *      '200':
+ *        description: Return the token after validate all data
+ *      '500':
+ *        description: Return error(s)
+ *
+ */
 router.post('/login', login);
 
 module.exports = router;
