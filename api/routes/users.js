@@ -14,8 +14,42 @@ const {
 	getOneAndDelete,
 } = require('../controllers/GenericController')(model);
 
+/**
+ * @swagger
+ * /api/users/:
+ *  post:
+ *    tags:
+ *       ['Users']
+ *    summary: Create a new User
+ *    description: Use to create or register any user
+ *    responses:
+ *      '200':
+ *        description: User created with success
+ *        schema:
+ *           $ref: '#/definitions/User'
+ *      '500':
+ *        description: There was an error creating the user
+ *
+ */
 router.post('/', register);
 
+/**
+ * @swagger
+ * /api/users/:
+ *  get:
+ *    tags:
+ *       ['Users']
+ *    summary: Get all users
+ *    description: Use to get all users on database
+ *    responses:
+ *      '200':
+ *        description: Return all users on database
+ *        schema:
+ *           $ref: '#/definitions/User'
+ *      '500':
+ *        description: Error in connection
+ *
+ */
 router.get('/', getAll);
 
 router.get('/:id', getById);
