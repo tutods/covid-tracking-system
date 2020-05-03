@@ -13,7 +13,7 @@ const covidTestSchema = new Schema({
 	code: {
 		type: String,
 		unique: true,
-		default: shortid.generate(),
+		default: "134a2i"
 	},
 	patient: {
 		type: mongoose.Schema.Types.ObjectId,
@@ -53,7 +53,7 @@ covidTestSchema.pre('save', function (next) {
 
 	if (this.isNew) {
 		// this.code = uuidv4();
-
+        this.code = shortid.generate();
 		this.meta.createdAt = this.meta.updatedAt = Date.now();
 	} else {
 		this.meta.updatedAt = Date.now();

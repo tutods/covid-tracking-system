@@ -8,6 +8,21 @@ POST http://localhost:3000/api/covid-tests/
 Content-Type: application/json
 
 {
-	"notes": "Test!",
-	"date": "2020/4/21"
+    "patient":"5eadd9ad850cdf3bae0bb77c",
+	"notes": "testNotes !",
+	"date": "2020/4/26"
 }
+
+### Get By ID
+GET http://localhost:3000/api/covid-tests/5eaf02c49608cf4030ad959c
+
+### Get one and update
+PUT http://localhost:3000/api/covid-tests/5eaf02c49608cf4030ad959c
+Content-Type: application/json
+
+{
+	"notes": "Test Modified Once again!"
+}
+
+### Get one and delete
+DELETE http://localhost:3000/api/covid-tests/5eaf02c49608cf4030ad959c
