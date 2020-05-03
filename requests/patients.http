@@ -26,7 +26,6 @@ GET http://localhost:3000/api/patients/5eadd9ad850cdf3bae0bb77c
 ### Get One And Update
 PUT http://localhost:3000/api/patients/5eadd9ad850cdf3bae0bb77c
 Content-Type: application/json
-
 {
 	"contacts.phone": 911911911
 }
