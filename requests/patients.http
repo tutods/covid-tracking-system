@@ -13,7 +13,7 @@ Content-Type: application/json
 	"birthayDate": "1995/12/12",
 	"contacts": {
 		"email": "8160334@estg.ipp.pt",
-		"phone": 1
+		"phone": 123123123
 	},
 	"symptoms": [
 		"cough"
