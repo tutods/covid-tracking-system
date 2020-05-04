@@ -1,28 +1,28 @@
 definitions:
-    User:
+  User:
+    properties:
+      name:
+        type: string
+        required: true
+      email:
+        type: string
+        unique: true
+        format: email
+        required: true
+        pattern: '/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'
+      role:
+        type: string
+        format: uuid
+      password:
+        type: string
+        unique: true
+        required: true
+      meta:
+        type: object
         properties:
-            name:
-                type: string
-                required: true
-            email:
-                type: string
-                unique: true
-                format: email
-                required: true
-                pattern: '/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'
-            role:
-                type: array
-                $ref: '#/definitions/Role'
-            password:
-                type: string
-                unique: true
-                required: true
-            meta:
-                type: object
-                properties:
-                    createdAt:
-                        type: string
-                        format: date
-                    updatedAt:
-                        type: string
-                        format: date
+          createdAt:
+            type: string
+            format: date
+          updatedAt:
+            type: string
+            format: date
