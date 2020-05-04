@@ -5,7 +5,7 @@ paths:
         - Users
       summary: Add a new user
       description: ""
-      operationId: addPet
+      operationId: Login
       consumes:
         - application/json
       produces:
@@ -30,7 +30,7 @@ paths:
         - Users
       summary: Add a new user
       description: ""
-      operationId: addPet
+      operationId: addUser
       consumes:
         - application/json
       produces:

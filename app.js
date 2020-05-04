@@ -23,7 +23,7 @@ const swaggerOptions = {
 		},
 	},
 	swaggerDefinition,
-	apis: ['./documentation/User/*.yaml', './documentation/Role/*.yaml'],
+	apis: ['./documentation/User/*.yaml', './documentation/Role/*.yaml','./documentation/Patient/*.yaml'],
 };
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
