@@ -1,5 +1,5 @@
 // Get ENV variables
-const dotenv = require('dotenv');
+require('dotenv').config();
 const { PORT = 3000 } = process.env;
 
 // Get Mongoose connection
