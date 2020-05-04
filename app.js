@@ -10,22 +10,19 @@ const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
 // Swagger Options
-const swaggerDefinition = {
-	// Set basePath to api (in this case, all routes start with api/)
-	basePath: '/api/',
-};
 const swaggerOptions = {
-	swaggerDefinition: {
-		info: {
-			title: 'COVID-19 Tracking System',
-			description: 'API to webapp COVID-19 Tracking System',
-			servers: [`http://localhost:${PORT}`],
-		},
-	},
-	swaggerDefinition,
-	apis: ['./documentation/User/*.yaml', './documentation/Role/*.yaml'],
+    swaggerDefinition: {
+        basePath: '/api/',
+        host: `localhost:${PORT}`,
+        info: {
+            title: 'COVID Tracking System', // Title (required)
+            version: '1.0.0', // Version (required)
+            description: 'API Documentatio to COVID Tracking System project', // Description (optional)
+            servers: [`http://localhost:${PORT}`],
+        },
+    },
+    apis: ['./documentation/User/*.yaml', './documentation/Role/*.yaml'],
 };
-const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
 // Packages
 const express = require('express');
