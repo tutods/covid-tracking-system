@@ -14,7 +14,7 @@ definitions:
       status:
         type: string
         enum: ["Suspect", "Infected", "Non Infected"]
-        default: 'Suspect'
+        default: "Suspect"
       contacts:
         type: object
         properties:
@@ -25,14 +25,27 @@ definitions:
             required: true
             unique: true
           email:
-            type: email
-            required: true
+            type: string
             unique: true
+            format: email
+            required: true
+            pattern: '/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'
       symptoms:
         type: array
         items:
           type: string
-          enum: ["cough", "fever", "shortness of breathe","lack of smell","lack of taste","tiredness","burning eyes","headaches","diarrhea"]
+          enum:
+            [
+              "cough",
+              "fever",
+              "shortness of breathe",
+              "lack of smell",
+              "lack of taste",
+              "tiredness",
+              "burning eyes",
+              "headaches",
+              "diarrhea",
+            ]
       meta:
         type: object
         properties:
