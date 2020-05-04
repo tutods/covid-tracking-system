@@ -1,0 +1,39 @@
+definitions:
+  CovidTest:
+    properties:
+      code:
+        type: string
+        unique: true
+      patient:
+        type: string
+        format: uuid
+      notes:
+        type: string
+      status:
+        type: array
+                items:
+                    type: string
+                    enum: ["pending", "inProgress", "finished", "notRealized"]
+                    default: "pending"
+                    example:
+                        - "inProgress"
+      result:
+        type: array
+                items:
+                    type: string
+                    enum: ["positive", "negative", "inconclusive"]
+                    example:
+                        - "positive"
+      date:
+        type: date
+        required: true
+      meta:
+        type: object
+        properties:
+          createdAt:
+            type: string
+            format: date
+          updatedAt:
+            type: string
+            format: date
+
