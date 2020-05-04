@@ -23,7 +23,7 @@ const swaggerOptions = {
 		},
 	},
 	swaggerDefinition,
-	apis: ['./api/routes/*.js', './api/models/*.js'],
+	apis: ['./documentation/User/*.yaml', './documentation/Role/*.yaml'],
 };
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 

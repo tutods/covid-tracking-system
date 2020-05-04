@@ -7,37 +7,6 @@ const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
 
 // Set Schema
-/**
- * @swagger
- * definitions:
- *   User:
- *     properties:
- *       name:
- *         type: string
- *         required: true
- *       email:
- *         type: string
- *         unique: true
- *         format: email
- *         required: true
- *         pattern: '/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'
- *       role:
- *         type: array
- *         $ref: '#/definitions/Role'
- *       password:
- *         type: string
- *         unique: true
- *         required: true
- *       meta:
- *         type: object
- *         properties:
- *            createdAt:
- *              type: string
- *              format: date
- *            updatedAt:
- *              type: string
- *              format: date
- */
 const userSchema = new Schema({
 	name: {
 		type: String,
