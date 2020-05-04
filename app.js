@@ -10,6 +10,10 @@ const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
 // Swagger Options
+const swaggerDefinition = {
+	// Set basePath to api (in this case, all routes start with api/)
+	basePath: '/api/',
+};
 const swaggerOptions = {
 	swaggerDefinition: {
 		info: {
@@ -18,6 +22,7 @@ const swaggerOptions = {
 			servers: [`http://localhost:${PORT}`],
 		},
 	},
+	swaggerDefinition,
 	apis: ['./api/routes/*.js', './api/models/*.js'],
 };
 const swaggerDocs = swaggerJsDoc(swaggerOptions);

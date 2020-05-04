@@ -16,10 +16,12 @@ const {
 
 /**
  * @swagger
- * /api/users/:
+ * /users/:
  *  post:
  *    tags:
  *       ['Users']
+ *    produces:
+ *       application/json
  *    summary: Create a new User
  *    description: Use to create or register any user
  *    responses:
@@ -35,7 +37,7 @@ router.post('/', register);
 
 /**
  * @swagger
- * /api/users/:
+ * /users/:
  *  get:
  *    tags:
  *       ['Users']
@@ -54,7 +56,7 @@ router.get('/', getAll);
 
 /**
  * @swagger
- * /api/users/{id}:
+ * /users/{id}:
  *  get:
  *    tags:
  *       ['Users']
@@ -80,7 +82,7 @@ router.get('/:id', getById);
 
 /**
  * @swagger
- * /api/users/{id}:
+ * /users/{id}:
  *  put:
  *    tags:
  *       ['Users']
@@ -106,7 +108,7 @@ router.put('/:id', getOneAndUpdate);
 
 /**
  * @swagger
- * /api/users/{id}:
+ * /users/{id}:
  *  delete:
  *    tags:
  *       ['Users']
@@ -132,7 +134,7 @@ router.delete('/:id', getOneAndDelete);
 
 /**
  * @swagger
- * /api/users/login:
+ * /users/login:
  *  post:
  *    tags:
  *       ['Users']
