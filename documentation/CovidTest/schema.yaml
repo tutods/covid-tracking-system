@@ -11,19 +11,19 @@ definitions:
         type: string
       status:
         type: array
-                items:
-                    type: string
-                    enum: ["pending", "inProgress", "finished", "notRealized"]
-                    default: "pending"
-                    example:
-                        - "inProgress"
+        items:
+          type: string
+          enum: ["pending", "inProgress", "finished", "notRealized"]
+          default: "pending"
+          example:
+            - "inProgress"
       result:
         type: array
-                items:
-                    type: string
-                    enum: ["positive", "negative", "inconclusive"]
-                    example:
-                        - "positive"
+      items:
+        type: string
+        enum: ["positive", "negative", "inconclusive"]
+        example:
+          - "positive"
       date:
         type: date
         required: true
@@ -36,4 +36,3 @@ definitions:
           updatedAt:
             type: string
             format: date
-
