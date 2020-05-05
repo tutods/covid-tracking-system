@@ -3,7 +3,7 @@ paths:
     post:
       tags:
         - Users
-      summary: Add a new user
+      summary: Authenticate user validating data passed by body
       description: ""
       operationId: Login
       consumes:
