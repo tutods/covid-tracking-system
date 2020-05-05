@@ -18,7 +18,7 @@ router.get('/', (req, res, next) => {
 
 router.use('/users', userRoutes);
 
-router.use('/covid-test', covidTestRoutes);
+router.use('/covid-tests', covidTestRoutes);
 
 router.use('/patients', patientRoutes);
 

@@ -5,7 +5,7 @@
 	"description": "Covid tracking system for PAW project",
 	"main": "app.js",
 	"scripts": {
-		"dev": "nodemon -e yaml -e js app.js",
+		"dev": "nodemon -e yaml,js,json app.js",
 		"roles": "node ./scripts/defaultRoles.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
