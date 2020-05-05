@@ -2,9 +2,14 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
+// Mongoose Plugins
+const autoPopulate = require('mongoose-autopopulate');
+
 // Bcrypt Package
 const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
+
+mongoose.plugin(autoPopulate);
 
 // Set Schema
 const userSchema = new Schema({
@@ -26,6 +31,7 @@ const userSchema = new Schema({
 	role: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Role',
+		autopopulate: true,
 	},
 	password: {
 		type: String,
@@ -81,4 +87,4 @@ userSchema.methods.comparePassword = async function (password, callback) {
 	return await bcrypt.compare(password, this.password, callback);
 };
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema, 'users');

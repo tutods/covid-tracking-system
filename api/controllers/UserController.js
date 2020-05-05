@@ -4,6 +4,7 @@ const { SECRET } = process.env;
 
 // Model
 const User = require('../models/User');
+const Role = require('../models/Role');
 
 // Packages
 const jwt = require('jsonwebtoken');

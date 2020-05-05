@@ -19,6 +19,7 @@ const covidTestSchema = new Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Patient',
 		required: true,
+		autopopulate: true,
 	},
 	notes: {
 		type: String,
