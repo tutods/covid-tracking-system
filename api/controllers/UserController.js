@@ -1,39 +1,50 @@
+// ENV
+require('dotenv').config();
+const { SECRET } = process.env;
+
+// Model
 const User = require('../models/User');
 
-const bcrypt = require('bcryptjs');
+// Packages
+const jwt = require('jsonwebtoken');
 
 const userController = () => {
-	const login = (req, res) => {
+	const login = async (req, res) => {
 		const data = req.body;
-		const email = data.email;
-		const password = data.password;
+		const bodyEmail = data.email;
+		const bodyPwd = data.password;
 
-		if (
-			password == null ||
-			email == null ||
-			password == undefined ||
-			email == undefined
-		) {
-			res.status(500).send({ status: 'Invalid data' });
+		const userDB = await User.findOne({ email: bodyEmail });
+
+		if (userDB) {
+			let response = {};
+
+			const validatePwd = await userDB.comparePassword(bodyPwd);
+
+			if (validatePwd) {
+				const user = {
+					email: userDB.email,
+					name: userDB.name,
+					role: userDB.role,
+				};
+
+				const jwtT = jwt.sign({ user }, SECRET);
+				response.code = 200;
+				response.auth = true;
+				response.token = jwtT;
+			} else {
+				response.code = 403;
+				response.auth = false;
+				response.token = null;
+			}
+
+			res.status(response.code).send({
+				auth: response.auth,
+				token: response.token,
+			});
+		} else {
+			res.status(500).json({ message: 'Error on login data' });
 		}
-
-		User.findOne({ email: email }, (error, data) => {
-			const pwdValidation = bcrypt.compare(
-				password,
-				data.password,
-				(error, isMatch) => {
-					if (error) {
-						throw error;
-					}
-
-					return isMatch;
-				}
-			);
-
-			console.log('PWD IS MATCH?', pwdValidation);
-
-			// TODO Store login [JWT]
-		});
 	};
 
 	const register = (req, res) => {

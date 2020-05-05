@@ -1,5 +1,5 @@
 paths:
-    /users/{login}:
+    /users/login:
         post:
             tags:
                 - Users
@@ -16,14 +16,43 @@ paths:
                   description: User object with fields defined on **User Schema**
                   required: true
                   schema:
-                      $ref: '#/definitions/User'
+                      type: object
+                      properties:
+                          email:
+                              type: string
+                              format: email
+                          password:
+                              type: string
             responses:
                 '200':
                     description: Ok, user has created with success
                     schema:
-                        $ref: '#/definitions/User'
+                        type: object
+                        properties:
+                            auth:
+                                type: boolean
+                                default: true
+                            token:
+                                type: string
                 '403':
-                    description: Invalid input or error on database connection
+                    description: Invalid input data
+                    schema:
+                        type: object
+                        properties:
+                            auth:
+                                type: boolean
+                                default: false
+                            token:
+                                type: string
+                                example: ''
+                '500':
+                    description: User with email not exists
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                example: 'Error on login data'
     /users/:
         post:
             tags:

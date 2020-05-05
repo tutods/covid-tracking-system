@@ -15,9 +15,9 @@ const swaggerOptions = {
 		basePath: '/api/',
 		host: `localhost:${PORT}`,
 		info: {
-			title: 'COVID Tracking System', // Title (required)
-			version: '1.0.0', // Version (required)
-			description: 'API Documentation to COVID Tracking System project', // Description (optional)
+			title: 'COVID Tracking System',
+			version: '1.0.0',
+			description: 'API Documentation to COVID Tracking System project',
 			servers: [`http://localhost:${PORT}`],
 		},
 	},

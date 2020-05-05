@@ -76,4 +76,9 @@ userSchema.pre('findOneAndUpdate', function (next) {
 	}
 	next();
 });
+
+userSchema.methods.comparePassword = async function (password, callback) {
+	return await bcrypt.compare(password, this.password, callback);
+};
+
 module.exports = mongoose.model('User', userSchema);
