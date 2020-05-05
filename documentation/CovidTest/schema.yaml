@@ -10,20 +10,12 @@ definitions:
       notes:
         type: string
       status:
-        type: array
-        items:
-          type: string
-          enum: ["pending", "inProgress", "finished", "notRealized"]
-          default: "pending"
-          example:
-            - "inProgress"
+        type: string
+        enum: ["pending", "inProgress", "finished", "notRealized"]
+        default: "pending"
       result:
-        type: array
-      items:
         type: string
         enum: ["positive", "negative", "inconclusive"]
-        example:
-          - "positive"
       date:
         type: date
         required: true
