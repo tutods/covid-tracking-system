@@ -17,7 +17,7 @@ const swaggerOptions = {
 		info: {
 			title: 'COVID Tracking System', // Title (required)
 			version: '1.0.0', // Version (required)
-			description: 'API Documentatio to COVID Tracking System project', // Description (optional)
+			description: 'API Documentation to COVID Tracking System project', // Description (optional)
 			servers: [`http://localhost:${PORT}`],
 		},
 	},
