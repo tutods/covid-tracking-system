@@ -6,15 +6,16 @@ const router = express.Router();
 const model = require('../models/User');
 
 // Controllers
-const { login, register } = require('../controllers/UserController');
+const { login } = require('../controllers/UserController');
 const {
 	getAll,
 	getById,
+	create,
 	getOneAndUpdate,
 	getOneAndDelete,
 } = require('../controllers/GenericController')(model);
 
-router.post('/', register);
+router.post('/', create);
 
 router.get('/', getAll);
 

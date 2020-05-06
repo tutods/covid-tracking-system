@@ -14,10 +14,10 @@ Content-Type: application/json
 }
 
 ### Get By ID
-GET http://localhost:3000/api/covid-tests/5eaf02c49608cf4030ad959c
+GET http://localhost:3000/api/covid-tests/5eaf02c49608cf4000ad959c
 
 ### Get one and update
-PUT http://localhost:3000/api/covid-tests/5eaf02c49608cf4030ad959c
+PUT http://localhost:3000/api/covid-tests/5eaf02c49608cf4000ad959c
 Content-Type: application/json
 
 {
@@ -25,4 +25,4 @@ Content-Type: application/json
 }
 
 ### Get one and delete
-DELETE http://localhost:3000/api/covid-tests/5eaf02c49608cf4030ad959c
+DELETE http://localhost:3000/api/covid-tests/5eaf02c49608cf4000ad959c
