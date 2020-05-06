@@ -4,7 +4,6 @@ const { SECRET } = process.env;
 
 // Model
 const User = require('../models/User');
-const Role = require('../models/Role');
 
 // Packages
 const jwt = require('jsonwebtoken');
@@ -30,37 +29,36 @@ const userController = () => {
 				};
 
 				const jwtT = jwt.sign({ user }, SECRET);
+
 				response.code = 200;
 				response.auth = true;
 				response.token = jwtT;
+				response.message = '';
+				response.user = user;
 			} else {
-				response.code = 403;
+				response.code = 401;
 				response.auth = false;
 				response.token = null;
+				response.message = 'Invalid Credentials';
 			}
 
 			res.status(response.code).send({
 				auth: response.auth,
 				token: response.token,
+				message: response.message,
+				user: response.user || {},
 			});
 		} else {
-			res.status(500).json({ message: 'Error on login data' });
+			res.status(401).json({
+				auth: false,
+				token: null,
+				message: 'Invalid Credentials',
+				user: {},
+			});
 		}
 	};
 
-	const register = (req, res) => {
-		const data = req.body;
-
-		new User(data).save((err, data) => {
-			const response = err
-				? { status: 500, body: err }
-				: { status: 200, body: data };
-
-			res.status(response.status).send(response.body);
-		});
-	};
-
-	return { login, register };
+	return { login };
 };
 
 module.exports = userController();
