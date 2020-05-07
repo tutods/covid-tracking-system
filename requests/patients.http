@@ -1,19 +1,19 @@
 ### All Patient Requests ###
 
 ### Get All
-GET http://localhost:3000/api/patients/
+GET http://localhost:3000/api/patients?sort=desc
 
 ### Create
 POST http://localhost:3000/api/patients/
 Content-Type: application/json
 
 {
-	"name": "Daniel Sousa",
-	"patientNumber": 123123123,
+	"name": "Daniel ",
+	"patientNumber": 333333333,
 	"birthayDate": "1995/12/12",
 	"contacts": {
-		"email": "8160334@estg.ipp.pt",
-		"phone": 1
+		"email": "100@estg.ipp.pt",
+		"phone": 111111111
 	},
 	"symptoms": [
 		"cough"
@@ -21,14 +21,18 @@ Content-Type: application/json
 }
 
 ### Get By ID
-GET http://localhost:3000/api/patients/5eadd9ad850cdf3bae0bb77c
+GET http://localhost:3000/api/patients/5eb1b6fb59fae71678a4539d
 
 ### Get One And Update
-PUT http://localhost:3000/api/patients/5eadd9ad850cdf3bae0bb77c
+PUT http://localhost:3000/api/patients/5eb1b6fb59fae71678a4539d
 Content-Type: application/json
+
 {
-	"contacts.phone": 911911911
+	"status": "teste"
 }
 
 ### Get One And Delete
 DELETE http://localhost:3000/api/patients/5eadd9ad850cdf3bae0bb77c
+
+### Get By name
+GET http://localhost:3000/api/patients/Joao/5eb1b6fb59fae71678a4539d
