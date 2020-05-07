@@ -19,7 +19,6 @@ const covidTestSchema = new Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Patient',
 		required: true,
-		autopopulate: true,
 	},
 	notes: {
 		type: String,
@@ -46,6 +45,12 @@ const covidTestSchema = new Schema({
 			type: Date,
 		},
 	},
+});
+
+covidTestSchema.pre(/^(find|findOne|findOneAndUpdate)$/, function (next) {
+	this.populate('patient');
+	console.log(this.patient);
+	next();
 });
 
 // Not use arrow function because to use "this""

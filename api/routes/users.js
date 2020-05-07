@@ -6,7 +6,7 @@ const router = express.Router();
 const model = require('../models/User');
 
 // Controllers
-const { login } = require('../controllers/UserController');
+const { login, logout } = require('../controllers/UserController');
 const {
 	getAll,
 	getById,
@@ -26,5 +26,7 @@ router.put('/:id', getOneAndUpdate);
 router.delete('/:id', getOneAndDelete);
 
 router.post('/login', login);
+
+router.post('/logout', logout);
 
 module.exports = router;

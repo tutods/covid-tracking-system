@@ -1,6 +1,6 @@
 // ENV
 require('dotenv').config();
-const { SECRET } = process.env;
+const { SECRET, EXPIRES = 1800000 } = process.env;
 
 // Model
 const User = require('../models/User');
@@ -14,8 +14,10 @@ const userController = () => {
 		const bodyEmail = data.email;
 		const bodyPwd = data.password;
 
-		const userDB = await User.findOne({ email: bodyEmail });
-
+		const userDB = await User.findOne({ email: bodyEmail }).populate(
+			'roles'
+		);
+		console.log(userDB);
 		if (userDB) {
 			let response = {};
 
@@ -30,6 +32,10 @@ const userController = () => {
 
 				const jwtT = jwt.sign({ user }, SECRET);
 
+				res.cookie('x-access-token', jwtT, {
+					expires: new Date(Date.now() + EXPIRES),
+				});
+
 				response.code = 200;
 				response.auth = true;
 				response.token = jwtT;
@@ -42,7 +48,7 @@ const userController = () => {
 				response.message = 'Invalid Credentials';
 			}
 
-			res.status(response.code).send({
+			res.status(response.code).json({
 				auth: response.auth,
 				token: response.token,
 				message: response.message,
@@ -58,7 +64,12 @@ const userController = () => {
 		}
 	};
 
-	return { login };
+	const logout = (req, res) => {
+		// Destroy cookie
+		res.clearCookie('x-access-token').json({ success: true });
+	};
+
+	return { login, logout };
 };
 
 module.exports = userController();

@@ -3,12 +3,12 @@ const express = require('express');
 const router = express.Router();
 
 // Routes
-const userRoutes = require('./users');
-const covidTestRoutes = require('./covidTests');
-const patientRoutes = require('./patients');
+const userRoutes = require('./routes/users');
+const covidTestRoutes = require('./routes/covidTests');
+const patientRoutes = require('./routes/patients');
 
 // Middlewares
-const logger = require('../middlewares/logger');
+const logger = require('./middlewares/logger');
 
 router.use(logger);
 

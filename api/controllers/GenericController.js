@@ -6,7 +6,7 @@ const genericController = (model) => {
 				? { status: 400, body: error }
 				: { status: 200, body: data };
 
-			res.status(response.status).send(response.body);
+			res.status(response.status).json(response.body);
 		});
 	};
 
@@ -18,7 +18,7 @@ const genericController = (model) => {
 				? { status: 400, body: error }
 				: { status: 200, body: data };
 
-			res.status(response.status).send(response.body);
+			res.status(response.status).json(response.body);
 		});
 	};
 
@@ -30,7 +30,7 @@ const genericController = (model) => {
 				? { status: 400, body: error }
 				: { status: 201, body: data };
 
-			res.status(response.status).send(response.body);
+			res.status(response.status).json(response.body);
 		});
 	};
 
@@ -43,7 +43,7 @@ const genericController = (model) => {
 				? { status: 400, body: error }
 				: { status: 200, body: data };
 
-			res.status(response.status).send(response.body);
+			res.status(response.status).json(response.body);
 		});
 	};
 
@@ -55,7 +55,7 @@ const genericController = (model) => {
 				? { status: 400, body: error }
 				: { status: 200, body: data };
 
-			res.status(response.status).send(response.body);
+			res.status(response.status).json(response.body);
 		});
 	};
 

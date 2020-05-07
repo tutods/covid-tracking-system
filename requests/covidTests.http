@@ -8,7 +8,7 @@ POST http://localhost:3000/api/covid-tests/
 Content-Type: application/json
 
 {
-    "patient":"5eadd9ad850cdf3bae0bb77c",
+    "patient":"5eb40496957c252da238cd44",
 	"notes": "testNotes !",
 	"date": "2020/4/26"
 }

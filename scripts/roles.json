@@ -1,16 +1,18 @@
 [
 	{
-		"name": "Admin",
+		"name": "ADMIN",
 		"scopes": [
 			"--view-all",
+			"--create-all",
 			"--edit-all",
 			"--delete-all"
 		]
 	},
 	{
-		"name": "Technic",
+		"name": "TECHNIC",
 		"scopes": [
 			"--view-all",
+			"--create-all",
 			"--edit-all"
 		]
 	}

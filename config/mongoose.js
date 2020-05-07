@@ -19,6 +19,7 @@ module.exports = mongoose.connect(
 		useCreateIndex: true,
 		useUnifiedTopology: true,
 		useFindAndModify: false,
+		useCreateIndex: true,
 	},
 	(error) => {
 		const msg = error ? `[ERROR: ${error}]` : '[DATABASE CONNECTED]';

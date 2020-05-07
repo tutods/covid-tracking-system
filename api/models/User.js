@@ -2,14 +2,11 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-// Mongoose Plugins
-const autoPopulate = require('mongoose-autopopulate');
+const Role = require('./Role');
 
 // Bcrypt Package
 const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
-
-mongoose.plugin(autoPopulate);
 
 // Set Schema
 const userSchema = new Schema({
@@ -30,8 +27,7 @@ const userSchema = new Schema({
 	},
 	role: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'Role',
-		autopopulate: true,
+		ref: Role,
 	},
 	password: {
 		type: String,
@@ -48,6 +44,12 @@ const userSchema = new Schema({
 			type: Date,
 		},
 	},
+});
+
+userSchema.pre(/^(find|findOne|findOneAndUpdate)$/, function (next) {
+	this.populate('role');
+	console.log(this.roles);
+	next();
 });
 
 // Not use arrow function because to use "this""
@@ -87,4 +89,4 @@ userSchema.methods.comparePassword = async function (password, callback) {
 	return await bcrypt.compare(password, this.password, callback);
 };
 
-module.exports = mongoose.model('User', userSchema, 'users');
+module.exports = mongoose.model('User', userSchema);

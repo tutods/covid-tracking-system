@@ -33,11 +33,12 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions);
 // Packages
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const multer = require('multer');
 const cors = require('cors');
 
 // API Routes
-const apiRoutes = require('./api/routes');
+const apiRoutes = require('./api');
 
 const app = express();
 
@@ -48,11 +49,14 @@ app
 	// Static Files
 	.use(express.static('./public'))
 
+	// Cookie Parser
+	.use(cookieParser())
+
 	// Cors
 	.use(cors())
 
 	// Set body-parser
-	.use(bodyParser.urlencoded({ extended: false }))
+	.use(bodyParser.urlencoded({ extended: true }))
 	.use(bodyParser.json())
 
 	// When need test what you receive
