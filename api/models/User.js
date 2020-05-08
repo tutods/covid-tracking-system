@@ -28,6 +28,14 @@ const userSchema = new Schema({
 	role: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: Role,
+		validate: {
+			validator: async function (data) {
+				const role = Role.count({ _id: data });
+
+				return role;
+			},
+			message: (props) => `${props.value} is not a valid role!`,
+		},
 		required: [true, 'Role is required!'],
 	},
 	password: {

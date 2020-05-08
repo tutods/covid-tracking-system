@@ -6,6 +6,7 @@ const router = express.Router();
 const userRoutes = require('./routes/users');
 const covidTestRoutes = require('./routes/covidTests');
 const patientRoutes = require('./routes/patients');
+const rolesRoutes = require('./routes/roles');
 
 // Middlewares
 const logger = require('./middlewares/logger');
@@ -21,5 +22,7 @@ router.use('/users', userRoutes);
 router.use('/covid-tests', covidTestRoutes);
 
 router.use('/patients', patientRoutes);
+
+router.use('/roles', rolesRoutes);
 
 module.exports = router;
