@@ -48,7 +48,6 @@ const userSchema = new Schema({
 
 userSchema.pre(/^(find|findOne|findOneAndUpdate)$/, function (next) {
 	this.populate('role');
-	console.log(this.roles);
 	next();
 });
 

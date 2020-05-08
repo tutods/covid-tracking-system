@@ -4,7 +4,8 @@ require('dotenv').config();
 const { SECRET = 'coV!d#19_$ystem$' } = process.env;
 
 const sessionMiddleware = (req, res, next) => {
-	const sessionToken = JSON.parse(req.cookies.session);
+	const sessionToken = req.cookies.session;
+
 	try {
 		if (sessionToken) {
 			const user = jwt.verify(sessionToken, SECRET);

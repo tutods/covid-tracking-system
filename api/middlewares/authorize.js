@@ -2,19 +2,18 @@ const authorize = (opts) => {
 	opts = opts || [];
 
 	return (req, res, next) => {
-		if (!req.user) {
-			next('Not authenticated');
-		}
+		if (req.user) {
+			const hasOneScope = opts.some((accessScope) => {
+				return req.user.scopes.includes(accessScope);
+			});
 
-		console.log(req);
-
-		const hasAuthorization = opts.includes(req.user);
-		console.log('[AUTHORIZATION]', hasAuthorization);
-
-		if (hasAuthorization) {
-			next();
+			if (hasOneScope) {
+				next();
+			} else {
+				next('Not authorized');
+			}
 		} else {
-			next('Not authorized');
+			next('Not authenticated');
 		}
 	};
 };

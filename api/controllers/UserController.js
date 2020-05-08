@@ -14,10 +14,8 @@ const userController = () => {
 		const bodyEmail = data.email;
 		const bodyPwd = data.password;
 
-		const userDB = await User.findOne({ email: bodyEmail }).populate(
-			'roles'
-		);
-		console.log(userDB);
+		const userDB = await User.findOne({ email: bodyEmail });
+
 		if (userDB) {
 			let response = {};
 
@@ -27,14 +25,12 @@ const userController = () => {
 				const user = {
 					email: userDB.email,
 					name: userDB.name,
-					role: userDB.role,
+					role: userDB.role.name,
+					scopes: userDB.role.scopes,
 				};
+				const jwtT = jwt.sign(user, SECRET);
 
-				const jwtT = jwt.sign({ user }, SECRET);
-
-				console.log(JSON.stringify(jwtT));
-
-				res.cookie('session', JSON.stringify(jwtT), {
+				res.cookie('session', jwtT, {
 					expires: new Date(Date.now() + EXPIRES),
 				});
 
