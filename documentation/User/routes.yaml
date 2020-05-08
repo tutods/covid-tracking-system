@@ -59,6 +59,26 @@ paths:
               user:
                 type: object
                 example: {}
+  /users/logout:
+    post:
+      tags:
+        - Users
+      summary: Authenticate user validating data passed by body
+      description: ""
+      operationId: logout
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "201":
+          description: Ok, user session deleted with success
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                default: true
   /users/:
     post:
       tags:
