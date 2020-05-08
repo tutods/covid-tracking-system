@@ -2,6 +2,9 @@
 const express = require('express');
 const router = express.Router();
 
+// Middlewares
+const authorize = require('../middlewares/authorize');
+
 // User Model
 const model = require('../models/User');
 
@@ -17,7 +20,7 @@ const {
 
 router.post('/', create);
 
-router.get('/', getAll);
+router.get('/', authorize(['--view-all']), getAll);
 
 router.get('/:id', getById);
 

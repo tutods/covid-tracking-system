@@ -46,7 +46,6 @@ const patientSchema = new Schema({
 				},
 				message: (props) => `${props.value} is not a valid email!`,
 			},
-			require: [true, 'User email require'],
 			unique: true,
 		},
 	},

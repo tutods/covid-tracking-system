@@ -1,6 +1,6 @@
 // ENV
 require('dotenv').config();
-const { SECRET, EXPIRES = 1800000 } = process.env;
+const { SECRET = 'coV!d#19_$ystem$', EXPIRES = 1800000 } = process.env;
 
 // Model
 const User = require('../models/User');
@@ -32,7 +32,9 @@ const userController = () => {
 
 				const jwtT = jwt.sign({ user }, SECRET);
 
-				res.cookie('x-access-token', jwtT, {
+				console.log(JSON.stringify(jwtT));
+
+				res.cookie('session', JSON.stringify(jwtT), {
 					expires: new Date(Date.now() + EXPIRES),
 				});
 
@@ -66,7 +68,7 @@ const userController = () => {
 
 	const logout = (req, res) => {
 		// Destroy cookie
-		res.clearCookie('x-access-token').json({ success: true });
+		res.clearCookie('session').json({ success: true });
 	};
 
 	return { login, logout };

@@ -10,6 +10,8 @@ Content-Type: application/json
 {
     "patient":"5eb40496957c252da238cd44",
 	"notes": "testNotes !",
+	"status": "inProgress",
+	"result": "teste",
 	"date": "2020/4/26"
 }
 
@@ -17,11 +19,11 @@ Content-Type: application/json
 GET http://localhost:3000/api/covid-tests/5eaf02c49608cf4000ad959c
 
 ### Get one and update
-PUT http://localhost:3000/api/covid-tests/5eaf02c49608cf4000ad959c
+PUT http://localhost:3000/api/covid-tests/5eb4366279d7f91299713b09
 Content-Type: application/json
 
 {
-	"notes": "Test Modified Once again!"
+	"status":
 }
 
 ### Get one and delete

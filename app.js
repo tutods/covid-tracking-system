@@ -37,6 +37,9 @@ const cookieParser = require('cookie-parser');
 const multer = require('multer');
 const cors = require('cors');
 
+// Middlewares
+const sessionMiddleware = require('./api/middlewares/session');
+
 // API Routes
 const apiRoutes = require('./api');
 
@@ -65,6 +68,9 @@ app
 	// 	res.write('you posted:\n');
 	// 	res.end(JSON.stringify(req.body, null, 2));
 	// })
+
+	// Setup session middleware
+	.use(sessionMiddleware)
 
 	// Routes
 	.use('/api', apiRoutes)

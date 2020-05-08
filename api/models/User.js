@@ -28,11 +28,11 @@ const userSchema = new Schema({
 	role: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: Role,
+		required: [true, 'Role is required!'],
 	},
 	password: {
 		type: String,
 		required: true,
-		// TODO: same password appear error
 		unique: true,
 	},
 	meta: {

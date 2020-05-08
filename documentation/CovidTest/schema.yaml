@@ -1,38 +1,38 @@
 definitions:
-  CovidTest:
-    properties:
-      code:
-        type: string
-        unique: true
-        format: uuid
-      patient:
-        type: string
-        format: uuid
-        required: true
-      notes:
-        type: string
-      status:
-        type: string
-        enum:
-          - pending
-          - inProgress
-          - finished
-          - notRealized
-        default: pending
-      result:
-        type: string
-        enum: ["positive", "negative", "inconclusive"]
-        default: positive
-      date:
-        type: string
-        format: date
-        required: true
-      meta:
-        type: object
+    CovidTest:
         properties:
-          createdAt:
-            type: string
-            format: date
-          updatedAt:
-            type: string
-            format: date
+            code:
+                type: string
+                unique: true
+                format: uuid
+            patient:
+                type: string
+                format: uuid
+                required: true
+            notes:
+                type: string
+            status:
+                type: string
+                enum:
+                    - pending
+                    - inProgress
+                    - finished
+                    - notRealized
+                default: pending
+            result:
+                type: string
+                enum: ['positive', 'negative', 'inconclusive']
+                default: positive
+            date:
+                type: string
+                format: date
+                required: true
+            meta:
+                type: object
+                properties:
+                    createdAt:
+                        type: string
+                        format: date
+                    updatedAt:
+                        type: string
+                        format: date
