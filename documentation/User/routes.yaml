@@ -114,8 +114,9 @@ paths:
                 '200':
                     description: Return all users storaged into database
                     schema:
-                        type: object
-                        $ref: '#/definitions/User'
+                        type: array
+                        items:
+                            $ref: '#/definitions/User'
                 '401':
                     description: Any error on connection or query
     /users/{id}:
