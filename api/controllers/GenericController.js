@@ -3,7 +3,7 @@ const genericController = (model) => {
 		// TODO implement filter and sort middleware
 		model.find({}, (error, data) => {
 			const response = error
-				? { status: 400, body: error }
+				? { status: 401, body: error }
 				: { status: 200, body: data };
 
 			res.status(response.status).json(response.body);
@@ -15,7 +15,7 @@ const genericController = (model) => {
 
 		model.findOne({ _id: id }, (error, data) => {
 			const response = error
-				? { status: 400, body: error }
+				? { status: 401, body: error }
 				: { status: 200, body: data };
 
 			res.status(response.status).json(response.body);
@@ -27,7 +27,7 @@ const genericController = (model) => {
 
 		new model(data).save((error, data) => {
 			const response = error
-				? { status: 400, body: error }
+				? { status: 401, body: error }
 				: { status: 201, body: data };
 
 			res.status(response.status).json(response.body);
@@ -44,7 +44,7 @@ const genericController = (model) => {
 			{ runValidators: true },
 			(error, data) => {
 				const response = error
-					? { status: 400, body: error }
+					? { status: 401, body: error }
 					: { status: 200, body: data };
 
 				res.status(response.status).json(response.body);
@@ -57,7 +57,7 @@ const genericController = (model) => {
 
 		model.findOneAndDelete(id, (error, data) => {
 			const response = error
-				? { status: 400, body: error }
+				? { status: 401, body: error }
 				: { status: 200, body: data };
 
 			res.status(response.status).json(response.body);
