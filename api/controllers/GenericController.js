@@ -38,13 +38,18 @@ const genericController = (model) => {
 		const id = req.params.id;
 		const data = req.body;
 
-		model.findOneAndUpdate(id, data, (error, data) => {
-			const response = error
-				? { status: 400, body: error }
-				: { status: 200, body: data };
+		model.findOneAndUpdate(
+			id,
+			data,
+			{ runValidators: true },
+			(error, data) => {
+				const response = error
+					? { status: 400, body: error }
+					: { status: 200, body: data };
 
-			res.status(response.status).json(response.body);
-		});
+				res.status(response.status).json(response.body);
+			}
+		);
 	};
 
 	const getOneAndDelete = (req, res) => {
