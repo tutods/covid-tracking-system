@@ -8,6 +8,9 @@ shortid.characters(
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
+// enum
+const resultEnum = ['positive', 'negative', 'inconclusive'];
+
 // Set Schema
 const covidTestSchema = new Schema({
 	code: {
@@ -18,7 +21,7 @@ const covidTestSchema = new Schema({
 	patient: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Patient',
-		required: true,
+		required: [true, 'Patient is required'],
 	},
 	notes: {
 		type: String,
@@ -27,10 +30,11 @@ const covidTestSchema = new Schema({
 		type: String,
 		enum: ['pending', 'inProgress', 'finished', 'notRealized'],
 		default: 'pending',
+		required: [true, 'The status is required'],
 	},
 	result: {
 		type: String,
-		enum: ['positive', 'negative', 'inconclusive'],
+		enum: resultEnum,
 	},
 	date: {
 		type: Date,
@@ -45,6 +49,12 @@ const covidTestSchema = new Schema({
 			type: Date,
 		},
 	},
+});
+
+covidTestSchema.pre(/^(find|findOne|findOneAndUpdate)$/, function (next) {
+	this.populate('patient');
+	console.log(this.patient);
+	next();
 });
 
 // Not use arrow function because to use "this""

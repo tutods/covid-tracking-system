@@ -2,6 +2,8 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
+const Role = require('./Role');
+
 // Bcrypt Package
 const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
@@ -25,12 +27,12 @@ const userSchema = new Schema({
 	},
 	role: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'Role',
+		ref: Role,
+		required: [true, 'Role is required!'],
 	},
 	password: {
 		type: String,
 		required: true,
-		// TODO: same password appear error
 		unique: true,
 	},
 	meta: {
@@ -42,6 +44,11 @@ const userSchema = new Schema({
 			type: Date,
 		},
 	},
+});
+
+userSchema.pre(/^(find|findOne|findOneAndUpdate)$/, function (next) {
+	this.populate('role');
+	next();
 });
 
 // Not use arrow function because to use "this""
@@ -76,4 +83,9 @@ userSchema.pre('findOneAndUpdate', function (next) {
 	}
 	next();
 });
+
+userSchema.methods.comparePassword = async function (password, callback) {
+	return await bcrypt.compare(password, this.password, callback);
+};
+
 module.exports = mongoose.model('User', userSchema);

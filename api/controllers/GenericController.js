@@ -3,10 +3,10 @@ const genericController = (model) => {
 		// TODO implement filter and sort middleware
 		model.find({}, (error, data) => {
 			const response = error
-				? { status: 403, body: error }
+				? { status: 400, body: error }
 				: { status: 200, body: data };
 
-			res.status(response.status).send(response.body);
+			res.status(response.status).json(response.body);
 		});
 	};
 
@@ -15,10 +15,10 @@ const genericController = (model) => {
 
 		model.findOne({ _id: id }, (error, data) => {
 			const response = error
-				? { status: 403, body: error }
+				? { status: 400, body: error }
 				: { status: 200, body: data };
 
-			res.status(response.status).send(response.body);
+			res.status(response.status).json(response.body);
 		});
 	};
 
@@ -27,10 +27,10 @@ const genericController = (model) => {
 
 		new model(data).save((error, data) => {
 			const response = error
-				? { status: 403, body: error }
-				: { status: 200, body: data };
+				? { status: 400, body: error }
+				: { status: 201, body: data };
 
-			res.status(response.status).send(response.body);
+			res.status(response.status).json(response.body);
 		});
 	};
 
@@ -38,13 +38,18 @@ const genericController = (model) => {
 		const id = req.params.id;
 		const data = req.body;
 
-		model.findOneAndUpdate(id, data, (error, data) => {
-			const response = error
-				? { status: 403, body: error }
-				: { status: 200, body: data.id };
+		model.findOneAndUpdate(
+			id,
+			data,
+			{ runValidators: true },
+			(error, data) => {
+				const response = error
+					? { status: 400, body: error }
+					: { status: 200, body: data };
 
-			res.status(response.status).send({ status: response.body });
-		});
+				res.status(response.status).json(response.body);
+			}
+		);
 	};
 
 	const getOneAndDelete = (req, res) => {
@@ -52,10 +57,10 @@ const genericController = (model) => {
 
 		model.findOneAndDelete(id, (error, data) => {
 			const response = error
-				? { status: 403, body: error }
-				: { status: 200, body: data.id };
+				? { status: 400, body: error }
+				: { status: 200, body: data };
 
-			res.status(response.status).send({ status: response.body });
+			res.status(response.status).json(response.body);
 		});
 	};
 
