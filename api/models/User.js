@@ -8,51 +8,50 @@ const Role = require('./Role');
 const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
 
-// Set Schema
-const userSchema = new Schema({
-	name: {
-		type: String,
-		required: true,
-	},
-	email: {
-		type: String,
-		validate: {
-			validator: function (data) {
-				return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(data);
-			},
-			message: (props) => `${props.value} is not a valid email!`,
-		},
-		required: [true, 'User email required'],
-		unique: true,
-	},
-	role: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: Role,
-		validate: {
-			validator: async function (data) {
-				const role = Role.countDocuments({ _id: data });
+// Timestamps Options
+const schemaOptions = {
+	timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' },
+};
 
-				return role;
+// Set Schema
+const userSchema = new Schema(
+	{
+		name: {
+			type: String,
+			required: true,
+		},
+		email: {
+			type: String,
+			validate: {
+				validator: function (data) {
+					return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(data);
+				},
+				message: (props) => `${props.value} is not a valid email!`,
 			},
-			message: (props) => `${props.value} is not a valid role!`,
+			required: [true, 'User email required'],
+			unique: true,
 		},
-		required: [true, 'Role is required!'],
-	},
-	password: {
-		type: String,
-		required: true,
-		unique: true,
-	},
-	meta: {
-		createdAt: {
-			type: Date,
-			default: Date.now(),
+		role: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: Role,
+			validate: {
+				validator: async function (data) {
+					const role = Role.countDocuments({ _id: data });
+
+					return role;
+				},
+				message: (props) => `${props.value} is not a valid role!`,
+			},
+			required: [true, 'Role is required!'],
 		},
-		updatedAt: {
-			type: Date,
+		password: {
+			type: String,
+			required: true,
+			unique: true,
 		},
 	},
-});
+	schemaOptions
+);
 
 userSchema.pre(/^(find|findOne|findOneAndUpdate)$/, function (next) {
 	this.populate('role');
@@ -62,12 +61,6 @@ userSchema.pre(/^(find|findOne|findOneAndUpdate)$/, function (next) {
 // Not use arrow function because to use "this""
 userSchema.pre('save', async function (next) {
 	let user = this;
-
-	if (user.isNew) {
-		user.meta.createdAt = user.meta.updatedAt = Date.now();
-	} else {
-		user.meta.updatedAt = Date.now();
-	}
 
 	bcrypt.hash(user.password, salt, (error, hash) => {
 		if (error) {
@@ -81,8 +74,6 @@ userSchema.pre('save', async function (next) {
 });
 
 userSchema.pre('findOneAndUpdate', async function (next) {
-	let user = this;
-
 	if (
 		this.getUpdate().password != null ||
 		this.getUpdate().password != undefined
