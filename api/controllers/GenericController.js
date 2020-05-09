@@ -1,7 +1,5 @@
 const genericController = (model) => {
 	const getAll = (req, res) => {
-		console.log('filters', req.filters);
-		console.log('sort', req.sort);
 		let query = model.find(req.filters);
 
 		if (req.sort) {

@@ -1,6 +1,5 @@
 module.exports = (req, _, next) => {
     const filters = {}
-    console.log(req.query)
 	for (const name in req.query) {
 		if (name !== 'sort' && name !== 'page' && req.query.hasOwnProperty(name)) {
 			const filterValue = req.query[name]
