@@ -20,7 +20,7 @@ const userController = () => {
 			let response = {};
 
 			const validatePwd = await userDB.comparePassword(bodyPwd);
-
+			console.log(await validatePwd);
 			if (validatePwd) {
 				const user = {
 					email: userDB.email,
