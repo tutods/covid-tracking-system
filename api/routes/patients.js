@@ -5,23 +5,26 @@ const router = express.Router();
 // Patient Model
 const model = require('../models/Patient');
 
+// Middlewares
+const authorize = require('../middlewares/authorize');
+
 // Controllers
 const {
-    create,
+	create,
 	getAll,
 	getById,
 	getOneAndUpdate,
 	getOneAndDelete,
 } = require('../controllers/GenericController')(model);
 
-router.post('/',create);
+router.post('/', authorize(['--create-all']), create);
 
-router.get('/', getAll);
+router.get('/', authorize(['--view-all']), getAll);
 
-router.get('/:id', getById);
+router.get('/:id', authorize(['--view-all']), getById);
 
-router.put('/:id', getOneAndUpdate);
+router.put('/:id', authorize(['--edit-all']), getOneAndUpdate);
 
-router.delete('/:id', getOneAndDelete);
+router.delete('/:id', authorize(['--delete-all']), getOneAndDelete);
 
 module.exports = router;
