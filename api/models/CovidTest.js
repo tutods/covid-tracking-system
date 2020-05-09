@@ -8,8 +8,8 @@ shortid.characters(
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-// enum
-const resultEnum = ['positive', 'negative', 'inconclusive'];
+// Patient model
+const Patient = require('./Patient');
 
 // Set Schema
 const covidTestSchema = new Schema({
@@ -20,7 +20,15 @@ const covidTestSchema = new Schema({
 	},
 	patient: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'Patient',
+		ref: Patient,
+		validate: {
+			validator: async function (data) {
+				const patient = Patient.countDocuments({ _id: data });
+
+				return patient;
+			},
+			message: (props) => `${props.value} is not a valid patient!`,
+		},
 		required: [true, 'Patient is required'],
 	},
 	notes: {
@@ -28,26 +36,17 @@ const covidTestSchema = new Schema({
 	},
 	status: {
 		type: String,
-		enum: ['pending', 'inProgress', 'finished', 'notRealized'],
+		enum: ['pending', 'inProgress', 'awaitingResult', 'finished'],
 		default: 'pending',
 		required: [true, 'The status is required'],
 	},
 	result: {
 		type: String,
-		enum: resultEnum,
+		enum: ['positive', 'negative', 'inconclusive'],
 	},
 	date: {
 		type: Date,
 		required: true,
-	},
-	meta: {
-		createdAt: {
-			type: Date,
-			default: Date.now(),
-		},
-		updatedAt: {
-			type: Date,
-		},
 	},
 });
 
@@ -57,14 +56,8 @@ covidTestSchema.pre(/^(find|findOne|findOneAndUpdate)$/, function (next) {
 	next();
 });
 
-// Not use arrow function because to use "this""
 covidTestSchema.pre('save', function (next) {
-	if (this.isNew) {
-		this.code = shortid.generate();
-		this.meta.createdAt = this.meta.updatedAt = Date.now();
-	} else {
-		this.meta.updatedAt = Date.now();
-	}
+	this.code = shortid.generate();
 
 	next();
 });

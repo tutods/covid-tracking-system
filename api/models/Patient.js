@@ -17,6 +17,8 @@ const patientSchema = new Schema({
 		type: Number,
 		require: true,
 		unique: true,
+		minlength: 9,
+		maxlength: 9,
 	},
 	status: {
 		type: String,
@@ -35,7 +37,7 @@ const patientSchema = new Schema({
 				message: (props) =>
 					`${props.value} is not a valid contact phone`,
 			},
-			require: [true, 'User contact require'],
+			require: [true, 'Patient contact require'],
 			unique: true,
 		},
 		email: {
@@ -65,25 +67,6 @@ const patientSchema = new Schema({
 			],
 		},
 	],
-	meta: {
-		createdAt: {
-			type: Date,
-			default: Date.now(),
-		},
-		updatedAt: {
-			type: Date,
-		},
-	},
-});
-
-patientSchema.pre('save', function (next) {
-	if (this.isNew) {
-		this.meta.createdAt = this.meta.updatedAt = Date.now();
-	} else {
-		this.meta.updatedAt = Date.now();
-	}
-
-	next();
 });
 
 module.exports = mongoose.model('Patient', patientSchema);
