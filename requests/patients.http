@@ -8,12 +8,12 @@ POST http://localhost:3000/api/patients/
 Content-Type: application/json
 
 {
-	"name": "Daniel ",
-	"patientNumber": 333333333,
-	"birthayDate": "1995/12/12",
+	"name": "Alfredo",
+	"patientNumber": 200200200,
+	"birthdayDate": "1990-10-26",
 	"contacts": {
-		"email": "100@estg.ipp.pt",
-		"phone": 111111111
+		"email": "200200200@estg.ipp.pt",
+		"phone": 200200200
 	},
 	"symptoms": [
 		"cough"
@@ -32,7 +32,7 @@ Content-Type: application/json
 }
 
 ### Get One And Delete
-DELETE http://localhost:3000/api/patients/5eadd9ad850cdf3bae0bb77c
+DELETE http://localhost:3000/api/patients/5eb6e1b9181df32bd856ea84
 
 ### Get By name
 GET http://localhost:3000/api/patients/Joao/5eb1b6fb59fae71678a4539d
