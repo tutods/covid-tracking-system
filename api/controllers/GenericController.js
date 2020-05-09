@@ -39,7 +39,7 @@ const genericController = (model) => {
 		const data = req.body;
 
 		model.findOneAndUpdate(
-			id,
+			{ _id: id },
 			data,
 			{ runValidators: true },
 			(error, data) => {

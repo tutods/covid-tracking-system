@@ -30,7 +30,7 @@ const userSchema = new Schema({
 		ref: Role,
 		validate: {
 			validator: async function (data) {
-				const role = Role.count({ _id: data });
+				const role = Role.countDocuments({ _id: data });
 
 				return role;
 			},
@@ -60,7 +60,7 @@ userSchema.pre(/^(find|findOne|findOneAndUpdate)$/, function (next) {
 });
 
 // Not use arrow function because to use "this""
-userSchema.pre('save', function (next) {
+userSchema.pre('save', async function (next) {
 	let user = this;
 
 	if (user.isNew) {
@@ -80,15 +80,19 @@ userSchema.pre('save', function (next) {
 	});
 });
 
-userSchema.pre('findOneAndUpdate', function (next) {
-	if (this.getUpdate().password) {
-		this.update(
-			{},
-			{
-				password: bcrypt.hashSync(this.getUpdate().password, salt),
-			}
+userSchema.pre('findOneAndUpdate', async function (next) {
+	let user = this;
+
+	if (
+		this.getUpdate().password != null ||
+		this.getUpdate().password != undefined
+	) {
+		this.getUpdate().password = await bcrypt.hash(
+			this._update.password,
+			10
 		);
 	}
+
 	next();
 });
 
