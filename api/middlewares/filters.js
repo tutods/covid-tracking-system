@@ -2,7 +2,8 @@ module.exports = (req, _, next) => {
     const filters = {}
 	for (const name in req.query) {
 		if (name !== 'sort' && name !== 'page' && req.query.hasOwnProperty(name)) {
-			const filterValue = req.query[name]
+            const filterValue = req.query[name]
+            console.log(filterValue)
 			if (filterValue.indexOf(',') >= 0) {
 				const [min, max] = filterValue.split(',')
 				filters[name] = {
@@ -19,4 +20,11 @@ module.exports = (req, _, next) => {
 		req.filters = filters
 	}
     next()
+}
+
+function getDate(age){
+    var today = new Date();
+    var Date = today.getFullYear() - age;
+    console.log(date)
+    return birthDate;
 }
