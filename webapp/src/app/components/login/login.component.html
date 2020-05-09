@@ -1,55 +1,20 @@
-<!-- <mat-toolbar color="primary" class="expanded-toolbar">
-  <span>
-    <button mat-button routerLink="/">teste</button>
-    <button mat-button routerLink="/">
-      <mat-icon>home</mat-icon>
-    </button>
-  </span>
-  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
-
-    <button mat-button routerLink="/game">
-      <mat-icon>gamepad</mat-icon>
-      Play
-    </button>
-  </div>
-  <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
-    <mat-icon>menu</mat-icon>
-  </button>
-</mat-toolbar>
-<mat-menu x-position="before" #menu="matMenu">
-  <button mat-menu-item routerLink="/">
-    <mat-icon>home</mat-icon>
-    Home
-  </button>
-  <button mat-menu-item routerLink="/game">
-    <mat-icon>gamepad</mat-icon>
-    Play
-  </button>
-</mat-menu> -->
-
-<mat-card class="example-card">
-  <mat-card-header>
-    <mat-card-title>Login</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <form class="example-form">
-      <div>
-        <mat-form-field appearance="legacy">
-          <mat-label>Email</mat-label>
-          <input matInput type="email" name="email" id="email" placeholder="email@example.com">
-          <mat-icon matSuffix>account_circle</mat-icon>
+<div class="login-page">
+  <mat-card>
+    <mat-card-content>
+      <mat-card-title>Sign In</mat-card-title>
+      <form action="">
+        <mat-form-field>
+          <input matInput placeholder="Email" required name="email">
+          <mat-icon matSuffix>email</mat-icon>
         </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field appearance="legacy">
-          <mat-label>Password</mat-label>
-          <input matInput type="password" name="password" id="password" placeholder="Password">
-          <mat-icon matSuffix>vpn_key</mat-icon>
+        <mat-form-field>
+          <input matInput placeholder="Password" type="password" required minlength="6" name="password">
+          <mat-icon matSuffix>lock</mat-icon>
         </mat-form-field>
-      </div>
-    </form>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button color="primary">Login</button>
-  </mat-card-actions>
-</mat-card>
+        <button mat-raised-button color="primary" class="login-button">
+          Sign In
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

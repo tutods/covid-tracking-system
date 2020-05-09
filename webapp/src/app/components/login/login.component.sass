@@ -1,0 +1,45 @@
+@import "../../../assets/sass/_variables"
+
+[matPrefix]
+	margin-right: 0.5rem
+
+.login-page
+	height: 100vh
+	background-image: url('/assets/images/covid.jpg')
+	background-size: cover
+	background-repeat: no-repeat
+	background-position: center
+	background-blend-mode: overlay
+	background-color: rgba(33,33,33,0.85)
+
+	display: flex
+	justify-content: center
+	align-items: center
+
+mat-card
+	padding: 50px 0
+	width: 30%
+	// margin: 0 auto
+	border-radius: 8px
+
+mat-form-field,
+mat-checkbox,
+button
+	width: 80%
+	display: block
+	margin: auto
+
+mat-card
+	display: flex
+	justify-content: center
+	align-items: center
+
+	>mat-card-content
+		padding: 1.25rem
+		flex: 1 1 auto
+		>mat-card-title
+			text-align: center
+
+.login-button
+	margin-top: 2rem
+	background-color: $dark-color
