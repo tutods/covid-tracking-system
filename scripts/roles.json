@@ -5,7 +5,11 @@
 			"--view-all",
 			"--create-all",
 			"--edit-all",
-			"--delete-all"
+			"--delete-all",
+			"--view-users",
+			"--create-users",
+			"--edit-users",
+			"--delete-users"
 		]
 	},
 	{

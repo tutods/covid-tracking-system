@@ -4,22 +4,26 @@
 </a>
 
 COVID Tracking System
+
+[![Version](https://img.shields.io/badge/Version-2.0-blue)](#)
+
 </h1>
-
-
-[![Version](https://img.shields.io/badge/Version-1.0-blue)](#)
 
 
 ## Project Structure
 ```diff
 .
 ├── api		# API files
-│   ├── models
 │   ├── controllers
+│   ├── middlewares
+│   ├── models
 │   └── routes
 ├── config
 │   └── mongoose.js
+├── documentation	# Swagger Files
 ├── node_modules
+├── requests	# Requests to test API on VSCode
+├── scripts	# Custom Scripts (like insert roles)
 ├── public	# Static files
 ├── webapp	# Angular files
 ├── .gitignore
@@ -122,23 +126,77 @@ COVID Tracking System
 
 </td>
 </tr>
+<tr>
+<td>
+
+#### ShortID
++ **[URL](https://www.npmjs.com/package/shortid)**
++ **How to install**?
+  + `npm install shortid`
+
+</td>
+<td>
+
+#### Nodemailer
++ **[URL](https://www.npmjs.com/package/nodemailer)**
++ **How to install**?
+  + `npm install nodemailer`
+
+</td>
+</tr>
+<tr>
+</tr>
+<tr>
+<td>
+
+#### Swagger JSDoc
++ **[URL](https://www.npmjs.com/package/swagger-jsdoc)**
++ **How to install**?
+  + `npm install swagger-jsdoc`
+
+</td>
+<td>
+
+#### Swagger UI Express
++ **[URL](https://www.npmjs.com/package/swagger-ui-express)**
++ **How to install**?
+  + `npm install swagger-ui-express`
+
+</td>
+</tr>
+<tr>
+<td>
+
+#### JSON Web Token (JWT)
++ **[URL](https://www.npmjs.com/package/jsonwebtoken)**
++ **How to install**?
+  + `npm install jsonwebtoken`
+
+</td>
+</tr>
 </table>
 
 
 ### ℹ️ How to run
-1. Execute (on terminal) the command `npm install`
+1. Execute the command `npm install`
 1. Create `.env` file with this code:
 	```env
 	PORT=3000
 
+	# JWT
+	SECRET=secret_word_jwt
+	EXPIRES=1800000 # Cookie expiration
+
 	# MONGO DATA
 	MONGO_HOST=localhost
 	MONGO_PORT=27017
-	MONGO_DB=mongo_collection
+	MONGO_DB=covidSystem
 	```
+	+ This code is on `.env.example` file;
 	+ The `MONGO_PORT=27017` is default value;
 
-2. To run **NodeJS** server (with **Nodemon**) execute (on terminal) `npm run dev`
+2. To insert default roles into **MongoDB**, execute `npm run roles`
+3. To run **NodeJS** server (with **Nodemon**) execute `npm run dev`
 
 ### ℹ️ How to test requests on VSCode
 1. Install [**REST Client** extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
@@ -156,5 +214,5 @@ COVID Tracking System
 
 ### ℹ️ How to run
 1. Change to `webapp/` folder (on terminal: `cd webapp`)
-1. Execute (on terminal) the command `npm install`
-1. Execute (on terminal) the command `ng serve` to run **Angular** application
+1. Execute the command `npm install`
+1. Execute the command `ng serve` to run **Angular** application

@@ -12,6 +12,9 @@ const {
 
 const url = `mongodb://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}`;
 
+// Enable debug mode if you need see queries
+// mongoose.set('debug', true);
+
 module.exports = mongoose.connect(
 	url,
 	{

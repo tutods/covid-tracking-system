@@ -11,7 +11,7 @@ Content-Type: application/json
     "name": "User Name",
 	"email": "example@email.com",
 	"password": "mypassword123",
-	"role": "5eb54c1f44cafe334326a782"
+	"role": "5eb7134a824573a0f7dd8064"
 }
 
 ### Login
@@ -19,21 +19,23 @@ POST http://localhost:3000/api/users/login
 Content-Type: application/json
 
 {
-	"email": "exemple@email.com",
+	"email": "example@email.com",
 	"password": "mypassword123"
 }
 
+### Logout
+POST http://localhost:3000/api/users/logout
+
 ### Get By Id
-GET http://localhost:3000/api/users/5eadad03b57e631b6b7c724d
+GET http://localhost:3000/api/users/5eb7148df8d17ea6af35bd0e
 
 ### Get One and Update
-PUT http://localhost:3000/api/users/5eadad03b57e631b6b7c724d
+PUT http://localhost:3000/api/users/5eb7148df8d17ea6af35bd0e
 Content-Type: application/json
 
 {
-    "name": "Name",
-	"password": "mypassword124",
+	"password": "mypassword124"
 }
 
 ### Get One And Delete
-DELETE http://localhost:3000/api/users/5eadb0f69ed027205e69169f
+DELETE http://localhost:3000/api/users/5eb7148df8d17ea6af35bd0e

@@ -13,7 +13,16 @@ const roleSchema = new Schema({
 	scopes: [
 		{
 			type: String,
-			enum: ['--view-all', '--create-all', '--edit-all', '--delete-all'],
+			enum: [
+				'--view-all',
+				'--create-all',
+				'--edit-all',
+				'--delete-all',
+				'--view-users',
+				'--create-users',
+				'--edit-users',
+				'--delete-users',
+			],
 			default: '--view-all',
 		},
 	],
