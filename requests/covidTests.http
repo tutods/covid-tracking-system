@@ -8,11 +8,9 @@ POST http://localhost:3000/api/covid-tests/
 Content-Type: application/json
 
 {
-    "patient":"5eb40496957c252da238cd44",
-	"notes": "testNotes !",
-	"status": "inProgress",
-	"result": "teste",
-	"date": "2020/4/26"
+    "patient":"5eb6ee2b2a7c9e083425aaca",
+    "notes": "Notes !",
+    "date": "2020-05-10"
 }
 
 ### Get By ID

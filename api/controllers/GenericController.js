@@ -1,13 +1,15 @@
 const genericController = (model) => {
 	const getAll = (req, res) => {
-		// TODO implement filter and sort middleware
-		model.find({}, (error, data) => {
-			const response = error
-				? { status: 401, body: error }
-				: { status: 200, body: data };
+    
+	    let query = model.find(req.filters);
 
-			res.status(response.status).json(response.body);
-		});
+		if (req.sort) {
+			query = query.sort(req.sort);
+		}
+
+		query.then((data) => {
+			res.send(data);
+        }); 
 	};
 
 	const getById = (req, res) => {

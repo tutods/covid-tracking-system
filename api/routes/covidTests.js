@@ -5,6 +5,10 @@ const router = express.Router();
 // CovidTest Model
 const model = require('../models/CovidTest');
 
+//Middlewares
+const filters = require('../middlewares/filters');
+const sort = require('../middlewares/sort');
+
 // Controllers
 const {
 	create,
@@ -13,6 +17,10 @@ const {
 	getOneAndUpdate,
 	getOneAndDelete,
 } = require('../controllers/GenericController')(model);
+
+router.use(filters);
+
+router.use(sort);
 
 router.post('/', create);
 
