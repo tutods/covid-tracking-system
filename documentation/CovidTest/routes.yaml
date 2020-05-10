@@ -1,0 +1,111 @@
+paths:
+    /covid-tests/:
+        post:
+            tags:
+                - CovidTest
+            summary: Create a new covid test
+            description: ''
+            operationId: create
+            consumes:
+                - application/json
+            produces:
+                - application/json
+            parameters:
+                - in: body
+                  name: body
+                  description: CovidTest object with fields defined on **CovidTest Schema**
+                  required: true
+                  schema:
+                      $ref: '#/definitions/CovidTest'
+            responses:
+                '201':
+                    description: Ok, CovidTest has created with success
+                    schema:
+                        $ref: '#/definitions/CovidTest'
+                '401':
+                    description: Invalid input or error on database connection
+        get:
+            tags:
+                - CovidTest
+            summary: Get all CovidTests
+            description: ''
+            operationId: getAll
+            responses:
+                '200':
+                    description: Return all Covid Tests storaged into database
+                    schema:
+                        type: array
+                        items:
+                            $ref: '#/definitions/CovidTest'
+                '401':
+                    description: Any error on connection or query
+    /covid-tests/{id}:
+        get:
+            tags:
+                - CovidTest
+            summary: Find a Covid Test by id
+            description: ''
+            operationId: getById
+            parameters:
+                - name: id
+                  in: path
+                  description: CovidTest ID storaged into database
+                  required: true
+                  type: string
+            responses:
+                '200':
+                    description: CovidTest founded
+                    schema:
+                        type: object
+                        $ref: '#/definitions/CovidTest'
+                '401':
+                    description: Have any error on execute query or connection into database
+        put:
+            tags:
+                - CovidTest
+            summary: Find one Covid Test by id and update
+            description: ''
+            operationId: getOneAndUpdate
+            produces:
+                - application/json
+            parameters:
+                - in: path
+                  name: id
+                  description: Covid Test ID storaged into database
+                  required: true
+                  type: string
+                - in: body
+                  name: body
+                  description: Covid Test object with fields defined on **CovidTest Schema**
+                  required: true
+                  schema:
+                      type: object
+                      $ref: '#/definitions/CovidTest'
+            responses:
+                '200':
+                    description: Covid Test founded and updated with success
+                    schema:
+                        $ref: '#/definitions/CovidTest'
+                '401':
+                    description: Covid Test not found or have any error while updating the Covid Test
+        delete:
+            tags:
+                - CovidTest
+            summary: Find one Covid Test by id and delete
+            description: ''
+            operationId: getOneAndDelete
+            produces:
+                - application/json
+            parameters:
+                - in: path
+                  name: id
+                  description: Covid Test ID storaged into database
+                  required: true
+                  type: string
+            responses:
+                '200':
+                    description: Covid Test founded and deleted with success
+                    schema:
+                        $ref: '#/definitions/CovidTest'
+                '401':
+                    description: Covid Test not found or have any error while deleting the Covid Test

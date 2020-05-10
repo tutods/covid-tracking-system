@@ -8,29 +8,24 @@ const {
 	MONGO_HOST = 'localhost',
 	MONGO_PORT = 27017,
 	MONGO_DB = 'covidSystem',
-	MONGO_USER = null,
-	MONGO_PASSWORD = null,
 } = process.env;
 
 const url = `mongodb://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}`;
 
-module.export = mongoose.connect(
+// Enable debug mode if you need see queries
+// mongoose.set('debug', true);
+
+module.exports = mongoose.connect(
 	url,
 	{
-		auth: {
-			authSource: 'admin',
-		},
-		user: MONGO_USER,
-		pass: MONGO_PASSWORD,
 		useNewUrlParser: true,
 		useCreateIndex: true,
 		useUnifiedTopology: true,
-		useFindAndModify: true,
+		useFindAndModify: false,
+		useCreateIndex: true,
 	},
 	(error) => {
-		const msg = error
-			? '[ERROR ON DATABASE CONNECTION]'
-			: '[DATABASE CONNECTED]';
+		const msg = error ? `[ERROR: ${error}]` : '[DATABASE CONNECTED]';
 
 		console.log(msg);
 	}

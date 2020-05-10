@@ -1,0 +1,28 @@
+### All COVID Tests Requests ###
+
+### Get All
+GET http://localhost:3000/api/covid-tests/
+
+### CREATE
+POST http://localhost:3000/api/covid-tests/
+Content-Type: application/json
+
+{
+    "patient":"5eb6ee2b2a7c9e083425aaca",
+    "notes": "Notes !",
+    "date": "2020-05-10"
+}
+
+### Get By ID
+GET http://localhost:3000/api/covid-tests/5eaf02c49608cf4010ad959c
+
+### Get one and update
+PUT http://localhost:3000/api/covid-tests/5eb4366279d7f91299713b09
+Content-Type: application/json
+
+{
+	"status":
+}
+
+### Get one and delete
+DELETE http://localhost:3000/api/covid-tests/5eaf02c49608cf4010ad959c

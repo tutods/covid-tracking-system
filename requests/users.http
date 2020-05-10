@@ -1,0 +1,41 @@
+### All Users Requests ###
+
+### Get All
+GET http://localhost:3000/api/users/
+
+### Create
+POST http://localhost:3000/api/users/
+Content-Type: application/json
+
+{
+    "name": "User Name",
+	"email": "example@email.com",
+	"password": "mypassword123",
+	"role": "5eb7134a824573a0f7dd8064"
+}
+
+### Login
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+	"email": "example@email.com",
+	"password": "mypassword123"
+}
+
+### Logout
+POST http://localhost:3000/api/users/logout
+
+### Get By Id
+GET http://localhost:3000/api/users/5eb7148df8d17ea6af35bd0e
+
+### Get One and Update
+PUT http://localhost:3000/api/users/5eb7148df8d17ea6af35bd0e
+Content-Type: application/json
+
+{
+	"password": "mypassword124"
+}
+
+### Get One And Delete
+DELETE http://localhost:3000/api/users/5eb7148df8d17ea6af35bd0e
