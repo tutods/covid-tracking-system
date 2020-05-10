@@ -63,15 +63,10 @@ userSchema.pre(/^(find|findOne|findOneAndUpdate)$/, function (next) {
 userSchema.pre('save', async function (next) {
 	let user = this;
 
-	bcrypt.hash(user.password, salt, (error, hash) => {
-		if (error) {
-			return next(error);
-		}
+	const hash = await bcrypt.hash(user.password, salt);
+	user.password = hash;
 
-		user.password = hash;
-
-		next();
-	});
+	next();
 });
 
 userSchema.pre('findOneAndUpdate', async function (next) {

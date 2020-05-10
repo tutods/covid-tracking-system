@@ -18,15 +18,15 @@ const {
 	getOneAndDelete,
 } = require('../controllers/GenericController')(model);
 
-router.post('/', create);
+router.post('/', authorize(['--create-users']), create);
 
-router.get('/', authorize(['--view-all']), getAll);
+router.get('/', authorize(['--view-users']), getAll);
 
-router.get('/:id', getById);
+router.get('/:id', authorize(['--view-users']), getById);
 
-router.put('/:id', getOneAndUpdate);
+router.put('/:id', authorize(['--edit-users']), getOneAndUpdate);
 
-router.delete('/:id', getOneAndDelete);
+router.delete('/:id', authorize(['--delete-users']), getOneAndDelete);
 
 router.post('/login', login);
 
