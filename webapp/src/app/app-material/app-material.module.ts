@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
@@ -25,7 +26,8 @@ const Components = [
 	MatProgressSpinnerModule,
 	MatTabsModule,
 	MatFormFieldModule,
-	MatCheckboxModule
+	MatCheckboxModule,
+	MatSnackBarModule
 ];
 
 

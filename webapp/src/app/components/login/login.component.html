@@ -1,17 +1,45 @@
+<!-- <div class="login-page">
+  <mat-card>
+    <mat-card-content>
+      <mat-card-title>Sign In</mat-card-title>
+      <form (ngSubmit)="onSubmit($event)">
+        <mat-form-field>
+          <input matInput placeholder="Email" name="email" [(ngModel)]="email">
+          <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Password" type="password" [(ngModel)]="password" required minlength="6"
+            name="password">
+          <mat-icon matSuffix>lock</mat-icon>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" class="login-button">
+          Sign In
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>-->
 <div class="login-page">
   <mat-card>
     <mat-card-content>
       <mat-card-title>Sign In</mat-card-title>
-      <form action="">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit($event)">
         <mat-form-field>
-          <input matInput placeholder="Email" required name="email">
+          <input matInput placeholder="Email" name="email" formControlName="email">
           <mat-icon matSuffix>email</mat-icon>
+          <mat-hint class="text-danger"
+            *ngIf="(loginFormControl.email.touched) && loginFormControl.email.errors?.email">Invalid email!</mat-hint>
         </mat-form-field>
+
+        <span class="text-danger" *ngIf="(loginFormControl.email.touched) && loginFormControl.email.errors?.required">
+          Please, email is required!
+        </span>
+
         <mat-form-field>
-          <input matInput placeholder="Password" type="password" required minlength="6" name="password">
+          <input matInput placeholder="Password" type="password" formControlName="password" name="password">
           <mat-icon matSuffix>lock</mat-icon>
         </mat-form-field>
-        <button mat-raised-button color="primary" class="login-button">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid" class="login-button">
           Sign In
         </button>
       </form>

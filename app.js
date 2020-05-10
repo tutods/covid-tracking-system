@@ -50,7 +50,7 @@ app
 	.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
 	// Static Files
-	.use(express.static('./public'))
+	.use('/public', express.static('./public'))
 
 	// Cookie Parser
 	.use(cookieParser())
