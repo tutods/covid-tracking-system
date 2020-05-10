@@ -8,10 +8,19 @@ POST http://localhost:3000/api/users/
 Content-Type: application/json
 
 {
-    "name": "sample user",
-	"email": "samplemail@email.com",
-	"password": "e12323",
-	"role": "5eab455703ebb27158a48fc5"
+    "name": "User Name",
+	"email": "example@email.com",
+	"password": "mypassword123",
+	"role": "5eb54c1f44cafe334326a782"
+}
+
+### Login
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+	"email": "exemple@email.com",
+	"password": "mypassword123"
 }
 
 ### Get By Id
@@ -22,10 +31,8 @@ PUT http://localhost:3000/api/users/5eadad03b57e631b6b7c724d
 Content-Type: application/json
 
 {
-    "name": "João",
-	"email": "sample@email.com",
-	"password": "3125",
-	"role": "5eadb0973ef3a91f7addc11a"
+    "name": "Name",
+	"password": "mypassword124",
 }
 
 ### Get One And Delete

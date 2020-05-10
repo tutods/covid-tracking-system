@@ -4,6 +4,7 @@ const {
     Schema
 } = mongoose;
 
+// Schema Options
 const schemaOptions = {
     timestamps: {
         createdAt: 'createdAt',
@@ -75,6 +76,6 @@ const patientSchema = new Schema({
         }, ],
     },
     schemaOptions,
-    );
+);
 
 module.exports = mongoose.model('Patient', patientSchema);

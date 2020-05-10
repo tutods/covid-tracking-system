@@ -4,18 +4,22 @@ shortid.characters(
     '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-@'
 );
 
+// Mongoose Package
+const mongoose = require('mongoose');
+const {
+    Schema
+} = mongoose;
+
+// Patient model
+const Patient = require('./Patient');
+
+// Schema Options
 const schemaOptions = {
     timestamps: {
         createdAt: 'createdAt',
         updatedAt: 'updatedAt',
     },
 };
-
-// Mongoose Package
-const mongoose = require('mongoose');
-const {
-    Schema
-} = mongoose;
 
 // Set Schema
 const covidTestSchema = new Schema({
@@ -48,6 +52,13 @@ const covidTestSchema = new Schema({
     },
     schemaOptions,
 );
+
+
+covidTestSchema.pre(/^(find|findOne|findOneAndUpdate)$/, function (next) {
+	this.populate('patient');
+	console.log(this.patient);
+	next();
+});
 
 covidTestSchema.pre('save', function (next) {
 	this.code = shortid.generate();

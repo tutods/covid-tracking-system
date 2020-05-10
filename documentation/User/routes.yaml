@@ -1,5 +1,5 @@
 paths:
-    /users/{login}:
+    /users/login:
         post:
             tags:
                 - Users
@@ -16,14 +16,69 @@ paths:
                   description: User object with fields defined on **User Schema**
                   required: true
                   schema:
-                      $ref: '#/definitions/User'
+                      type: object
+                      properties:
+                          email:
+                              type: string
+                              format: email
+                          password:
+                              type: string
             responses:
-                '200':
+                '201':
                     description: Ok, user has created with success
                     schema:
-                        $ref: '#/definitions/User'
-                '403':
-                    description: Invalid input or error on database connection
+                        type: object
+                        properties:
+                            auth:
+                                type: boolean
+                                default: true
+                            token:
+                                type: string
+                            message:
+                                type: string
+                                example: ''
+                            user:
+                                type: object
+                                properties:
+                                    schema:
+                                        $ref: '#/definitions/User'
+                '401':
+                    description: Invalid input data
+                    schema:
+                        type: object
+                        properties:
+                            auth:
+                                type: boolean
+                                default: false
+                            token:
+                                type: string
+                                example: ''
+                            message:
+                                type: string
+                                example: 'Invalid Credentials'
+                            user:
+                                type: object
+                                example: {}
+    /users/logout:
+        post:
+            tags:
+                - Users
+            summary: Authenticate user validating data passed by body
+            description: ''
+            operationId: logout
+            consumes:
+                - application/json
+            produces:
+                - application/json
+            responses:
+                '201':
+                    description: Ok, user session deleted with success
+                    schema:
+                        type: object
+                        properties:
+                            success:
+                                type: boolean
+                                default: true
     /users/:
         post:
             tags:
@@ -47,7 +102,7 @@ paths:
                     description: Ok, user has created with success
                     schema:
                         $ref: '#/definitions/User'
-                '403':
+                '401':
                     description: Invalid input or error on database connection
         get:
             tags:
@@ -59,9 +114,10 @@ paths:
                 '200':
                     description: Return all users storaged into database
                     schema:
-                        type: object
-                        $ref: '#/definitions/User'
-                '403':
+                        type: array
+                        items:
+                            $ref: '#/definitions/User'
+                '401':
                     description: Any error on connection or query
     /users/{id}:
         get:
@@ -81,8 +137,8 @@ paths:
                     description: User founded
                     schema:
                         type: object
-                        $ref: '#/definitions/CovidTest'
-                '403':
+                        $ref: '#/definitions/User'
+                '401':
                     description: Have any error on execute query or connection into database
         put:
             tags:
@@ -108,12 +164,8 @@ paths:
                 '200':
                     description: User founded and update with success
                     schema:
-                        type: object
-                        properties:
-                            status:
-                                type: string
-                                format: uuid
-                '403':
+                        $ref: '#/definitions/User'
+                '401':
                     description: User not found or have any error on update user
         delete:
             tags:
@@ -133,9 +185,6 @@ paths:
                 '200':
                     description: User founded and delete with success
                     schema:
-                        type: object
-                        properties:
-                            status:
-                                type: string
-                '403':
+                        $ref: '#/definitions/User'
+                '401':
                     description: User not found or have any error on delete user

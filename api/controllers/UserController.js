@@ -1,54 +1,73 @@
+// ENV
+require('dotenv').config();
+const { SECRET = 'coV!d#19_$ystem$', EXPIRES = 1800000 } = process.env;
+
+// Model
 const User = require('../models/User');
 
-const bcrypt = require('bcryptjs');
+// Packages
+const jwt = require('jsonwebtoken');
 
 const userController = () => {
-	const login = (req, res) => {
+	const login = async (req, res) => {
 		const data = req.body;
-		const email = data.email;
-		const password = data.password;
+		const bodyEmail = data.email;
+		const bodyPwd = data.password;
 
-		if (
-			password == null ||
-			email == null ||
-			password == undefined ||
-			email == undefined
-		) {
-			res.status(500).send({ status: 'Invalid data' });
+		const userDB = await User.findOne({ email: bodyEmail });
+
+		if (userDB) {
+			let response = {};
+
+			const validatePwd = await userDB.comparePassword(bodyPwd);
+
+			if (validatePwd) {
+				const user = {
+					email: userDB.email,
+					name: userDB.name,
+					role: userDB.role.name,
+					scopes: userDB.role.scopes,
+				};
+				const jwtT = jwt.sign(user, SECRET);
+
+				res.cookie('session', jwtT, {
+					expires: new Date(Date.now() + EXPIRES),
+				});
+
+				response.code = 200;
+				response.auth = true;
+				response.token = jwtT;
+				response.message = '';
+				response.user = user;
+			} else {
+				response.code = 401;
+				response.auth = false;
+				response.token = null;
+				response.message = 'Invalid Credentials';
+			}
+
+			res.status(response.code).json({
+				auth: response.auth,
+				token: response.token,
+				message: response.message,
+				user: response.user || {},
+			});
+		} else {
+			res.status(401).json({
+				auth: false,
+				token: null,
+				message: 'Invalid Credentials',
+				user: {},
+			});
 		}
-
-		User.findOne({ email: email }, (error, data) => {
-			const pwdValidation = bcrypt.compare(
-				password,
-				data.password,
-				(error, isMatch) => {
-					if (error) {
-						throw error;
-					}
-
-					return isMatch;
-				}
-			);
-
-			console.log('PWD IS MATCH?', pwdValidation);
-
-			// TODO Store login [JWT]
-		});
 	};
 
-	const register = (req, res) => {
-		const data = req.body;
-
-		new User(data).save((err, data) => {
-			const response = err
-				? { status: 500, body: err }
-				: { status: 200, body: data };
-
-			res.status(response.status).send(response.body);
-		});
+	const logout = (req, res) => {
+		// Destroy cookie
+		res.clearCookie('session').json({ success: true });
 	};
 
-	return { login, register };
+	return { login, logout };
 };
 
 module.exports = userController();

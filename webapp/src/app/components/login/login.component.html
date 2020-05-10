@@ -1,23 +1,4 @@
-<!-- <mat-card class="example-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-  <mat-card-content>
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-      bred for hunting.
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
-</mat-card> -->
-<mat-toolbar color="primary" class="expanded-toolbar">
+<!-- <mat-toolbar color="primary" class="expanded-toolbar">
   <span>
     <button mat-button routerLink="/">teste</button>
     <button mat-button routerLink="/">
@@ -44,4 +25,31 @@
     <mat-icon>gamepad</mat-icon>
     Play
   </button>
-</mat-menu>
+</mat-menu> -->
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Login</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="example-form">
+      <div>
+        <mat-form-field appearance="legacy">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" name="email" id="email" placeholder="email@example.com">
+          <mat-icon matSuffix>account_circle</mat-icon>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="legacy">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" name="password" id="password" placeholder="Password">
+          <mat-icon matSuffix>vpn_key</mat-icon>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary">Login</button>
+  </mat-card-actions>
+</mat-card>
