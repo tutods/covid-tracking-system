@@ -14,8 +14,9 @@ COVID Tracking System
 ```diff
 .
 ├── api		# API files
-│   ├── models
 │   ├── controllers
+│   ├── middlewares
+│   ├── models
 │   └── routes
 ├── config
 │   └── mongoose.js
