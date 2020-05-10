@@ -49,4 +49,10 @@ const covidTestSchema = new Schema({
     schemaOptions,
 );
 
+covidTestSchema.pre('save', function (next) {
+	this.code = shortid.generate();
+
+	next();
+});
+
 module.exports = mongoose.model('CovidTest', covidTestSchema);

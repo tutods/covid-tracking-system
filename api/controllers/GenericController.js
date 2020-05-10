@@ -1,7 +1,7 @@
 const genericController = (model) => {
 	const getAll = (req, res) => {
-        console.log(req.filters)
-		let query = model.find(req.filters);
+	    let query = model.find(req.filters);
+
 
 		if (req.sort) {
 			query = query.sort(req.sort);
@@ -9,7 +9,8 @@ const genericController = (model) => {
 
 		query.then((data) => {
 			res.send(data);
-		});
+        }); 
+
 	};
 
 	const getById = (req, res) => {
