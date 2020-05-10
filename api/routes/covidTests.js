@@ -7,6 +7,8 @@ const model = require('../models/CovidTest');
 
 // Middlewares
 const authorize = require('../middlewares/authorize');
+const filters = require('../middlewares/filters');
+const sort = require('../middlewares/sort');
 
 // Controllers
 const {
@@ -17,7 +19,13 @@ const {
 	getOneAndDelete,
 } = require('../controllers/GenericController')(model);
 
+router.use(filters);
+
+router.use(sort);
+
 router.post('/', authorize(['--create-all']), create);
+
+router.post('/', create);
 
 router.get('/', authorize(['--view-all']), getAll);
 
