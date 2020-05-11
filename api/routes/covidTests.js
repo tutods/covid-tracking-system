@@ -17,8 +17,11 @@ var storage = multer.diskStorage({
         cb(null, path);
      },
     filename: function (req, file, cb) {
-		date = Date.now();
-		cb(null , `test_${req.params.id}_${date}.pdf`);
+		var defaultExt = ".pdf";
+		//default extension protects from attackers
+		var date = Date.now();
+		//give files a unique name
+		cb(null , `test_${req.params.id}_${date}${defaultExt}`);
      }
 });
 
