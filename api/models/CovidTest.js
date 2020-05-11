@@ -49,10 +49,12 @@ const covidTestSchema = new Schema({
             type: Date,
             required: true,
         },
+        pathFile: {
+            type: String,
+        }
     },
     schemaOptions,
 );
-
 
 covidTestSchema.pre(/^(find|findOne|findOneAndUpdate)$/, function (next) {
 	this.populate('patient');
