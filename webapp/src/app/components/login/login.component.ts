@@ -43,12 +43,14 @@ export class LoginComponent implements OnInit {
 		this.http
 			.post(
 				'http://localhost:3000/api/users/login',
-				loginUser, { observe: 'response' }
+				loginUser
 			)
 			.subscribe((data) => {
+				// Correct Data
 				this.openSnackBar('Login with success!')
 			}, (error) => {
 				if (error.error) {
+					// Show error message
 					this.openSnackBar(error.error.message)
 				}
 			})

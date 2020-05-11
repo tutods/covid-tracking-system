@@ -29,8 +29,6 @@ button
 mat-form-field:not(:last-child)
 	margin-top: 1.5rem
 
-.mat-form-field-invalid mat-icon
-	color: red
 
 mat-card
 	display: flex
@@ -47,5 +45,18 @@ mat-card
 	margin-top: 2rem
 	background-color: $dark-color
 
-.text-danger
-	color: red
+// .text-danger
+// 	color: $danger-color
+
+.mat-form-field-invalid
+	border-color: $danger-color
+	color: $danger-color
+
+	.mat-input-element
+		caret-color: $danger-color
+
+	mat-hint
+		color: $danger-color
+
+	mat-icon
+		color: $danger-color
