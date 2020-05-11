@@ -11,7 +11,7 @@
               Invalid email.
             </span>
             <span *ngIf="(loginFormControl.email.touched) && loginFormControl.email.errors?.required">
-              Please, the email field is required
+              Email is required
             </span>
           </mat-hint>
         </mat-form-field>
@@ -22,7 +22,7 @@
 
           <mat-hint class="text-danger">
             <span *ngIf="(loginFormControl.password.touched) && loginFormControl.password.errors?.required">
-              Please, the password field is required
+              Password is required
             </span>
           </mat-hint>
         </mat-form-field>
