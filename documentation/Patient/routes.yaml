@@ -27,12 +27,23 @@ paths:
         get:
             tags:
                 - Patients
-            summary: Get all patients
+            summary: Get all patients, this can be filtered and ordered as wish
             description: ''
             operationId: getPatients
+            parameters:
+                - in: query
+                  name: field
+                  schema:
+                    type: String
+                  description: Patient filtered params (it can be just a fieldName=field or a limit birthdayDate=minDate,maxDate)
+                - in: query
+                  name: sort
+                  schema:
+                    type: String
+                  description: Patient sort params (field to be sorted, sort order asc-ascendent or desc-descendent  
             responses:
                 '200':
-                    description: Return all patients storaged into database
+                    description: Return all patients storaged into database filtered and ordered if wish
                     schema:
                         type: object
                         $ref: '#/definitions/Patient'
