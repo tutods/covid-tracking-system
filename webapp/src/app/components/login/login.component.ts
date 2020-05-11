@@ -50,8 +50,9 @@ export class LoginComponent implements OnInit {
 				this.openSnackBar('Login with success!')
 			}, (error) => {
 				if (error.error) {
+					this.loginForm.reset();
 					// Show error message
-					this.openSnackBar(error.error.message)
+					this.openSnackBar(error.error.message);
 				}
 			})
 	}

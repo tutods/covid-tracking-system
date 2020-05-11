@@ -26,8 +26,12 @@ button
 	display: block
 	margin: auto
 
-mat-form-field:not(:last-child)
-	margin-top: 1.5rem
+mat-form-field
+	mat-icon[matprefix]
+		margin-right: 20px
+
+	&:not(:first-child)
+		margin-top: 1.05rem
 
 
 mat-card
@@ -45,9 +49,6 @@ mat-card
 	margin-top: 2rem
 	background-color: $dark-color
 
-// .text-danger
-// 	color: $danger-color
-
 .mat-form-field-invalid
 	border-color: $danger-color
 	color: $danger-color
@@ -60,3 +61,6 @@ mat-card
 
 	mat-icon
 		color: $danger-color
+
+.success-icon
+	color: green
