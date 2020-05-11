@@ -27,7 +27,7 @@ router.post('/', authorize(['--create-all']), create);
 
 router.post('/', create);
 
-router.get('/',  getAll);
+router.get('/', authorize(['--view-all']), getAll);
 
 router.get('/:id', authorize(['--view-all']), getById);
 
