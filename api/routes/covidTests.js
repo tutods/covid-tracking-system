@@ -17,7 +17,8 @@ var storage = multer.diskStorage({
         cb(null, path);
      },
     filename: function (req, file, cb) {
-		cb(null , `test_${req.params.id}.pdf`);
+		date = Date.now();
+		cb(null , `test_${req.params.id}_${date}.pdf`);
      }
 });
 
