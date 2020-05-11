@@ -20,15 +20,19 @@ export class LoginComponent implements OnInit {
 		});
 	}
 
+	// To disable button if have errors
 	get loginFormControl() {
 		return this.loginForm.controls;
+	}
+
+	openSnackBar(message: string) {
+		this.snackBar.open(message, 'Close', { duration: 5000 })
 	}
 
 	// When submit form
 	onSubmit(evt) {
 		// Prevent Default
 		evt.preventDefault();
-		console.log(this.loginForm.get('email').value)
 
 		const loginUser = {
 			email: this.loginForm.get('email').value,
@@ -39,11 +43,14 @@ export class LoginComponent implements OnInit {
 		this.http
 			.post(
 				'http://localhost:3000/api/users/login',
-				loginUser
+				loginUser, { observe: 'response' }
 			)
-			.subscribe((res: any) => {
-				console.log(res);
-			});
-
+			.subscribe((data) => {
+				this.openSnackBar('Login with success!')
+			}, (error) => {
+				if (error.error) {
+					this.openSnackBar(error.error.message)
+				}
+			})
 	}
 }

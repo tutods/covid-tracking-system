@@ -27,17 +27,25 @@
         <mat-form-field>
           <input matInput placeholder="Email" name="email" formControlName="email">
           <mat-icon matSuffix>email</mat-icon>
-          <mat-hint class="text-danger"
-            *ngIf="(loginFormControl.email.touched) && loginFormControl.email.errors?.email">Invalid email!</mat-hint>
+          <mat-hint class="text-danger">
+			<span *ngIf="(loginFormControl.email.touched) && loginFormControl.email.errors?.email">
+			  Invalid email.
+			</span>
+			<span *ngIf="(loginFormControl.email.touched) && loginFormControl.email.errors?.required">
+			  Please, the email field is required
+			</span>
+		  </mat-hint>
         </mat-form-field>
-
-        <span class="text-danger" *ngIf="(loginFormControl.email.touched) && loginFormControl.email.errors?.required">
-          Please, email is required!
-        </span>
 
         <mat-form-field>
           <input matInput placeholder="Password" type="password" formControlName="password" name="password">
-          <mat-icon matSuffix>lock</mat-icon>
+		  <mat-icon matSuffix>lock</mat-icon>
+
+		  <mat-hint class="text-danger">
+		    <span *ngIf="(loginFormControl.password.touched) && loginFormControl.password.errors?.required">
+		      Please, the password field is required
+		    </span>
+		  </mat-hint>
         </mat-form-field>
         <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid" class="login-button">
           Sign In
