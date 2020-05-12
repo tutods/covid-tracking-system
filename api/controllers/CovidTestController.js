@@ -2,7 +2,7 @@
 const covidTest = require("../models/CovidTest");
 
 //Path
-const path = './public/covidTests';
+const path = './public/covidTests/';
 
 const covidTestController  = () => {
   const getOneAndUpdate = (req, res) => {

@@ -10,19 +10,23 @@ const authorize = require('../middlewares/authorize');
 const filters = require('../middlewares/filters');
 const sort = require('../middlewares/sort');
 var multer = require('multer');
-const path = './public/covidTests';
 
-var storage = multer.diskStorage({
+const path = './public/covidTests/';
+
+const storage = multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, path);
      },
     filename: function (req, file, cb) {
-		date = Date.now();
-		cb(null , `test_${req.params.id}_${date}.pdf`);
+
+		const defaultExt = ".pdf";
+		//default extension protects from attackers
+		const date = Date.now();
+		cb(null , `test_${req.params.id}_${date}${defaultExt}`);
      }
 });
 
-var upload = multer({ storage: storage });
+const upload = multer({ storage: storage });
 
 // Controllers
 const {
@@ -48,7 +52,7 @@ router.get('/', authorize(['--view-all']), getAll);
 
 router.get('/:id', authorize(['--view-all']), getById);
 
-router.put('/:id', upload.single('result') , getOneAndUpdate);
+router.put('/:id', upload.single('covid_test_result') ,  authorize(['--edit-all']) , getOneAndUpdate);
 
 router.delete('/:id', authorize(['--delete-all']), getOneAndDelete);
 
