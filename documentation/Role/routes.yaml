@@ -1,16 +1,16 @@
 paths:
-    /roles/:
-        get:
-            tags:
-                - Roles
-            summary: Get all roles
-            description: ''
-            operationId: getRoles
-            responses:
-                '200':
-                    description: Return all roles storaged into database
-                    schema:
-                        type: object
-                        $ref: '#/definitions/Role'
-                '401':
-                    description: Any error on connection or query
+  /roles/:
+    get:
+      tags:
+        - Roles
+      summary: Get all roles
+      description: ""
+      operationId: getRoles
+      responses:
+        "200":
+          description: Return all roles storaged into database
+          schema:
+            type: object
+            $ref: "#/definitions/Role"
+        "401":
+          description: Any error on connection or query

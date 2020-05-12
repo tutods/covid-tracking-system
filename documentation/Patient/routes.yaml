@@ -1,120 +1,130 @@
 paths:
-    /patients/:
-        post:
-            tags:
-                - Patients
-            summary: Add a new patient
-            description: ''
-            operationId: addPatient
-            consumes:
-                - application/json
-            produces:
-                - application/json
-            parameters:
-                - in: body
-                  name: body
-                  description: Patient object with fields defined on **Patient Schema**
-                  required: true
-                  schema:
-                      $ref: '#/definitions/Patient'
-            responses:
-                '201':
-                    description: Ok, patient has created with success
-                    schema:
-                        $ref: '#/definitions/Patient'
-                '401':
-                    description: Invalid input or error on database connection
-        get:
-            tags:
-                - Patients
-            summary: Get all patients, this can be filtered and ordered as wish
-            description: ''
-            operationId: getPatients
-            parameters:
-                - in: query
-                  name: field
-                  schema:
-                    type: String
-                  description: Patient filtered params (it can be just a fieldName=field or a limit birthdayDate=minDate,maxDate)
-                - in: query
-                  name: sort
-                  schema:
-                    type: String
-                  description: Patient sort params (field to be sorted, sort order asc-ascendent or desc-descendent  
-            responses:
-                '200':
-                    description: Return all patients storaged into database filtered and ordered if wish
-                    schema:
-                        type: object
-                        $ref: '#/definitions/Patient'
-                '401':
-                    description: Any error on connection or query
-    /patients/{id}:
-        get:
-            tags:
-                - Patients
-            summary: Find patient by id
-            description: ''
-            operationId: getPatientById
-            parameters:
-                - name: id
-                  in: path
-                  description: Patient ID storaged into database
-                  required: true
-                  type: string
-            responses:
-                '200':
-                    description: Patient founded
-                    schema:
-                        items:
-                            $ref: '#/definitions/Patient'
-                '401':
-                    description: Have any error on execute query or connection into database
-        put:
-            tags:
-                - Patients
-            summary: Find one patient by id and update
-            description: ''
-            operationId: getOneAndUpdate
-            produces:
-                - application/json
-            parameters:
-                - in: path
-                  name: id
-                  description: Patient ID storaged into database
-                  required: true
-                  type: string
-                - in: body
-                  name: body
-                  description: Patient object with fields defined on **Patient Schema**
-                  required: true
-                  schema:
-                      $ref: '#/definitions/Patient'
-            responses:
-                '200':
-                    description: Patient founded and update with success
-                    schema:
-                        $ref: '#/definitions/Patient'
-                '401':
-                    description: User not found or have any error on update patient
-        delete:
-            tags:
-                - Patients
-            summary: Find one patient by id and delete
-            description: ''
-            operationId: getOneAndDelete
-            produces:
-                - application/json
-            parameters:
-                - in: path
-                  name: id
-                  description: Patient ID storaged into database
-                  required: true
-                  type: string
-            responses:
-                '200':
-                    description: Patient founded and delete with success
-                    schema:
-                        $ref: '#/definitions/Patient'
-                '401':
-                    description: User not found or have any error on delete patient
+  /patients/:
+    post:
+      tags:
+        - Patients
+      summary: Add a new patient
+      description: ""
+      operationId: addPatient
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Patient object with fields defined on **Patient Schema**
+          required: true
+          schema:
+            $ref: "#/definitions/Patient"
+      responses:
+        "201":
+          description: Ok, patient has created with success
+          schema:
+            $ref: "#/definitions/Patient"
+        "401":
+          description: Invalid input or error on database connection
+      security:
+        - cookieAuth: []
+    get:
+      tags:
+        - Patients
+      summary: Get all patients, this can be filtered and ordered as wish
+      description: ""
+      operationId: getPatients
+      parameters:
+        - in: query
+          name: field
+          schema:
+            type: String
+          description: Patient filtered params (it can be just a fieldName=field or a limit birthdayDate=minDate,maxDate)
+        - in: query
+          name: sort
+          schema:
+            type: String
+          description: Patient sort params (field to be sorted, sort order asc-ascendent or desc-descendent
+      responses:
+        "200":
+          description: Return all patients storaged into database filtered and ordered if wish
+          schema:
+            type: object
+            $ref: "#/definitions/Patient"
+        "401":
+          description: Any error on connection or query
+      security:
+        - cookieAuth: []
+  /patients/{id}:
+    get:
+      tags:
+        - Patients
+      summary: Find patient by id
+      description: ""
+      operationId: getPatientById
+      parameters:
+        - name: id
+          in: path
+          description: Patient ID storaged into database
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Patient founded
+          schema:
+            items:
+              $ref: "#/definitions/Patient"
+        "401":
+          description: Have any error on execute query or connection into database
+      security:
+        - cookieAuth: []
+    put:
+      tags:
+        - Patients
+      summary: Find one patient by id and update
+      description: ""
+      operationId: getOneAndUpdate
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: Patient ID storaged into database
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Patient object with fields defined on **Patient Schema**
+          required: true
+          schema:
+            $ref: "#/definitions/Patient"
+      responses:
+        "200":
+          description: Patient founded and update with success
+          schema:
+            $ref: "#/definitions/Patient"
+        "401":
+          description: User not found or have any error on update patient
+      security:
+        - cookieAuth: []
+    delete:
+      tags:
+        - Patients
+      summary: Find one patient by id and delete
+      description: ""
+      operationId: getOneAndDelete
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: Patient ID storaged into database
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Patient founded and delete with success
+          schema:
+            $ref: "#/definitions/Patient"
+        "401":
+          description: User not found or have any error on delete patient
+      security:
+        - cookieAuth: []

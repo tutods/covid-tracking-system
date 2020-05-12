@@ -1,0 +1,10 @@
+components:
+  securitySchemes:
+    cookieAuth: # arbitrary name for the security scheme
+      type: apiKey
+      in: cookie
+      name: session # cookie name
+  authentication:
+    type: apiKey
+    name: Authorization
+    in: header
