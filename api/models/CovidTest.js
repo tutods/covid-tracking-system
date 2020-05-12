@@ -58,7 +58,7 @@ const covidTestSchema = new Schema({
 
 covidTestSchema.pre(/^(find|findOne|findOneAndUpdate)$/, function (next) {
 	this.populate('patient');
-	console.log(this.patient);
+
 	next();
 });
 
