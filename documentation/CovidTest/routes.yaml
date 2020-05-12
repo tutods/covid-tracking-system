@@ -27,12 +27,23 @@ paths:
         get:
             tags:
                 - CovidTest
-            summary: Get all CovidTests
+            summary: Get all CovidTests filtered and sorted if wish
             description: ''
             operationId: getAll
+            parameters:
+                - in: query
+                  name: sort
+                  schema:
+                    type: String
+                  description: Covid Tests sort params (field to be sorted, sort order asc-ascendent or desc-descendent)
+                - in: query
+                  name: sort
+                  schema:
+                    type: String
+                  description: Covid Tests filtered params (it can be just a fieldName=field or a limit birthdayDate=minDate,maxDate)
             responses:
                 '200':
-                    description: Return all Covid Tests storaged into database
+                    description: Return all Covid Tests storaged into database filtered and sorted if wished
                     schema:
                         type: array
                         items:

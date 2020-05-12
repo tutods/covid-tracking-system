@@ -26,6 +26,7 @@ const swaggerOptions = {
 		'./documentation/Role/*.yaml',
 		'./documentation/CovidTest/*.yaml',
 		'./documentation/Patient/*.yaml',
+        './documentation/Middlewares/*.yaml',
 	],
 };
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
