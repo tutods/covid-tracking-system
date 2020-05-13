@@ -39,6 +39,7 @@ const {
 	getOneAndUpdate,
 	getByPatient,
 	countByDay,
+	countByPatient,
 } = require('../controllers/CovidTestController');
 
 router.use(filters);
@@ -51,7 +52,9 @@ router.post('/', create);
 
 router.get('/', authorize(['--view-all']), getAll);
 
-router.get('/count-by-day', countByDay);
+router.get('/count-by-day', authorize(['--view-all']), countByDay);
+
+router.get('/count-by-patient', countByPatient);
 
 router.get('/:id', authorize(['--view-all']), getById);
 
