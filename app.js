@@ -22,6 +22,7 @@ const swaggerOptions = {
 		},
 	},
 	apis: [
+		'./documentation/auth.yaml',
 		'./documentation/User/*.yaml',
 		'./documentation/Role/*.yaml',
 		'./documentation/CovidTest/*.yaml',
@@ -29,6 +30,7 @@ const swaggerOptions = {
 		'./documentation/Middlewares/*.yaml',
 	],
 };
+
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
 // Packages

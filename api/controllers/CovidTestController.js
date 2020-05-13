@@ -114,15 +114,22 @@ const covidTestController = () => {
 					from: 'patients',
 					localField: '_id',
 					foreignField: '_id',
-					as: 'patientData',
+					as: '_id',
 				},
 			},
 			{
+				$unwind: '$_id', // this to convert the array of one object to be an object
+			},
+			{
 				$project: {
-					patient: { $arrayElemAt: ['$patientData', 0] },
+					'_id._id': 0,
+					'_id.createdAt': 0,
+					'_id.updatedAt': 0,
 				},
 			},
 		]);
+
+		console.log(tests);
 
 		// const patientData = await patient.populate(tests, { path: '_id' });
 

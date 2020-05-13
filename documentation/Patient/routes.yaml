@@ -18,14 +18,14 @@ paths:
           schema:
             $ref: "#/definitions/Patient"
       responses:
-        "201":
+        "200":
           description: Ok, patient has created with success
           schema:
             $ref: "#/definitions/Patient"
         "401":
           description: Invalid input or error on database connection
       security:
-        - cookieAuth: []
+        - JWT: []
     get:
       tags:
         - Patients
@@ -52,7 +52,7 @@ paths:
         "401":
           description: Any error on connection or query
       security:
-        - cookieAuth: []
+        - JWT: []
   /patients/{id}:
     get:
       tags:
@@ -75,7 +75,7 @@ paths:
         "401":
           description: Have any error on execute query or connection into database
       security:
-        - cookieAuth: []
+        - JWT: []
     put:
       tags:
         - Patients
@@ -104,7 +104,7 @@ paths:
         "401":
           description: User not found or have any error on update patient
       security:
-        - cookieAuth: []
+        - JWT: []
     delete:
       tags:
         - Patients
@@ -127,4 +127,31 @@ paths:
         "401":
           description: User not found or have any error on delete patient
       security:
-        - cookieAuth: []
+        - JWT: []
+  /count:
+    basePath: /patients/
+    get:
+      tags:
+        - Patients
+      summary: Count number of Patients by status
+      description: ""
+      operationId: countPatient
+      responses:
+        "200":
+          description: Return number of **Patients** by **status**
+          schema:
+            type: "array"
+            items:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  enum: ["Suspect", "Infected", "Non Infected"]
+                  example: "Suspect"
+                count:
+                  type: number
+                  example: 2
+        "401":
+          description: Error on database connection
+      security:
+        - JWT: []

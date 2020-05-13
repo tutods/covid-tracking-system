@@ -25,7 +25,7 @@ paths:
         "401":
           description: Invalid input or error on database connection
       security:
-        - cookieAuth: []
+        - JWT: []
     get:
       tags:
         - CovidTest
@@ -53,7 +53,7 @@ paths:
         "401":
           description: Any error on connection or query
       security:
-        - cookieAuth: []
+        - JWT: []
   /covid-tests/{id}:
     get:
       tags:
@@ -76,7 +76,7 @@ paths:
         "401":
           description: Have any error on execute query or connection into database
       security:
-        - cookieAuth: []
+        - JWT: []
     put:
       tags:
         - CovidTest
@@ -106,7 +106,7 @@ paths:
         "401":
           description: Covid Test not found or have any error while updating the Covid Test
       security:
-        - cookieAuth: []
+        - JWT: []
     delete:
       tags:
         - CovidTest
@@ -129,4 +129,4 @@ paths:
         "401":
           description: Covid Test not found or have any error while deleting the Covid Test
       security:
-        - cookieAuth: []
+        - JWT: []

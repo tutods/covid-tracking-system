@@ -1,10 +1,8 @@
-components:
-  securitySchemes:
-    cookieAuth: # arbitrary name for the security scheme
-      type: apiKey
-      in: cookie
-      name: session # cookie name
-  authentication:
+securityDefinitions:
+  JWT:
     type: apiKey
-    name: Authorization
-    in: header
+    name: session
+    in: cookie
+    description: |
+      For accessiong the API with valid JWT Token you must be passed your token on header.
+      To get your token see **/users/login** wiht your data
