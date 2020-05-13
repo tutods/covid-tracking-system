@@ -72,7 +72,75 @@ const covidTestController = () => {
 		// console.log(result);
 	};
 
-	return { getOneAndUpdate, getByPatient };
+	const countByDay = async (req, res) => {
+		const tests = await covidTest.aggregate([
+			{
+				$group: {
+					_id: {
+						$dateToString: {
+							format: '%Y-%m-%d',
+							date: '$createdAt',
+						},
+					},
+					numberOfTests: { $sum: 1 },
+				},
+			},
+		]);
+
+		const response =
+			tests.length == 0
+				? {
+						body: [],
+						code: 200,
+				  }
+				: {
+						body: tests,
+						code: 200,
+				  };
+
+		res.status(response.code).json(response.body);
+	};
+
+	const countByPatient = async (req, res) => {
+		const tests = await covidTest.aggregate([
+			{
+				$group: {
+					_id: '$patient',
+					numberOfTests: { $sum: 1 },
+				},
+			},
+			{
+				$lookup: {
+					from: 'patients',
+					localField: '_id',
+					foreignField: '_id',
+					as: 'patientData',
+				},
+			},
+			{
+				$project: {
+					patient: { $arrayElemAt: ['$patientData', 0] },
+				},
+			},
+		]);
+
+		// const patientData = await patient.populate(tests, { path: '_id' });
+
+		const response =
+			tests.length == 0
+				? {
+						body: [],
+						code: 200,
+				  }
+				: {
+						body: tests,
+						code: 200,
+				  };
+
+		res.status(response.code).json(response.body);
+	};
+
+	return { getOneAndUpdate, getByPatient, countByDay, countByPatient };
 };
 
 module.exports = covidTestController();

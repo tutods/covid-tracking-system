@@ -23,6 +23,9 @@ Content-Type: application/json
 ### Get By ID
 GET http://localhost:3000/api/patients/5eb1b6fb59fae71678a4539d
 
+### Count By Status
+GET http://localhost:3000/api/patients/count
+
 ### Get One And Update
 PUT http://localhost:3000/api/patients/5eb7802c425fe3015c35e4ed
 Content-Type: application/json
