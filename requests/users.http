@@ -11,7 +11,7 @@ Content-Type: application/json
     "name": "User Name",
 	"email": "example3@email.com",
 	"password": "mypassword123",
-	"role": "5eba643374b0bd207cd5fb68"
+	"role": "5ebbfa00d921733500a887ef"
 }
 
 ### Login
