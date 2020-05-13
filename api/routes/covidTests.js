@@ -52,9 +52,9 @@ router.post('/', create);
 
 router.get('/', authorize(['--view-all']), getAll);
 
-router.get('/count-by-day', authorize(['--view-all']), countByDay);
+router.get('/count/day', authorize(['--view-all']), countByDay);
 
-router.get('/count-by-patient', countByPatient);
+router.get('/count/patient', countByPatient);
 
 router.get('/:id', authorize(['--view-all']), getById);
 
