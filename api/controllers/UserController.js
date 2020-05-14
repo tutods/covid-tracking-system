@@ -87,7 +87,7 @@ const userController = () => {
         expires: new Date(Date.now + 300000),
       });
 
-      var smtpTransport = nodemailer.createTransport({
+      const smtpTransport = nodemailer.createTransport({
         service: "gmail",
         auth: {
           user: "covidtrackingsystem@gmail.com",
@@ -134,17 +134,20 @@ const userController = () => {
       const newPassword = data.newPassword;
       const confirmPassword = data.confirmPassword;
 
-      if (newPassword !== confirmPassword) {
+		if (newPassword !== confirmPassword) {
+
         res.status(401).json({
           message: "Passwords d'ont match",
-        });
+		});
+
       } else {
         const email = jwt.verify(token, SECRET);
 
         const user = await User.findOneAndUpdate(
           { email: email },
           {password: newPassword,}
-        );
+		);
+
         res.status(200).json({
           user: user,
           message: "Password reset sucessfully !",
