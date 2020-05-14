@@ -27,11 +27,11 @@ GET http://localhost:3000/api/patients/5eb6ee2b2a7c9e083425aaca
 GET http://localhost:3000/api/patients/count
 
 ### Get One And Update
-PUT http://localhost:3000/api/patients/5eb7802c425fe3015c35e4ed
+PUT http://localhost:3000/api/patients/5ebdbb1e9676038949c89238
 Content-Type: application/json
 
 {
-	"status": "teste"
+	"status": "Suspect"
 }
 
 ### Get One And Delete
