@@ -8,9 +8,6 @@ shortid.characters(
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-// Patient model
-const Patient = require('./Patient');
-
 // Schema Options
 const schemaOptions = {
 	timestamps: {
@@ -56,15 +53,15 @@ const covidTestSchema = new Schema(
 );
 
 covidTestSchema.pre(/^(find|findOne|findOneAndUpdate)$/, function (next) {
-	this.populate('patient');
+    this.populate('patient');
 
-	next();
+    next();
 });
 
 covidTestSchema.pre('save', function (next) {
-	this.code = shortid.generate();
+    this.code = shortid.generate();
 
-	next();
+    next();
 });
 
 module.exports = mongoose.model('CovidTest', covidTestSchema);
