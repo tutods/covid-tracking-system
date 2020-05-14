@@ -6,7 +6,7 @@ const patient = require('../models/Patient');
 const path = './public/covidTests/';
 
 const covidTestController = () => {
-  
+
     const getOneAndUpdate = (req, res) => {
         const id = req.params.id;
         const data = req.body;
@@ -112,7 +112,8 @@ const covidTestController = () => {
                 }
             }
         }
-    }
+	}
+
     const create = async (data) => {
         new covidTest(data).save((error, data) => {
             const response = error ? {
@@ -122,51 +123,8 @@ const covidTestController = () => {
                 status: 201,
                 body: data
             };
-        });        
+        });
     }
-
-	const getByPatient = async (req, res) => {
-		const patientId = req.params.patientId;
-
-		const tests = await covidTest.find({ patient: patientId });
-
-		const patientData = await patient.findOne({ _id: patientId });
-
-		let testsData = tests.map((test) => {
-			return {
-				code: test.code,
-				status: test.status,
-				notes: test.notes,
-				date: test.date,
-				createdAt: test.createdAt,
-				updatedAt: test.updatedAt,
-			};
-		});
-
-		const result = {
-			_id: patientData._id,
-			name: patientData.name,
-			contacts: patientData.contacts,
-			patientNumber: patientData.patientNumber,
-			birthdayDate: patientData.birthdayDate,
-			status: patientData.status,
-			symptoms: patientData.symptoms,
-			tests: testsData,
-			createdAt: patientData.createdAt,
-			updatedAt: patientData.updatedAt,
-		};
-
-		const response = result
-			? {
-					code: 200,
-					body: result,
-			  }
-			: {
-					code: 404,
-					body: 'No data',
-			  };
-		res.status(response.code).json(response.body);
-	};
 
 	const countByDay = async (req, res) => {
 		const tests = await covidTest.aggregate([
