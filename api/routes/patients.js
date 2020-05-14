@@ -27,9 +27,9 @@ router.post('/', authorize(['--create-all']), create);
 
 router.post('/', create);
 
-router.get('/', authorize(['--view-all']), getAll);
+router.get('/', getAll);
 
-router.get('/:id', authorize(['--view-all']), getById);
+router.get('/:id',  getById);
 
 router.put('/:id', authorize(['--edit-all']), getOneAndUpdate);
 

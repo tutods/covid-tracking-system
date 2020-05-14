@@ -70,7 +70,7 @@ const covidTestController = () => {
 		res.status(response.code).json(response.body);
 
 		// console.log(result);
-	};
+    };
 
 	return { getOneAndUpdate, getByPatient };
 };

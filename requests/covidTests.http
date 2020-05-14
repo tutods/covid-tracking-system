@@ -8,7 +8,7 @@ POST http://localhost:3000/api/covid-tests/
 Content-Type: application/json
 
 {
-    "patient":"5ebab8c6f9d47b0d9dbdcc85",
+    "patient":"5eb6ee2b2a7c9e083425aaca",
 	"notes": "Notes !",
 	"date": "2020-05-10"
 }
@@ -17,14 +17,15 @@ Content-Type: application/json
 GET http://localhost:3000/api/covid-tests/5eaf02c49608cf4030ad959c
 
 ### Get By Patient
-GET http://localhost:3000/api/covid-tests/patient/5ebab8c6f9d47b0d9dbdcc85
+GET http://localhost:3000/api/covid-tests/patient/5eb6ee2b2a7c9e083425aaca
 
 ### Get one and update
 PUT http://localhost:3000/api/covid-tests/5eb7517e7b60f7302c389c48
 Content-Type: application/json
 
 {
-	"status": "inProgress"
+	"status": "finished",
+    "result": "positive"
 }
 
 ### Get one and delete
