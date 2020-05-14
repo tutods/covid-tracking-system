@@ -3,7 +3,7 @@ paths:
     post:
       tags:
         - Users
-      summary: Authenticate user validating data passed by body
+      summary: Authenticate user by validating data passed with body
       description: ""
       operationId: Login
       consumes:
@@ -24,7 +24,7 @@ paths:
               password:
                 type: string
       responses:
-        "201":
+        "200":
           description: Ok, user has created with success
           schema:
             type: object
@@ -93,11 +93,158 @@ paths:
               user:
                 type: object
                 example: {}
+  /users/resetPassword:
+    post:
+      tags:
+        - Users
+      summary: Send email with instructions after validating its existence
+      description: ""
+      operationId: Reset Password
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: User object only with email  defined on **User Schema**
+          required: true
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                format: email
+      responses:
+        "200":
+          description: An email has been sent with further instructions
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                default: true
+        "401":
+          description: Invalid input data
+          schema:
+            type: object
+            properties:
+              auth:
+                type: boolean
+                default: false
+              token:
+                type: string
+                example: ""
+              message:
+                type: string
+                example: "Invalid Credentials"
+  /users/changePassword:
+    post:
+      tags:
+        - Users
+      summary: Changing user's password
+      description: ""
+      operationId: Change Password
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: User object only with email  defined on **User Schema**
+          required: true
+          schema:
+            type: object
+            properties:
+              newPassword:
+                type: string
+              confirmPassword:
+                type: string
+      responses:
+        "200":
+          description: An email has been sent with further instructions
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                default: true
+              message:
+                type: string
+                example: Password reset sucessfully !
+              user:
+                type: object
+                properties:
+                  auth:
+                    type: boolean
+                    default: true
+                  token:
+                    type: string
+                  message:
+                    type: string
+                    example: ""
+                  user:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+                        format: email
+                      name:
+                        type: string
+                      role:
+                        type: string
+                        enum: ["ADMIN", "TECHNIC"]
+                      scopes:
+                        type: array
+                        items:
+                          scope:
+                            type: string
+                            enum:
+                              [
+                                "--view-all",
+                                "--create-all",
+                                "--edit-all",
+                                "--delete-all",
+                                "--view-users",
+                                "--create-users",
+                                "--edit-users",
+                                "--delete-users",
+                              ]
+                            example: "--view-all"
+        "408":
+          description: Request Timeout
+          schema:
+            type: object
+            properties:
+              auth:
+                type: boolean
+                default: false
+              token:
+                type: string
+                example: ""
+              message:
+                type: string
+                example: "Token Expire"
+        "401":
+          description: Unauthorized
+          schema:
+            type: object
+            properties:
+              auth:
+                type: boolean
+                default: false
+              token:
+                type: string
+                example: ""
+              message:
+                type: string
+                example: "Passwords d'ont match"               
   /users/logout:
     post:
       tags:
         - Users
-      summary: Authenticate user validating data passed by body
+      summary: Authenticate user by validating data passed by body
       description: ""
       operationId: logout
       consumes:
@@ -139,7 +286,7 @@ paths:
         "401":
           description: Invalid input or error on database connection
       security:
-        - cookieAuth: []
+        - JWT: []
     get:
       tags:
         - Users
@@ -156,7 +303,7 @@ paths:
         "401":
           description: Any error on connection or query
       security:
-        - cookieAuth: []
+        - JWT: []
   /users/{id}:
     get:
       tags:
@@ -179,7 +326,7 @@ paths:
         "401":
           description: Have any error on execute query or connection into database
       security:
-        - cookieAuth: []
+        - JWT: []
     put:
       tags:
         - Users
@@ -208,7 +355,7 @@ paths:
         "401":
           description: User not found or have any error on update user
       security:
-        - cookieAuth: []
+        - JWT: []
     delete:
       tags:
         - Users

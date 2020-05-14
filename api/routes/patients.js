@@ -19,6 +19,8 @@ const {
 	getOneAndDelete,
 } = require('../controllers/GenericController')(model);
 
+const { countInfected } = require('../controllers/PatientController');
+
 router.use(filters);
 
 router.use(sort);
