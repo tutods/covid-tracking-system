@@ -27,6 +27,8 @@ definitions:
                 type: string
                 format: date
                 required: true
+            file:
+                type: string
             meta:
                 type: object
                 properties:
