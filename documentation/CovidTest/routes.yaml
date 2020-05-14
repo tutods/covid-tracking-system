@@ -130,3 +130,94 @@ paths:
           description: Covid Test not found or have any error while deleting the Covid Test
       security:
         - JWT: []
+  /covid-tests/count/patient:
+    get:
+      tags:
+        - CovidTest
+      summary: Get number of tests by patient
+      description: ""
+      operationId: countByPatient
+
+      responses:
+        "200":
+          description: Have COVID Tests storaged on database
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                _id:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      enum: ["Suspect", "Infected", "Non Infected"]
+                      example: "Suspect"
+                    symptoms:
+                      type: array
+                      items:
+                        type: string
+                        enum:
+                          [
+                            "cough",
+                            "fever",
+                            "shortness of breathe",
+                            "lack of smell",
+                            "lack of taste",
+                            "tiredness",
+                            "burning eyes",
+                            "headaches",
+                            "diarrhea",
+                          ]
+                    name:
+                      type: string
+                      example: "Manuel"
+                    patientNumber:
+                      type: number
+                      minLength: 9
+                      example: 999999999
+                    birthdayDate:
+                      type: string
+                      format: date
+                    contacts:
+                      type: object
+                      properties:
+                        email:
+                          type: string
+                          format: email
+                        phone:
+                          type: number
+                          minLength: 9
+                          example: 913412123
+                numberOfTests:
+                  type: number
+                  example: 2
+        "401":
+          description: Have any error on execute query or connection into database
+      security:
+        - JWT: []
+  /covid-tests/count/day:
+    get:
+      tags:
+        - CovidTest
+      summary: Return number of tests by day
+      description: ""
+      operationId: countTestsByDay
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: "Have COVID Tests storaged on database"
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  format: date
+                numberOfTests:
+                  type: number
+                  example: 3
+        "401":
+          description: Have any error on execute query or connection into database

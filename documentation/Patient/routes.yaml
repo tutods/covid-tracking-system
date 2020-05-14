@@ -128,7 +128,7 @@ paths:
           description: User not found or have any error on delete patient
       security:
         - JWT: []
-  /count:
+  /patients/count:
     basePath: /patients/
     get:
       tags:
@@ -140,7 +140,7 @@ paths:
         "200":
           description: Return number of **Patients** by **status**
           schema:
-            type: "array"
+            type: array
             items:
               type: object
               properties:
