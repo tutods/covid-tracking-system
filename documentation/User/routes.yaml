@@ -286,7 +286,7 @@ paths:
         "401":
           description: Invalid input or error on database connection
       security:
-        - cookieAuth: []
+        - JWT: []
     get:
       tags:
         - Users
@@ -303,7 +303,7 @@ paths:
         "401":
           description: Any error on connection or query
       security:
-        - cookieAuth: []
+        - JWT: []
   /users/{id}:
     get:
       tags:
@@ -326,7 +326,7 @@ paths:
         "401":
           description: Have any error on execute query or connection into database
       security:
-        - cookieAuth: []
+        - JWT: []
     put:
       tags:
         - Users
@@ -355,7 +355,7 @@ paths:
         "401":
           description: User not found or have any error on update user
       security:
-        - cookieAuth: []
+        - JWT: []
     delete:
       tags:
         - Users

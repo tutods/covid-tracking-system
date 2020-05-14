@@ -48,13 +48,11 @@ router.use(sort);
 
 router.post('/', authorize(['--create-all']), create);
 
-router.post('/', create);
-
 router.get('/', authorize(['--view-all']), getAll);
 
 router.get('/count/day', authorize(['--view-all']), countByDay);
 
-router.get('/count/patient', countByPatient);
+router.get('/count/patient', authorize(['--view-all']), countByPatient);
 
 router.get('/:id', authorize(['--view-all']), getById);
 

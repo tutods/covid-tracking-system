@@ -22,6 +22,7 @@ const swaggerOptions = {
 		},
 	},
 	apis: [
+		'./documentation/auth.yaml',
 		'./documentation/User/*.yaml',
 		'./documentation/Role/*.yaml',
 		'./documentation/CovidTest/*.yaml',
@@ -29,13 +30,13 @@ const swaggerOptions = {
 		'./documentation/Middlewares/*.yaml',
 	],
 };
+
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
 // Packages
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const multer = require('multer');
 const cors = require('cors');
 
 // Middlewares
