@@ -27,7 +27,7 @@ router.use(sort);
 
 router.post('/', authorize(['--create-all']), create);
 
-router.get('/count', countInfected);
+router.get('/count', authorize(['--view-all']), countInfected);
 
 router.get('/', authorize(['--view-all']), getAll);
 
