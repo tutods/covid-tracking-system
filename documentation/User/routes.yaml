@@ -3,7 +3,7 @@ paths:
     post:
       tags:
         - Users
-      summary: Authenticate user validating data passed by body
+      summary: Authenticate user by validating data passed with body
       description: ""
       operationId: Login
       consumes:
@@ -24,7 +24,7 @@ paths:
               password:
                 type: string
       responses:
-        "201":
+        "200":
           description: Ok, user has created with success
           schema:
             type: object
@@ -93,6 +93,51 @@ paths:
               user:
                 type: object
                 example: {}
+  /users/resetPassword:
+    post:
+      tags:
+        - Users
+      summary: Send email with instructions after validating its existence
+      description: ""
+      operationId: Reset Password
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: User object only with email  defined on **User Schema**
+          required: true
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                format: email
+      responses:
+        "200":
+          description: An email has been sent with further instructions
+           schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                default: true
+        "401":
+          description: Invalid input data
+          schema:
+            type: object
+            properties:
+              auth:
+                type: boolean
+                default: false
+              token:
+                type: string
+                example: ""
+              message:
+                type: string
+                example: "Invalid Credentials"
   /users/logout:
     post:
       tags:

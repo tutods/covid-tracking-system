@@ -77,10 +77,6 @@ const userController = () => {
         message: "Invalid Credentials",
       });
     } else {
-      console.log("email encontrado:");
-
-      console.log(user);
-
       const jwtT = jwt.sign(user.email, SECRET);
 
       res.cookie("reset", jwtT, {
@@ -112,12 +108,9 @@ const userController = () => {
 
       smtpTransport.sendMail(mailOptions, function (err) {
         console.log("HI:" + user.name);
-        res.json({
-          status: "success",
-          message:
-            "An e-mail has been sent to " +
-            user.email +
-            " with further instructions.",
+        res.status(200).json({
+          sucess: true,
+          message: `An e-amil has been sent to ${user.email} with further instructions`,
         });
         done(err, "done");
       });
