@@ -35,7 +35,6 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions);
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const multer = require('multer');
 const cors = require('cors');
 
 // Middlewares
