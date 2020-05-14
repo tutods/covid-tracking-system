@@ -44,7 +44,6 @@ const covidTestController = () => {
 			};
 		});
 
-		// console.log(testsData);
 		const result = {
 			_id: patientData._id,
 			name: patientData.name,
@@ -68,8 +67,6 @@ const covidTestController = () => {
 					body: 'No data',
 			  };
 		res.status(response.code).json(response.body);
-
-		// console.log(result);
 	};
 
 	const countByDay = async (req, res) => {
@@ -128,10 +125,6 @@ const covidTestController = () => {
 				},
 			},
 		]);
-
-		console.log(tests);
-
-		// const patientData = await patient.populate(tests, { path: '_id' });
 
 		const response =
 			tests.length == 0
