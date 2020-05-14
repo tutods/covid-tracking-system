@@ -17,7 +17,7 @@ Content-Type: application/json
 GET http://localhost:3000/api/covid-tests/5eaf02c49608cf4030ad959c
 
 ### Get By Patient
-GET http://localhost:3000/api/covid-tests/patient/5eb6ee2b2a7c9e083425aaca
+GET http://localhost:3000/api/covid-tests/patient/5eb6ed690196720d80213ed5
 
 ### Get one and update
 PUT http://localhost:3000/api/covid-tests/5eb7517e7b60f7302c389c48
@@ -25,7 +25,7 @@ Content-Type: application/json
 
 {
 	"status": "finished",
-    "result": "positive"
+    "result": "negative"
 }
 
 ### Get one and delete
