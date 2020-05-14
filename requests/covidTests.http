@@ -8,21 +8,31 @@ POST http://localhost:3000/api/covid-tests/
 Content-Type: application/json
 
 {
-    "patient":"5eb6ee2b2a7c9e083425aaca",
-    "notes": "Notes !",
-    "date": "2020-05-10"
+    "patient":"5ebdbb1e9676038949c89238",
+	"notes": "Notes !",
+	"date": "2020-05-10"
 }
 
 ### Get By ID
-GET http://localhost:3000/api/covid-tests/5eaf02c49608cf4010ad959c
+GET http://localhost:3000/api/covid-tests/5ebdbb27791426897490bb67
+
+### Get By Patient
+GET http://localhost:3000/api/covid-tests/patient/5ebdbb1e9676038949c89238
+
+### Count COVID Tests By Day
+GET http://localhost:3000/api/covid-tests/count/day
+
+### Count COVID Tests By Patient
+GET http://localhost:3000/api/covid-tests/count/patient
 
 ### Get one and update
-PUT http://localhost:3000/api/covid-tests/5eb4366279d7f91299713b09
+PUT http://localhost:3000/api/covid-tests/5ebdbb27791426897490bb67
 Content-Type: application/json
 
 {
-	"status":
+	"status": "finished",
+    "result": "negative"
 }
 
 ### Get one and delete
-DELETE http://localhost:3000/api/covid-tests/5eaf02c49608cf4010ad959c
+DELETE http://localhost:3000/api/covid-tests/5eaf02c49608cf4030ad959c

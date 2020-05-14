@@ -1,7 +1,7 @@
 ### All Patient Requests ###
 
 ### Get All
-GET http://localhost:3000/api/patients
+GET http://localhost:3000/api/patients/
 
 ### Create
 POST http://localhost:3000/api/patients/
@@ -21,14 +21,17 @@ Content-Type: application/json
 }
 
 ### Get By ID
-GET http://localhost:3000/api/patients/5eb1b6fb59fae71678a4539d
+GET http://localhost:3000/api/patients/5eb6ee2b2a7c9e083425aaca
+
+### Count By Status
+GET http://localhost:3000/api/patients/count
 
 ### Get One And Update
-PUT http://localhost:3000/api/patients/5eb1b6fb59fae71678a4539d
+PUT http://localhost:3000/api/patients/5ebdbb1e9676038949c89238
 Content-Type: application/json
 
 {
-	"status": "teste"
+	"status": "Suspect"
 }
 
 ### Get One And Delete

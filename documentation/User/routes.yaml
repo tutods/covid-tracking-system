@@ -1,190 +1,381 @@
 paths:
-    /users/login:
-        post:
-            tags:
-                - Users
-            summary: Authenticate user validating data passed by body
-            description: ''
-            operationId: Login
-            consumes:
-                - application/json
-            produces:
-                - application/json
-            parameters:
-                - in: body
-                  name: body
-                  description: User object with fields defined on **User Schema**
-                  required: true
-                  schema:
-                      type: object
-                      properties:
-                          email:
-                              type: string
-                              format: email
-                          password:
-                              type: string
-            responses:
-                '201':
-                    description: Ok, user has created with success
-                    schema:
-                        type: object
-                        properties:
-                            auth:
-                                type: boolean
-                                default: true
-                            token:
-                                type: string
-                            message:
-                                type: string
-                                example: ''
-                            user:
-                                type: object
-                                properties:
-                                    schema:
-                                        $ref: '#/definitions/User'
-                '401':
-                    description: Invalid input data
-                    schema:
-                        type: object
-                        properties:
-                            auth:
-                                type: boolean
-                                default: false
-                            token:
-                                type: string
-                                example: ''
-                            message:
-                                type: string
-                                example: 'Invalid Credentials'
-                            user:
-                                type: object
-                                example: {}
-    /users/logout:
-        post:
-            tags:
-                - Users
-            summary: Authenticate user validating data passed by body
-            description: ''
-            operationId: logout
-            consumes:
-                - application/json
-            produces:
-                - application/json
-            responses:
-                '201':
-                    description: Ok, user session deleted with success
-                    schema:
-                        type: object
-                        properties:
-                            success:
-                                type: boolean
-                                default: true
-    /users/:
-        post:
-            tags:
-                - Users
-            summary: Add a new user
-            description: ''
-            operationId: addUser
-            consumes:
-                - application/json
-            produces:
-                - application/json
-            parameters:
-                - in: body
-                  name: body
-                  description: User object with fields defined on **User Schema**
-                  required: true
-                  schema:
-                      $ref: '#/definitions/User'
-            responses:
-                '200':
-                    description: Ok, user has created with success
-                    schema:
-                        $ref: '#/definitions/User'
-                '401':
-                    description: Invalid input or error on database connection
-        get:
-            tags:
-                - Users
-            summary: Get all users
-            description: ''
-            operationId: getUsers
-            responses:
-                '200':
-                    description: Return all users storaged into database
-                    schema:
+  /users/login:
+    post:
+      tags:
+        - Users
+      summary: Authenticate user by validating data passed with body
+      description: ""
+      operationId: Login
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: User object with fields defined on **User Schema**
+          required: true
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                format: email
+              password:
+                type: string
+      responses:
+        "200":
+          description: Ok, user has created with success
+          schema:
+            type: object
+            properties:
+              auth:
+                type: boolean
+                default: true
+              token:
+                type: string
+              message:
+                type: string
+                example: ""
+              user:
+                type: object
+                properties:
+                  auth:
+                    type: boolean
+                    default: true
+                  token:
+                    type: string
+                  message:
+                    type: string
+                    example: ""
+                  user:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+                        format: email
+                      name:
+                        type: string
+                      role:
+                        type: string
+                        enum: ["ADMIN", "TECHNIC"]
+                      scopes:
                         type: array
                         items:
-                            $ref: '#/definitions/User'
-                '401':
-                    description: Any error on connection or query
-    /users/{id}:
-        get:
-            tags:
-                - Users
-            summary: Find user by id
-            description: ''
-            operationId: getUserById
-            parameters:
-                - name: id
-                  in: path
-                  description: User ID storaged into database
-                  required: true
-                  type: string
-            responses:
-                '200':
-                    description: User founded
-                    schema:
-                        type: object
-                        $ref: '#/definitions/User'
-                '401':
-                    description: Have any error on execute query or connection into database
-        put:
-            tags:
-                - Users
-            summary: Find one user by id and update
-            description: ''
-            operationId: getOneAndUpdate
-            produces:
-                - application/json
-            parameters:
-                - in: path
-                  name: id
-                  description: User ID storaged into database
-                  required: true
-                  type: string
-                - in: body
-                  name: body
-                  description: User object with fields defined on **User Schema**
-                  required: true
-                  schema:
-                      $ref: '#/definitions/User'
-            responses:
-                '200':
-                    description: User founded and update with success
-                    schema:
-                        $ref: '#/definitions/User'
-                '401':
-                    description: User not found or have any error on update user
-        delete:
-            tags:
-                - Users
-            summary: Find one user by id and delete
-            description: ''
-            operationId: getOneAndDelete
-            produces:
-                - application/json
-            parameters:
-                - in: path
-                  name: id
-                  description: User ID storaged into database
-                  required: true
-                  type: string
-            responses:
-                '200':
-                    description: User founded and delete with success
-                    schema:
-                        $ref: '#/definitions/User'
-                '401':
-                    description: User not found or have any error on delete user
+                          scope:
+                            type: string
+                            enum:
+                              [
+                                "--view-all",
+                                "--create-all",
+                                "--edit-all",
+                                "--delete-all",
+                                "--view-users",
+                                "--create-users",
+                                "--edit-users",
+                                "--delete-users",
+                              ]
+                            example: "--view-all"
+        "401":
+          description: Invalid input data
+          schema:
+            type: object
+            properties:
+              auth:
+                type: boolean
+                default: false
+              token:
+                type: string
+                example: ""
+              message:
+                type: string
+                example: "Invalid Credentials"
+              user:
+                type: object
+                example: {}
+  /users/resetPassword:
+    post:
+      tags:
+        - Users
+      summary: Send email with instructions after validating its existence
+      description: ""
+      operationId: Reset Password
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: User object only with email  defined on **User Schema**
+          required: true
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                format: email
+      responses:
+        "200":
+          description: An email has been sent with further instructions
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                default: true
+        "401":
+          description: Invalid input data
+          schema:
+            type: object
+            properties:
+              auth:
+                type: boolean
+                default: false
+              token:
+                type: string
+                example: ""
+              message:
+                type: string
+                example: "Invalid Credentials"
+  /users/changePassword:
+    post:
+      tags:
+        - Users
+      summary: Changing user's password
+      description: ""
+      operationId: Change Password
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: User object only with email  defined on **User Schema**
+          required: true
+          schema:
+            type: object
+            properties:
+              newPassword:
+                type: string
+              confirmPassword:
+                type: string
+      responses:
+        "200":
+          description: An email has been sent with further instructions
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                default: true
+              message:
+                type: string
+                example: Password reset sucessfully !
+              user:
+                type: object
+                properties:
+                  auth:
+                    type: boolean
+                    default: true
+                  token:
+                    type: string
+                  message:
+                    type: string
+                    example: ""
+                  user:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+                        format: email
+                      name:
+                        type: string
+                      role:
+                        type: string
+                        enum: ["ADMIN", "TECHNIC"]
+                      scopes:
+                        type: array
+                        items:
+                          scope:
+                            type: string
+                            enum:
+                              [
+                                "--view-all",
+                                "--create-all",
+                                "--edit-all",
+                                "--delete-all",
+                                "--view-users",
+                                "--create-users",
+                                "--edit-users",
+                                "--delete-users",
+                              ]
+                            example: "--view-all"
+        "408":
+          description: Request Timeout
+          schema:
+            type: object
+            properties:
+              auth:
+                type: boolean
+                default: false
+              token:
+                type: string
+                example: ""
+              message:
+                type: string
+                example: "Token Expire"
+        "401":
+          description: Unauthorized
+          schema:
+            type: object
+            properties:
+              auth:
+                type: boolean
+                default: false
+              token:
+                type: string
+                example: ""
+              message:
+                type: string
+                example: "Passwords d'ont match"               
+  /users/logout:
+    post:
+      tags:
+        - Users
+      summary: Authenticate user by validating data passed by body
+      description: ""
+      operationId: logout
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "201":
+          description: Ok, user session deleted with success
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                default: true
+  /users/:
+    post:
+      tags:
+        - Users
+      summary: Add a new user
+      description: ""
+      operationId: addUser
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: User object with fields defined on **User Schema**
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: Ok, user has created with success
+          schema:
+            $ref: "#/definitions/User"
+        "401":
+          description: Invalid input or error on database connection
+      security:
+        - JWT: []
+    get:
+      tags:
+        - Users
+      summary: Get all users
+      description: ""
+      operationId: getUsers
+      responses:
+        "200":
+          description: Return all users storaged into database
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/User"
+        "401":
+          description: Any error on connection or query
+      security:
+        - JWT: []
+  /users/{id}:
+    get:
+      tags:
+        - Users
+      summary: Find user by id
+      description: ""
+      operationId: getUserById
+      parameters:
+        - name: id
+          in: path
+          description: User ID storaged into database
+          required: true
+          type: string
+      responses:
+        "200":
+          description: User founded
+          schema:
+            type: object
+            $ref: "#/definitions/User"
+        "401":
+          description: Have any error on execute query or connection into database
+      security:
+        - JWT: []
+    put:
+      tags:
+        - Users
+      summary: Find one user by id and update
+      description: ""
+      operationId: getOneAndUpdate
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: User ID storaged into database
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: User object with fields defined on **User Schema**
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: User founded and update with success
+          schema:
+            $ref: "#/definitions/User"
+        "401":
+          description: User not found or have any error on update user
+      security:
+        - JWT: []
+    delete:
+      tags:
+        - Users
+      summary: Find one user by id and delete
+      description: ""
+      operationId: getOneAndDelete
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: User ID in database
+          required: true
+          type: string
+      responses:
+        "200":
+          description: User founded and delete with success
+          schema:
+            $ref: "#/definitions/User"
+        "401":
+          description: User not found or have any error on delete user
+      security:
+        - cookieAuth: []
