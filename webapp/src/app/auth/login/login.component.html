@@ -5,7 +5,7 @@
 
       <mat-card-title>Sign In</mat-card-title>
 
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit($event)">
+      <form [formGroup]="loginForm" (submit)="onSubmit($event)">
         <mat-form-field appearance="outline">
           <mat-label>Your Email</mat-label>
           <input matInput placeholder="Email" name="email" formControlName="email">
