@@ -20,7 +20,7 @@ GET http://localhost:3000/api/covid-tests/5eaf02c49608cf4030ad959c
 GET http://localhost:3000/api/covid-tests/patient/5eb6ed690196720d80213ed5
 
 ### Get one and update
-PUT http://localhost:3000/api/covid-tests/5eb7517e7b60f7302c389c48
+PUT http://localhost:3000/api/covid-tests/5ebd5259f013de1720b40135
 Content-Type: application/json
 
 {

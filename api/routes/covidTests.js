@@ -44,19 +44,22 @@ router.use(filters);
 
 router.use(sort);
 
-router.post('/', create);
+router.post('/', authorize(['--create-all']), create);
 
-router.post('/', create);
+router.get('/', authorize(['--view-all']), getAll);
 
-router.get('/',  getAll);
+router.get('/count/day', authorize(['--view-all']), countByDay);
+
+router.get('/count/patient', authorize(['--view-all']), countByPatient);
 
 router.get('/:id', authorize(['--view-all']), getById);
 
-router.get('/patient/:patientId',  getByPatient);
+router.get('/patient/:patientId', authorize(['--view-all']), getByPatient);
 
 router.put(
 	'/:id',
 	upload.single('covid_test_result'),
+	authorize(['--edit-all']),
 	getOneAndUpdate
 );
 

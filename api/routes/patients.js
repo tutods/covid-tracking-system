@@ -25,11 +25,11 @@ router.use(sort);
 
 router.post('/', authorize(['--create-all']), create);
 
-router.post('/', create);
+router.get('/count', authorize(['--view-all']), countInfected);
 
-router.get('/', getAll);
+router.get('/', authorize(['--view-all']), getAll);
 
-router.get('/:id',  getById);
+router.get('/:id', authorize(['--view-all']), getById);
 
 router.put('/:id', authorize(['--edit-all']), getOneAndUpdate);
 

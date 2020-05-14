@@ -101,35 +101,27 @@ const covidTestController = () => {
         if (covid.length < 2) {
             if (covid[0].result != undefined) {
                 if (covid[0].result.localeCompare('inconclusive') == 0) {
-                    new covidTest(data).save((error, data) => {
-                        const response = error ? {
-                            status: 401,
-                            body: error
-                        } : {
-                            status: 201,
-                            body: data
-                        };
-
-                        res.status(response.status).json(response.body);
-                    });
+                    create(data);
                 }
             }
         } else {
             if (covid[0].result != undefined && covid[1].result != undefined ) {
                 if (covid[0].result.localeCompare('negative') == 0 && covid[1].result.localeCompare('positive') == 0) {
-
-                    new covidTest(data).save((error, data) => {
-                        const response = error ? {
-                            status: 401,
-                            body: error
-                        } : {
-                            status: 201,
-                            body: data
-                        };
-                    });
+                    create(data);
                 }
             }
         }
+    }
+    const create = async (data) => {
+        new covidTest(data).save((error, data) => {
+            const response = error ? {
+                status: 401,
+                body: error
+            } : {
+                status: 201,
+                body: data
+            };
+        });        
     }
 
     return {
