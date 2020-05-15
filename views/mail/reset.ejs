@@ -1,250 +1,64 @@
-<!DOCTYPE html>
-<html>
+<%- include('../partials/header.ejs') %>
 
-	<head>
+<%- include('../partials/preheader.ejs', {preheader: "You recently requested to reset your password. Please see the instructions on email"}) %>
 
-		<meta charset="utf-8">
-		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<title>Password Reset</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+<table cellpadding=" 0" cellspacing="0" width="100%">
+	<tr class="wrap">
+		<td align="center" class="bg-page">
+			<table cellpadding=" 0" cellspacing="0" width="100%">
+				<tr class="wrap">
+					<td class="logo-td">
+						<img src="https://i.ibb.co/9vXvvQm/logo.png" class="logo" alt="Logo" />
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
 
-		<style>
-			.logo {
-				display: block;
-				width: 100px;
-				max-width: 100px;
-				border: 0;
-				margin: 0 auto;
-				min-width: 100px;
-				margin: 20px 0;
-			}
+	<tr class="wrap mb-20px">
+		<td align="center" class="bg-page">
+			<table class="table-layout table-size ptb-20px">
+				<%- include('../partials/title.ejs', {title: "Reset Password"}) %>
 
-			body,
-			table,
-			td,
-			a {
-				-ms-text-size-adjust: 100%;
-				-webkit-text-size-adjust: 100%;
-			}
+				<tr class="wrap">
+					<td class="bg-white text-style">
+						<p style="margin: 0;">
+							<span class="text-bold">Note:</span>
+							If you did not request this, please ignore this email and your password will remain
+							unchanged
+						</p>
+						<p style="margin: 0;">
+							Tap the button below to reset your user account password.
+						</p>
+					</td>
+				</tr>
+				<tr>
 
-			table,
-			td {
-				mso-table-rspace: 0pt;
-				mso-table-lspace: 0pt;
-			}
+					<td class="bg-white" id="td-button">
+						<a href="<%= link %>" target="_blank" id="button">Change
+							Password</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="bg-white text-style">
+						<p>
+							If that doesn't work, copy and paste the following link in your browser:
+						</p>
+						<p>
+							<a href="<%= link %>" target="_blank">
+								<%= link %>
+							</a>
+						</p>
+						<p>
+							<small><span class="text-bold">Note:</span> this token expires on 5 minutes!</small>
+						</p>
+					</td>
+				</tr>
+				<%- include('../partials/congrats.ejs') %>
+			</table>
+		</td>
+	</tr>
 
-			img {
-				-ms-interpolation-mode: bicubic;
-			}
+</table>
 
-			a[x-apple-data-detectors] {
-				font-family: inherit !important;
-				font-size: inherit !important;
-				font-weight: inherit !important;
-				line-height: inherit !important;
-				color: inherit !important;
-				text-decoration: none !important;
-			}
-
-			div[style*="margin: 16px 0"] {
-				margin: 0 !important;
-			}
-
-			body {
-				width: 100% !important;
-				height: 100% !important;
-				padding: 0 !important;
-				margin: 0 !important;
-			}
-
-			table {
-				border-collapse: collapse !important;
-			}
-
-			a {
-				color: #1a82e2;
-			}
-
-			img {
-				height: auto;
-				line-height: 100%;
-				text-decoration: none;
-				border: 0;
-				outline: none;
-			}
-
-			#button {
-				display: inline-block;
-				padding: 16px 36px;
-				font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
-				font-size: 16px;
-				color: #ffffff;
-				text-decoration: none;
-				border-radius: 6px;
-			}
-
-			.td-logo {
-				padding: 36px 24px;
-			}
-
-			.wrap {
-				word-wrap: break-word;
-			}
-
-			#body-table,
-			.table-size {
-				border: 0;
-				max-width: 75vw !important;
-			}
-
-			.ptb-20px {
-				padding: 20px 0;
-			}
-
-			.bg-white {
-				background-color: #fff !important;
-			}
-
-			.bg-page {
-				background-color: #e9ecef !important;
-			}
-
-			.table-layout {
-				table-layout: fixed !important;
-			}
-
-			#congrats {
-				border-bottom: 3px solid #d4dadf;
-			}
-
-			.text-style,
-			#congrats {
-				padding: 24px;
-				font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
-				font-size: 16px;
-				line-height: 24px;
-			}
-
-			#title {
-				margin: 0;
-				font-size: 32px;
-				font-weight: 700;
-				letter-spacing: -1px;
-				line-height: 48px;
-			}
-
-			#title-td {
-				padding: 36px 24px 0;
-				font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
-				border-top: 3px solid #d4dadf;
-			}
-
-			.preheader {
-				display: none;
-				max-width: 0;
-				max-height: 0;
-				overflow: hidden;
-				font-size: 1px;
-				line-height: 1px;
-				color: #fff;
-				opacity: 0;
-			}
-
-			.mb-20px {
-				margin-bottom: 20px;
-			}
-
-			/*# sourceMappingURL=style.css.map */
-		</style>
-	</head>
-
-	<body class="bg-page">
-		<div class="preheader">
-			Reset Password
-		</div>
-		<table border="0" cellpadding="0" cellspacing="0" width="100%">
-			<tr class="wrap">
-				<td align="center" class="bg-page">
-					<table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 50%;">
-						<tr class="wrap">
-							<td align="center" valign="top">
-
-								<img src="https://i.ibb.co/9vXvvQm/logo.png" class="logo" alt="Logo" />
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr class="wrap">
-				<td align="center" class="bg-page">
-					<table id="body-table" cellpadding="0" cellspacing="0" width="100%">
-						<tr class="wrap">
-							<td align="left" class="bg-white" id="title-td">
-								<h1 id="title">Reset Your Password</h1>
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr class="wrap mb-20px">
-				<td align="center" class="bg-page">
-					<table border="0" cellpadding="0" cellspacing="0" width="100%"
-						class="table-layout table-size ptb-20px">
-						<tr class="wrap">
-							<td align="left" class="bg-white text-style">
-								<p style="margin: 0;">
-									<strong>Note:</strong>
-									If you did not request this, please ignore this email and your password will remain
-									unchanged
-								</p>
-								<p style="margin: 0;">
-									Tap the button below to reset your customer account password. If you didn't request
-									a new password, you can safely delete this email.
-								</p>
-							</td>
-						</tr>
-
-						<tr class="wrap">
-							<td align="left" class="bg-white">
-								<table border="0" cellpadding="0" cellspacing="0" width="100%">
-									<tr class="wrap">
-										<td align="center" class="bg-white" style="padding: 12px;">
-											<table border="0" cellpadding="0" cellspacing="0">
-												<tr class="wrap">
-													<td align="center" bgcolor="#1a82e2" style="border-radius: 6px;">
-														<a href="<%= link %>" target="_blank" id="button">Change
-															Password</a>
-													</td>
-												</tr>
-											</table>
-										</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-
-						<tr class="wrap">
-							<td align="left" class="bg-white text-style">
-								<p style="margin: 0;">If that doesn't work, copy and paste the following link in your
-									browser:</p>
-								<p style="margin: 0;">
-									<a href="<%= link %>" target="_blank"><%= link %></a>
-								</p>
-							</td>
-						</tr>
-
-						<tr class="wrap">
-							<td class="bg-white text-style">
-								<p style="margin: 0;">
-									<i>Best regards</i>,<br />
-									<strong>COVID Tracking System</strong>
-								</p>
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-		</table>
-	</body>
-
-</html>
+<%- include('../partials/footer.ejs') %>

@@ -28,7 +28,7 @@ POST http://localhost:3000/api/users/resetPassword/
 Content-Type: application/json
 
 {
-	"email": "covidtrackingsystem@gmail.com"
+	"email": "jdaniel.asousa@gmail.com"
 }
 
 ### Change Password
