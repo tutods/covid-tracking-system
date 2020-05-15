@@ -1,7 +1,8 @@
 const nodemailer = require("nodemailer");
-
 const email = "covidtrackingsystem@gmail.com";
 const pw = "joaodanieljoao20";
+const ejs = require("ejs");
+const fs = require("fs");
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -11,17 +12,26 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const mailOptions = {
-  from: email,
-  to: "joaojon7@gmail.com",
-  subject: "Email enviado com Node",
-  text: "COVID-19",
-};
-
-transporter.sendMail(mailOptions, function (error, info) {
-  if (error) {
-    console.log(error);
+ejs.renderFile("./views/mail/reset.ejs", { name: "Stranger" }, function (
+  err,
+  data
+) {
+  if (err) {
+    console.log(err);
   } else {
-    console.log("Email sent: " + info.response);
+    var mainOptions = {
+      from: email,
+      to: "joaojon7@gmail.com",
+      subject: "Covid-19",
+      html: data,
+    };
+    console.log("html data ======================>", mainOptions.html);
+    transporter.sendMail(mainOptions, function (err, info) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Message sent: " + info.response);
+      }
+    });
   }
 });

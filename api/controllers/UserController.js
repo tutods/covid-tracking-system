@@ -10,6 +10,8 @@ const jwt = require("jsonwebtoken");
 
 //Nodemailer
 const nodemailer = require("nodemailer");
+const ejs = require("ejs");
+const fs = require("fs");
 
 const userController = () => {
   const login = async (req, res) => {
@@ -83,7 +85,7 @@ const userController = () => {
         expires: new Date(Date.now + 300000),
       });
 
-      const smtpTransport = nodemailer.createTransport({
+      const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
           user: "covidtrackingsystem@gmail.com",
@@ -91,28 +93,28 @@ const userController = () => {
         },
       });
 
-      const mailOptions = {
-        to: email,
-        from: "covidtrackingsystem@gmail.com",
-        subject: "Covid Tracking System Password Reset",
-        text:
-          "You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n" +
-          "Please click on the following link, or paste this into your browser to complete the process:\n\n" +
-          "http://localhost:3000/api/users/changePassword/" +
-          jwtT +
-          "\n\n" +
-		  "If you did not request this, please ignore this email and your password will remain unchanged.\n" +
-		  "Best regards\n" +
-		  "Covid Tracking System",
-      };
-
-      smtpTransport.sendMail(mailOptions, function (err) {
-        console.log("HI:" + user.name);
-        res.status(200).json({
-          sucess: true,
-          message: `An e-amil has been sent to ${user.email} with further instructions`,
-        });
-        done(err, "done");
+      ejs.renderFile("./views/mail/reset.ejs", { link: "http://localhost:3000/api/users/changePassword/" + jwtT }, function (
+        err,
+        data
+      ) {
+        if (err) {
+          console.log(err);
+        } else {
+          var mainOptions = {
+            from: "covidtrackingsystem@gmail.com",
+            to: email,
+            subject: "Covid-19",
+            html: data,
+          };
+          console.log("html data ======================>", mainOptions.html);
+          transporter.sendMail(mainOptions, function (err, info) {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log("Message sent: " + info.response);
+            }
+          });
+        }
       });
     }
   };
