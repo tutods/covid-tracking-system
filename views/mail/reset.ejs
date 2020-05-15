@@ -1,64 +1,90 @@
 <%- include('../partials/header.ejs') %>
 
 <%- include('../partials/preheader.ejs', {preheader: "You recently requested to reset your password. Please see the instructions on email"}) %>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
+	<tr>
+		<td>
+			&nbsp;</td>
+		<td class="container">
+			<div class="content">
 
-<table cellpadding=" 0" cellspacing="0" width="100%">
-	<tr class="wrap">
-		<td align="center" class="bg-page">
-			<table cellpadding=" 0" cellspacing="0" width="100%">
-				<tr class="wrap">
-					<td class="logo-td">
-						<img src="https://i.ibb.co/9vXvvQm/logo.png" class="logo" alt="Logo" />
-					</td>
-				</tr>
-			</table>
+				<div class="header">
+					<table role="presentation" border="0" cellpadding="0" cellspacing="0">
+						<tr>
+							<td class="content-block powered-by">
+								<img src="https://i.ibb.co/9vXvvQm/logo.png" width="100px" alt="Logo">
+							</td>
+						</tr>
+					</table>
+				</div>
+
+				<!-- START CENTERED WHITE CONTAINER -->
+				<table role="presentation" class="main" id="content">
+
+					<!-- START MAIN CONTENT AREA -->
+					<tr>
+						<td class="wrapper">
+							<table role="presentation" id="subtable" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td>
+										<p>Hi,</p>
+										<p>You recently requested to reset your password, if you want proceed click on
+											button bellow to change your password</p>
+										<table role="presentation" border="0" cellpadding="0" cellspacing="0"
+											class="btn btn-primary">
+											<tbody>
+												<tr>
+													<td align="left">
+														<table role="presentation" border="0" cellpadding="0"
+															cellspacing="0">
+															<tbody>
+																<tr>
+																	<td>
+																		<a href="<%= link %>" target="_blank">
+																			Reset Password
+																		</a>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+										<p>
+											If that doesn't work, copy and paste the following link in your browser:
+										</p>
+										<p>
+											<a href="<%= link %>"><%= link %></a>
+										</p>
+
+										<p>
+											If you <strong>not request this reset password</strong>, please ignore this
+											email and your password remain without changes
+										</p>
+
+										<p>
+											<strong>Note:</strong>
+											If you want proceed, realize this action fast, because the toke expire in 5
+											minutes.
+										</p>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+
+					<!-- END MAIN CONTENT AREA -->
+				</table>
+				<!-- END CENTERED WHITE CONTAINER -->
+				<!-- START FOOTER -->
+				<%- include('../partials/copyright.ejs') %>
+				<!-- END FOOTER -->
+
+			</div>
 		</td>
+		<td>&nbsp;</td>
 	</tr>
-
-	<tr class="wrap mb-20px">
-		<td align="center" class="bg-page">
-			<table class="table-layout table-size ptb-20px">
-				<%- include('../partials/title.ejs', {title: "Reset Password"}) %>
-
-				<tr class="wrap">
-					<td class="bg-white text-style">
-						<p style="margin: 0;">
-							<span class="text-bold">Note:</span>
-							If you did not request this, please ignore this email and your password will remain
-							unchanged
-						</p>
-						<p style="margin: 0;">
-							Tap the button below to reset your user account password.
-						</p>
-					</td>
-				</tr>
-				<tr>
-
-					<td class="bg-white" id="td-button">
-						<a href="<%= link %>" target="_blank" id="button">Change
-							Password</a>
-					</td>
-				</tr>
-				<tr>
-					<td class="bg-white text-style">
-						<p>
-							If that doesn't work, copy and paste the following link in your browser:
-						</p>
-						<p>
-							<a href="<%= link %>" target="_blank">
-								<%= link %>
-							</a>
-						</p>
-						<p>
-							<small><span class="text-bold">Note:</span> this token expires on 5 minutes!</small>
-						</p>
-					</td>
-				</tr>
-				<%- include('../partials/congrats.ejs') %>
-			</table>
-		</td>
-	</tr>
-
 </table>
 
 <%- include('../partials/footer.ejs') %>
