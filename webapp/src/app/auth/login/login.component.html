@@ -15,9 +15,11 @@
           </mat-icon>
 
           <mat-hint class="text-danger">
-            <span *ngIf="(loginFormControl.email.touched) && loginFormControl.email.errors?.email">
+            <span
+              *ngIf="(loginFormControl.email.touched) && (loginFormControl.email.errors?.email ||  loginFormControl.email.errors?.pattern)">
               Invalid email.
             </span>
+
             <span *ngIf="(loginFormControl.email.touched) && loginFormControl.email.errors?.required">
               Email is required
             </span>

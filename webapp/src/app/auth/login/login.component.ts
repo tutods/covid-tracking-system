@@ -10,12 +10,18 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class LoginComponent implements OnInit {
 
+	emailPattern = "^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}$";
+
 	loginForm: FormGroup;
 
 	constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
 	ngOnInit() {
 		this.loginForm = new FormGroup({
-			'email': new FormControl('', [Validators.required, Validators.email]),
+			'email': new FormControl('', [
+				Validators.required,
+				Validators.email,
+				Validators.pattern(this.emailPattern)
+			]),
 			'password': new FormControl('', [Validators.required])
 		});
 	}

@@ -5,10 +5,10 @@ import { map, shareReplay } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-navigation',
-	templateUrl: './navigation.component.html',
-	styleUrls: ['./navigation.component.sass']
+	templateUrl: './layout.component.html',
+	styleUrls: ['./layout.component.sass']
 })
-export class NavigationComponent {
+export class LayoutComponent {
 
 	isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
 		.pipe(
