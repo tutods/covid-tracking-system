@@ -1,0 +1,50 @@
+<div class="login-page">
+  <mat-card>
+    <mat-card-content>
+      <img src="/assets/images/logo.png" class="logo" alt="COVID Tracking System">
+
+      <mat-card-title>Sign In</mat-card-title>
+
+      <form [formGroup]="loginForm" (submit)="onSubmit($event)">
+        <mat-form-field appearance="outline">
+          <mat-label>Your Email</mat-label>
+          <input matInput placeholder="Email" name="email" formControlName="email">
+          <mat-icon matPrefix>email</mat-icon>
+          <mat-icon matSuffix *ngIf="(loginFormControl.email.touched) && loginFormControl.email.errors">
+            error
+          </mat-icon>
+
+          <mat-hint class="text-danger">
+            <span
+              *ngIf="(loginFormControl.email.touched) && (loginFormControl.email.errors?.email ||  loginFormControl.email.errors?.pattern)">
+              Invalid email.
+            </span>
+
+            <span *ngIf="(loginFormControl.email.touched) && loginFormControl.email.errors?.required">
+              Email is required
+            </span>
+          </mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Your Password</mat-label>
+          <input matInput placeholder="Password" type="password" formControlName="password" name="password">
+          <mat-icon matPrefix>lock</mat-icon>
+
+          <mat-icon matSuffix *ngIf="(loginFormControl.password.touched) && loginFormControl.password.errors">
+            error
+          </mat-icon>
+
+          <mat-hint class="text-danger">
+            <span *ngIf="(loginFormControl.password.touched) && loginFormControl.password.errors?.required">
+              Password is required
+            </span>
+          </mat-hint>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid" class="login-button">
+          Sign In
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
