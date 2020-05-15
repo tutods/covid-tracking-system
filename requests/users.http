@@ -9,9 +9,9 @@ Content-Type: application/json
 
 {
     "name": "User Name",
-	"email": "jdaniel.asousa@gmail.com",
+	"email": "covidtrackingsystem@gmail.com",
 	"password": "mypassword123",
-	"role": "5ebbfa00d921733500a887ef"
+	"role": "5ebe9b58e3390431a046eb24"
 }
 
 ### Login
@@ -28,7 +28,7 @@ POST http://localhost:3000/api/users/resetPassword/
 Content-Type: application/json
 
 {
-	"email": "jdaniel.asousa@gmail.com"
+	"email": "covidtrackingsystem@gmail.com"
 }
 
 ### Change Password
@@ -36,8 +36,8 @@ POST http://localhost:3000/api/users/changePassword/eyJhbGciOiJIUzI1NiJ9.anBjbV8
 Content-Type: application/json
 
 {
-	"newPassword": "joaomoreira123",
-	"confirmPassword": "joaomoreira123"
+	"newPassword": "teste123",
+	"confirmPassword": "teste123"
 }
 
 ### Logout
