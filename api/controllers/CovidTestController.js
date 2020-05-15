@@ -8,7 +8,7 @@ const { create } = require('./GenericController')(covidTest);
 const path = './public/covidTests/';
 
 //Nodemailer
-const nodemailer = require("nodemailer");
+const nodemailer = require('nodemailer');
 
 const covidTestController = () => {
 	const getOneAndUpdate = (req, res) => {
@@ -118,7 +118,7 @@ const covidTestController = () => {
 		if (covid.length < 2) {
 			if (covid[0].result != undefined) {
 				if (covid[0].result.localeCompare('inconclusive') == 0) {
-					create(data,patientToTest);
+					create(data, patientToTest);
 				}
 			}
 		} else {
@@ -127,13 +127,13 @@ const covidTestController = () => {
 					covid[0].result.localeCompare('negative') == 0 &&
 					covid[1].result.localeCompare('positive') == 0
 				) {
-					create(data,patientToTest);
+					create(data, patientToTest);
 				}
 			}
 		}
 	};
 
-	const create = async (data,patient) => {
+	const create = async (data, patient) => {
 		new covidTest(data).save((error, data) => {
 			const response = error
 				? {
@@ -148,33 +148,33 @@ const covidTestController = () => {
 
 		if (response.status == 201) {
 			const smtpTransport = nodemailer.createTransport({
-			  service: "gmail",
-			  auth: {
-				user: "covidtrackingsystem@gmail.com",
-				pass: "joaodanieljoao20",
-			  },
+				service: 'gmail',
+				auth: {
+					user: 'covidtrackingsystem@gmail.com',
+					pass: 'joaodanieljoao20',
+				},
 			});
 
 			const mailOptions = {
-			  to: patient.contacts.email,
-			  from: "covidtrackingsystem@gmail.com",
-			  subject: "Covid Tracking System",
-			  text:
-				"You are receiving this email because we need you to repeat the test.\n\n" +
-				"Please call 808 24 24 24 informations and instructions." +
-				"Best regards\n" +
-				"Covid Tracking System",
+				to: patient.contacts.email,
+				from: 'covidtrackingsystem@gmail.com',
+				subject: 'Covid Tracking System',
+				text:
+					'You are receiving this email because we need you to repeat the test.\n\n' +
+					'Please call 808 24 24 24 informations and instructions.' +
+					'Best regards\n' +
+					'Covid Tracking System',
 			};
 
 			smtpTransport.sendMail(mailOptions, function (err) {
-			  console.log("HI:" + patient.name);
-			  res.status(200).json({
-				sucess: true,
-				message: `An e-amil has been sent to ${patient.contacts.email} with further instructions`,
-			  });
-			  done(err, "done");
+				console.log('HI:' + patient.name);
+				res.status(200).json({
+					sucess: true,
+					message: `An e-amil has been sent to ${patient.contacts.email} with further instructions`,
+				});
+				done(err, 'done');
 			});
-
+		}
 	};
 
 	const countByDay = async (req, res) => {
@@ -251,4 +251,4 @@ const covidTestController = () => {
 	return { getOneAndUpdate, getByPatient, countByDay, countByPatient };
 };
 
-module.exports = covidTestController;
+module.exports = covidTestController();
