@@ -48,7 +48,7 @@ router.use(sort);
 
 router.post('/', authorize(['--create-all']), create);
 
-router.get('/', authorize(['--view-all']), getAll);
+router.get('/', getAll);
 
 router.get('/count/day', authorize(['--view-all']), countByDay);
 
@@ -61,7 +61,6 @@ router.get('/patient/:patientId', authorize(['--view-all']), getByPatient);
 router.put(
 	'/:id',
 	upload.single('covid_test_result'),
-	authorize(['--edit-all']),
 	getOneAndUpdate
 );
 

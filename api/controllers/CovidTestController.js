@@ -74,6 +74,7 @@ const covidTestController = () => {
 			birthdayDate: patientData.birthdayDate,
 			status: patientData.status,
 			symptoms: patientData.symptoms,
+			observations: patientData.observations,
 			tests: testsData,
 			createdAt: patientData.createdAt,
 			updatedAt: patientData.updatedAt,
@@ -101,19 +102,17 @@ const covidTestController = () => {
 				updatedAt: -1,
 			})
 			.limit(2);
-		const date =
-			today.get +
-			'-' +
-			(today.getMonth() + 1) +
-			'-' +
-			(today.getDate() + 2);
+		const patientToTest = covid[0].patient;
+
+		const date = `${today.getFullYear()}-${today.getMonth() + 1}-${
+			today.getDate() + patientToTest.verifyObservations() ? 1 : 2
+		}`;
+
 		const data = {
 			patient: patientId,
 			notes: 'Auto Schedule by the system !',
 			date: date,
 		};
-
-		patientToTest = covid[0].patient;
 
 		if (covid.length < 2) {
 			if (covid[0].result != undefined) {
