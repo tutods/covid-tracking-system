@@ -5,7 +5,7 @@
 
 COVID Tracking System
 
-[![Version](https://img.shields.io/badge/Version-2.1-blue)](#)
+[![Version](https://img.shields.io/badge/Version-2.2-blue)](#)
 
 </h1>
 
@@ -195,7 +195,7 @@ COVID Tracking System
 	+ This code is on `.env.example` file;
 	+ The `MONGO_PORT=27017` is default value;
 
-2. To insert default roles into **MongoDB**, execute `npm run roles`
+2. To insert default roles and default admin user into **MongoDB**, execute `npm run roles`
 3. To run **NodeJS** server (with **Nodemon**) execute `npm run dev`
 
 ### ℹ️ How to test requests on VSCode

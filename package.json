@@ -1,6 +1,6 @@
 {
 	"name": "covid-tracking-system",
-	"version": "2.1.0",
+	"version": "2.2.0",
 	"private": true,
 	"description": "Covid tracking system for PAW project",
 	"main": "app.js",
