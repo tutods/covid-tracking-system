@@ -154,7 +154,7 @@ const covidTestController = () => {
 				pass: "joaodanieljoao20",
 			  },
 			});
-	
+
 			const mailOptions = {
 			  to: patient.contacts.email,
 			  from: "covidtrackingsystem@gmail.com",
@@ -165,7 +165,7 @@ const covidTestController = () => {
 				"Best regards\n" +
 				"Covid Tracking System",
 			};
-	
+
 			smtpTransport.sendMail(mailOptions, function (err) {
 			  console.log("HI:" + patient.name);
 			  res.status(200).json({
@@ -174,7 +174,7 @@ const covidTestController = () => {
 			  });
 			  done(err, "done");
 			});
-			
+
 	};
 
 	const countByDay = async (req, res) => {
@@ -251,4 +251,4 @@ const covidTestController = () => {
 	return { getOneAndUpdate, getByPatient, countByDay, countByPatient };
 };
 
-module.exports = covidTestController();
+module.exports = covidTestController;
