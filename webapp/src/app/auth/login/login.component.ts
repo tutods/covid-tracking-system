@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
 
 	loginForm: FormGroup;
 
-	constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
+	constructor(public router: Router, private http: HttpClient, private snackBar: MatSnackBar) { }
 	ngOnInit() {
 		this.loginForm = new FormGroup({
 			'email': new FormControl('', [
@@ -54,6 +55,7 @@ export class LoginComponent implements OnInit {
 			.subscribe((data) => {
 				// Correct Data
 				this.openSnackBar('Login with success!')
+				this.router.navigateByUrl('/')
 			}, (error) => {
 				if (error.error) {
 					this.loginForm.reset();
