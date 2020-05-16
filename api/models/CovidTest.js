@@ -4,6 +4,9 @@ shortid.characters(
 	'0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-@'
 );
 
+//Patient model
+const Patient = require('./Patient')
+
 // Mongoose Package
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
@@ -29,7 +32,7 @@ const covidTestSchema = new Schema(
 			ref: 'Patient',
             validate: {
 				validator: async function (data) {
-					const patient = Patient.countDocuments({ _id: data });
+					const patient = await Patient.countDocuments({ _id: data });
 
 					return patient;
 				},
