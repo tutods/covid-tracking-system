@@ -62,20 +62,20 @@ paths:
                       scopes:
                         type: array
                         items:
-                          scope:
-                            type: string
-                            enum:
-                              [
-                                "--view-all",
-                                "--create-all",
-                                "--edit-all",
-                                "--delete-all",
-                                "--view-users",
-                                "--create-users",
-                                "--edit-users",
-                                "--delete-users",
-                              ]
-                            example: "--view-all"
+                          type: string
+                          enum:
+                            [
+                              "--view-all",
+                              "--edit-all",
+                              "--delete-all",
+                              "--view-users",
+                              "--edit-users",
+                              "--delete-users",
+                            ]
+                          default: "--view-all"
+                          example:
+                            - "--view-all"
+                            - "--edit-all"
         "401":
           description: Invalid input data
           schema:
@@ -239,7 +239,7 @@ paths:
                 example: ""
               message:
                 type: string
-                example: "Passwords d'ont match"               
+                example: "Passwords d'ont match"
   /users/logout:
     post:
       tags:
