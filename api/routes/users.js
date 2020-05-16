@@ -9,7 +9,12 @@ const authorize = require('../middlewares/authorize');
 const model = require('../models/User');
 
 // Controllers
-const { login, logout, resetPassword , changePassword} = require('../controllers/UserController');
+const {
+	login,
+	logout,
+	resetPassword,
+	changePassword,
+} = require('../controllers/UserController');
 const {
 	getAll,
 	getById,
@@ -18,7 +23,7 @@ const {
 	getOneAndDelete,
 } = require('../controllers/GenericController')(model);
 
-router.post('/', create);
+router.post('/', authorize(['--create-users']), create);
 
 router.get('/', authorize(['--view-users']), getAll);
 

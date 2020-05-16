@@ -145,8 +145,6 @@ COVID Tracking System
 </td>
 </tr>
 <tr>
-</tr>
-<tr>
 <td>
 
 #### Swagger JSDoc
