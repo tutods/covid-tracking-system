@@ -27,7 +27,15 @@ const covidTestSchema = new Schema(
 		patient: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Patient',
-			required: true,
+            validate: {
+				validator: async function (data) {
+					const patient = Patient.countDocuments({ _id: data });
+
+					return patient;
+				},
+				message: (props) => `${props.value} is not a valid Patient!`,
+            },
+            required: [true,'Patient is required'],
 		},
 		notes: {
 			type: String,
