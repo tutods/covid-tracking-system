@@ -21,7 +21,7 @@ Content-Type: application/json
 }
 
 ### Get By ID
-GET http://localhost:3000/api/patients/5eb6ee2b2a7c9e083425aaca
+GET http://localhost:3000/api/patients/5ebff4e13a465b29cc1b7303
 
 ### Count By Status
 GET http://localhost:3000/api/patients/count
@@ -35,4 +35,4 @@ Content-Type: application/json
 }
 
 ### Get One And Delete
-DELETE http://localhost:3000/api/patients/5eb6e1b9181df32bd856ea84
+DELETE http://localhost:3000/api/patients/5ebff8b8c3e5011db4867c9d
