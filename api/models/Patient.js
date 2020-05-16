@@ -109,7 +109,7 @@ patientSchema.post('getOneAndDelete', async function (next) {
 
     if (tests.length >= 1) {
         tests.map((test) => {
-            covidTest.findOneAndDelete({ _id: test._id });
+            covidTest.getOneAndDelete({ _id: test._id });
         });
     }
     next();
