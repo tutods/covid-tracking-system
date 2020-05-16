@@ -1,10 +1,21 @@
 // Model
+const covidTest = require('../models/CovidTest');
 const patient = require('../models/Patient');
 
-//Path
-const path = './public/covidTests/';
+const patientController = () => {
+	const getOneAndDelete = async (req, res) => {
+		const id = req.params.id;
 
-const covidTestController = () => {
+		await patient.findOneAndDelete(id, (error, data) => {
+			covidTest.deleteMany({ patient: id });
+
+			const response = error
+				? { status: 401, body: error }
+				: { status: 200, body: data };
+
+			res.status(response.status).json(response.body);
+		});
+	};
 	const countInfected = async (req, res) => {
 		const patients = await patient.aggregate([
 			{
@@ -29,7 +40,7 @@ const covidTestController = () => {
 		res.status(response.code).json(response.body);
 	};
 
-	return { countInfected };
+	return { countInfected, getOneAndDelete };
 };
 
-module.exports = covidTestController();
+module.exports = patientController();

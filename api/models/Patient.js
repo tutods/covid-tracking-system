@@ -2,6 +2,9 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
+//CovidTestModel
+const covidTest = require('./CovidTest');
+
 // Schema Options
 const schemaOptions = {
 	timestamps: {
