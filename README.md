@@ -173,6 +173,14 @@ COVID Tracking System
   + `npm install jsonwebtoken`
 
 </td>
+<td>
+
+#### EJS
++ **[URL](https://www.npmjs.com/package/ejs)**
++ **How to install**?
+  + `npm install ejs`
+
+</td>
 </tr>
 </table>
 

@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+<%- include('../partials/header.ejs') %>
 
 <%- include('../partials/preheader.ejs', {preheader: "You recently requested to reset your password. Please see the instructions on email"}) %>
 <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
@@ -88,28 +87,4 @@
 	</tr>
 </table>
 
-						<tr class="wrap">
-							<td align="left" class="bg-white text-style">
-								<p style="margin: 0;">If that doesn't work, copy and paste the following link in your
-									browser:</p>
-								<p style="margin: 0;">
-									<a href="<%= link %>" target="_blank"><%= link %></a>
-								</p>
-							</td>
-						</tr>
-
-						<tr class="wrap">
-							<td class="bg-white text-style">
-								<p style="margin: 0;">
-									<i>Best regards</i>,<br />
-									<strong>COVID Tracking System</strong>
-								</p>
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-		</table>
-	</body>
-
-</html>
+<%- include('../partials/footer.ejs') %>
