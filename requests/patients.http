@@ -36,6 +36,3 @@ Content-Type: application/json
 
 ### Get One And Delete
 DELETE http://localhost:3000/api/patients/5eb6e1b9181df32bd856ea84
-
-### Get By name
-GET http://localhost:3000/api/patients/Joao/5eb1b6fb59fae71678a4539d
