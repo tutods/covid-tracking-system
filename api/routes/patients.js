@@ -16,10 +16,9 @@ const {
 	getAll,
 	getById,
 	getOneAndUpdate,
-	getOneAndDelete,
 } = require('../controllers/GenericController')(model);
 
-const { countInfected } = require('../controllers/PatientController');
+const { countInfected, getOneAndDelete } = require('../controllers/PatientController');
 
 router.use(filters);
 

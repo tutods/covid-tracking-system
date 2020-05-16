@@ -104,15 +104,4 @@ patientSchema.methods.verifyObservations = function () {
 	);
 };
 
-patientSchema.post('getOneAndDelete', async function (next) {
-    const tests = await covidTest.find({ patient: this._id });
-
-    if (tests.length >= 1) {
-        tests.map((test) => {
-            covidTest.getOneAndDelete({ _id: test._id });
-        });
-    }
-    next();
-});
-
 module.exports = mongoose.model('Patient', patientSchema);
