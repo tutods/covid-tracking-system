@@ -46,12 +46,9 @@ definitions:
               "headaches",
               "diarrhea",
             ]
-      meta:
-        type: object
-        properties:
-          createdAt:
-            type: string
-            format: date
-          updatedAt:
-            type: string
-            format: date
+      createdAt:
+        type: string
+        format: date
+      updatedAt:
+        type: string
+        format: date
