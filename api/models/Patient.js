@@ -2,6 +2,9 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
+//CovidTestModel
+const covidTest = require('./CovidTest');
+
 // Schema Options
 const schemaOptions = {
 	timestamps: {
@@ -100,5 +103,16 @@ patientSchema.methods.verifyObservations = function () {
 		this.observations.riskZone
 	);
 };
+
+patientSchema.post('getOneAndDelete', async function (next) {
+    const tests = await covidTest.find({ patient: this._id });
+
+    if (tests.length >= 1) {
+        tests.map((test) => {
+            covidTest.findOneAndDelete({ _id: test._id });
+        });
+    }
+    next();
+});
 
 module.exports = mongoose.model('Patient', patientSchema);

@@ -66,19 +66,21 @@ const covidTestController = () => {
 			};
 		});
 
-		const result = {
-			_id: patientData._id,
-			name: patientData.name,
-			contacts: patientData.contacts,
-			patientNumber: patientData.patientNumber,
-			birthdayDate: patientData.birthdayDate,
-			status: patientData.status,
-			symptoms: patientData.symptoms,
-			observations: patientData.observations,
-			tests: testsData,
-			createdAt: patientData.createdAt,
-			updatedAt: patientData.updatedAt,
-		};
+		const result = patientData
+			? {
+					_id: patientData._id,
+					name: patientData.name,
+					contacts: patientData.contacts,
+					patientNumber: patientData.patientNumber,
+					birthdayDate: patientData.birthdayDate,
+					status: patientData.status,
+					symptoms: patientData.symptoms,
+					observations: patientData.observations,
+					tests: testsData,
+					createdAt: patientData.createdAt,
+					updatedAt: patientData.updatedAt,
+			  }
+			: {};
 
 		const response = result
 			? {

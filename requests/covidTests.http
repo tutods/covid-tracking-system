@@ -8,16 +8,16 @@ POST http://localhost:3000/api/covid-tests/
 Content-Type: application/json
 
 {
-    "patient":"5ebdbb1e9676038949c89238",
+    "patient":"5ebff8b8c3e5011db4867c9d",
 	"notes": "Notes !",
 	"date": "2020-05-10"
 }
 
 ### Get By ID
-GET http://localhost:3000/api/covid-tests/5ebdbb27791426897490bb67
+GET http://localhost:3000/api/covid-tests/5ebff8b8c3e5011db4867c9d
 
 ### Get By Patient
-GET http://localhost:3000/api/covid-tests/patient/5ebdbb1e9676038949c89238
+GET http://localhost:3000/api/covid-tests/patient/5ebff8b8c3e5011db4867c9d
 
 ### Count COVID Tests By Day
 GET http://localhost:3000/api/covid-tests/count/day
@@ -35,4 +35,4 @@ Content-Type: application/json
 }
 
 ### Get one and delete
-DELETE http://localhost:3000/api/covid-tests/5eaf02c49608cf4030ad959c
+DELETE http://localhost:3000/api/covid-tests/5ebff8c28a6fa81e94bf6c5c
