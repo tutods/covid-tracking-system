@@ -2,25 +2,20 @@
 const covidTest = require('../models/CovidTest');
 const patient = require('../models/Patient');
 
-
 const patientController = () => {
-    const getOneAndDelete = async (req, res) => {       
-        const id = req.params.id;
-        const tests = await covidTest.find({ patient: id });
+	const getOneAndDelete = async (req, res) => {
+		const id = req.params.id;
 
-        if (tests.length >= 1) {
-            await covidTest.deleteMany({ patient: id });
-        }
+		await patient.findOneAndDelete(id, (error, data) => {
+			covidTest.deleteMany({ patient: id });
 
-        await patient.findOneAndDelete(id, (error, data) => {
 			const response = error
 				? { status: 401, body: error }
 				: { status: 200, body: data };
 
 			res.status(response.status).json(response.body);
 		});
-
-    };
+	};
 	const countInfected = async (req, res) => {
 		const patients = await patient.aggregate([
 			{
@@ -45,7 +40,7 @@ const patientController = () => {
 		res.status(response.code).json(response.body);
 	};
 
-	return { countInfected, getOneAndDelete};
+	return { countInfected, getOneAndDelete };
 };
 
 module.exports = patientController();
