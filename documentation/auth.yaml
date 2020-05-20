@@ -4,5 +4,5 @@ securityDefinitions:
     name: session
     in: cookie
     description: |
-      For accessiong the API with valid JWT Token you must be passed your token on header.
-      To get your token see **/users/login** wiht your data
+      For accessing the API with valid JWT Token you must be passed your token on header.
+      To get your token see **/users/login** with your data
