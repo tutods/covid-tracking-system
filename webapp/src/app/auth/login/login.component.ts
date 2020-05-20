@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { SessionService } from './../session.service';
 
 @Component({
 	selector: 'app-login',
@@ -15,7 +15,15 @@ export class LoginComponent implements OnInit {
 
 	loginForm: FormGroup;
 
-	constructor(public router: Router, private http: HttpClient, private snackBar: MatSnackBar) { }
+	constructor(public session: SessionService, public router: Router, private snackBar: MatSnackBar) {
+	}
+
+	ngAfterViewInit() {
+		if (this.session.session != null) {
+			this.router.navigateByUrl('/')
+		}
+	}
+
 	ngOnInit() {
 		this.loginForm = new FormGroup({
 			'email': new FormControl('', [
@@ -41,27 +49,22 @@ export class LoginComponent implements OnInit {
 		// Prevent Default
 		evt.preventDefault();
 
-		const loginUser = {
+		const user = {
 			email: this.loginForm.get('email').value,
 			password: this.loginForm.get('password').value
 		};
 
 		// Send POST Request to API
-		this.http
-			.post(
-				'http://localhost:3000/api/users/login',
-				loginUser
-			)
-			.subscribe((data) => {
-				// Correct Data
-				this.openSnackBar('Login with success!')
-				this.router.navigateByUrl('/')
-			}, (error) => {
-				if (error.error) {
-					this.loginForm.reset();
-					// Show error message
+		this.session
+			.login(user.email, user.password)
+			.subscribe(
+				() => {
+					this.openSnackBar('Login with success!')
+					this.router.navigateByUrl('/')
+				},
+				(error) => {
 					this.openSnackBar(error.error.message);
 				}
-			})
+			)
 	}
 }

@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { LayoutComponent } from './components/Layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { PatientsComponent } from './pages/patients/patients.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 		LoginComponent,
 		LayoutComponent,
 		DashboardComponent,
+		PatientsComponent,
 	],
 	imports: [
 		BrowserModule,

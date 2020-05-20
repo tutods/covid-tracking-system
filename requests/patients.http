@@ -9,11 +9,11 @@ Content-Type: application/json
 
 {
 	"name": "Alfredo",
-	"patientNumber": 200200200,
+	"patientNumber": 230200200,
 	"birthdayDate": "1990-10-26",
 	"contacts": {
-		"email": "200200200@estg.ipp.pt",
-		"phone": 200200200
+		"email": "230200200@estg.ipp.pt",
+		"phone": 203200200
 	},
 	"symptoms": [
 		"cough"

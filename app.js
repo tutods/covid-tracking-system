@@ -58,7 +58,12 @@ app
 	.use(cookieParser())
 
 	// Cors
-	.use(cors())
+	.use(
+		cors({
+			credentials: true,
+			origin: 'http://localhost:4200',
+		})
+	)
 
 	// Set body-parser
 	.use(bodyParser.urlencoded({ extended: true }))

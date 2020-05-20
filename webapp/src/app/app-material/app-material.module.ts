@@ -32,6 +32,7 @@ const Components = [
 	MatSnackBarModule,
 	MatListModule,
 	FlexLayoutModule,
+	MatGridListModule
 ];
 
 

@@ -1,0 +1,21 @@
+<div class="container">
+  <div fxLayout="row wrap" fxLayoutGap="20px">
+    <ng-container fxFlex *ngFor="let patient of result" class="card-item">
+      <mat-card fxFlex="0 1 25%" class="example-card">
+        <mat-card-content>
+          <h3>{{ patient.name }}</h3>
+          <p>
+            <mat-icon class="icon-12px">alternate_email</mat-icon>
+            {{ patient.contacts.email }}
+          </p>
+          <p>
+            {{ patient.contacts.phone }}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+        </mat-card-actions>
+      </mat-card>
+    </ng-container>
+
+  </div>
+</div>
