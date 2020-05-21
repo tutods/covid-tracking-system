@@ -15,6 +15,7 @@ import { LayoutComponent } from './components/Layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 import { ResetComponent } from './auth/reset/reset.component';
+import { ChangeComponent } from './auth/change/change.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { ResetComponent } from './auth/reset/reset.component';
 		DashboardComponent,
 		PatientsComponent,
 		ResetComponent,
+		ChangeComponent,
 	],
 	imports: [
 		BrowserModule,

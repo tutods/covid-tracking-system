@@ -97,7 +97,7 @@ const userController = () => {
 				'./views/mail/reset.ejs',
 				{
 					link:
-						'http://localhost:3000/api/users/changePassword/' +
+						'http://localhost:4200/changePassword/' +
 						jwtT,
 				},
 				function (err, data) {

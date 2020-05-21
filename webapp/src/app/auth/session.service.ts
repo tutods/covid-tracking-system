@@ -63,4 +63,19 @@ export class SessionService {
 
 		return request
 	}
+
+	change(newPassword: string, confirmPassword: string, token: string){
+		const request = this.http
+			.post(`${API_URL}/users/changePassword/${token}`,{
+				newPassword, confirmPassword
+			},
+			httpOptions
+			)	
+
+		request.subscribe(
+			
+		)
+
+		return request
+	}
 }

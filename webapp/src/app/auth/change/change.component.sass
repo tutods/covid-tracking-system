@@ -1,0 +1,70 @@
+@import "../../../assets/sass/_variables"
+
+.change-page
+	position: fixed
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+	display: flex
+	justify-content: center
+	align-items: center
+
+	background-image: url('/assets/images/covid.jpg')
+	background-size: cover
+	background-repeat: no-repeat
+	background-position: center
+
+	mat-card
+		border-radius: 8px
+		width: 20%
+
+	mat-card-content
+		padding: 10px
+		display: flex
+		flex-direction: column
+
+		> mat-card-title
+			font-family: 'Poppins', sans-serif
+			text-align: center
+			font-weight: bold
+			font-size: 2em
+
+		.logo
+			width: 100px
+			margin: 0 auto
+			margin-bottom: 1em
+
+		form
+			padding: 20px 0
+			display: flex
+			flex-direction: column
+
+			button
+				background-color: $dark-color
+				margin-top: 2em
+				color: #ffffff
+			[disabled]
+				background-color: $disabled-color
+
+			mat-form-field + mat-form-field
+				margin-top: 0.5em
+
+			mat-form-field
+				mat-icon[matprefix]
+					margin-right: 10px
+
+			.mat-form-field-invalid
+				mat-hint
+					color: red
+
+				mat-icon
+					color: red
+
+	@media screen and (max-width: 800px)
+		mat-card
+			width: 75%
+			mat-card-content
+				mat-card-title
+					font-size: 1.5em
+					font-weight: bold
