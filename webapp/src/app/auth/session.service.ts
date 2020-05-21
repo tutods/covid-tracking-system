@@ -48,4 +48,19 @@ export class SessionService {
 		this.http.post(`${API_URL}/users/logout`, httpOptions)
 	}
 
+	reset(email: string){
+
+		
+		const request = this.http
+			.post(`${API_URL}/users/resetPassword`,{email},httpOptions)
+
+		request.subscribe(
+			(email) =>{
+				this.session = email
+				//localStorage.setItem('email', JSON.stringify(email))
+			}
+		)
+
+		return request
+	}
 }

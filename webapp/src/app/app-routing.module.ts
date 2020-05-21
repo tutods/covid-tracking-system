@@ -4,6 +4,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { LayoutComponent } from './components/Layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
+import { ResetComponent } from './auth/reset/reset.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
 				component: PatientsComponent
 			},
 		]
-	}
+	},
+	{path: 'resetPassword', component: ResetComponent}
 
 ];
 
