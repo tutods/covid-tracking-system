@@ -67,4 +67,8 @@ export class LoginComponent implements OnInit {
 				}
 			)
 	}
+
+	btnClick= function () {
+        this.router.navigateByUrl('//caminho para o resetPassword');
+	};
 }
