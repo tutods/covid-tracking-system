@@ -1,0 +1,121 @@
+{
+	"/patients/{id}": {
+		"get": {
+			"tags": [
+				"Patients"
+			],
+			"summary": "Find patient by id",
+			"description": "",
+			"operationId": "getPatientById",
+			"parameters": [
+				{
+					"$ref": "#/parameters/patientId"
+				}
+			],
+			"responses": {
+				"200": {
+					"$ref": "#/responses/getOnePatient"
+				},
+				"400": {
+					"$ref": "#/responses/defaultError"
+				},
+				"403": {
+					"$ref": "#/responses/unauthorized"
+				},
+				"401": {
+					"$ref": "#/responses/notAuthenticated"
+				}
+			}
+		},
+		"put": {
+			"tags": [
+				"Patients"
+			],
+			"summary": "Find one patient by id and update",
+			"description": "",
+			"operationId": "getOneAndUpdate",
+			"produces": [
+				"application/json"
+			],
+			"parameters": [
+				{
+					"$ref": "#/parameters/patientId"
+				},
+				{
+					"$ref": "#/parameters/patientName"
+				},
+				{
+					"$ref": "#/parameters/patientBirthdayDate"
+				},
+				{
+					"$ref": "#/parameters/patientNumber"
+				},
+				{
+					"$ref": "#/parameters/patientStatus"
+				},
+				{
+					"$ref": "#/parameters/patientPhone"
+				},
+				{
+					"$ref": "#/parameters/patientEmail"
+				},
+				{
+					"$ref": "#/parameters/patientSymptoms"
+				},
+				{
+					"$ref": "#/parameters/patientSaude24"
+				},
+				{
+					"$ref": "#/parameters/patientRiskGroup"
+				},
+				{
+					"$ref": "#/parameters/patientRiskZone"
+				}
+			],
+			"responses": {
+				"200": {
+					"$ref": "#/responses/getOnePatient"
+				},
+				"400": {
+					"$ref": "#/responses/defaultError"
+				},
+				"403": {
+					"$ref": "#/responses/unauthorized"
+				},
+				"401": {
+					"$ref": "#/responses/notAuthenticated"
+				}
+			}
+		},
+		"delete": {
+			"tags": [
+				"Patients"
+			],
+			"summary": "Find one patient by id and delete",
+			"description": "",
+			"operationId": "getOneAndDelete",
+			"produces": [
+				"application/json"
+			],
+			"parameters": [
+				{
+					"$ref": "#/parameters/patientId"
+				}
+			],
+			"responses": {
+				"200": {
+					"$ref": "#/responses/getOnePatient"
+				},
+				"400": {
+					"$ref": "#/responses/defaultError"
+				},
+				"403": {
+					"$ref": "#/responses/unauthorized"
+				},
+				"401": {
+					"$ref": "#/responses/notAuthenticated"
+				}
+			}
+		}
+	}
+}

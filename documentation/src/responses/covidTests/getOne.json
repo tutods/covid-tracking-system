@@ -1,0 +1,63 @@
+{
+	"getOneCovidTest": {
+		"description": "COVID Test exists or created",
+		"schema": {
+			"type": "object",
+			"$ref": "#/definitions/CovidTest"
+		}
+	},
+	"getOneCovidTestPopulated": {
+		"description": "exists/created/updated/deleted",
+		"schema": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "string",
+					"unique": true,
+					"format": "uuid"
+				},
+				"patient": {
+					"$ref": "#/definitions/Patient"
+				},
+				"notes": {
+					"type": "string"
+				},
+				"status": {
+					"type": "string",
+					"enum": [
+						"pending",
+						"inProgress",
+						"finished",
+						"notRealized"
+					],
+					"default": "pending"
+				},
+				"result": {
+					"type": "string",
+					"enum": [
+						"positive",
+						"negative",
+						"inconclusive"
+					],
+					"default": "positive"
+				},
+				"date": {
+					"type": "string",
+					"format": "date",
+					"required": true
+				},
+				"file": {
+					"type": "string"
+				},
+				"createdAt": {
+					"type": "string",
+					"format": "date"
+				},
+				"updatedAt": {
+					"type": "string",
+					"format": "date"
+				}
+			}
+		}
+	}
+}

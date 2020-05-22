@@ -10,10 +10,16 @@ const authorize = (opts) => {
 			if (hasOneScope) {
 				next();
 			} else {
-				next('Not authorized');
+				next({
+					message: "Not authorized",
+					status: 403,
+				});
 			}
 		} else {
-			next('Not authenticated');
+			next({
+				message: 'Not Authenticated',
+				status: 401,
+			});
 		}
 	};
 };

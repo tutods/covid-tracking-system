@@ -24,7 +24,7 @@ Content-Type: application/json
 }
 
 ### Reset Password
-POST http://localhost:3000/api/users/resetPassword/
+POST http://localhost:3000/api/users/reset-password/
 Content-Type: application/json
 
 {
@@ -32,7 +32,7 @@ Content-Type: application/json
 }
 
 ### Change Password
-POST http://localhost:3000/api/users/changePassword/eyJhbGciOiJIUzI1NiJ9.anBjbV8xOTk4QGhvdG1haWwuY29t.UWUm4s_Y_Ezo7Fe8l0Yx5VjDbLPe2VaaQqkA__9SvQI
+POST http://localhost:3000/api/users/change-password/eyJhbGciOiJIUzI1NiJ9.anBjbV8xOTk4QGhvdG1haWwuY29t.UWUm4s_Y_Ezo7Fe8l0Yx5VjDbLPe2VaaQqkA__9SvQI
 Content-Type: application/json
 
 {

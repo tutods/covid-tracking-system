@@ -147,10 +147,10 @@ COVID Tracking System
 <tr>
 <td>
 
-#### Swagger JSDoc
-+ **[URL](https://www.npmjs.com/package/swagger-jsdoc)**
+#### EJS
++ **[URL](https://www.npmjs.com/package/ejs)**
 + **How to install**?
-  + `npm install swagger-jsdoc`
+  + `npm install ejs`
 
 </td>
 <td>
@@ -169,14 +169,6 @@ COVID Tracking System
 + **[URL](https://www.npmjs.com/package/jsonwebtoken)**
 + **How to install**?
   + `npm install jsonwebtoken`
-
-</td>
-<td>
-
-#### EJS
-+ **[URL](https://www.npmjs.com/package/ejs)**
-+ **How to install**?
-  + `npm install ejs`
 
 </td>
 </tr>
