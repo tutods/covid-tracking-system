@@ -1,9 +1,0 @@
-{
-	"userId": {
-		"name": "id",
-		"in": "path",
-		"description": "User ID storaged into database",
-		"required": true,
-		"type": "string"
-	}
-}

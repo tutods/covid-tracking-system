@@ -1,9 +1,0 @@
-{
-	"getOnePatient": {
-		"description": "Patient exists/created/updated or deleted",
-		"schema": {
-			"type": "object",
-			"$ref": "#/definitions/Patient"
-		}
-	}
-}

@@ -1,4 +1,0 @@
-### All Roles Requests ###
-
-### Get All
-GET http://localhost:3000/api/roles/

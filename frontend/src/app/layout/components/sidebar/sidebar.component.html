@@ -1,0 +1,32 @@
+<mat-nav-list>
+
+  <h2 matSubheader>Dashboard</h2>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+    <mat-icon>dashboard</mat-icon>
+    Dashboard
+  </a>
+
+  <mat-divider></mat-divider>
+
+  <h2 matSubheader>Records</h2>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/patients">
+    <mat-icon>folder_shared</mat-icon>
+    Patients
+  </a>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/covid-tests">
+    <mat-icon>folder_special</mat-icon>
+    COVID Tests
+  </a>
+
+  <mat-divider></mat-divider>
+
+  <h2 matSubheader>Administration</h2>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/users">
+    <mat-icon>supervised_user_circle</mat-icon>
+    Users
+  </a>
+
+</mat-nav-list>
