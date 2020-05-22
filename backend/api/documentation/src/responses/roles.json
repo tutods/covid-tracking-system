@@ -1,0 +1,9 @@
+{
+	"getAllRoles": {
+		"description": "Return all roles storaged into database",
+		"schema": {
+			"type": "object",
+			"$ref": "#/definitions/Role"
+		}
+	}
+}

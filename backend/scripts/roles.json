@@ -1,0 +1,23 @@
+[
+	{
+		"name": "ADMIN",
+		"scopes": [
+			"--view-all",
+			"--create-all",
+			"--edit-all",
+			"--delete-all",
+			"--view-users",
+			"--create-users",
+			"--edit-users",
+			"--delete-users"
+		]
+	},
+	{
+		"name": "TECHNIC",
+		"scopes": [
+			"--view-all",
+			"--create-all",
+			"--edit-all"
+		]
+	}
+]

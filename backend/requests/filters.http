@@ -1,0 +1,5 @@
+### Get All covid tests filtered
+GET http://localhost:3000/api/covid-tests/?date=2020-02-01,2020-05-01
+
+### Get All patients filtered
+GET http://localhost:3000/api/patients/?birthdayDate=1995-02-01,2020-05-01

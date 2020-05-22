@@ -1,0 +1,9 @@
+{
+	"emailReset": {
+		"name": "email",
+		"in": "formData",
+		"required": "true",
+		"type": "string",
+		"format": "email"
+	}
+}

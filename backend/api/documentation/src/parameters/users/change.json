@@ -1,0 +1,16 @@
+{
+	"newPassword": {
+		"name": "newPassword",
+		"in": "formData",
+		"required": "true",
+		"type": "string",
+		"format": "password"
+	},
+	"confirmPassword": {
+		"name": "confirmPassword",
+		"in": "formData",
+		"required": "true",
+		"type": "string",
+		"format": "password"
+	}
+}

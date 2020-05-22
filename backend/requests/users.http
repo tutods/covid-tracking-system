@@ -1,0 +1,58 @@
+### All Users Requests ###
+
+### Get All
+GET http://localhost:3000/api/users/
+
+### Create
+POST http://localhost:3000/api/users/
+Content-Type: application/json
+
+{
+    "name": "User Name",
+	"email": "covidtrackingsystem@gmail.com",
+	"password": "mypassword123",
+	"role": "5ebe9b58e3390431a046eb24"
+}
+
+### Login
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+	"email": "covidtrackingsystem@gmail.com",
+	"password": "mypassword123"
+}
+
+### Reset Password
+POST http://localhost:3000/api/users/reset-password/
+Content-Type: application/json
+
+{
+	"email": "jdaniel.asousa@gmail.com"
+}
+
+### Change Password
+POST http://localhost:3000/api/users/change-password/eyJhbGciOiJIUzI1NiJ9.anBjbV8xOTk4QGhvdG1haWwuY29t.UWUm4s_Y_Ezo7Fe8l0Yx5VjDbLPe2VaaQqkA__9SvQI
+Content-Type: application/json
+
+{
+	"newPassword": "teste123",
+	"confirmPassword": "teste123"
+}
+
+### Logout
+POST http://localhost:3000/api/users/logout
+
+### Get By Id
+GET http://localhost:3000/api/users/5eb7148df8d17ea6af35bd0e
+
+### Get One and Update
+PUT http://localhost:3000/api/users/5eb7148df8d17ea6af35bd0e
+Content-Type: application/json
+
+{
+	"password": "mypassword124"
+}
+
+### Get One And Delete
+DELETE http://localhost:3000/api/users/5eb7148df8d17ea6af35bd0e

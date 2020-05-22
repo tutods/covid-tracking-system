@@ -1,0 +1,14 @@
+{
+	"logout": {
+		"description": "User session deleted with success",
+		"schema": {
+			"type": "object",
+			"properties": {
+				"success": {
+					"type": "boolean",
+					"default": true
+				}
+			}
+		}
+	}
+}

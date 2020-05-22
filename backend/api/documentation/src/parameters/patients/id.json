@@ -1,0 +1,9 @@
+{
+	"patientId": {
+		"name": "id",
+		"in": "path",
+		"description": "Patient ID storaged into database",
+		"required": true,
+		"type": "string"
+	}
+}

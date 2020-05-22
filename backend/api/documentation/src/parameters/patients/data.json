@@ -1,0 +1,83 @@
+{
+	"patientName": {
+		"name": "name",
+		"in": "formData",
+		"required": "true",
+		"type": "string"
+	},
+	"patientBirthdayDate": {
+		"name": "birthdayDate",
+		"in": "formData",
+		"required": "true",
+		"type": "string",
+		"format": "date"
+	},
+	"patientNumber": {
+		"name": "patientNumber",
+		"in": "formData",
+		"required": "true",
+		"type": "number"
+	},
+	"patientStatus": {
+		"name": "status",
+		"in": "formData",
+		"type": "string",
+		"default": "Suspect",
+		"enum": [
+			"Suspect",
+			"Infected",
+			"Non Infected"
+		]
+	},
+	"patientPhone": {
+		"name": "contacts.phone",
+		"in": "formData",
+		"required": "true",
+		"type": "number"
+	},
+	"patientEmail": {
+		"in": "formData",
+		"name": "contacts.email",
+		"required": "true",
+		"type": "string",
+		"format": "email"
+	},
+	"patientSymptoms": {
+		"name": "symptoms",
+		"type": "array",
+		"in": "formData",
+		"form": "true",
+		"items": {
+			"type": "string",
+			"enum": [
+				"cough",
+				"fever",
+				"shortness of breathe",
+				"lack of smell",
+				"lack of taste",
+				"tiredness",
+				"burning eyes",
+				"headaches",
+				"diarrhea"
+			]
+		}
+	},
+	"patientSaude24": {
+		"name": "observations.saude24",
+		"in": "formData",
+		"type": "boolean",
+		"default": false
+	},
+	"patientRiskGroup": {
+		"name": "observations.riskGroup",
+		"in": "formData",
+		"type": "boolean",
+		"default": false
+	},
+	"patientRiskZone": {
+		"name": "observations.riskZone",
+		"in": "formData",
+		"type": "boolean",
+		"default": false
+	}
+}

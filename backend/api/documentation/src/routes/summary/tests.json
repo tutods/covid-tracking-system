@@ -1,0 +1,50 @@
+{
+	"/summary/tests/patient": {
+		"get": {
+			"tags": [
+				"Summary"
+			],
+			"summary": "Get number of tests by patient",
+			"description": "",
+			"operationId": "testsByPatient",
+			"responses": {
+				"200": {
+					"$ref": "#/responses/numberOfTestsByPatient"
+				},
+				"400": {
+					"$ref": "#/responses/defaultError"
+				},
+				"403": {
+					"$ref": "#/responses/unauthorized"
+				},
+				"401": {
+					"$ref": "#/responses/notAuthenticated"
+				}
+			}
+		}
+	},
+	"/summary/tests/day": {
+		"get": {
+			"tags": [
+				"Summary"
+			],
+			"summary": "Get number of tests by day",
+			"description": "",
+			"operationId": "testsByDay",
+			"responses": {
+				"200": {
+					"$ref": "#/responses/numberOfTestsByDay"
+				},
+				"400": {
+					"$ref": "#/responses/defaultError"
+				},
+				"403": {
+					"$ref": "#/responses/unauthorized"
+				},
+				"401": {
+					"$ref": "#/responses/notAuthenticated"
+				}
+			}
+		}
+	}
+}
