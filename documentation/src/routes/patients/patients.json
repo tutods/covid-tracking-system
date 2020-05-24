@@ -1,0 +1,91 @@
+{
+	"/patients/": {
+		"post": {
+			"tags": [
+				"Patients"
+			],
+			"summary": "Add a new patient",
+			"description": "",
+			"operationId": "addPatient",
+			"produces": [
+				"application/json"
+			],
+			"parameters": [
+				{
+					"$ref": "#/parameters/patientName"
+				},
+				{
+					"$ref": "#/parameters/patientBirthdayDate"
+				},
+				{
+					"$ref": "#/parameters/patientNumber"
+				},
+				{
+					"$ref": "#/parameters/patientStatus"
+				},
+				{
+					"$ref": "#/parameters/patientPhone"
+				},
+				{
+					"$ref": "#/parameters/patientEmail"
+				},
+				{
+					"$ref": "#/parameters/patientSymptoms"
+				},
+				{
+					"$ref": "#/parameters/patientSaude24"
+				},
+				{
+					"$ref": "#/parameters/patientRiskGroup"
+				},
+				{
+					"$ref": "#/parameters/patientRiskZone"
+				}
+			],
+			"responses": {
+				"201": {
+					"$ref": "#/responses/getOnePatient"
+				},
+				"400": {
+					"$ref": "#/responses/defaultError"
+				},
+				"403": {
+					"$ref": "#/responses/unauthorized"
+				},
+				"401": {
+					"$ref": "#/responses/notAuthenticated"
+				}
+			}
+		},
+		"get": {
+			"tags": [
+				"Patients"
+			],
+			"summary": "Get all patients, this can be filtered and ordered as wish",
+			"description": "",
+			"operationId": "getPatients",
+			"parameters": [
+				{
+					"$ref": "#/parameters/sortMiddleware"
+				},
+				{
+					"$ref": "#/parameters/filterMiddleware"
+				}
+			],
+			"responses": {
+				"200": {
+					"$ref": "#/responses/getAllPatients"
+				},
+				"400": {
+					"$ref": "#/responses/defaultError"
+				},
+				"403": {
+					"$ref": "#/responses/unauthorized"
+				},
+				"401": {
+					"$ref": "#/responses/notAuthenticated"
+				}
+			}
+		}
+	}
+}

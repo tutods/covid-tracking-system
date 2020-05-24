@@ -1,8 +1,6 @@
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
 import { SessionService } from './../../auth/session.service';
 
 @Component({
@@ -17,20 +15,15 @@ export class LayoutComponent implements OnInit {
 	constructor(public session: SessionService, public router: Router, private breakpointObserver: BreakpointObserver) { }
 
 	ngOnInit(): void {
-		this.user = this.session.me()
-	}
 
-	ngAfterViewInit() {
-		if (this.session.session == null) {
+		const me = this.session.me()
+
+		if (!me) {
 			this.router.navigateByUrl('/login')
+		} else {
+			this.user = me.user
 		}
 	}
-
-	isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-		.pipe(
-			map(result => result.matches),
-			shareReplay()
-		);
 
 
 	logout() {

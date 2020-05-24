@@ -1,0 +1,49 @@
+{
+	"getAllUsers": {
+		"description": "Get all users storaged into database",
+		"schema": {
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/User"
+			}
+		}
+	},
+	"getAllUsersPopulated": {
+		"description": "Get all users storaged into database",
+		"schema": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"name": {
+						"type": "string",
+						"required": true
+					},
+					"email": {
+						"type": "string",
+						"unique": true,
+						"format": "email",
+						"required": true,
+						"pattern": "/^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"
+					},
+					"role": {
+						"$ref": "#/definitions/Role"
+					},
+					"password": {
+						"type": "string",
+						"unique": true,
+						"required": true
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date"
+					}
+				}
+			}
+		}
+	}
+}

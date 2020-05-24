@@ -50,10 +50,6 @@ router.post('/', authorize(['--create-all']), create);
 
 router.get('/', authorize(['--view-all']), getAll);
 
-router.get('/count/day', authorize(['--view-all']), countByDay);
-
-router.get('/count/patient', authorize(['--view-all']), countByPatient);
-
 router.get('/:id', authorize(['--view-all']), getById);
 
 router.get('/patient/:patientId', authorize(['--view-all']), getByPatient);

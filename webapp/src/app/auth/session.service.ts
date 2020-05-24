@@ -1,10 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { API_URL } from '../setup';
+import { share } from "rxjs/operators";
+import { environment } from "./../../environments/environment";
+
+const API_URL = environment.apiUrl;
+
 const httpOptions = {
 	headers: new HttpHeaders({
 		'Content-Type': 'application/json'
-	})
+	}),
+	withCredentials: true,
 };
 
 @Injectable({
@@ -27,6 +32,7 @@ export class SessionService {
 				},
 				httpOptions
 			)
+			.pipe(share());
 
 		request.subscribe(
 			(user) => {
@@ -43,9 +49,13 @@ export class SessionService {
 	}
 
 	logout() {
-		localStorage.removeItem('user')
+
 		this.session = null
-		this.http.post(`${API_URL}/users/logout`, httpOptions)
+		localStorage.removeItem('user')
+
+		const request = this.http.post(`${API_URL}/users/logout`, httpOptions)
+
+		request.subscribe()
 	}
 
 }

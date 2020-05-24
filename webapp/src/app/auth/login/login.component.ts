@@ -18,13 +18,13 @@ export class LoginComponent implements OnInit {
 	constructor(public session: SessionService, public router: Router, private snackBar: MatSnackBar) {
 	}
 
-	ngAfterViewInit() {
-		if (this.session.session != null) {
+	ngOnInit() {
+		const me = this.session.me()
+
+		if (me) {
 			this.router.navigateByUrl('/')
 		}
-	}
 
-	ngOnInit() {
 		this.loginForm = new FormGroup({
 			'email': new FormControl('', [
 				Validators.required,
@@ -58,9 +58,9 @@ export class LoginComponent implements OnInit {
 		this.session
 			.login(user.email, user.password)
 			.subscribe(
-				() => {
-					this.openSnackBar('Login with success!')
+				(user) => {
 					this.router.navigateByUrl('/')
+					this.openSnackBar('Login with success!')
 				},
 				(error) => {
 					this.openSnackBar(error.error.message);

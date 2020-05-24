@@ -5,13 +5,10 @@ const { SECRET = 'coV!d#19_$ystem$', EXPIRES = 1800000 } = process.env;
 // Model
 const User = require('../models/User');
 
+const resetEmail = require('../../scripts/resetEmail');
+
 // Packages
 const jwt = require('jsonwebtoken');
-
-//Nodemailer
-const nodemailer = require('nodemailer');
-const ejs = require('ejs');
-const fs = require('fs');
 
 const userController = () => {
 	const login = async (req, res) => {
@@ -74,8 +71,7 @@ const userController = () => {
 
 		if (user == null) {
 			res.status(401).json({
-				auth: false,
-				token: null,
+				status: false,
 				message: 'Invalid Credentials',
 			});
 		} else {
@@ -85,42 +81,13 @@ const userController = () => {
 				expires: new Date(Date.now + 300000),
 			});
 
-			const transporter = nodemailer.createTransport({
-				service: 'gmail',
-				auth: {
-					user: 'covidtrackingsystem@gmail.com',
-					pass: 'joaodanieljoao20',
-				},
+			// Call script to send email
+			resetEmail(jwtT, email);
+
+			res.status(200).send({
+				status: true,
+				message: 'Email has been sent with instructions',
 			});
-
-			ejs.renderFile(
-				'./views/mail/reset.ejs',
-				{
-					link:
-						'http://localhost:3000/api/users/changePassword/' +
-						jwtT,
-				},
-				function (err, data) {
-					if (err) {
-						console.log(err);
-					} else {
-						var mainOptions = {
-							from: 'covidtrackingsystem@gmail.com',
-							to: email,
-							subject: 'Covid-19',
-							html: data,
-						};
-
-						transporter.sendMail(mainOptions, function (err, info) {
-							if (err) {
-								console.log(err);
-							} else {
-								console.log('Message sent: ' + info.response);
-							}
-						});
-					}
-				}
-			);
 		}
 	};
 
@@ -136,24 +103,26 @@ const userController = () => {
 
 			if (newPassword !== confirmPassword) {
 				res.status(401).json({
+					status: false,
 					message: "Passwords d'ont match",
 				});
 			} else {
 				const email = jwt.verify(token, SECRET);
 
-				const user = await User.findOneAndUpdate(
+				await User.findOneAndUpdate(
 					{ email: email },
 					{ password: newPassword }
 				);
 
 				res.status(200).json({
-					user: user,
-					message: 'Password reset sucessfully !',
+					status: true,
+					message: 'Your password has changed with success!',
 				});
 			}
 		} else {
 			res.status(408).json({
-				message: 'Token expire',
+				status: false,
+				message: 'Token expired, please request  new reset token.',
 			});
 		}
 	};

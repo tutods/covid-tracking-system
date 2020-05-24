@@ -18,15 +18,13 @@ const {
 	getOneAndUpdate,
 } = require('../controllers/GenericController')(model);
 
-const { countInfected, getOneAndDelete } = require('../controllers/PatientController');
+const { getOneAndDelete } = require('../controllers/PatientController');
 
 router.use(filters);
 
 router.use(sort);
 
 router.post('/', authorize(['--create-all']), create);
-
-router.get('/count', authorize(['--view-all']), countInfected);
 
 router.get('/', authorize(['--view-all']), getAll);
 

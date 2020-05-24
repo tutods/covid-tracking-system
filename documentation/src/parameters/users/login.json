@@ -1,0 +1,16 @@
+{
+	"email": {
+		"name": "email",
+		"in": "formData",
+		"required": "true",
+		"type": "string",
+		"format": "email"
+	},
+	"password": {
+		"name": "password",
+		"in": "formData",
+		"required": "true",
+		"type": "string",
+		"format": "password"
+	}
+}

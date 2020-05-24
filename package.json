@@ -6,7 +6,7 @@
 	"main": "app.js",
 	"scripts": {
 		"dev": "nodemon -e yaml,http,js,json app.js",
-		"roles": "node ./scripts/defaultRoles.js",
+		"setup": "node ./scripts/setup.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
@@ -55,7 +55,6 @@
 		"nodemailer": "^6.4.6",
 		"request": "^2.88.2",
 		"shortid": "^2.2.15",
-		"swagger-jsdoc": "^4.0.0",
 		"swagger-ui-express": "^4.1.4"
 	}
 }

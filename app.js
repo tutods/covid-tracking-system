@@ -5,42 +5,18 @@ const { PORT = 3000 } = process.env;
 // Get Mongoose connection
 require('./config/mongoose');
 
-// Swagger imports
-const swaggerJsDoc = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
-
-// Swagger Options
-const swaggerOptions = {
-	swaggerDefinition: {
-		basePath: '/api/',
-		host: `localhost:${PORT}`,
-		info: {
-			title: 'COVID Tracking System',
-			version: '1.0.0',
-			description: 'API Documentation to COVID Tracking System project',
-			servers: [`http://localhost:${PORT}`],
-		},
-	},
-	apis: [
-		'./documentation/auth.yaml',
-		'./documentation/User/*.yaml',
-		'./documentation/Role/*.yaml',
-		'./documentation/CovidTest/*.yaml',
-		'./documentation/Patient/*.yaml',
-		'./documentation/Middlewares/*.yaml',
-	],
-};
-
-const swaggerDocs = swaggerJsDoc(swaggerOptions);
-
 // Packages
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
+// Swagger
+const swaggerRouter = require('./documentation');
+
 // Middlewares
 const sessionMiddleware = require('./api/middlewares/session');
+const errorHandler = require('./api/middlewares/errorHandler');
 
 // API Routes
 const apiRoutes = require('./api');
@@ -48,9 +24,6 @@ const apiRoutes = require('./api');
 const app = express();
 
 app
-	// Swagger Documentation
-	.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
-
 	// Static Files
 	.use('/public', express.static('./public'))
 
@@ -58,16 +31,16 @@ app
 	.use(cookieParser())
 
 	// Cors
-	.use(
-		cors({
-			credentials: true,
-			origin: 'http://localhost:4200',
-		})
-	)
+	.use(cors())
+
+	// Swagger Documentation
+	.use(swaggerRouter)
 
 	// Set body-parser
-	.use(bodyParser.urlencoded({ extended: true }))
 	.use(bodyParser.json())
+
+	// URL Encoded
+	.use(express.urlencoded({ extended: true }))
 
 	// When need test what you receive
 	// .use(function (req, res) {
@@ -81,6 +54,9 @@ app
 
 	// Routes
 	.use('/api', apiRoutes)
+
+	// Error Handler Middleware
+	.use(errorHandler)
 
 	// PORT
 	.listen(PORT, () => {

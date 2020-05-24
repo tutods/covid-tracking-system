@@ -1,0 +1,5 @@
+{
+	"defaultError": {
+		"description": "Error on connection or execute query"
+	}
+}

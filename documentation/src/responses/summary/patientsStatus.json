@@ -1,0 +1,26 @@
+{
+	"numberOfPatientsByStatus": {
+		"description": "Return number of patients by status",
+		"schema": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"type": "string",
+						"enum": [
+							"Suspect",
+							"Infected",
+							"Non Infected"
+						],
+						"default": "Suspect"
+					},
+					"count": {
+						"type": "number",
+						"example": 2
+					}
+				}
+			}
+		}
+	}
+}

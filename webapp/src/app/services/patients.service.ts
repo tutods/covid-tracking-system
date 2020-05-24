@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { API_URL } from './../setup';
+import { environment } from "./../../environments/environment";
+
+const API_URL = environment.apiUrl;
 
 const httpOptions = {
 	headers: new HttpHeaders({
@@ -16,8 +17,10 @@ const httpOptions = {
 export class PatientsService {
 	constructor(public http: HttpClient) { }
 
-	getAll(): Observable<any> {
-		return this.http.get(`${API_URL}/patients/`, httpOptions)
+	getAll() {
+		const result = this.http.get(`${API_URL}/patients/`, httpOptions)
+
+		return result
 	}
 
 	getById(id: string) {

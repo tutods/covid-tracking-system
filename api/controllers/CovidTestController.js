@@ -2,13 +2,8 @@
 const covidTest = require('../models/CovidTest');
 const patient = require('../models/Patient');
 
-const { create } = require('./GenericController')(covidTest);
-
 //Path
 const path = './public/covidTests/';
-
-//Nodemailer
-const nodemailer = require('nodemailer');
 
 const covidTestController = () => {
 	const getOneAndUpdate = (req, res) => {
