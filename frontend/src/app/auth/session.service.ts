@@ -63,7 +63,7 @@ export class SessionService {
 
 		const request = this.http
 			.post(`${API_URL}/users/reset-password`, { email }, httpOptions)
-			.pipe(share())
+			.pipe(share());
 
 		request.subscribe(
 			(email) => {
@@ -79,13 +79,10 @@ export class SessionService {
 		const request = this.http
 			.post(`${API_URL}/users/change-password/${token}`, {
 				newPassword, confirmPassword
-			},
-				httpOptions
-			)
+			}, httpOptions)
+			.pipe(share());
 
-		request.subscribe(
-
-		)
+		request.subscribe()
 
 		return request
 	}

@@ -42,34 +42,7 @@
 					"$ref": "#/parameters/patientId"
 				},
 				{
-					"$ref": "#/parameters/patientName"
-				},
-				{
-					"$ref": "#/parameters/patientBirthdayDate"
-				},
-				{
-					"$ref": "#/parameters/patientNumber"
-				},
-				{
-					"$ref": "#/parameters/patientStatus"
-				},
-				{
-					"$ref": "#/parameters/patientPhone"
-				},
-				{
-					"$ref": "#/parameters/patientEmail"
-				},
-				{
-					"$ref": "#/parameters/patientSymptoms"
-				},
-				{
-					"$ref": "#/parameters/patientSaude24"
-				},
-				{
-					"$ref": "#/parameters/patientRiskGroup"
-				},
-				{
-					"$ref": "#/parameters/patientRiskZone"
+					"$ref": "#/parameters/patientBody"
 				}
 			],
 			"responses": {
