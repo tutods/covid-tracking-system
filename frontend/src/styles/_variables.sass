@@ -1,0 +1,19 @@
+@import '~@angular/material/theming'
+
+\:root
+    --active-color: #333333
+
+@media (prefers-color-scheme: dark)
+    \:root
+        --active-color: #ffffff
+
+$activeColor: var(--active-color)
+
+@include mat-core()
+$palleteWarn: mat-palette($mat-red, A100)
+$btnWarn: mat-color($palleteWarn)
+
+$white: #ffffff
+$darkColor: #333
+$disabledColor: #7e7e7e
+$dangerColor: #ce181e

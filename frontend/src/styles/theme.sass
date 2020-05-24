@@ -2,19 +2,17 @@
 
 @include mat-core()
 
+$light-primary: mat-palette($mat-indigo)
+$light-accent:  mat-palette($mat-pink, A200, A100, A400)
+$light-theme:   mat-light-theme($light-primary, $light-accent)
+
+@media (prefers-color-scheme: light)
+    @include angular-material-theme($light-theme)
+
+$dark-primary: mat-palette($mat-blue)
+$dark-accent:  mat-palette($mat-amber, A200, A100, A400)
+$dark-warn:    mat-palette($mat-deep-orange)
+$dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn)
+
 @media (prefers-color-scheme: dark)
-    $app-primary: mat-palette($mat-indigo)
-    $app-accent:  mat-palette($mat-light-blue)
-    $app-warn: mat-palette($mat-deep-orange, A700)
-
-    $app-theme: mat-dark-theme($app-primary, $app-accent, $app-warn)
-
-    @include angular-material-theme($app-theme)
-
-    // Export theme colors
-    $primary: mat-color($app-primary)
-    $accent: mat-color($app-accent)
-    $warn: mat-color($app-warn)
-
-$app-primary: mat-palette($mat-indigo)
-$primary: mat-color($app-primary)
+    @include angular-material-theme($dark-theme)

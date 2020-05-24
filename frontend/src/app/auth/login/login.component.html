@@ -34,9 +34,16 @@
             </span>
           </mat-hint>
         </mat-form-field>
-        <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid" class="login-button">
+        <button mat-raised-button type="submit" [disabled]="!loginForm.valid" class="login-button">
           Sign In
         </button>
+
+        <div class="text-right mt-20px">
+          <a mat-button color="primary">
+            Reset Password
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </a>
+        </div>
       </form>
     </mat-card-content>
   </mat-card>
