@@ -1,0 +1,38 @@
+<div class="reset-page">
+  <mat-card>
+    <mat-card-content>
+      <img src="/assets/images/logo.png" class="logo" alt="COVID Tracking System">
+
+      <mat-card-title>Reset Password</mat-card-title>
+
+      <form [formGroup]="resetForm" (submit)="onSubmit($event)">
+        <mat-form-field>
+          <mat-label>Your Email</mat-label>
+          <input matInput placeholder="Email" name="email" formControlName="email">
+          <mat-icon matPrefix>email</mat-icon>
+
+          <mat-hint>
+            <span
+              *ngIf="(resetFormControl.email.touched) && (resetFormControl.email.errors?.email ||  resetFormControl.email.errors?.pattern)">
+              Invalid email.
+            </span>
+
+            <span *ngIf="(resetFormControl.email.touched) && resetFormControl.email.errors?.required">
+              Email is required
+            </span>
+          </mat-hint>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!resetForm.valid" class="reset-button">
+          Reset Password
+        </button>
+      </form>
+      <div class="text-right mt-20px">
+        <a routerLink="/login" mat-button color="primary">
+          Login
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </a>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>

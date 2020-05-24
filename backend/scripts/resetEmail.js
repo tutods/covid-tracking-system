@@ -11,7 +11,7 @@ const nodemailer = require('nodemailer');
 const ejs = require('ejs');
 
 const resetEmail = (token, email) => {
-	const changeUrl = `http://localhost:3000/api/users/change-password/${token}`;
+	const changeUrl = `http://localhost:4200/change-password/${token}`;
 
 	// URL
 	const transporter = nodemailer.createTransport({

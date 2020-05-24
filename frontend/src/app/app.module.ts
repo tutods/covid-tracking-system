@@ -9,7 +9,9 @@ import { AppMaterialModule } from './app-material.module';
 import { AppRoutingModule } from './app-routing.module';
 // Components
 import { AppComponent } from './app.component';
+import { ChangeComponent } from './auth/change/change/change.component';
 import { LoginComponent } from './auth/login/login.component';
+import { ResetComponent } from './auth/reset/reset.component';
 import { HeaderComponent } from './layout/components/header/header.component';
 import { SidebarComponent } from './layout/components/sidebar/sidebar.component';
 import { DefaultComponent } from './layout/default/default.component';
@@ -20,6 +22,8 @@ import { PatientsComponent } from './pages/patients/patients.component';
 	declarations: [
 		AppComponent,
 		LoginComponent,
+		ResetComponent,
+		ChangeComponent,
 		DashboardComponent,
 		PatientsComponent,
 		SidebarComponent,
