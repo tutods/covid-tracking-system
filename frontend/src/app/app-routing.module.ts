@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ChangeComponent } from './auth/change/change/change.component';
+import { ChangeComponent } from './auth/change/change.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ResetComponent } from './auth/reset/reset.component';
 import { DefaultComponent } from './layout/default/default.component';
@@ -16,7 +16,7 @@ const routes: Routes = [
 		path: 'reset-password', component: ResetComponent
 	},
 	{
-		path: 'changePassword/:token', component: ChangeComponent
+		path: 'change-password/:token', component: ChangeComponent
 	},
 	{
 		path: '',

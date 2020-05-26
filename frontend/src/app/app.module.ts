@@ -9,7 +9,7 @@ import { AppMaterialModule } from './app-material.module';
 import { AppRoutingModule } from './app-routing.module';
 // Components
 import { AppComponent } from './app.component';
-import { ChangeComponent } from './auth/change/change/change.component';
+import { ChangeComponent } from './auth/change/change.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ResetComponent } from './auth/reset/reset.component';
 import { HeaderComponent } from './layout/components/header/header.component';
