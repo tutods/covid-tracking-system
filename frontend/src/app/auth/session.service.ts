@@ -78,7 +78,7 @@ export class SessionService {
 			}, httpOptions)
 			.pipe(share());
 
-		return request
+		return request.subscribe()
 	}
 
 }
