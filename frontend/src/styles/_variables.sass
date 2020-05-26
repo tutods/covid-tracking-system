@@ -2,12 +2,15 @@
 
 \:root
     --active-color: #333333
+    --logo-path: url('/assets/images/covid-black.svg')
 
 @media (prefers-color-scheme: dark)
     \:root
         --active-color: #ffffff
+        --logo-path: url('/assets/images/covid-white.svg')
 
 $activeColor: var(--active-color)
+$logoPath: var(--logo-path)
 
 @include mat-core()
 $palleteWarn: mat-palette($mat-red, A100)
