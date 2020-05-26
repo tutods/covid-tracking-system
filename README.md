@@ -1,6 +1,6 @@
 <h1 align="center">
 <a style="display:block;">
-<img src="https://bit.ly/3bSHdAi" alt="Covid" width="100px">
+<img src="https://i.ibb.co/C7vjrDG/covid-black.png" alt="Covid" width="100px">
 </a>
 
 COVID Tracking System
