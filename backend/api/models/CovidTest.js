@@ -5,7 +5,7 @@ shortid.characters(
 );
 
 //Patient model
-const Patient = require('./Patient')
+const Patient = require('./Patient');
 
 // Mongoose Package
 const mongoose = require('mongoose');
@@ -30,15 +30,15 @@ const covidTestSchema = new Schema(
 		patient: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Patient',
-            validate: {
+			validate: {
 				validator: async function (data) {
 					const patient = await Patient.countDocuments({ _id: data });
 
 					return patient;
 				},
 				message: (props) => `${props.value} is not a valid Patient!`,
-            },
-            required: [true,'Patient is required'],
+			},
+			required: [true, 'Patient is required'],
 		},
 		notes: {
 			type: String,
@@ -64,15 +64,15 @@ const covidTestSchema = new Schema(
 );
 
 covidTestSchema.pre(/^(find|findOne|findOneAndUpdate)$/, function (next) {
-    this.populate('patient');
+	this.populate('patient');
 
-    next();
+	next();
 });
 
 covidTestSchema.pre('save', function (next) {
-    this.code = shortid.generate();
+	this.code = shortid.generate();
 
-    next();
+	next();
 });
 
 module.exports = mongoose.model('CovidTest', covidTestSchema);

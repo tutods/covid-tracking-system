@@ -1,5 +1,11 @@
+// ENV
+require('dotenv').config();
+const { ADMIN_EMAIL, ADMIN_NAME, ADMIN_PWD } = process.env;
+
 // Mongoose Connection
 const mongoose = require('../config/mongoose');
+
+// Models
 const Role = require('../api/models/Role');
 const User = require('../api/models/User');
 
@@ -31,9 +37,9 @@ mongoose
 				const admin = await Role.findOne({ name: 'ADMIN' });
 
 				await new User({
-					name: 'COVID Test',
-					email: 'covidtrackingsystem@gmail.com',
-					password: 'joaodanieljoao20',
+					name: ADMIN_NAME,
+					email: ADMIN_EMAIL,
+					password: ADMIN_PWD,
 					role: admin._id,
 				}).save();
 

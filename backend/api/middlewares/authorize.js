@@ -11,7 +11,7 @@ const authorize = (opts) => {
 				next();
 			} else {
 				next({
-					message: "Not authorized",
+					message: 'Not authorized',
 					status: 403,
 				});
 			}

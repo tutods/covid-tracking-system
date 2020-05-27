@@ -43,6 +43,7 @@ export class ChangeComponent implements OnInit {
 
 		evt.preventDefault();
 
+		// this.loginForm.get('email').value
 
 		this.session
 			.change(this.changeForm.get('newPassword').value, this.changeForm.get('confirmPassword').value, this.token)

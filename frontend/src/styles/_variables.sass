@@ -1,4 +1,5 @@
 @import '~@angular/material/theming'
+@include mat-core()
 
 \:root
     --active-color: #333333
@@ -9,10 +10,11 @@
         --active-color: #ffffff
         --logo-path: url('/assets/images/covid-white.svg')
 
+$darkLogo: url('/assets/images/covid-white.svg')
+
 $activeColor: var(--active-color)
 $logoPath: var(--logo-path)
 
-@include mat-core()
 $palleteWarn: mat-palette($mat-red, A100)
 $btnWarn: mat-color($palleteWarn)
 
