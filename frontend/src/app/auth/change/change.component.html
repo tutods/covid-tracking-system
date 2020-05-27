@@ -21,7 +21,10 @@
         <mat-form-field>
           <mat-label>Your Password</mat-label>
           <input matInput placeholder="Password" type="password" formControlName="confirmPassword"
-            name="confirmPassword">
+            name="confirmPassword" [errorStateMatcher]="matcher" >
+            <mat-error *ngIf="changeForm.hasError('notSame')">
+              Passwords do not match
+            </mat-error> 
           <mat-icon matPrefix>lock</mat-icon>
 
           <mat-hint>
