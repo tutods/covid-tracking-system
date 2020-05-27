@@ -3,18 +3,33 @@
 .px-30px
     padding: 30px 0
 
+.px-10px
+    padding: 10px 0
+
 .text-white
     color: $white
+
+.text-center
+    text-align: center
 
 .container
     max-width: 1200px
     margin-left: auto
     margin-right: auto
 
+    &:last-child
+        margin-bottom: 3rem
+
+    h2.section-title
+        font-size: 1.75rem
+        font-weight: 200
+        text-transform: uppercase
+        text-align: center
+
 .hero
     min-height: 50vh
     min-height: 100vh
-    background-image: url(/assets/images/doctor.jpg)
+    background-image: url(/assets/images/backgrounds/doctor.jpg)
     background-size: cover
     background-position: center
     background-repeat: no-repeat
@@ -35,3 +50,16 @@
 
         button
             color: $white
+
+mat-card
+    .top-card-image
+        display: block
+        margin: 0 auto
+        width: 150px
+        margin-bottom: 1rem
+    mat-card-title, mat-card-subtitle
+        text-align: center
+
+.row
+    .col
+        padding: 10px
