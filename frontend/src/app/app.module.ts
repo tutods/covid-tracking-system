@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChartsModule } from 'ng2-charts';
 // Material Module Imports
 import { AppMaterialModule } from './app-material.module';
 // Routing Module
@@ -20,6 +21,9 @@ import { HeaderComponent } from './layout/landing-page/components/header/header.
 import { LandingPageComponent } from './layout/landing-page/landing-page.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
+import { PtChartComponent } from './layout/landing-page/components/pt-chart/pt-chart.component';
+import { WorldChartComponent } from './layout/landing-page/components/world-chart/world-chart.component'
+
 
 @NgModule({
 	declarations: [
@@ -33,7 +37,9 @@ import { PatientsComponent } from './pages/patients/patients.component';
 		HeaderComponent,
 		DefaultComponent,
 		LandingPageComponent,
-		TopbarComponent
+		TopbarComponent,
+		PtChartComponent,
+		WorldChartComponent
 	],
 	imports: [
 		ReactiveFormsModule,
@@ -42,7 +48,8 @@ import { PatientsComponent } from './pages/patients/patients.component';
 		AppMaterialModule,
 		BrowserModule,
 		AppRoutingModule,
-		BrowserAnimationsModule
+		BrowserAnimationsModule,
+		ChartsModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]
