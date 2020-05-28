@@ -54,7 +54,12 @@ router.get('/:id', authorize(['--view-all']), getById);
 
 router.get('/patient/:patientId', authorize(['--view-all']), getByPatient);
 
-router.put('/:id', authorize(['--edit-all']), upload.single('covid_test_result'), getOneAndUpdate);
+router.put(
+	'/:id',
+	authorize(['--edit-all']),
+	upload.single('covid_test_result'),
+	getOneAndUpdate
+);
 
 router.delete('/:id', authorize(['--delete-all']), getOneAndDelete);
 

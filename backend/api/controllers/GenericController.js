@@ -11,16 +11,33 @@ const genericController = (model) => {
 		});
 	};
 
-	const getById = (req, res) => {
+	const getById = async (req, res, next) => {
 		const id = req.params.id;
 
-		model.findOne({ _id: id }, (error, data) => {
-			const response = error
-				? { status: 400, body: error }
-				: { status: 200, body: data };
+		try {
+			const founded = await model.findOne({ _id: id });
 
-			res.status(response.status).json(response.body);
-		});
+			let response;
+
+			if (founded) {
+				response = {
+					message: founded,
+					status: 200,
+				};
+			} else {
+				response = {
+					message: `${id} not found!`,
+					status: 404,
+				};
+			}
+
+			res.status(response.status).json({ message: response.message });
+		} catch (catchError) {
+			next({
+				message: catchError,
+				status: 404,
+			});
+		}
 	};
 
 	const create = (req, res) => {
@@ -35,9 +52,37 @@ const genericController = (model) => {
 		});
 	};
 
-	const getOneAndUpdate = (req, res) => {
+	const getOneAndUpdate = async (req, res, next) => {
 		const id = req.params.id;
 		const data = req.body;
+
+		try {
+			const founded = await model.findOne({ _id: id });
+			let response;
+
+			if (founded) {
+				const updated = await founded.update(data, {
+					runValidators: true,
+				});
+
+				response = {
+					status: 200,
+					message: updated,
+				};
+			} else {
+				response = {
+					status: 404,
+					message: `${id} not found and not updated!`,
+				};
+			}
+
+			res.status(response.status);
+		} catch (catchError) {
+			next({
+				status: 400,
+				message: catchError,
+			});
+		}
 
 		model.findOneAndUpdate(
 			{ _id: id },
@@ -53,16 +98,25 @@ const genericController = (model) => {
 		);
 	};
 
-	const getOneAndDelete = (req, res) => {
+	const getOneAndDelete = async (req, res, next) => {
 		const id = req.params.id;
 
-		model.findOneAndDelete(id, (error, data) => {
-			const response = error
-				? { status: 400, body: error }
-				: { status: 200, body: data };
+		try {
+			const founded = await model.findOne(id);
 
-			res.status(response.status).json(response.body);
-		});
+			if (founded) {
+				const data = await founded.delete();
+
+				res.status(200).json(data);
+			} else {
+				res.status(404).json({ message: `${id} not found` });
+			}
+		} catch (catchError) {
+			next({
+				message: catchError,
+				status: 400,
+			});
+		}
 	};
 
 	return {

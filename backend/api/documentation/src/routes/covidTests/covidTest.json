@@ -34,6 +34,7 @@
 			"summary": "Find one Covid Test by id and update",
 			"description": "",
 			"operationId": "getOneAndUpdate",
+			"consumes": "multipart/form-data",
 			"produces": [
 				"application/json"
 			],
@@ -45,10 +46,19 @@
 					"$ref": "#/parameters/testPatient"
 				},
 				{
-					"$ref": "#/parameters/testNotes"
+					"$ref": "#/parameters/testNotesNotRequired"
 				},
 				{
-					"$ref": "#/parameters/testDate"
+					"$ref": "#/parameters/testDateNotRequired"
+				},
+				{
+					"$ref": "#/parameters/testStatus"
+				},
+				{
+					"$ref": "#/parameters/testResult"
+				},
+				{
+					"$ref": "#/parameters/testFile"
 				}
 			],
 			"responses": {
