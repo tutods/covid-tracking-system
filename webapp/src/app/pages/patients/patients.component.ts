@@ -54,6 +54,7 @@ export class PatientsComponent implements OnInit {
             if(res){
             this.result = res
             this.patients.getOneAndUpdate(patient._id, this.result).subscribe((data)=>window.location.reload());
+            console.log(res)
             }
         }) 
     }
