@@ -1,0 +1,118 @@
+{
+	"/covid-tests/{id}": {
+		"get": {
+			"tags": [
+				"CovidTest"
+			],
+			"summary": "Find a Covid Test by id",
+			"description": "",
+			"operationId": "getById",
+			"parameters": [
+				{
+					"$ref": "#/parameters/covidId"
+				}
+			],
+			"responses": {
+				"200": {
+					"$ref": "#/responses/getOneCovidTestPopulated"
+				},
+				"400": {
+					"$ref": "#/responses/defaultError"
+				},
+				"403": {
+					"$ref": "#/responses/unauthorized"
+				},
+				"401": {
+					"$ref": "#/responses/notAuthenticated"
+				},
+				"404": {
+					"$ref": "#/responses/notFoundError"
+				}
+			}
+		},
+		"put": {
+			"tags": [
+				"CovidTest"
+			],
+			"summary": "Find one Covid Test by id and update",
+			"description": "",
+			"operationId": "getOneAndUpdate",
+			"produces": [
+				"application/json"
+			],
+			"parameters": [
+				{
+					"$ref": "#/parameters/covidId"
+				},
+				{
+					"$ref": "#/parameters/testPatient"
+				},
+				{
+					"$ref": "#/parameters/testNotesNotRequired"
+				},
+				{
+					"$ref": "#/parameters/testDateNotRequired"
+				},
+				{
+					"$ref": "#/parameters/testStatus"
+				},
+				{
+					"$ref": "#/parameters/testResult"
+				},
+				{
+					"$ref": "#/parameters/testFile"
+				}
+			],
+			"responses": {
+				"200": {
+					"$ref": "#/responses/getOneCovidTestPopulated"
+				},
+				"400": {
+					"$ref": "#/responses/defaultError"
+				},
+				"403": {
+					"$ref": "#/responses/unauthorized"
+				},
+				"401": {
+					"$ref": "#/responses/notAuthenticated"
+				},
+				"404": {
+					"$ref": "#/responses/notFoundError"
+				}
+			}
+		},
+		"delete": {
+			"tags": [
+				"CovidTest"
+			],
+			"summary": "Find one Covid Test by id and delete",
+			"description": "",
+			"operationId": "getOneAndDelete",
+			"produces": [
+				"application/json"
+			],
+			"parameters": [
+				{
+					"$ref": "#/parameters/covidId"
+				}
+			],
+			"responses": {
+				"200": {
+					"$ref": "#/responses/getOneCovidTestPopulated"
+				},
+				"400": {
+					"$ref": "#/responses/defaultError"
+				},
+				"403": {
+					"$ref": "#/responses/unauthorized"
+				},
+				"401": {
+					"$ref": "#/responses/notAuthenticated"
+				},
+				"404": {
+					"$ref": "#/responses/notFoundError"
+				}
+			}
+		}
+	}
+}

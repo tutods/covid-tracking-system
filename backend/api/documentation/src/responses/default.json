@@ -1,0 +1,17 @@
+{
+	"defaultError": {
+		"description": "Error on connection or execute query"
+	},
+	"notFoundError": {
+		"description": "`model` not found!\nWhere `model` is **patient**, **covid test**, ... ",
+		"schema": {
+			"type": "object",
+			"properties": {
+				"message": {
+					"type": "string",
+					"example": "Not found!"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,44 @@
+@import './../../../../../styles/_variables'
+
+#logo
+    width: 90px
+    height: 90px
+    background-image: $darkLogo
+    background-position: center
+    background-repeat: no-repeat
+    background-size: contain
+
+ul.headerItems
+    li
+
+        list-style: none
+        font-size: 16px
+        color: $white
+
+@media (prefers-color-scheme: dark)
+    .center
+        color: $white
+
+.center
+    text-align: center
+    padding: 10px 40px
+
+    h3
+        margin-bottom: 10px
+
+    img
+        width: 75px
+        display: block
+        margin: 0 auto
+        margin-bottom: 20px
+
+
+mat-toolbar-row
+    max-width: 1200px
+    margin-left: auto
+    margin-right: auto
+    padding: 50px 0
+
+mat-toolbar
+    position: absolute
+    background-color: transparent

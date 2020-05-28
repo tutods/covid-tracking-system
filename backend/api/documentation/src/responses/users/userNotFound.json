@@ -1,0 +1,14 @@
+{
+	"userNotFound": {
+		"description": "User not founded on database",
+		"schema": {
+			"type": "object",
+			"properties": {
+				"msg": {
+					"type": "string",
+					"example": "User not found"
+				}
+			}
+		}
+	}
+}
