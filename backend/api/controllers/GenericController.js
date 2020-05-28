@@ -40,16 +40,30 @@ const genericController = (model) => {
 		}
 	};
 
-	const create = (req, res) => {
+	const create = async (req, res, next) => {
 		const data = req.body;
 
-		new model(data).save((error, data) => {
-			const response = error
-				? { status: 400, body: error }
-				: { status: 201, body: data };
+		try {
+			const newModel = new model(data).save();
 
-			res.status(response.status).json(response.body);
-		});
+			let response;
+
+			if (newModel) {
+				response = { status: 201, message: newModel };
+			} else {
+				response = {
+					status: 400,
+					message: { message: `Error on create ${model}` },
+				};
+			}
+
+			res.status(response.status).json(response.message);
+		} catch (catchError) {
+			next({
+				message: catchError,
+				status: 400,
+			});
+		}
 	};
 
 	const getOneAndUpdate = async (req, res, next) => {
@@ -83,19 +97,6 @@ const genericController = (model) => {
 				message: catchError,
 			});
 		}
-
-		model.findOneAndUpdate(
-			{ _id: id },
-			data,
-			{ runValidators: true },
-			(error, data) => {
-				const response = error
-					? { status: 400, body: error }
-					: { status: 200, body: data };
-
-				res.status(response.status).json(response.body);
-			}
-		);
 	};
 
 	const getOneAndDelete = async (req, res, next) => {
