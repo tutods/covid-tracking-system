@@ -1,5 +1,5 @@
-// ENV
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ debug: true });
 const { ADMIN_EMAIL, ADMIN_NAME, ADMIN_PWD } = process.env;
 
 // Mongoose Connection
@@ -36,14 +36,20 @@ mongoose
 			} else {
 				const admin = await Role.findOne({ name: 'ADMIN' });
 
-				await new User({
+				new User({
 					name: ADMIN_NAME,
 					email: ADMIN_EMAIL,
 					password: ADMIN_PWD,
 					role: admin._id,
 				}).save();
 
-				console.log('[USER INSERTED ON DATABASE]');
+				// Print USER DATA
+				console.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
+				console.log(`NAME:  ${ADMIN_NAME}`);
+				console.log(`EMAIL: ${ADMIN_EMAIL}`);
+				console.log(`ROLE: ADMIN`);
+				console.log(`SCOPES: All`);
+				console.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`);
 			}
 
 			console.log('[SETUP DONE]');
