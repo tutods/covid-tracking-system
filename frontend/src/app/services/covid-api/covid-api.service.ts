@@ -17,4 +17,14 @@ export class CovidApiService {
     return result
   }
 
+  getPortugalSummary(data){
+    let Portugal;
+    data.Countries.forEach(element => {
+      if(element.Country == "Portugal"){
+        Portugal = element;
+      }
+    });
+    return Portugal;
+  }
+
 }

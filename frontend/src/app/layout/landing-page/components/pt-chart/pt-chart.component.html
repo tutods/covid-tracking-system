@@ -1,7 +1,14 @@
-
-<p> {{ data.Global.NewConfirmed }} </p>
-<p> {{ data.Global.TotalDeaths }} </p>
-
-<p> {{ data.Countries[134].Country }} </p>
-<p> {{ data.Countries[134].TotalDeaths }} </p>
-
+<div>
+  <div>
+    <div class="chart" *ngIf="chartReady">
+      <canvas
+        baseChart
+        [data]="pieChartData"
+        [labels]="pieChartLabels"
+        [chartType]="pieChartType"
+        [colors]="pieChartColors"
+      >
+      </canvas>
+    </div>
+  </div>
+</div>
