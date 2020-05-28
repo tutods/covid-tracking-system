@@ -8,12 +8,12 @@ POST http://localhost:3000/api/patients/
 Content-Type: application/json
 
 {
-	"name": "Alfredo",
-	"patientNumber": 230200200,
+	"name": "teste7",
+	"patientNumber": 777777777,
 	"birthdayDate": "1990-10-26",
 	"contacts": {
-		"email": "230200200@estg.ipp.pt",
-		"phone": 203200200
+		"email": "777777777@estg.ipp.pt",
+		"phone": 777777777
 	},
 	"symptoms": [
 		"cough"
@@ -27,12 +27,12 @@ GET http://localhost:3000/api/patients/5ebff4e13a465b29cc1b7303
 GET http://localhost:3000/api/patients/count
 
 ### Get One And Update
-PUT http://localhost:3000/api/patients/5ebdbb1e9676038949c89238
+PUT http://localhost:3000/api/patients/5ecd943b96f5ee0a28851135
 Content-Type: application/json
 
 {
-	"status": "Suspect"
+	"observations.riskGroup": true
 }
 
 ### Get One And Delete
-DELETE http://localhost:3000/api/patients/5ec01350727b6f0b201c59d5
+DELETE http://localhost:3000/api/patients/5ecd85fe798dfd14244659b7

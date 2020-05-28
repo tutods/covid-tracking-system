@@ -2,8 +2,9 @@ export class Patient {
     name: string;
     birthdayDate: Date;
     patientNumber: number;
+    _id: string;
     status: string;
-    constacts: {
+    contacts: {
         phone: number;
         email: string;
     };

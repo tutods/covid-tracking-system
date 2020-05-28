@@ -2,15 +2,32 @@
   <div fxLayout="row wrap" fxLayoutGap=" 20px">
     <ng-container *ngFor="let patient of result" class="card-item">
       <mat-card fxFlex="0 1 25%" class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar class="material-icons">account_circle</div>
+          <mat-card-title>{{patient.name}}</mat-card-title>
+        </mat-card-header>
         <mat-card-content>
-          <h3>{{ patient.name }}</h3>
-          <p>
-            <mat-icon class="icon-12px">alternate_email</mat-icon>
-            {{ patient.contacts.email }}
+          <p>   
+            <mat-icon class="icon-18px">healing</mat-icon>
+            <b>Status: </b>{{ patient.status }}
           </p>
           <p>
-            {{ patient.contacts.phone }}
+            <mat-icon class="icon-18px">perm_identity</mat-icon>
+            <b>Patient number: </b>{{ patient.patientNumber }}
           </p>
+          <div class="button-row">
+            <button mat-flat-button matTooltip="Patient info" aria-label="Button that displays a tooltip when focused or hovered over" color="primary" (click)="openInformationDialog(patient)">
+              <mat-icon>info</mat-icon>
+            </button>
+            &nbsp;
+            <button mat-flat-button matTooltip="Edit patient" aria-label="Button that displays a tooltip when focused or hovered over" color="primary" (click)="openEditDialog(patient)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            &nbsp;
+            <button mat-flat-button matTooltip="Delete patient" aria-label="Button that displays a tooltip when focused or hovered over"color="primary" (click)="openDeleteDialog(patient)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
         </mat-card-content>
         <mat-card-actions>
         </mat-card-actions>

@@ -22,6 +22,9 @@ import { LoginComponent } from './auth/login/login.component';
 import { LayoutComponent } from './components/Layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
+import { DialogToDeleteComponent } from './dialog-to-delete/dialog-to-delete.component';
+import { InformationDialogComponent } from './information-dialog/information-dialog.component';
+import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 
 
 @NgModule({
@@ -31,7 +34,11 @@ import { PatientsComponent } from './pages/patients/patients.component';
 		LayoutComponent,
 		DashboardComponent,
 		PatientsComponent,
-	],
+		DialogToDeleteComponent,
+		InformationDialogComponent,
+		EditDialogComponent,
+    ],
+    entryComponents: [DialogToDeleteComponent],
 	imports: [
 		BrowserModule,
 		HttpClientModule,
