@@ -14,6 +14,6 @@ export class LandingPageComponent implements OnInit {
 
 
 	scroll(el: HTMLElement) {
-		el.scrollIntoView({ behavior: 'smooth' });;
+		el.scrollIntoView({ behavior: 'smooth' });
 	}
 }
