@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
 
-	constructor() { }
+	constructor() {
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+			window.location.reload()
+		});
+	}
 
 	ngOnInit(): void {
 	}
