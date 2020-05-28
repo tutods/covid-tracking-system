@@ -17,6 +17,7 @@ export class PtChartComponent implements OnInit {
 
   data;
 
+
   ngOnInit(): void {
     this.covidApiService.getSummary().subscribe((data) => {
       this.data = data;
