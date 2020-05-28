@@ -24,6 +24,9 @@
 				},
 				"401": {
 					"$ref": "#/responses/notAuthenticated"
+				},
+				"404": {
+					"$ref": "#/responses/notFoundError"
 				}
 			}
 		},
@@ -57,6 +60,9 @@
 				},
 				"401": {
 					"$ref": "#/responses/notAuthenticated"
+				},
+				"404": {
+					"$ref": "#/responses/notFoundError"
 				}
 			}
 		},
@@ -87,6 +93,9 @@
 				},
 				"401": {
 					"$ref": "#/responses/notAuthenticated"
+				},
+				"404": {
+					"$ref": "#/responses/notFoundError"
 				}
 			}
 		}

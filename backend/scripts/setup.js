@@ -1,4 +1,3 @@
-// ENV
 require('dotenv').config();
 const { ADMIN_EMAIL, ADMIN_NAME, ADMIN_PWD } = process.env;
 
@@ -28,7 +27,7 @@ mongoose
 			});
 
 			const userExist = await User.findOne({
-				email: 'covidtrackingsystem@gmail.com',
+				email: ADMIN_EMAIL,
 			});
 
 			if (userExist) {
@@ -43,7 +42,14 @@ mongoose
 					role: admin._id,
 				}).save();
 
-				console.log('[USER INSERTED ON DATABASE]');
+				// Print USER DATA
+				console.log(`\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
+				console.log(`NAME:  ${ADMIN_NAME}`);
+				console.log(`EMAIL: ${ADMIN_EMAIL}`);
+				console.log(`PASSWORD: ${ADMIN_PWD}`);
+				console.log(`ROLE: ADMIN`);
+				console.log(`SCOPES: All`);
+				console.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`);
 			}
 
 			console.log('[SETUP DONE]');

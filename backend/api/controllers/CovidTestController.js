@@ -3,7 +3,7 @@ const covidTest = require('../models/CovidTest');
 const patient = require('../models/Patient');
 
 //Path
-const path = './public/covidTests/';
+const filePath = 'uploads/covid-tests/';
 
 const nodemailer = require('nodemailer');
 
@@ -12,7 +12,7 @@ const covidTestController = () => {
 		const id = req.params.id;
 		const data = req.body;
 
-		data.pathFile = `${path}test_${req.params.id}.pdf`;
+		data.pathFile = `${filePath}test_${req.params.id}.pdf`;
 
 		covidTest.findOneAndUpdate(
 			{

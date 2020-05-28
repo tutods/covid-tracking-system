@@ -2,6 +2,9 @@
 const express = require('express');
 const router = express.Router();
 
+// FS
+const fs = require('fs');
+
 // CovidTest Model
 const model = require('../models/CovidTest');
 
@@ -9,12 +12,13 @@ const model = require('../models/CovidTest');
 const authorize = require('../middlewares/authorize');
 const filters = require('../middlewares/filters');
 const sort = require('../middlewares/sort');
-var multer = require('multer');
+const multer = require('multer');
 
-const path = './public/covidTests/';
+const path = 'uploads/covid-tests/';
 
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
+		fs.mkdirSync(path, { recursive: true });
 		cb(null, path);
 	},
 	filename: function (req, file, cb) {
@@ -54,7 +58,12 @@ router.get('/:id', authorize(['--view-all']), getById);
 
 router.get('/patient/:patientId', authorize(['--view-all']), getByPatient);
 
-router.put('/:id', authorize(['--edit-all']), upload.single('covid_test_result'), getOneAndUpdate);
+router.put(
+	'/:id',
+	authorize(['--edit-all']),
+	upload.single('covid_test_result'),
+	getOneAndUpdate
+);
 
 router.delete('/:id', authorize(['--delete-all']), getOneAndDelete);
 

@@ -12,7 +12,7 @@
           <mat-icon matPrefix>lock</mat-icon>
 
           <mat-hint>
-            <span *ngIf="(changeFormControl.password.touched) && changeFormControl.password.errors?.required">
+            <span *ngIf="(changeFormControl.newPassword.touched) && changeFormControl.newPassword.errors?.required">
               Password is required
             </span>
           </mat-hint>
@@ -25,7 +25,7 @@
           <mat-icon matPrefix>lock</mat-icon>
 
           <mat-hint>
-            <span *ngIf="(changeFormControl.password.touched) && changeFormControl.password.errors?.required">
+            <span *ngIf="(changeFormControl.confirmPassword.touched) && changeFormControl.confirmPassword.errors?.required">
               Password is required
             </span>
           </mat-hint>
@@ -44,3 +44,4 @@
     </mat-card-content>
   </mat-card>
 </div>
+
