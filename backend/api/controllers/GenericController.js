@@ -26,7 +26,7 @@ const genericController = (model) => {
 				};
 			} else {
 				response = {
-					message: `${id} not found!`,
+					message: `${model} not found!`,
 					status: 404,
 				};
 			}
@@ -44,7 +44,7 @@ const genericController = (model) => {
 		const data = req.body;
 
 		try {
-			const newModel = new model(data).save();
+			const newModel = await new model(data).save();
 
 			let response;
 

@@ -44,41 +44,38 @@
 				}
 			},
 			"symptoms": {
-				"type": "array",
-				"items": {
-					"type": "string",
-					"enum": [
-						"cough",
-						"fever",
-						"shortness of breathe",
-						"lack of smell",
-						"lack of taste",
-						"tiredness",
-						"burning eyes",
-						"headaches",
-						"diarrhea"
-					],
-					"example": [
-						"fever",
-						"cough"
-					]
-				}
-			},
-			"observations": {
-				"type": "object",
-				"properties": {
-					"saude24": {
-						"type": "boolean",
-						"default": false
-					},
-					"riskGroup": {
-						"type": "boolean",
-						"default": false
-					},
-					"riskZone": {
-						"type": "boolean",
-						"default": false
-					}
+				"type": "string",
+				"enum": [
+					"cough",
+					"fever",
+					"shortness of breathe",
+					"lack of smell",
+					"lack of taste",
+					"tiredness",
+					"burning eyes",
+					"headaches",
+					"diarrhea"
+				],
+				"example": [
+					"fever",
+					"cough"
+				]
+			}
+		},
+		"observations": {
+			"type": "object",
+			"properties": {
+				"saude24": {
+					"type": "boolean",
+					"default": false
+				},
+				"riskGroup": {
+					"type": "boolean",
+					"default": false
+				},
+				"riskZone": {
+					"type": "boolean",
+					"default": false
 				}
 			}
 		}

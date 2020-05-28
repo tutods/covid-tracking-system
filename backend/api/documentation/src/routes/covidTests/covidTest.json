@@ -24,6 +24,9 @@
 				},
 				"401": {
 					"$ref": "#/responses/notAuthenticated"
+				},
+				"404": {
+					"$ref": "#/responses/notFoundError"
 				}
 			}
 		},
@@ -34,7 +37,6 @@
 			"summary": "Find one Covid Test by id and update",
 			"description": "",
 			"operationId": "getOneAndUpdate",
-			"consumes": "multipart/form-data",
 			"produces": [
 				"application/json"
 			],
@@ -73,6 +75,9 @@
 				},
 				"401": {
 					"$ref": "#/responses/notAuthenticated"
+				},
+				"404": {
+					"$ref": "#/responses/notFoundError"
 				}
 			}
 		},
@@ -103,6 +108,9 @@
 				},
 				"401": {
 					"$ref": "#/responses/notAuthenticated"
+				},
+				"404": {
+					"$ref": "#/responses/notFoundError"
 				}
 			}
 		}

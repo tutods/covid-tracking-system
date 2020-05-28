@@ -1,5 +1,4 @@
-const path = require('path');
-require('dotenv').config({ debug: true });
+require('dotenv').config();
 const { ADMIN_EMAIL, ADMIN_NAME, ADMIN_PWD } = process.env;
 
 // Mongoose Connection
@@ -36,7 +35,7 @@ mongoose
 			} else {
 				const admin = await Role.findOne({ name: 'ADMIN' });
 
-				new User({
+				await new User({
 					name: ADMIN_NAME,
 					email: ADMIN_EMAIL,
 					password: ADMIN_PWD,
@@ -47,6 +46,7 @@ mongoose
 				console.log(`\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
 				console.log(`NAME:  ${ADMIN_NAME}`);
 				console.log(`EMAIL: ${ADMIN_EMAIL}`);
+				console.log(`PASSWORD: ${ADMIN_PWD}`);
 				console.log(`ROLE: ADMIN`);
 				console.log(`SCOPES: All`);
 				console.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`);
