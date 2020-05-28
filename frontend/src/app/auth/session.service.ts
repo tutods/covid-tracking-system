@@ -65,26 +65,20 @@ export class SessionService {
 			.post(`${API_URL}/users/reset-password`, { email }, httpOptions)
 			.pipe(share());
 
-		request.subscribe(
-			(email) => {
-				this.session = email
-				//localStorage.setItem('email', JSON.stringify(email))
-			}
-		)
+		
 
 		return request
 	}
 
 	change(newPassword: string, confirmPassword: string, token: string) {
+
 		const request = this.http
-			.post(`${API_URL}/users/change-password/${token}`, {
+			.post(`${API_URL}/users/change-password${token}`, {
 				newPassword, confirmPassword
 			}, httpOptions)
 			.pipe(share());
 
-		request.subscribe()
-
-		return request
+		return request.subscribe()
 	}
 
 }
