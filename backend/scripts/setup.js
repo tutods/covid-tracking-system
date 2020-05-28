@@ -28,7 +28,7 @@ mongoose
 			});
 
 			const userExist = await User.findOne({
-				email: 'covidtrackingsystem@gmail.com',
+				email: ADMIN_EMAIL,
 			});
 
 			if (userExist) {
@@ -44,7 +44,7 @@ mongoose
 				}).save();
 
 				// Print USER DATA
-				console.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
+				console.log(`\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
 				console.log(`NAME:  ${ADMIN_NAME}`);
 				console.log(`EMAIL: ${ADMIN_EMAIL}`);
 				console.log(`ROLE: ADMIN`);
