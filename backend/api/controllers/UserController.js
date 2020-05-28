@@ -30,7 +30,9 @@ const userController = () => {
 					role: userDB.role.name,
 					scopes: userDB.role.scopes,
 				};
-				const jwtT = await jwt.sign(user, SECRET);
+				const jwtT = await jwt.sign(user, SECRET, {
+					expiresIn: `${EXPIRES}ms`,
+				});
 
 				res.cookie('session', jwtT, {
 					expires: new Date(Date.now() + EXPIRES),

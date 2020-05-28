@@ -1,0 +1,18 @@
+<mat-toolbar>
+  <mat-toolbar-row class="row">
+
+    <div id="logo">
+    </div>
+
+    <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+      <ul fxLayout="row" fxLayoutGap="20px" class="headerItems">
+        <li class="user">
+          <a [routerLink]="['/login']" mat-button>
+            Sing In
+            <mat-icon>send</mat-icon>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

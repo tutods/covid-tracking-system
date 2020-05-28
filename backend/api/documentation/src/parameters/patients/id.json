@@ -5,5 +5,11 @@
 		"description": "Patient ID storaged into database",
 		"required": true,
 		"type": "string"
+	},
+	"patientIdNotRequired": {
+		"name": "id",
+		"in": "path",
+		"description": "Patient ID storaged into database",
+		"type": "string"
 	}
 }

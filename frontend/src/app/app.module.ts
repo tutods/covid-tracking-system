@@ -12,9 +12,12 @@ import { AppComponent } from './app.component';
 import { ChangeComponent } from './auth/change/change.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ResetComponent } from './auth/reset/reset.component';
-import { HeaderComponent } from './layout/components/header/header.component';
-import { SidebarComponent } from './layout/components/sidebar/sidebar.component';
+import { SidebarComponent } from './layout/default/components/sidebar/sidebar.component';
+import { TopbarComponent } from './layout/default/components/topbar/topbar.component';
 import { DefaultComponent } from './layout/default/default.component';
+// Landing Page
+import { HeaderComponent } from './layout/landing-page/components/header/header.component';
+import { LandingPageComponent } from './layout/landing-page/landing-page.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 
@@ -28,7 +31,9 @@ import { PatientsComponent } from './pages/patients/patients.component';
 		PatientsComponent,
 		SidebarComponent,
 		HeaderComponent,
-		DefaultComponent
+		DefaultComponent,
+		LandingPageComponent,
+		TopbarComponent
 	],
 	imports: [
 		ReactiveFormsModule,

@@ -3,18 +3,27 @@ const covidTest = require('../models/CovidTest');
 const patient = require('../models/Patient');
 
 const patientController = () => {
-	const getOneAndDelete = async (req, res) => {
+	const getOneAndDelete = async (req, res, next) => {
 		const id = req.params.id;
 
-		await covidTest.deleteMany({ patient: id });
+		const patientToDelete = await patient.findOne({ _id: id });
 
-		await patient.findOneAndDelete(id, (error, data) => {
-			const response = error
-				? { status: 401, body: error }
-				: { status: 200, body: data };
+		if (patientToDelete) {
+			await covidTest.deleteMany({ patient: id });
 
-			res.status(response.status).json(response.body);
-		});
+			try {
+				const deleted = await patientToDelete.delete();
+
+				res.status(200).json(deleted);
+			} catch (catchError) {
+				next({
+					message: catchError,
+					status: 400,
+				});
+			}
+		} else {
+			res.status(404).json({ message: `Patient not found` });
+		}
 	};
 
 	return { getOneAndDelete };

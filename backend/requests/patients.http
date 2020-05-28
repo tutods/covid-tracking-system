@@ -8,12 +8,12 @@ POST http://localhost:3000/api/patients/
 Content-Type: application/json
 
 {
-	"name": "Alfredo",
-	"patientNumber": 230200200,
+	"name": "Alfredo 233",
+	"patientNumber": 223330200,
 	"birthdayDate": "1990-10-26",
 	"contacts": {
-		"email": "230200200@estg.ipp.pt",
-		"phone": 203200200
+		"email": "2302433230@estg.ipp.pt",
+		"phone": 203423203
 	},
 	"symptoms": [
 		"cough"

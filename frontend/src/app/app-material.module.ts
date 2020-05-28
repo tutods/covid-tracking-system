@@ -33,7 +33,7 @@ const Components = [
 	MatListModule,
 	FlexLayoutModule,
 	MatGridListModule
-];
+]
 
 
 @NgModule({

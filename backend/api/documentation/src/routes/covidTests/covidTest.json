@@ -24,6 +24,9 @@
 				},
 				"401": {
 					"$ref": "#/responses/notAuthenticated"
+				},
+				"404": {
+					"$ref": "#/responses/notFoundError"
 				}
 			}
 		},
@@ -45,10 +48,19 @@
 					"$ref": "#/parameters/testPatient"
 				},
 				{
-					"$ref": "#/parameters/testNotes"
+					"$ref": "#/parameters/testNotesNotRequired"
 				},
 				{
-					"$ref": "#/parameters/testDate"
+					"$ref": "#/parameters/testDateNotRequired"
+				},
+				{
+					"$ref": "#/parameters/testStatus"
+				},
+				{
+					"$ref": "#/parameters/testResult"
+				},
+				{
+					"$ref": "#/parameters/testFile"
 				}
 			],
 			"responses": {
@@ -63,6 +75,9 @@
 				},
 				"401": {
 					"$ref": "#/responses/notAuthenticated"
+				},
+				"404": {
+					"$ref": "#/responses/notFoundError"
 				}
 			}
 		},
@@ -93,6 +108,9 @@
 				},
 				"401": {
 					"$ref": "#/responses/notAuthenticated"
+				},
+				"404": {
+					"$ref": "#/responses/notFoundError"
 				}
 			}
 		}

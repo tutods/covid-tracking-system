@@ -1,5 +1,10 @@
+require('dotenv').config();
+const { ADMIN_EMAIL, ADMIN_NAME, ADMIN_PWD } = process.env;
+
 // Mongoose Connection
 const mongoose = require('../config/mongoose');
+
+// Models
 const Role = require('../api/models/Role');
 const User = require('../api/models/User');
 
@@ -22,7 +27,7 @@ mongoose
 			});
 
 			const userExist = await User.findOne({
-				email: 'covidtrackingsystem@gmail.com',
+				email: ADMIN_EMAIL,
 			});
 
 			if (userExist) {
@@ -31,13 +36,20 @@ mongoose
 				const admin = await Role.findOne({ name: 'ADMIN' });
 
 				await new User({
-					name: 'COVID Test',
-					email: 'covidtrackingsystem@gmail.com',
-					password: 'joaodanieljoao20',
+					name: ADMIN_NAME,
+					email: ADMIN_EMAIL,
+					password: ADMIN_PWD,
 					role: admin._id,
 				}).save();
 
-				console.log('[USER INSERTED ON DATABASE]');
+				// Print USER DATA
+				console.log(`\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
+				console.log(`NAME:  ${ADMIN_NAME}`);
+				console.log(`EMAIL: ${ADMIN_EMAIL}`);
+				console.log(`PASSWORD: ${ADMIN_PWD}`);
+				console.log(`ROLE: ADMIN`);
+				console.log(`SCOPES: All`);
+				console.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`);
 			}
 
 			console.log('[SETUP DONE]');

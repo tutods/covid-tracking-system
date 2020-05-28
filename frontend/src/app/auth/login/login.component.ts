@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
 			.login(user.email, user.password)
 			.subscribe(
 				(user) => {
-					this.router.navigateByUrl('/')
+					this.router.navigateByUrl('/admin')
 					this.openSnackBar('Login with success!')
 				},
 				(error) => {

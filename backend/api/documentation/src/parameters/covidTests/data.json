@@ -3,7 +3,6 @@
 		"name": "patient",
 		"description": "ID of Patient",
 		"in": "formData",
-		"required": "true",
 		"type": "string"
 	},
 	"testNotes": {
@@ -20,5 +19,48 @@
 		"type": "string",
 		"format": "date",
 		"required": "true"
+	},
+	"testNotesNotRequired": {
+		"name": "notes",
+		"description": "Notes about the COVID Test or Patient",
+		"in": "formData",
+		"type": "string"
+	},
+	"testDateNotRequired": {
+		"name": "date",
+		"description": "Date of Test",
+		"in": "formData",
+		"type": "string",
+		"format": "date"
+	},
+	"testFile": {
+		"name": "covid_test_result",
+		"in": "formData",
+		"description": "File with result",
+		"type": "file"
+	},
+	"testStatus": {
+		"name": "status",
+		"in": "formData",
+		"description": "**COVID Test** status",
+		"type": "string",
+		"enum": [
+			"pending",
+			"waitingResult",
+			"inProgress",
+			"finished"
+		],
+		"default": "pending"
+	},
+	"testResult": {
+		"name": "result",
+		"in": "formData",
+		"description": "**COVID Test** result",
+		"type": "string",
+		"enum": [
+			"positive",
+			"negative",
+			"inconclusive"
+		]
 	}
 }

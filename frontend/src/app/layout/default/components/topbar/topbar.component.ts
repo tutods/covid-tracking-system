@@ -1,13 +1,13 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { SessionService } from './../../../auth/session.service';
+import { SessionService } from '../../../../auth/session.service';
 
 @Component({
-	selector: 'app-header',
-	templateUrl: './header.component.html',
-	styleUrls: ['./header.component.sass']
+	selector: 'app-topbar',
+	templateUrl: './topbar.component.html',
+	styleUrls: ['./topbar.component.sass']
 })
-export class HeaderComponent implements OnInit {
+export class TopbarComponent implements OnInit {
 	user: any
 
 	@Output()
