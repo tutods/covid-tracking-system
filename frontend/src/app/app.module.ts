@@ -20,6 +20,7 @@ import { HeaderComponent } from './layout/landing-page/components/header/header.
 import { LandingPageComponent } from './layout/landing-page/landing-page.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
+import { PtChartComponent } from './layout/landing-page/components/pt-chart/pt-chart.component';
 
 @NgModule({
 	declarations: [
@@ -33,7 +34,8 @@ import { PatientsComponent } from './pages/patients/patients.component';
 		HeaderComponent,
 		DefaultComponent,
 		LandingPageComponent,
-		TopbarComponent
+		TopbarComponent,
+		PtChartComponent
 	],
 	imports: [
 		ReactiveFormsModule,
