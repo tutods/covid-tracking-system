@@ -22,6 +22,7 @@ import { LandingPageComponent } from './layout/landing-page/landing-page.compone
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 import { PtChartComponent } from './layout/landing-page/components/pt-chart/pt-chart.component';
+import { WorldChartComponent } from './layout/landing-page/components/world-chart/world-chart.component'
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { PtChartComponent } from './layout/landing-page/components/pt-chart/pt-c
 		DefaultComponent,
 		LandingPageComponent,
 		TopbarComponent,
-		PtChartComponent
+		PtChartComponent,
+		WorldChartComponent
 	],
 	imports: [
 		ReactiveFormsModule,
