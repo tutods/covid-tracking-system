@@ -17,6 +17,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { ResetComponent } from './auth/reset/reset.component';
 import { DialogToDeleteComponent } from './components/dialogs/patients/dialog-to-delete/dialog-to-delete.component';
 // Dialogs - Patients
+import { CreateDialogComponent } from './components/dialogs/patients/create-dialog/create-dialog.component';
 import { EditDialogComponent } from './components/dialogs/patients/edit-dialog/edit-dialog.component';
 import { InformationDialogComponent } from './components/dialogs/patients/information-dialog/information-dialog.component';
 import { SidebarComponent } from './layout/default/components/sidebar/sidebar.component';
@@ -47,7 +48,8 @@ import { PatientsComponent } from './pages/patients/patients.component';
 		WorldChartComponent,
 		DialogToDeleteComponent,
 		InformationDialogComponent,
-		EditDialogComponent,
+        EditDialogComponent,
+        CreateDialogComponent,
 	],
 	imports: [
 		ReactiveFormsModule,

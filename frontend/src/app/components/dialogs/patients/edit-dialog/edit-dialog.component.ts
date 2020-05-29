@@ -101,19 +101,6 @@ export class EditDialogComponent implements OnInit {
 
 		this.patients.getOneAndUpdate(this.patient._id, formData).subscribe();
 		this.dialogRef.close()
-
-		// this.dialogRef.close({
-		// 	name: this.patientForm.get('name').value,
-		// 	birthdayDate: (`${formDate.getFullYear()}-${formDate.getMonth() + 1}-${formDate.getDate()}`),
-		// 	patientNumber: this.patientForm.get('patientNumber').value,
-		// 	status: this.patientForm.get('status').value,
-		// 	contacts: {
-		// 		phone: this.patientForm.get('phone').value,
-		// 		email: this.patientForm.get('email').value,
-		// 	},
-		// 	symptoms: this.patientForm.get('symptoms').value,
-		// 	observations: this.patientForm.get('observations').value,
-		// });
 	}
 
 	onClose(): void {

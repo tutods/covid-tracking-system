@@ -4,6 +4,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DialogToDeleteComponent } from '../../components/dialogs/patients/dialog-to-delete/dialog-to-delete.component';
 import { EditDialogComponent } from '../../components/dialogs/patients/edit-dialog/edit-dialog.component';
 import { InformationDialogComponent } from '../../components/dialogs/patients/information-dialog/information-dialog.component';
+import { CreateDialogComponent } from '../../components/dialogs/patients/create-dialog/create-dialog.component';
 import { PatientsService } from '../../services/patients/patients.service';
 import { Patient } from './../../models/patient.model';
 
@@ -58,6 +59,15 @@ export class PatientsComponent implements OnInit {
 			console.log(data)
 			this.fetchData()
 		})
-	}
+    }
+    
+    openCreateDialog(){
+		const dialogRef = this.dialog.open(CreateDialogComponent);
+
+		dialogRef.afterClosed().subscribe((data) => {
+			console.log(data)
+			this.fetchData()
+		})
+    }
 }
 

@@ -1,66 +1,61 @@
 <div class="container">
-	<div fxLayout="row wrap" fxLayoutWrap>
-		<div fxFlex="0 1 25%" *ngFor="let patient of result" class="card-item">
-			<mat-card>
-				<mat-card-actions>
+  <div fxLayout="row wrap" fxLayoutWrap>
+    <div fxFlex="0 1 25%" *ngFor="let patient of result" class="card-item">
+      <mat-card>
+        <mat-card-actions>
 
-					<button mat-button [matMenuTriggerFor]="appMenu">
-						<mat-icon>more_vert</mat-icon>
-						Options
-					</button>
+          <button mat-button [matMenuTriggerFor]="appMenu">
+            <mat-icon>more_vert</mat-icon>
+            Options
+          </button>
 
-					<mat-menu #appMenu="matMenu">
-						<button mat-menu-item (click)="openInformationDialog(patient)">
-							<mat-icon>info</mat-icon>
-							View
-						</button>
-						<button mat-menu-item (click)="openEditDialog(patient)">
-							<mat-icon>edit</mat-icon>
-							Edit
-						</button>
-						<button mat-menu-item (click)="openDeleteDialog(patient)">
-							<mat-icon>delete</mat-icon>
-							Delete
-						</button>
-					</mat-menu>
-				</mat-card-actions>
-				<mat-card-header>
-					<div class="top-avatar"></div>
-					<mat-card-title>
-						{{patient.name}}
-					</mat-card-title>
-				</mat-card-header>
-				<mat-card-content>
-					<p>
-						<mat-icon>healing</mat-icon>
-						<b>Status: </b>{{ patient.status }}
-					</p>
-					<p>
-						<mat-icon>perm_identity</mat-icon>
-						<b>Patient number: </b>{{ patient.patientNumber }}
-					</p>
-					<div class="button-row">
-						<button mat-flat-button matTooltip="Patient info"
-							aria-label="Button that displays a tooltip when focused or hovered over" color="primary"
-							(click)="openInformationDialog(patient)">
-							<mat-icon>info</mat-icon>
-						</button>
-						&nbsp;
-						<button mat-flat-button matTooltip="Edit patient"
-							aria-label="Button that displays a tooltip when focused or hovered over" color="primary"
-							(click)="openEditDialog(patient)">
-							<mat-icon>edit</mat-icon>
-						</button>
-						&nbsp;
-						<button mat-flat-button matTooltip="Delete patient"
-							aria-label="Button that displays a tooltip when focused or hovered over" color="primary"
-							(click)="openDeleteDialog(patient)">
-							<mat-icon>delete</mat-icon>
-						</button>
-					</div>
-				</mat-card-content>
-			</mat-card>
-		</div>
+          <mat-menu #appMenu="matMenu">
+            <button mat-menu-item (click)="openInformationDialog(patient)">
+              <mat-icon>info</mat-icon>
+              View
+            </button>
+            <button mat-menu-item (click)="openEditDialog(patient)">
+              <mat-icon>edit</mat-icon>
+              Edit
+            </button>
+            <button mat-menu-item (click)="openDeleteDialog(patient)">
+              <mat-icon>delete</mat-icon>
+              Delete
+            </button>
+          </mat-menu>
+        </mat-card-actions>
+        <mat-card-header>
+          <div class="top-avatar"></div>
+          <mat-card-title>
+            {{patient.name}}
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            <mat-icon>healing</mat-icon>
+            <b>Status: </b>{{ patient.status }}
+          </p>
+          <p>
+            <mat-icon>perm_identity</mat-icon>
+            <b>Patient number: </b>{{ patient.patientNumber }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxFlex="0 1 25%" class="card-item" (click)="openCreateDialog()">
+      <mat-card id="add-card">
+        <mat-card-header>
+          <div class="add-btn"></div>
+          <mat-card-title>
+            Add Patient
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
 
-	</div>
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+
+  </div>
 </div>
