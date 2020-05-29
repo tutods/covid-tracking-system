@@ -99,7 +99,7 @@ export class EditDialogComponent implements OnInit {
 			observations: this.patientForm.get('observations').value,
 		}
 
-		this.patients.getOneAndUpdate(this.patient._id, formData);
+		this.patients.getOneAndUpdate(this.patient._id, formData).subscribe();
 		this.dialogRef.close()
 
 		// this.dialogRef.close({

@@ -54,14 +54,9 @@ export class PatientsComponent implements OnInit {
 
 		let dialogRef = this.dialog.open(EditDialogComponent, dialogConfig);
 
-		dialogRef.afterClosed().subscribe(() => {
-			// if (res) {
-			// 	this.result = res
-			// 	this.patients.getOneAndUpdate(patient._id, this.result).subscribe(() => window.location.reload());
-			// 	console.log(res)
-			// }
-			console.log("OK!")
-
+		dialogRef.afterClosed().subscribe((data) => {
+			console.log(data)
+			this.fetchData()
 		})
 	}
 }
