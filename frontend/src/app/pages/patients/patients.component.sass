@@ -11,11 +11,13 @@
 
         mat-card-header
             display: flex
-            flex-direction: column
+            flex-direction: column-reverse
             justify-content: center
             align-items: center
+            margin-bottom: 0.75rem
 
             .top-avatar
+                order: 1
                 content: ""
                 background-image: url("/assets/images/user.png")
                 background-position: center
@@ -26,4 +28,38 @@
                 margin-bottom: 1rem
 
             mat-card-title
-                text-algin: center
+                order: 2
+                font-size: 1.5rem
+
+        mat-card-actions
+            display: flex
+            text-align: right
+            align-items: center
+            justify-content: end
+
+            > button
+                font-size: 14px
+                margin: 0
+                padding: 5px 10px
+
+                .mat-icon
+                    width: fit-content
+                    height: fit-content
+
+                .material-icons
+                    font-size: inherit
+                    padding-right: 0.1rem
+
+            > button + button
+                margin-right: 10px
+
+p
+    font-size: 16px
+
+    .mat-icon
+        width: fit-content
+        height: fit-content
+
+    .material-icons
+        font-size: inherit
+        padding-right: 0.5rem
