@@ -1,10 +1,11 @@
 <div class="container">
     <div fxLayout="row wrap" fxLayoutWrap>
-        <div fxFlex="0 1 33%" *ngFor="let patient of result" class="card-item">
-            <mat-card class="example-card" [ngStyle]="{'margin.px': 10}">
+        <div fxFlex="0 1 25%" *ngFor="let patient of result" class="card-item">
+            <mat-card>
                 <mat-card-header>
-                    <div mat-card-avatar class="material-icons">account_circle</div>
+                    <div class="top-avatar"></div>
                     <mat-card-title>{{patient.name}}</mat-card-title>
+                    <span matBadge="4" matBadgeOverlap="false">Text with a badge</span>
                 </mat-card-header>
                 <mat-card-content>
                     <p>

@@ -148,7 +148,7 @@ export class EditDialogComponent implements OnInit {
 
 	save() {
 		const formDate = new Date(this.patientForm.get('birthdayDate').value)
-		console.log("DATE", `${formDate.getFullYear()}-${formDate.getMonth() + 1}-${formDate.getDate()}`)
+
 		this.dialogRef.close({
 			name: this.patientForm.get('name').value,
 			birthdayDate: (`${formDate.getFullYear()}-${formDate.getMonth() + 1}-${formDate.getDate()}`),

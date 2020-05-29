@@ -19,12 +19,14 @@ export class PatientsComponent implements OnInit {
 	constructor(public patients: PatientsService, private http: HttpClient, public dialog: MatDialog) { }
 
 	ngOnInit(): void {
-		const patientsList = this.patients.getAll()
+		this.fetchData()
+	}
 
-		patientsList.subscribe((list) => {
-			this.result = list
+	fetchData() {
+		const getAll = this.patients.getAll()
 
-			console.log(this.result)
+		return getAll.subscribe((data) => {
+			this.result = data
 		})
 	}
 
@@ -33,7 +35,7 @@ export class PatientsComponent implements OnInit {
 
 		dialogRef.afterClosed().subscribe(res => {
 			if (res === "true") {
-				this.patients.getOneAndDelete(patient._id).subscribe((data) => window.location.reload());
+				this.patients.getOneAndDelete(patient._id).subscribe(() => window.location.reload());
 			}
 		})
 	}
@@ -55,7 +57,7 @@ export class PatientsComponent implements OnInit {
 		dialogRef.afterClosed().subscribe(res => {
 			if (res) {
 				this.result = res
-				this.patients.getOneAndUpdate(patient._id, this.result).subscribe((data) => window.location.reload());
+				this.patients.getOneAndUpdate(patient._id, this.result).subscribe(() => window.location.reload());
 				console.log(res)
 			}
 		})
