@@ -47,7 +47,7 @@
             <mat-label>Sintomas</mat-label>
             <mat-select matNativeControl formControlName="symptoms" name="symptoms" multiple>
                 <mat-option *ngFor="let symptom of symptoms" [value]="symptom">
-                    {{symptom}}
+                    {{symptom | titlecase}}
                 </mat-option>
             </mat-select>
             <mat-icon matSuffix>local_hospital</mat-icon>

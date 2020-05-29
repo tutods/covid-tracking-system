@@ -10,10 +10,12 @@ import { PatientsService } from '../../../../services/patients/patients.service'
 	styleUrls: ['./edit-dialog.component.sass']
 })
 export class EditDialogComponent implements OnInit {
-	startDate = new Date(1990, 0, 1);
+	// startDate = new Date(1990, 0, 1);
 
+	// Default Status
 	status: string[] = ['Suspect', 'Infected', 'Non Infected'];
 
+	// Default Symptoms
 	symptoms: string[] = ['cough',
 		'fever',
 		'shortness of breathe',
@@ -24,7 +26,8 @@ export class EditDialogComponent implements OnInit {
 		'diarrhea'
 	];
 
-	observations = [
+	// Default Observations
+	observations: object[] = [
 		{ value: 'saude24', label: "Saúde 24" },
 		{ value: 'riskGroup', label: "Rizk Group" },
 		{ value: 'riskZone', label: "Risk Zone" }
@@ -35,7 +38,7 @@ export class EditDialogComponent implements OnInit {
 	realForm: FormGroup;
 	patient: Patient;
 	date;
-	data: any;
+	data: Patient;
 
 	patientForm: FormGroup
 
