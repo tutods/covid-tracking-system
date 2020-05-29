@@ -80,78 +80,15 @@ export class EditDialogComponent implements OnInit {
 				Validators.required,
 			]],
 		})
-
-		// this.patientForm.valueChanges.subscribe(console.log)
-
-		// this.date = new Date(this.patient.birthdayDate);
-
-		// this.realForm = new FormGroup({
-		// 	'name': new FormControl(this.patient.name, [
-		// 		Validators.required
-		// 	]),
-		// 	'birthdayDate': new FormControl(this.patient.birthdayDate, [
-		// 		Validators.required,
-		// 	]),
-		// 	'patientNumber': new FormControl(this.patient.patientNumber, [
-		// 		Validators.required,
-		// 	]),
-		// 	'status': new FormControl('', [
-		// 		Validators.required,
-		// 	]),
-		// 	'phone': new FormControl(this.patient.contacts.phone, [
-		// 		Validators.required,
-		// 	]),
-		// 	'email': new FormControl(this.patient.contacts.email, [
-		// 		Validators.required,
-		// 		Validators.email,
-		// 		Validators.pattern(this.emailPattern)
-		// 	]),
-		// 	'symptoms': new FormControl('', [
-		// 		Validators.required,
-		// 	]),
-		// 	'observations': new FormControl('', [
-		// 		Validators.required,
-		// 	]),
-		// })
 	}
-	// ngOnChanges() {
-	// 	this.realForm = new FormGroup({
-	// 		'name': new FormControl(this.patient.name, [
-	// 			Validators.required
-	// 		]),
-	// 		'birthdayDate': new FormControl(this.patient.birthdayDate, [
-	// 			Validators.required,
-	// 		]),
-	// 		'patientNumber': new FormControl(this.patient.patientNumber, [
-	// 			Validators.required,
-	// 		]),
-	// 		'status': new FormControl('', [
-	// 			Validators.required,
-	// 		]),
-	// 		'phone': new FormControl(this.patient.contacts.phone, [
-	// 			Validators.required,
-	// 		]),
-	// 		'email': new FormControl(this.patient.contacts.email, [
-	// 			Validators.required,
-	// 			Validators.email,
-	// 			Validators.pattern(this.emailPattern)
-	// 		]),
-	// 		'symptoms': new FormControl('', [
-	// 			Validators.required,
-	// 		]),
-	// 		'observations': new FormControl('', [
-	// 			Validators.required,
-	// 		]),
-	// 	})
 
-	// }
 
 	save() {
 		const formDate = new Date(this.patientForm.get('birthdayDate').value)
 
-		this.dialogRef.close({
+		const formData = {
 			name: this.patientForm.get('name').value,
-			birthdayDate: (`${formDate.getFullYear()}-${formDate.getMonth() + 1}-${formDate.getDate()}`),
+			birthdayDate: new Date(`${formDate.getFullYear()}-${formDate.getMonth() + 1}-${formDate.getDate()}`),
 			patientNumber: this.patientForm.get('patientNumber').value,
 			status: this.patientForm.get('status').value,
 			contacts: {
@@ -160,7 +97,23 @@ export class EditDialogComponent implements OnInit {
 			},
 			symptoms: this.patientForm.get('symptoms').value,
 			observations: this.patientForm.get('observations').value,
-		});
+		}
+
+		this.patients.getOneAndUpdate(this.patient._id, formData);
+		this.dialogRef.close()
+
+		// this.dialogRef.close({
+		// 	name: this.patientForm.get('name').value,
+		// 	birthdayDate: (`${formDate.getFullYear()}-${formDate.getMonth() + 1}-${formDate.getDate()}`),
+		// 	patientNumber: this.patientForm.get('patientNumber').value,
+		// 	status: this.patientForm.get('status').value,
+		// 	contacts: {
+		// 		phone: this.patientForm.get('phone').value,
+		// 		email: this.patientForm.get('email').value,
+		// 	},
+		// 	symptoms: this.patientForm.get('symptoms').value,
+		// 	observations: this.patientForm.get('observations').value,
+		// });
 	}
 
 	onClose(): void {
