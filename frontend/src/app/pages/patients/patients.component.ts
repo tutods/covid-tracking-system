@@ -1,20 +1,20 @@
-import { EditDialogComponent } from '../../components/dialogs/patients/edit-dialog/edit-dialog.component';
-import { InformationDialogComponent } from '../../components/dialogs/patients/information-dialog/information-dialog.component';
-import { DialogToDeleteComponent } from '../../components/dialogs/patients/dialog-to-delete/dialog-to-delete.component';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { Patient } from './../../models/patient.model';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DialogToDeleteComponent } from '../../components/dialogs/patients/dialog-to-delete/dialog-to-delete.component';
+import { EditDialogComponent } from '../../components/dialogs/patients/edit-dialog/edit-dialog.component';
+import { InformationDialogComponent } from '../../components/dialogs/patients/information-dialog/information-dialog.component';
 import { PatientsService } from '../../services/patients/patients.service';
+import { Patient } from './../../models/patient.model';
 
 @Component({
-    selector: 'app-patients',
+	selector: 'app-patients',
 	templateUrl: './patients.component.html',
 	styleUrls: ['./patients.component.sass']
 })
 export class PatientsComponent implements OnInit {
 
-    result: any
+	result: any
 
 	constructor(public patients: PatientsService, private http: HttpClient, public dialog: MatDialog) { }
 
@@ -23,40 +23,42 @@ export class PatientsComponent implements OnInit {
 
 		patientsList.subscribe((list) => {
 			this.result = list
-        })
-    }
 
-    openDeleteDialog(patient : Patient) {
-        let dialogRef = this.dialog.open(DialogToDeleteComponent);
+			console.log(this.result)
+		})
+	}
 
-        dialogRef.afterClosed().subscribe(res => {
-            if(res === "true"){
-                this.patients.getOneAndDelete(patient._id).subscribe((data)=>window.location.reload());
-            }
-        })
-    }
-    openInformationDialog(patient : Patient){
-        const dialogConfig = new MatDialogConfig();
+	openDeleteDialog(patient: Patient) {
+		let dialogRef = this.dialog.open(DialogToDeleteComponent);
 
-        dialogConfig.data = patient;
+		dialogRef.afterClosed().subscribe(res => {
+			if (res === "true") {
+				this.patients.getOneAndDelete(patient._id).subscribe((data) => window.location.reload());
+			}
+		})
+	}
+	openInformationDialog(patient: Patient) {
+		const dialogConfig = new MatDialogConfig();
 
-        this.dialog.open(InformationDialogComponent, dialogConfig);
-    }
+		dialogConfig.data = patient;
 
-    openEditDialog(patient : Patient){
-        const dialogConfig = new MatDialogConfig();
+		this.dialog.open(InformationDialogComponent, dialogConfig);
+	}
 
-        dialogConfig.data = patient;
+	openEditDialog(patient: Patient) {
+		const dialogConfig = new MatDialogConfig();
 
-        let dialogRef = this.dialog.open(EditDialogComponent, dialogConfig);
+		dialogConfig.data = patient;
 
-        dialogRef.afterClosed().subscribe(res => {
-            if(res){
-            this.result = res
-            this.patients.getOneAndUpdate(patient._id, this.result).subscribe((data)=>window.location.reload());
-            console.log(res)
-            }
-        })
-    }
+		let dialogRef = this.dialog.open(EditDialogComponent, dialogConfig);
+
+		dialogRef.afterClosed().subscribe(res => {
+			if (res) {
+				this.result = res
+				this.patients.getOneAndUpdate(patient._id, this.result).subscribe((data) => window.location.reload());
+				console.log(res)
+			}
+		})
+	}
 }
 
