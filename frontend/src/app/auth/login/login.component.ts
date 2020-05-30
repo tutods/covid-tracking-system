@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 		const me = this.session.me()
 
 		if (me) {
-			this.router.navigateByUrl('/')
+			this.router.navigateByUrl('/admin')
 		}
 
 		this.loginForm = new FormGroup({

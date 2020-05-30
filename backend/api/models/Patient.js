@@ -72,7 +72,6 @@ const patientSchema = new Schema(
 					'lack of smell',
 					'lack of taste',
 					'tiredness',
-					'burning eyes',
 					'headaches',
 					'diarrhea',
 				],

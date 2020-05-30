@@ -1,10 +1,12 @@
+// Material Module Imports
+// HTTP Client
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// Charts
 import { ChartsModule } from 'ng2-charts';
-// Material Module Imports
 import { AppMaterialModule } from './app-material.module';
 // Routing Module
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +15,11 @@ import { AppComponent } from './app.component';
 import { ChangeComponent } from './auth/change/change.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ResetComponent } from './auth/reset/reset.component';
+import { DialogToDeleteComponent } from './components/dialogs/patients/dialog-to-delete/dialog-to-delete.component';
+// Dialogs - Patients
+import { CreateDialogComponent } from './components/dialogs/patients/create-dialog/create-dialog.component';
+import { EditDialogComponent } from './components/dialogs/patients/edit-dialog/edit-dialog.component';
+import { InformationDialogComponent } from './components/dialogs/patients/information-dialog/information-dialog.component';
 //Interceptor
 import { SessionLostInterceptor } from './interceptors/session-lost.interceptor';
 import { SidebarComponent } from './layout/default/components/sidebar/sidebar.component';
@@ -25,7 +32,6 @@ import { WorldChartComponent } from './layout/landing-page/components/world-char
 import { LandingPageComponent } from './layout/landing-page/landing-page.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
-
 
 @NgModule({
 	declarations: [
@@ -41,7 +47,11 @@ import { PatientsComponent } from './pages/patients/patients.component';
 		LandingPageComponent,
 		TopbarComponent,
 		PtChartComponent,
-		WorldChartComponent
+		WorldChartComponent,
+		DialogToDeleteComponent,
+		InformationDialogComponent,
+        EditDialogComponent,
+        CreateDialogComponent,
 	],
 	imports: [
 		ReactiveFormsModule,
