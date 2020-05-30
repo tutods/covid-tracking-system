@@ -1,6 +1,6 @@
 // Material Module Imports
 // HTTP Client
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -20,6 +20,8 @@ import { DialogToDeleteComponent } from './components/dialogs/patients/dialog-to
 import { CreateDialogComponent } from './components/dialogs/patients/create-dialog/create-dialog.component';
 import { EditDialogComponent } from './components/dialogs/patients/edit-dialog/edit-dialog.component';
 import { InformationDialogComponent } from './components/dialogs/patients/information-dialog/information-dialog.component';
+//Interceptor
+import { SessionLostInterceptor } from './interceptors/session-lost.interceptor';
 import { SidebarComponent } from './layout/default/components/sidebar/sidebar.component';
 import { TopbarComponent } from './layout/default/components/topbar/topbar.component';
 import { DefaultComponent } from './layout/default/default.component';
@@ -61,7 +63,14 @@ import { PatientsComponent } from './pages/patients/patients.component';
 		BrowserAnimationsModule,
 		ChartsModule
 	],
-	providers: [],
+	providers: [
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: SessionLostInterceptor,
+			multi: true
+		},
+
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
