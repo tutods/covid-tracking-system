@@ -1,0 +1,37 @@
+@import '~@angular/material/theming'
+@include mat-core()
+
+$light-primary: mat-palette($mat-indigo)
+$light-accent:  mat-palette($mat-pink, A200, A100, A400)
+$dark-primary: mat-palette($mat-blue)
+$dark-accent:  mat-palette($mat-amber, A200, A100, A400)
+
+
+\:root
+    --primary-color: #{mat-color($light-primary)}
+    --accent-color: #{mat-color($light-accent)}
+    --active-color: #333333
+    --logo-path: url('/assets/images/logo/covid-black.svg')
+
+@media (prefers-color-scheme: dark)
+    \:root
+        --primary-color: #{mat-color($dark-primary)}
+        --accent-color: #{mat-color($dark-accent)}
+        --active-color: #ffffff
+        --logo-path: url('/assets/images/logo/covid-white.svg')
+
+
+$accentColor: var(--accent-color)
+$darkLogo: url('/assets/images/logo/covid-white.svg')
+
+$activeColor: var(--active-color)
+$logoPath: var(--logo-path)
+
+$palleteWarn: mat-palette($mat-red, A100)
+$btnWarn: mat-color($palleteWarn)
+
+$white: #ffffff
+$black: #000000
+
+$darkColor: #333
+$disabledColor: #7e7e7e

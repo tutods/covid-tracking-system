@@ -1,0 +1,14 @@
+@import '../../../../../styles/_variables'
+
+:host
+.mat-icon
+    vertical-align: middle
+    margin-right: 20px
+
+a.active-menu
+    &::before
+        content: ""
+        background-color: $activeColor
+        height: 100%
+        position: absolute
+        width: 3px

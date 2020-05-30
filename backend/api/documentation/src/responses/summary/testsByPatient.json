@@ -1,0 +1,20 @@
+{
+	"numberOfTestsByPatient": {
+		"description": "Return number of tests by patient",
+		"schema": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"$ref": "#/definitions/Patient"
+					},
+					"numberOfTests": {
+						"type": "number",
+						"example": 2
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,9 @@
+{
+	"covidId": {
+		"name": "id",
+		"in": "path",
+		"description": "CovidTest ID storaged into database",
+		"required": true,
+		"type": "string"
+	}
+}

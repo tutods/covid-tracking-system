@@ -1,0 +1,103 @@
+{
+	"/patients/{id}": {
+		"get": {
+			"tags": [
+				"Patients"
+			],
+			"summary": "Find patient by id",
+			"description": "",
+			"operationId": "getPatientById",
+			"parameters": [
+				{
+					"$ref": "#/parameters/patientId"
+				}
+			],
+			"responses": {
+				"200": {
+					"$ref": "#/responses/getOnePatient"
+				},
+				"400": {
+					"$ref": "#/responses/defaultError"
+				},
+				"403": {
+					"$ref": "#/responses/unauthorized"
+				},
+				"401": {
+					"$ref": "#/responses/notAuthenticated"
+				},
+				"404": {
+					"$ref": "#/responses/notFoundError"
+				}
+			}
+		},
+		"put": {
+			"tags": [
+				"Patients"
+			],
+			"summary": "Find one patient by id and update",
+			"description": "",
+			"operationId": "getOneAndUpdate",
+			"produces": [
+				"application/json"
+			],
+			"parameters": [
+				{
+					"$ref": "#/parameters/patientId"
+				},
+				{
+					"$ref": "#/parameters/patientBody"
+				}
+			],
+			"responses": {
+				"200": {
+					"$ref": "#/responses/getOnePatient"
+				},
+				"400": {
+					"$ref": "#/responses/defaultError"
+				},
+				"403": {
+					"$ref": "#/responses/unauthorized"
+				},
+				"401": {
+					"$ref": "#/responses/notAuthenticated"
+				},
+				"404": {
+					"$ref": "#/responses/notFoundError"
+				}
+			}
+		},
+		"delete": {
+			"tags": [
+				"Patients"
+			],
+			"summary": "Find one patient by id and delete",
+			"description": "",
+			"operationId": "getOneAndDelete",
+			"produces": [
+				"application/json"
+			],
+			"parameters": [
+				{
+					"$ref": "#/parameters/patientId"
+				}
+			],
+			"responses": {
+				"200": {
+					"$ref": "#/responses/getOnePatient"
+				},
+				"400": {
+					"$ref": "#/responses/defaultError"
+				},
+				"403": {
+					"$ref": "#/responses/unauthorized"
+				},
+				"401": {
+					"$ref": "#/responses/notAuthenticated"
+				},
+				"404": {
+					"$ref": "#/responses/notFoundError"
+				}
+			}
+		}
+	}
+}

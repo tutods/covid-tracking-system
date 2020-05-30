@@ -1,0 +1,29 @@
+{
+	"userName": {
+		"name": "name",
+		"in": "formData",
+		"required": "true",
+		"type": "string"
+	},
+	"userEmail": {
+		"name": "email",
+		"in": "formData",
+		"required": "true",
+		"type": "string",
+		"format": "email"
+	},
+	"userRole": {
+		"name": "role",
+		"in": "formData",
+		"required": "true",
+		"type": "string",
+		"format": "uuid"
+	},
+	"userPassword": {
+		"name": "password",
+		"in": "formData",
+		"required": "true",
+		"type": "string",
+		"format": "password"
+	}
+}
