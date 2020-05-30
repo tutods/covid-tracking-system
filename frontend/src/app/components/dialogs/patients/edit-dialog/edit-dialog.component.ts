@@ -10,8 +10,6 @@ import { PatientsService } from '../../../../services/patients/patients.service'
     styleUrls: ['./edit-dialog.component.sass']
 })
 export class EditDialogComponent implements OnInit {
-    // startDate = new Date(1990, 0, 1);
-
     // Default Status
     status: string[] = ['Suspect', 'Infected', 'Non Infected'];
 
@@ -33,40 +31,28 @@ export class EditDialogComponent implements OnInit {
         { value: 'riskZone', label: "Risk Zone" }
     ];
 
-    currentSymptoms = new FormControl();
+    // current observations selected
     currentObservations = [];
 
+    // observations object to update
     observationsToUpdate= {
         saude24: false,
         riskGroup: false,
         riskZone: false,
     };
-    
-    realForm: FormGroup;
-    patient: Patient;
-    date;
-    data: Patient;
 
+    // patient to edit
+    patient: Patient;
+
+    // Birthday Date
+    date;
+
+    // Form of the edit dialog
     patientForm: FormGroup
 
     emailPattern = "^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}$";
 
-    checkObservations(elements) {
-        let observationsArr = new Array()
-
-        if (elements.saude24) {
-            observationsArr.push("Saúde 24");
-        }
-        if (elements.riskGroup) {
-            observationsArr.push("Risk Group");
-        }
-        if (elements.riskZone) {
-            observationsArr.push("Risk Zone");
-        }
-
-        return observationsArr;
-    }
-
+    //checks wich observations are in the database and returns them
     checkRealObservations(elements) {
         let observationsArr = new Array()
 
@@ -86,7 +72,7 @@ export class EditDialogComponent implements OnInit {
     constructor(private formBuilder: FormBuilder, public patients: PatientsService,
         public dialogRef: MatDialogRef<EditDialogComponent>,
         @Inject(MAT_DIALOG_DATA) data) {
-        this.patient = data
+        this.patient = data;
         this.currentObservations = this.checkRealObservations(data.observations);
     }
 
