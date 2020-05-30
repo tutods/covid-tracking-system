@@ -1,6 +1,6 @@
-import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { share } from 'rxjs/operators';
 import { environment } from "../../../environments/environment";
 import { User } from './../../models/user.model';
@@ -29,7 +29,6 @@ export class UsersService {
 	}
 
 	getOneAndUpdate(id: string, user: User): Observable<any> {
-		console.log("USER", user)
 		return this.http.put(`${API_URL}/users/${id}`, user, httpOptions).pipe(share())
 	}
 }

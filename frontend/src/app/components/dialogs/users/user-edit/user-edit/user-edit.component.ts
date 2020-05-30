@@ -65,12 +65,28 @@ export class UserEditComponent implements OnInit {
 			role: this.userForm.get('role').value
 		}
 
-		this.usersService.getOneAndUpdate(this.user["_id"], updatedData).subscribe((data) => {
-			console.log(data)
+		let response: object = {}
+
+		this.usersService.getOneAndUpdate(this.user["_id"], updatedData).subscribe((updated) => {
+			response["message"] = "User updated with success!"
+			response["status"] = true
 		}, (error) => {
-			
+			let codeMessage = error.error.message
+
+			if (codeMessage.includes("E11000")) {
+
+				if (codeMessage.includes("email:")) {
+					codeMessage = "Email inserted already exists"
+				} else {
+					codeMessage = "Unique error. Please validate all fields!"
+				}
+			}
+
+			response["message"] = codeMessage
+			response["status"] = false
 		})
 
+		this.dialogRef.close(response)
 	}
 
 	onClose(): void {
