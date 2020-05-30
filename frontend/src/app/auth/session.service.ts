@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { share } from "rxjs/operators";
 import { environment } from "../../environments/environment";
+import { Observable } from 'rxjs';
 
 const API_URL = environment.apiUrl;
 
@@ -70,15 +71,15 @@ export class SessionService {
 		return request
 	}
 
-	change(newPassword: string, confirmPassword: string, token: string) {
+	change(newPassword: string, confirmPassword: string, token: string):Observable<any> {
 
 		const request = this.http
-			.post(`${API_URL}/users/change-password${token}`, {
+			.post(`${API_URL}/users/change-password/${token}`, {
 				newPassword, confirmPassword
 			}, httpOptions)
 			.pipe(share());
 
-		return request.subscribe()
+		return request
 	}
 
 }

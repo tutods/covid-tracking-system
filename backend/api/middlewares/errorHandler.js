@@ -1,9 +1,10 @@
 const errorHandler = (err, req, res, next) => {
-	res.status(err.status || 500);
+	const {status,message} = err;
 
-	res.json({
-		message: err.message,
-	});
+	res.status(status || 500).json({
+		message: message,
+	});;
+
 };
 
 module.exports = errorHandler;
