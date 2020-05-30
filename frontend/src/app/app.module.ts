@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -10,7 +11,7 @@ import { AppComponent } from './app.component';
 import { ChangeComponent } from './auth/change/change.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ResetComponent } from './auth/reset/reset.component';
-//Interceptor
+import { UserEditComponent } from './components/dialogs/users/user-edit/user-edit/user-edit.component';
 import { SessionLostInterceptor } from './interceptors/session-lost.interceptor';
 import { SidebarComponent } from './layout/default/components/sidebar/sidebar.component';
 import { TopbarComponent } from './layout/default/components/topbar/topbar.component';
@@ -42,12 +43,16 @@ import { UsersComponent } from './pages/users/users.component';
 		PatientsComponent,
 		UsersComponent,
 
+		// Dialogs
+		UserEditComponent,
+
 		// Auth
 		LoginComponent,
 		ChangeComponent,
 		ResetComponent,
 	],
 	imports: [
+		CommonModule,
 		ReactiveFormsModule,
 		BrowserModule,
 		HttpClientModule,

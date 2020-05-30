@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { SessionService } from './../session.service';
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 		const me = this.session.me()
 
 		if (me) {
-			this.router.navigateByUrl('/')
+			this.router.navigateByUrl('/admin')
 		}
 
 		this.loginForm = new FormGroup({
@@ -68,3 +68,4 @@ export class LoginComponent implements OnInit {
 			)
 	}
 }
+ 

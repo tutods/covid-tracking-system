@@ -32,7 +32,8 @@ export class UsersComponent implements OnInit {
 
 	openEditDialog(user: User) {
 		let dialogRef = this.dialog.open(UserEditComponent, {
-			data: user
+			data: user,
+			width: "25vw"
 		});
 
 		dialogRef.afterClosed().subscribe(res => {
