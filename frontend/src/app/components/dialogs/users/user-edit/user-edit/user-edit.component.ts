@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UsersService } from 'src/app/services/users-service/users.service';
+import { SessionService } from './../../../../../auth/session.service';
 import { Role } from './../../../../../models/role.model';
 import { User } from './../../../../../models/user.model';
 import { RolesService } from './../../../../../services/roles-service/roles.service';
@@ -17,6 +18,8 @@ export class UserEditComponent implements OnInit {
 	userForm: FormGroup
 	myRole: Role
 
+	loggedUserEmail: string
+
 	constructor(
 		private formBuilder: FormBuilder,
 		public usersService: UsersService,
@@ -26,7 +29,6 @@ export class UserEditComponent implements OnInit {
 	) {
 
 		this.user = data
-
 	}
 
 	ngOnInit(): void {

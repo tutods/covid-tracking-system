@@ -15,8 +15,13 @@
 					</strong>
 					{{ user.role.name | titlecase }}
 				</p>
+
+				<p id="warning-text" class="accent-color" *ngIf="loggedUserEmail == user.email">
+					<mat-icon>warning</mat-icon>
+					Logged User!
+				</p>
 			</mat-card-content>
-			<mat-card-actions>
+			<mat-card-actions *ngIf="loggedUserEmail != user.email">
 
 				<button mat-button [matMenuTriggerFor]="appMenu">
 					<mat-icon>more_vert</mat-icon>

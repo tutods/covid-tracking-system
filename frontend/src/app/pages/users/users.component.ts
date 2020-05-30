@@ -15,9 +15,17 @@ import { UsersService } from './../../services/users-service/users.service';
 export class UsersComponent implements OnInit {
 
 	users
-	loginUser = this.sessionService.me().user.email
+	loggedUserEmail: string
 
-	constructor(private http: HttpClient, private usersService: UsersService, private sessionService: SessionService, public dialog: MatDialog, private snackBar: MatSnackBar) { }
+	constructor(
+		private http: HttpClient,
+		private usersService: UsersService,
+		private sessionService: SessionService,
+		public dialog: MatDialog,
+		private snackBar: MatSnackBar
+	) {
+		this.loggedUserEmail = this.sessionService.me().user.email
+	}
 
 	ngOnInit(): void {
 		this.fetchData()
