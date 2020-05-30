@@ -1,179 +1,160 @@
 <app-header></app-header>
 
 <div class="hero">
-    <div class="container">
-        <h1 class="text-white">
-            Protect yourself and others!
-        </h1>
+	<div class="container">
+		<h1 class="text-white">
+			Protect yourself and others!
+		</h1>
 
-        <button mat-icon-button (click)="scroll(content)">
-            <mat-icon>
-                keyboard_arrow_down
-            </mat-icon>
-        </button>
+		<button mat-icon-button (click)="scroll(content)">
+			<mat-icon>
+				keyboard_arrow_down
+			</mat-icon>
+		</button>
 
-    </div>
+	</div>
 </div>
 <mat-drawer-container>
-    <mat-drawer-content>
-        <div class="container px-30px" #content>
-            <h2 class="section-title">Prevention Tips</h2>
-            <p class="text-center">Here are some preventions tips that you should pay attention.</p>
+	<mat-drawer-content>
+		<div class="container px-30px" #content>
+			<h2 class="section-title">Prevention Tips</h2>
+			<p class="text-center">Here are some preventions tips that you should pay attention.</p>
 
-            <div class="row" fxLayout="row wrap" fxLayoutWrap>
-                <div class="col" fxFlex="1 1 25%">
-                    <mat-card>
-                        <img mat-card-image src="/assets/images/prevention/contact.svg" alt="Avoid close contact"
-                            class="top-card-image">
-                        <mat-card-content>
-                            <mat-card-title>Avoid close contact</mat-card-title>
-                            <mat-card-subtitle>Avoid close contact with people who are sick, even inside your home. Put
-                                distance between yourself and other people outside of your home, remember that, come
-                                people without symptons may be able to spread virus.
-                            </mat-card-subtitle>
-                        </mat-card-content>
-                    </mat-card>
+			<div class="row" fxLayout="row wrap" fxLayoutWrap>
+				<div class="col" fxFlex="1 1 25%">
+					<mat-card>
+						<img mat-card-image src="/assets/images/prevention/contact.svg" alt="Avoid close contact"
+							class="top-card-image">
+						<mat-card-content>
+							<mat-card-title>Avoid close contact</mat-card-title>
+							<mat-card-subtitle>Avoid close contact with people who are sick, even inside your home. Put
+								distance between yourself and other people outside of your home, remember that, come
+								people without symptons may be able to spread virus.
+							</mat-card-subtitle>
+						</mat-card-content>
+					</mat-card>
 
-                </div>
-                <div class="col" fxFlex="1 1 25%">
-                    <mat-card>
-                        <img mat-card-image src="/assets/images/prevention/gloves.svg"
-                            alt="Cover your mouth , nose and hands" class="top-card-image">
-                        <mat-card-content>
-                            <mat-card-title>Cover your mouth , nose and hands</mat-card-title>
-                            <mat-card-subtitle>You could spread COVID-19 to others even if you do not feel sick Everyone
-                                should wear a cloth face cover and gloves when they have to go out in public. Continue
-                                to keep distance between yourself and others. The cloth face and gloves are not a
-                                substitute for a social distancing.</mat-card-subtitle>
-                        </mat-card-content>
-                    </mat-card>
+				</div>
+				<div class="col" fxFlex="1 1 25%">
+					<mat-card>
+						<img mat-card-image src="/assets/images/prevention/gloves.svg"
+							alt="Cover your mouth , nose and hands" class="top-card-image">
+						<mat-card-content>
+							<mat-card-title>Cover your mouth , nose and hands</mat-card-title>
+							<mat-card-subtitle>You could spread COVID-19 to others even if you do not feel sick Everyone
+								should wear a cloth face cover and gloves when they have to go out in public. Continue
+								to keep distance between yourself and others. The cloth face and gloves are not a
+								substitute for a social distancing.</mat-card-subtitle>
+						</mat-card-content>
+					</mat-card>
 
-                </div>
+				</div>
 
-                <div class="col" fxFlex="1 1 25%">
-                    <mat-card>
-                        <img mat-card-image src="/assets/images/prevention/sneeze.svg" alt="Know how it spreads"
-                            class="top-card-image">
-                        <mat-card-content>
-                            <mat-card-title>Know how it spreads</mat-card-title>
-                            <mat-card-subtitle>There is currently no vaccine to prevent coronavirus disease 2019
-                                (COVID-19). The best way to prevent illness is to avoid being exposed to this virus .
-                            </mat-card-subtitle>
-                        </mat-card-content>
-                    </mat-card>
+				<div class="col" fxFlex="1 1 25%">
+					<mat-card>
+						<img mat-card-image src="/assets/images/prevention/sneeze.svg" alt="Know how it spreads"
+							class="top-card-image">
+						<mat-card-content>
+							<mat-card-title>Know how it spreads</mat-card-title>
+							<mat-card-subtitle>There is currently no vaccine to prevent coronavirus disease 2019
+								(COVID-19). The best way to prevent illness is to avoid being exposed to this virus .
+							</mat-card-subtitle>
+						</mat-card-content>
+					</mat-card>
 
-                </div>
-                <div class="col" fxFlex="1 1 25%">
-                    <mat-card>
-                        <img mat-card-image src="/assets/images/prevention/wash.svg" alt="Clean and disinfect"
-                            class="top-card-image">
-                        <mat-card-content>
-                            <mat-card-title>Clean and disinfect</mat-card-title>
-                            <mat-card-subtitle>Clean and desinfect frequently touched surfaces daily. This includes
-                                tables, light switches , desks , phones , keyboards and toilets. Then, use a household
-                                desinfectant.</mat-card-subtitle>
-                        </mat-card-content>
-                    </mat-card>
+				</div>
+				<div class="col" fxFlex="1 1 25%">
+					<mat-card>
+						<img mat-card-image src="/assets/images/prevention/wash.svg" alt="Clean and disinfect"
+							class="top-card-image">
+						<mat-card-content>
+							<mat-card-title>Clean and disinfect</mat-card-title>
+							<mat-card-subtitle>Clean and desinfect frequently touched surfaces daily. This includes
+								tables, light switches , desks , phones , keyboards and toilets. Then, use a household
+								desinfectant.</mat-card-subtitle>
+						</mat-card-content>
+					</mat-card>
 
-                </div>
-            </div>
-        </div>
+				</div>
+			</div>
+		</div>
 
-        <div class="container px-30px">
-            <h2 class="section-title">Symptoms (Most Common)</h2>
-            <p class="text-center">Here are some symptoms that you should pay attention.</p>
+		<div class="container px-30px">
+			<h2 class="section-title">Symptoms (Most Common)</h2>
+			<p class="text-center">Here are some symptoms that you should pay attention.</p>
 
-            <div class="row" fxLayout="row wrap" fxLayoutWrap>
-                <div class="col" fxFlex="0 1 25%">
-                    <mat-card>
-                        <img mat-card-image src="/assets/images/symptoms/cough.svg" alt="Cough" class="top-card-image">
-                        <mat-card-content>
-                            <mat-card-title>Cough</mat-card-title>
+			<div class="row" fxLayout="row wrap" fxLayoutWrap>
+				<div class="col" fxFlex="0 1 25%">
+					<mat-card>
+						<img mat-card-image src="/assets/images/symptoms/cough.svg" alt="Cough" class="top-card-image">
+						<mat-card-content>
+							<mat-card-title>Cough</mat-card-title>
 
-                        </mat-card-content>
-                    </mat-card>
+						</mat-card-content>
+					</mat-card>
 
-                </div>
-                <div class="col" fxFlex="0 1 25%">
-                    <mat-card>
-                        <img mat-card-image src="/assets/images/symptoms/fever.svg" alt="High Fever"
-                            class="top-card-image">
-                        <mat-card-content>
-                            <mat-card-title>High Fever</mat-card-title>
+				</div>
+				<div class="col" fxFlex="0 1 25%">
+					<mat-card>
+						<img mat-card-image src="/assets/images/symptoms/fever.svg" alt="High Fever"
+							class="top-card-image">
+						<mat-card-content>
+							<mat-card-title>High Fever</mat-card-title>
 
-                        </mat-card-content>
-                    </mat-card>
+						</mat-card-content>
+					</mat-card>
 
-                </div>
-                <div class="col" fxFlex="0 1 25%">
-                    <mat-card>
-                        <img mat-card-image src="/assets/images/symptoms/headache.svg" alt="Headache"
-                            class="top-card-image">
-                        <mat-card-content>
-                            <mat-card-title>Headache</mat-card-title>
+				</div>
+				<div class="col" fxFlex="0 1 25%">
+					<mat-card>
+						<img mat-card-image src="/assets/images/symptoms/headache.svg" alt="Headache"
+							class="top-card-image">
+						<mat-card-content>
+							<mat-card-title>Headache</mat-card-title>
 
-                        </mat-card-content>
-                    </mat-card>
+						</mat-card-content>
+					</mat-card>
 
-                </div>
-                <div class="col" fxFlex="0 1 25%">
-                    <mat-card>
-                        <img mat-card-image src="/assets/images/symptoms/sore-troath.svg" alt="Sore Troath"
-                            class="top-card-image">
-                        <mat-card-content>
-                            <mat-card-title>Sore Troath</mat-card-title>
+				</div>
+				<div class="col" fxFlex="0 1 25%">
+					<mat-card>
+						<img mat-card-image src="/assets/images/symptoms/sore-troath.svg" alt="Sore Troath"
+							class="top-card-image">
+						<mat-card-content>
+							<mat-card-title>Sore Troath</mat-card-title>
 
-                        </mat-card-content>
-                    </mat-card>
+						</mat-card-content>
+					</mat-card>
 
-                </div>
-            </div>
-        </div>
-
-
-        <div class="container px-30px">
-            <h2 class="section-title">Current Situation</h2>
-            <p class="text-center">Here are some graphics with information about Portugal and the rest of the World.</p>
-
-            <div class="row" fxLayout="row wrap" fxLayoutWrap>
-                <div class="col" fxFlex="0 1 50%">
-                    <mat-card class="chart-card">
-                        <mat-card-header>
-                            <mat-card-title>Portugal</mat-card-title>
-                            <mat-card-subtitle>Total Data</mat-card-subtitle>
-                        </mat-card-header>
-                        <mat-card-content>
-                            <app-pt-chart></app-pt-chart>
-                        </mat-card-content>
-                    </mat-card>
-
-                </div>
-                <div class="col" fxFlex="0 1 50%">
-                    <mat-card class="chart-card">
-                        <mat-card-header>
-                            <mat-card-title>Rest of the World</mat-card-title>
-                            <mat-card-subtitle>Total Data</mat-card-subtitle>
-                        </mat-card-header>
-                        <mat-card-content>
-                            <app-world-chart></app-world-chart>
-
-                        </mat-card-content>
-                    </mat-card>
-
-                </div>
-
-            </div>
-        </div>
+				</div>
+			</div>
+		</div>
 
 
-        <div class="footer-dark">
-            <div class="row" fxLayout="row wrap" fxLayoutWrap>
-                <div class="col" fxFlex="0 1 25%">
-                    <img src="/assets/images/logo/covid-white.svg" alt="COVID Tracking System" class="logo">
-                    <h3 class="title">COVID Tracking System</h3>
-                </div>
-            </div>
-        </div>
+		<div class="container px-30px">
+			<h2 class="section-title">Current Situation</h2>
+			<p class="text-center">Here are some graphics with information about Portugal and the rest of the World.</p>
 
-    </mat-drawer-content>
+			<div class="row" fxLayout="row wrap" fxLayoutWrap>
+				<div class="col" fxFlex="0 1 50%">
+					<app-pt-chart></app-pt-chart>
+				</div>
+				<div class="col" fxFlex="0 1 50%">
+					<app-world-chart></app-world-chart>
+				</div>
+
+			</div>
+		</div>
+
+
+		<div class="footer-dark">
+			<div class="row" fxLayout="row wrap" fxLayoutWrap>
+				<div class="col" fxFlex="0 1 25%">
+					<img src="/assets/images/logo/covid-white.svg" alt="COVID Tracking System" class="logo">
+					<h3 class="title">COVID Tracking System</h3>
+				</div>
+			</div>
+		</div>
+
+	</mat-drawer-content>
 </mat-drawer-container>

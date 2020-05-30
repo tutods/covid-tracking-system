@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 import { ChangeComponent } from './auth/change/change.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ResetComponent } from './auth/reset/reset.component';
+//Interceptor
+import { SessionLostInterceptor } from './interceptors/session-lost.interceptor';
 import { SidebarComponent } from './layout/default/components/sidebar/sidebar.component';
 import { TopbarComponent } from './layout/default/components/topbar/topbar.component';
 import { DefaultComponent } from './layout/default/default.component';
@@ -55,7 +57,14 @@ import { UsersComponent } from './pages/users/users.component';
 		BrowserAnimationsModule,
 		ChartsModule
 	],
-	providers: [],
+	providers: [
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: SessionLostInterceptor,
+			multi: true
+		},
+
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

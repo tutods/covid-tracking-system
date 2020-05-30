@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { SessionService } from './../session.service';
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
 	loginForm: FormGroup;
 
-	constructor(public session: SessionService, public router: Router, private snackBar: MatSnackBar) {
+	constructor(public session: SessionService, public router: Router, private snackBar: MatSnackBar, private fBuild: FormBuilder) {
 	}
 
 	ngOnInit() {
