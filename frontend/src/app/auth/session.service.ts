@@ -65,8 +65,6 @@ export class SessionService {
 			.post(`${API_URL}/users/reset-password`, { email }, httpOptions)
 			.pipe(share());
 
-		
-
 		return request
 	}
 
