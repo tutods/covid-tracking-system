@@ -1,5 +1,5 @@
 {
-	"name": "COVID Tracking System",
+	"name": "covid-tracking-system",
 	"version": "2.2.0",
 	"scripts": {
 		"ng": "ng",
