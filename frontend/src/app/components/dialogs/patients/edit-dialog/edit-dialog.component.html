@@ -56,7 +56,7 @@
     <mat-form-field>
       <mat-label>Observações</mat-label>
       <mat-select matNativeControl formControlName="observations" name="observations" multiple>
-        <mat-option *ngFor="let observation of observations" [value]="observation.value">
+        <mat-option *ngFor="let observation of allObservationsArr" [value]="observation.value">
           {{observation.label}}
         </mat-option>
       </mat-select>

@@ -3,40 +3,50 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Patient } from '../../../../models/patient.model';
 
 @Component({
-	selector: 'app-information-dialog',
-	templateUrl: './information-dialog.component.html',
-	styleUrls: ['./information-dialog.component.sass']
+    selector: 'app-information-dialog',
+    templateUrl: './information-dialog.component.html',
+    styleUrls: ['./information-dialog.component.sass']
 })
 export class InformationDialogComponent implements OnInit {
-	patient: Patient;
-	bDate: string;
-	symptoms: [];
-    observations: [];
+    patient: Patient;
+    bDate: string;
+    symptoms: [];
 
-    splitStringOnarray(elements) {
-		if (elements.length == 1) {
-			elements[0] = elements[0].split(/(?=[A-Z])/).join(' ')
-		} else {
-			elements = elements.map((element) => {
-				return element.split(/(?=[A-Z])/).join(' ');
-			})
+    allObservationsArr: object[] = [
+        { value: 'saude24', label: "Saúde 24" },
+        { value: 'riskGroup', label: "Risk Group" },
+        { value: 'riskZone', label: "Risk Zone" }
+    ];
+
+    observations: any[];
+
+    checkObservations(elements) {
+        let observationsArr = new Array()
+
+        if (elements.saude24) {
+            observationsArr.push("Saúde 24");
         }
-		return elements
-	}
+        if (elements.riskGroup) {
+            observationsArr.push("Risk Group");
+        }
+        if (elements.riskZone) {
+            observationsArr.push("Risk Zone");
+        }
 
-	constructor(public dialogRef: MatDialogRef<InformationDialogComponent>,
-		@Inject(MAT_DIALOG_DATA) data) {
-		this.patient = data;
-		this.bDate = new Date(this.patient.birthdayDate).toLocaleDateString();
+        return observationsArr;
+    }
+
+    constructor(public dialogRef: MatDialogRef<InformationDialogComponent>,
+        @Inject(MAT_DIALOG_DATA) data) {
+        this.patient = data;
+        this.bDate = new Date(this.patient.birthdayDate).toLocaleDateString();
         this.symptoms = data.symptoms;
+        this.observations = this.checkObservations(data.observations)
+    }
+    ngOnInit(): void {
+    }
 
-
-        this.observations = this.splitStringOnarray(data.observations)
-	}
-	ngOnInit(): void {
-	}
-
-	onClose(): void {
-		this.dialogRef.close();
+    onClose(): void {
+        this.dialogRef.close();
     }
 }

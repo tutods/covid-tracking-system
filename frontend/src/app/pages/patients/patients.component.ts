@@ -65,7 +65,6 @@ export class PatientsComponent implements OnInit {
 		const dialogRef = this.dialog.open(CreateDialogComponent);
 
 		dialogRef.afterClosed().subscribe((data) => {
-			console.log(data)
 			this.fetchData()
 		})
     }

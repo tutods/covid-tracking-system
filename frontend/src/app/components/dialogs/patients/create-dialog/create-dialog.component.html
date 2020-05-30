@@ -54,14 +54,14 @@
     </mat-form-field>
     <br>
     <mat-form-field>
-      <mat-label>Observações</mat-label>
-      <mat-select matNativeControl formControlName="observations" name="observations" multiple>
-        <mat-option *ngFor="let observation of observations" [value]="observation.value">
-          {{observation.label}}
-        </mat-option>
-      </mat-select>
-      <mat-icon matSuffix>remove_red_eye</mat-icon>
-    </mat-form-field>
+        <mat-label>Observações</mat-label>
+        <mat-select matNativeControl formControlName="observations" name="observations" multiple>
+          <mat-option *ngFor="let observation of observations" [value]="observation.value">
+            {{observation.label}}
+          </mat-option>
+        </mat-select>
+        <mat-icon matSuffix>remove_red_eye</mat-icon>
+      </mat-form-field>
   </form>
 </mat-dialog-content>
 
