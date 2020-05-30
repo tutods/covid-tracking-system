@@ -37,6 +37,7 @@ export class PtChartComponent implements OnInit {
 	}
 
 	data;
+	updatedAt;
 
 	ngOnInit(): void {
 		this.covidApiService.getSummary().subscribe((data) => {
@@ -46,6 +47,7 @@ export class PtChartComponent implements OnInit {
 				this.data.TotalDeaths,
 				this.data.TotalConfirmed
 			];
+			this.updatedAt = new Date(this.data.Date).toLocaleString();
 			this.chartReady = true;
 		});
 	}
