@@ -10,7 +10,7 @@
 
         <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
             <ul fxLayout="row" fxLayoutGap="20px" class="headerItems">
-                <li class="user">
+                <li class="user" *ngIf="user">
                     <mat-button mat-button [matMenuTriggerFor]="menu">
                         <img src="/assets/images/user.png" class="avatar" alt="">
                         {{ user.name }}

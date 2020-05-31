@@ -22,16 +22,13 @@
 		COVID Tests
 	</a>
 
-	<ng-template [enableMenu]="['--view-users']">
-		<mat-divider></mat-divider>
+	<mat-divider></mat-divider>
 
-		<h2 matSubheader>Administration</h2>
+	<h2 matSubheader>Administration</h2>
 
-		<a mat-list-item routerLinkActive="active-menu" routerLink="/admin/users"
-			[routerLinkActiveOptions]="{exact: true}">
-			<mat-icon>supervised_user_circle</mat-icon>
-			Users
-		</a>
-	</ng-template>
+	<a mat-list-item routerLinkActive="active-menu" routerLink="/admin/users" [routerLinkActiveOptions]="{exact: true}">
+		<mat-icon>supervised_user_circle</mat-icon>
+		Users
+	</a>
 
 </mat-nav-list>

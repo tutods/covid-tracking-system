@@ -42,6 +42,7 @@ const genericController = (model) => {
 
 	const create = async (req, res, next) => {
 		const data = req.body;
+		console.log('DATA', data);
 
 		try {
 			const newModel = await new model(data).save();
@@ -72,13 +73,13 @@ const genericController = (model) => {
 
 		try {
 			const founded = await model.findOne({ _id: id });
-			let response;
 
+			let response;
 			if (founded) {
-				const updated = await founded.update(data, {
+				const updated = await founded.updateOne(data, {
 					runValidators: true,
 				});
-
+				console.log(updated);
 				response = {
 					status: 200,
 					message: updated,
@@ -86,15 +87,15 @@ const genericController = (model) => {
 			} else {
 				response = {
 					status: 404,
-					message: `${id} not found and not updated!`,
+					message: `${model} not founded!`,
 				};
 			}
 
-			res.status(response.status);
+			res.status(response.status).json(response.message);
 		} catch (catchError) {
 			next({
 				status: 400,
-				message: catchError,
+				message: catchError.errmsg,
 			});
 		}
 	};
@@ -103,7 +104,7 @@ const genericController = (model) => {
 		const id = req.params.id;
 
 		try {
-			const founded = await model.findOne(id);
+			const founded = await model.findOne({ _id: id });
 
 			if (founded) {
 				const data = await founded.delete();
