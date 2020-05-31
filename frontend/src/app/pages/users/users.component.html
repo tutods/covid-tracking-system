@@ -1,3 +1,20 @@
+<div id="header-page">
+	<mat-card>
+		<mat-card-header>
+			<mat-card-title>
+				<mat-icon>folder_shared</mat-icon>
+				Users
+			</mat-card-title>
+		</mat-card-header>
+		<mat-card-actions>
+			<button mat-button color="primary" (click)="openAddDialog()">
+				<mat-icon>person_add</mat-icon>
+				Adicionar
+			</button>
+		</mat-card-actions>
+	</mat-card>
+</div>
+
 <div fxLayout="row wrap" fxLayoutWrap>
 	<div fxFlex="0 1 25%" *ngFor="let user of users" class="card-item">
 		<mat-card>
@@ -29,7 +46,7 @@
 				</button>
 
 				<mat-menu #appMenu="matMenu">
-					<button mat-menu-item>
+					<button mat-menu-item (click)="openInfoDialog(user)">
 						<mat-icon>info</mat-icon>
 						View
 					</button>
@@ -37,7 +54,7 @@
 						<mat-icon>edit</mat-icon>
 						Edit
 					</button>
-					<button mat-menu-item>
+					<button mat-menu-item (click)="openDeleteDialog(user)">
 						<mat-icon>delete</mat-icon>
 						Delete
 					</button>

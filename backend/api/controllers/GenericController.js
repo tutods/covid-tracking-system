@@ -42,6 +42,7 @@ const genericController = (model) => {
 
 	const create = async (req, res, next) => {
 		const data = req.body;
+		console.log('DATA', data);
 
 		try {
 			const newModel = await new model(data).save();
@@ -72,6 +73,7 @@ const genericController = (model) => {
 
 		try {
 			const founded = await model.findOne({ _id: id });
+
 			let response;
 			if (founded) {
 				const updated = await founded.updateOne(data, {
@@ -102,7 +104,7 @@ const genericController = (model) => {
 		const id = req.params.id;
 
 		try {
-			const founded = await model.findOne(id);
+			const founded = await model.findOne({ _id: id });
 
 			if (founded) {
 				const data = await founded.delete();

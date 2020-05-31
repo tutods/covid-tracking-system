@@ -1,7 +1,8 @@
+import { Role } from './role.model';
 export class User {
 	_id?: string;
 	name: string;
 	email: string;
-	role: string;
+	role: Role;
 	password?: string;
 }

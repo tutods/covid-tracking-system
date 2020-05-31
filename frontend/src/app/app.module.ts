@@ -11,7 +11,10 @@ import { AppComponent } from './app.component';
 import { ChangeComponent } from './auth/change/change.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ResetComponent } from './auth/reset/reset.component';
-import { UserEditComponent } from './components/dialogs/users/user-edit/user-edit/user-edit.component';
+import { UserAddComponent } from './components/dialogs/users/user-add/user-add.component';
+import { UserDeleteComponent } from './components/dialogs/users/user-delete/user-delete.component';
+import { UserEditComponent } from './components/dialogs/users/user-edit/user-edit.component';
+import { UserInfoComponent } from './components/dialogs/users/user-info/user-info.component';
 import { SessionLostInterceptor } from './interceptors/session-lost.interceptor';
 import { SidebarComponent } from './layout/default/components/sidebar/sidebar.component';
 import { TopbarComponent } from './layout/default/components/topbar/topbar.component';
@@ -45,6 +48,9 @@ import { UsersComponent } from './pages/users/users.component';
 
 		// Dialogs
 		UserEditComponent,
+		UserDeleteComponent,
+		UserInfoComponent,
+		UserAddComponent,
 
 		// Auth
 		LoginComponent,

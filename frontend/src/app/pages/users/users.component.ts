@@ -1,9 +1,11 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SessionService } from './../../auth/session.service';
-import { UserEditComponent } from './../../components/dialogs/users/user-edit/user-edit/user-edit.component';
+import { UserAddComponent } from './../../components/dialogs/users/user-add/user-add.component';
+import { UserDeleteComponent } from './../../components/dialogs/users/user-delete/user-delete.component';
+import { UserEditComponent } from './../../components/dialogs/users/user-edit/user-edit.component';
+import { UserInfoComponent } from './../../components/dialogs/users/user-info/user-info.component';
 import { User } from './../../models/user.model';
 import { UsersService } from './../../services/users-service/users.service';
 
@@ -18,7 +20,6 @@ export class UsersComponent implements OnInit {
 	loggedUserEmail: string
 
 	constructor(
-		private http: HttpClient,
 		private usersService: UsersService,
 		private sessionService: SessionService,
 		public dialog: MatDialog,
@@ -61,4 +62,46 @@ export class UsersComponent implements OnInit {
 		})
 	}
 
+	openDeleteDialog(user: User) {
+		let dialogRef = this.dialog.open(UserDeleteComponent, {
+			data: user,
+			width: "25vw"
+		});
+
+		dialogRef.afterClosed().subscribe((result) => {
+			if (result) {
+				if (result.status == true) {
+					this.openSnackBar(result.message)
+					this.fetchData()
+				} else {
+					this.openSnackBar(result.message)
+				}
+			}
+		})
+	}
+
+	openInfoDialog(user: User) {
+		this.dialog.open(UserInfoComponent, {
+			data: user,
+			width: "25vw"
+		});
+	}
+
+
+	openAddDialog() {
+		let dialogRef = this.dialog.open(UserAddComponent, {
+			width: "25vw"
+		});
+
+		dialogRef.afterClosed().subscribe((result) => {
+			if (result) {
+				if (result.status == true) {
+					this.openSnackBar(result.message)
+					this.fetchData()
+				} else {
+					this.openSnackBar(result.message)
+				}
+			}
+		})
+	}
 }

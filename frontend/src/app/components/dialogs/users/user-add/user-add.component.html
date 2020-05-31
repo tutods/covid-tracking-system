@@ -1,13 +1,13 @@
-<h1 mat-dialog-title>Edit User</h1>
+<h1 mat-dialog-title>Add User</h1>
 <form [formGroup]="userForm" (submit)="onSubmit($event)">
 	<mat-dialog-content>
 		<mat-form-field>
 			<mat-label>Name</mat-label>
-			<input matInput placeholder="User names" formControlName="name" name="name" />
+			<input matInput placeholder="User Name" formControlName="name" name="name" />
 			<mat-icon matPrefix>account_circle</mat-icon>
 
 			<mat-hint>
-				<span *ngIf="(userFormControl.role.touched) && userFormControl.role.errors?.required">
+				<span *ngIf="(userFormControl.name.touched) && userFormControl.name.errors?.required">
 					Name is required
 				</span>
 			</mat-hint>
@@ -19,13 +19,13 @@
 			<mat-icon matPrefix>email</mat-icon>
 
 			<mat-hint>
-				<span *ngIf="(userFormControl.role.touched) && userFormControl.role.errors?.required">
+				<span *ngIf="(userFormControl.email.touched) && userFormControl.email.errors?.required">
 					Email is required
 				</span>
-				<span *ngIf="(userFormControl.role.touched) && userFormControl.role.errors?.email">
+				<span *ngIf="(userFormControl.email.touched) && userFormControl.email.errors?.email">
 					Email is invalid
 				</span>
-				<span *ngIf="(userFormControl.role.touched) && userFormControl.role.errors?.pattern">
+				<span *ngIf="(userFormControl.email.touched) && userFormControl.email.errors?.pattern">
 					Email is invalid
 				</span>
 			</mat-hint>
@@ -50,8 +50,8 @@
 	</mat-dialog-content>
 	<mat-dialog-actions>
 		<button mat-button color="primary" type="submit" [disabled]="!userForm.valid">
-			<mat-icon>check</mat-icon>
-			Update
+			<mat-icon>person_add</mat-icon>
+			Add
 		</button>
 		<button mat-button color="accent" type="button" (click)="onClose()">
 			<mat-icon>cancel</mat-icon>

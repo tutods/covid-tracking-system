@@ -1,11 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { UsersService } from 'src/app/services/users-service/users.service';
-import { SessionService } from './../../../../../auth/session.service';
-import { Role } from './../../../../../models/role.model';
-import { User } from './../../../../../models/user.model';
-import { RolesService } from './../../../../../services/roles-service/roles.service';
+import { User } from './../../../../models/user.model';
+import { RolesService } from './../../../../services/roles-service/roles.service';
+import { UsersService } from './../../../../services/users-service/users.service';
 
 @Component({
 	templateUrl: './user-edit.component.html',
@@ -16,9 +14,6 @@ export class UserEditComponent implements OnInit {
 	roles: any[] = []
 	user: User
 	userForm: FormGroup
-	myRole: Role
-
-	loggedUserEmail: string
 
 	constructor(
 		private formBuilder: FormBuilder,
