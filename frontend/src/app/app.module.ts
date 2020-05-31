@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// Charts
 import { ChartsModule } from 'ng2-charts';
 import { AppMaterialModule } from './app-material.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +16,15 @@ import { UserAddComponent } from './components/dialogs/users/user-add/user-add.c
 import { UserDeleteComponent } from './components/dialogs/users/user-delete/user-delete.component';
 import { UserEditComponent } from './components/dialogs/users/user-edit/user-edit.component';
 import { UserInfoComponent } from './components/dialogs/users/user-info/user-info.component';
+// Dialogs - Patients
+import { CreateDialogComponent } from './components/dialogs/patients/create-dialog/create-dialog.component';
+import { DialogToDeleteComponent } from './components/dialogs/patients/dialog-to-delete/dialog-to-delete.component';
+import { EditDialogComponent } from './components/dialogs/patients/edit-dialog/edit-dialog.component';
+import { InformationDialogComponent } from './components/dialogs/patients/information-dialog/information-dialog.component';
+import { CanUseDirective } from './directives/can-use/can-use.directive';
+import { EnableMenuDirective } from './directives/enable-menu/enable-menu.directive';
+import { ScopeGuard } from './guards/scope/scope.guard';
+//Interceptor
 import { SessionLostInterceptor } from './interceptors/session-lost.interceptor';
 import { SidebarComponent } from './layout/default/components/sidebar/sidebar.component';
 import { TopbarComponent } from './layout/default/components/topbar/topbar.component';
@@ -26,7 +36,6 @@ import { LandingPageComponent } from './layout/landing-page/landing-page.compone
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 import { UsersComponent } from './pages/users/users.component';
-
 
 @NgModule({
 	declarations: [
@@ -56,6 +65,12 @@ import { UsersComponent } from './pages/users/users.component';
 		LoginComponent,
 		ChangeComponent,
 		ResetComponent,
+		DialogToDeleteComponent,
+		InformationDialogComponent,
+		EditDialogComponent,
+		CreateDialogComponent,
+		CanUseDirective,
+		EnableMenuDirective
 	],
 	imports: [
 		CommonModule,
@@ -69,6 +84,7 @@ import { UsersComponent } from './pages/users/users.component';
 		ChartsModule
 	],
 	providers: [
+		ScopeGuard,
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: SessionLostInterceptor,

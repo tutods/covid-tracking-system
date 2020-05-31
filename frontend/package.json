@@ -1,6 +1,7 @@
 {
 	"name": "covid-tracking-system",
 	"version": "2.2.0",
+	"description": "Covid tracking system for PAW project",
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve",
