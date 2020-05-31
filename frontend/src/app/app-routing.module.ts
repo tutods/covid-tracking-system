@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChangeComponent } from './auth/change/change.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ResetComponent } from './auth/reset/reset.component';
+import { ScopeGuard } from './guards/scope/scope.guard';
 import { DefaultComponent } from './layout/default/default.component';
 import { LandingPageComponent } from './layout/landing-page/landing-page.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -33,12 +34,10 @@ const routes: Routes = [
 			{
 				path: 'patients',
 				component: PatientsComponent,
-				children: [
-					{
-						path: 'edit',
-						component: PatientsComponent
-					}
-				]
+				canActivate: [ScopeGuard],
+				data: {
+					scopes: ['--view-all']
+				}
 			},
 		]
 	}

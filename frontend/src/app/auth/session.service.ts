@@ -19,7 +19,11 @@ const httpOptions = {
 
 export class SessionService {
 
-	session: any = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null
+	expired: boolean
+	private session: any = localStorage.getItem("user")
+		? JSON.parse(localStorage.getItem("user"))
+		: null
+
 
 	constructor(public http: HttpClient) {
 	}
@@ -50,13 +54,13 @@ export class SessionService {
 	}
 
 	logout() {
-
+		this.expired = false;
 		this.session = null
 		localStorage.removeItem('user')
 
-		const request = this.http.post(`${API_URL}/users/logout`, httpOptions)
+		const request = this.http.post(`${API_URL}/users/logout`, httpOptions).subscribe()
 
-		request.subscribe()
+		return request
 	}
 
 	reset(email: string) {
@@ -66,12 +70,11 @@ export class SessionService {
 			.post(`${API_URL}/users/reset-password`, { email }, httpOptions)
 			.pipe(share());
 
-
-
 		return request
 	}
 
 	clearSession() {
+		this.expired = true;
 		this.session = null
 		localStorage.removeItem('user')
 	}
