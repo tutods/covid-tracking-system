@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { SessionService } from './../session.service';
@@ -15,14 +15,14 @@ export class LoginComponent implements OnInit {
 
 	loginForm: FormGroup;
 
-	constructor(public session: SessionService, public router: Router, private snackBar: MatSnackBar) {
+	constructor(public session: SessionService, public router: Router, private snackBar: MatSnackBar, private fBuild: FormBuilder) {
 	}
 
 	ngOnInit() {
 		const me = this.session.me()
 
 		if (me) {
-			this.router.navigateByUrl('/')
+			this.router.navigateByUrl('/admin')
 		}
 
 		this.loginForm = new FormGroup({

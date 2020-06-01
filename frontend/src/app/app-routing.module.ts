@@ -7,6 +7,8 @@ import { DefaultComponent } from './layout/default/default.component';
 import { LandingPageComponent } from './layout/landing-page/landing-page.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
+import { ScopeGuard } from './guards/scope/scope.guard';
+import { UsersComponent } from './pages/users/users.component';
 
 
 const routes: Routes = [
@@ -32,13 +34,11 @@ const routes: Routes = [
 			},
 			{
 				path: 'patients',
-				component: PatientsComponent,
-				children: [
-					{
-						path: 'edit',
-						component: PatientsComponent
-					}
-				]
+				component: PatientsComponent
+			},
+			{
+				path: 'users',
+				component: UsersComponent
 			},
 		]
 	}

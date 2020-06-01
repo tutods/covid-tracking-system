@@ -27,12 +27,12 @@ GET http://localhost:3000/api/patients/5ebff4e13a465b29cc1b7303
 GET http://localhost:3000/api/patients/count
 
 ### Get One And Update
-PUT http://localhost:3000/api/patients/5ebdbb1e9676038949c89238
+PUT http://localhost:3000/api/patients/5ecd943b96f5ee0a28851135
 Content-Type: application/json
 
 {
-	"status": "Suspect"
+	"observations.riskGroup": true
 }
 
 ### Get One And Delete
-DELETE http://localhost:3000/api/patients/5ec01350727b6f0b201c59d5
+DELETE http://localhost:3000/api/patients/5ecd85fe798dfd14244659b7

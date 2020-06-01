@@ -29,7 +29,7 @@ const userSchema = new Schema(
 				message: (props) => `${props.value} is not a valid email!`,
 			},
 			required: [true, 'User email required'],
-			unique: true,
+			unique: [true, 'This email already exists'],
 		},
 		role: {
 			type: mongoose.Schema.Types.ObjectId,
@@ -64,8 +64,7 @@ userSchema.pre('save', async function (next) {
 	let user = this;
 
 	const hash = await bcrypt.hash(user.password, salt);
-	user.password = hash;+
-
+	user.password = hash;
 	next();
 });
 

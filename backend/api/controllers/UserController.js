@@ -90,17 +90,16 @@ const userController = () => {
       }catch(err){
         next({ message: err, status: 408 });
       }
-      
     }
   };
 
   const changePassword = async (req, res, next) => {
     const token = req.params.token;
     const data = req.body;
-    
+
 
     try {
-      jwt.verify(token, SECRET) 
+      jwt.verify(token, SECRET)
         const newPassword = data.newPassword;
         const confirmPassword = data.confirmPassword;
 

@@ -1,0 +1,66 @@
+<div id="header-page">
+	<mat-card>
+		<mat-card-header>
+			<mat-card-title>
+				<mat-icon>folder_shared</mat-icon>
+				Users
+			</mat-card-title>
+		</mat-card-header>
+		<mat-card-actions>
+			<button mat-button color="primary" (click)="openAddDialog()">
+				<mat-icon>person_add</mat-icon>
+				Adicionar
+			</button>
+		</mat-card-actions>
+	</mat-card>
+</div>
+
+<div fxLayout="row wrap" fxLayoutWrap>
+	<div fxFlex="0 1 25%" *ngFor="let user of users" class="card-item">
+		<mat-card>
+			<mat-card-header>
+				<div class="top-avatar"></div>
+				<mat-card-title>
+					{{user.name}}
+				</mat-card-title>
+			</mat-card-header>
+			<mat-card-content>
+				<p>
+					<strong>
+						<mat-icon>admin_panel_settings</mat-icon>
+						Role:
+					</strong>
+					{{ user.role.name | titlecase }}
+				</p>
+
+				<p id="warning-text" class="accent-color" *ngIf="loggedUserEmail == user.email">
+					<mat-icon>warning</mat-icon>
+					Logged User!
+				</p>
+			</mat-card-content>
+			<mat-card-actions *ngIf="loggedUserEmail != user.email">
+
+				<button mat-button [matMenuTriggerFor]="appMenu">
+					<mat-icon>more_vert</mat-icon>
+					Options
+				</button>
+
+				<mat-menu #appMenu="matMenu">
+					<button mat-menu-item (click)="openInfoDialog(user)">
+						<mat-icon>info</mat-icon>
+						View
+					</button>
+					<button mat-menu-item (click)="openEditDialog(user)">
+						<mat-icon>edit</mat-icon>
+						Edit
+					</button>
+					<button mat-menu-item (click)="openDeleteDialog(user)">
+						<mat-icon>delete</mat-icon>
+						Delete
+					</button>
+				</mat-menu>
+			</mat-card-actions>
+		</mat-card>
+	</div>
+
+</div>

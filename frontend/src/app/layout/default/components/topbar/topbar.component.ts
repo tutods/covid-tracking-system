@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionService } from '../../../../auth/session.service';
+import { User } from './../../../../models/user.model';
 
 @Component({
 	selector: 'app-topbar',
@@ -8,7 +9,9 @@ import { SessionService } from '../../../../auth/session.service';
 	styleUrls: ['./topbar.component.sass']
 })
 export class TopbarComponent implements OnInit {
-	user: any
+
+	@Input()
+	user: User
 
 	@Output()
 	toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
@@ -16,11 +19,6 @@ export class TopbarComponent implements OnInit {
 	constructor(private session: SessionService, private router: Router) { }
 
 	ngOnInit(): void {
-		const me = this.session.me()
-
-		if (me) {
-			this.user = me.user
-		}
 	}
 
 	toggleSideBar() {

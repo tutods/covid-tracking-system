@@ -20,6 +20,7 @@ export class WorldChartComponent implements OnInit {
 			}
 		}
 	}
+	updatedAt;
 
 	constructor(private covidApiService: CovidApiService) {
 		if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -47,6 +48,7 @@ export class WorldChartComponent implements OnInit {
 				this.data.Global.TotalDeaths,
 				this.data.Global.TotalConfirmed,
 			];
+			this.updatedAt = new Date(this.data.Date).toLocaleString();
 			this.chartReady = true;
 		});
 	}
