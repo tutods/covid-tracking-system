@@ -15,6 +15,6 @@ router.get('/tests/day', authorize(['--view-all']), countByDay);
 
 router.get('/tests/patient', authorize(['--view-all']), countByPatient);
 
-router.get('/patients/status', authorize(['--view-all']), countByStatus);
+router.get('/patients/status', countByStatus); //depois meter
 
 module.exports = router;

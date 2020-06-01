@@ -69,6 +69,7 @@ import { LandingPageComponent } from './layout/landing-page/landing-page.compone
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 import { UsersComponent } from './pages/users/users.component';
+import { ByStatusComponent } from './dashboard/charts/by-status/by-status.component';
 
 @NgModule({
 	declarations: [
@@ -102,7 +103,8 @@ import { UsersComponent } from './pages/users/users.component';
 		InformationDialogComponent,
 		EditDialogComponent,
 		CreateDialogComponent,
-		CanUseDirective
+		CanUseDirective,
+		ByStatusComponent
 	],
 	imports: [
 		CommonModule,
