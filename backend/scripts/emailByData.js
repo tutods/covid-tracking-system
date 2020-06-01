@@ -7,7 +7,7 @@ const nodemailer = require('nodemailer');
 // EJS
 const ejs = require('ejs');
 
-const resetEmail = (patientData, email) => {
+const emailByData = (data, email) => {
 	// URL
 	const transporter = nodemailer.createTransport({
 		service: 'gmail',
@@ -18,9 +18,9 @@ const resetEmail = (patientData, email) => {
 	});
 
 	ejs.renderFile(
-		'./views/mail/reset.ejs',
+		'./views/mail/patientData.ejs',
 		{
-			patientdata: patientData,
+			patientData: data,
 		},
 		(err, data) => {
 			if (err) {
@@ -47,4 +47,4 @@ const resetEmail = (patientData, email) => {
 	);
 };
 
-module.exports = resetEmail;
+module.exports = emailByData;

@@ -25,21 +25,19 @@
 											<tbody>
 												<tr>
 													<td>Name:</td>
-													<td><%= data.name %></td>
+													<td><%= patientData.name %></td>
 												</tr>
 												<tr>
 													<td>Patient Number:</td>
-													<td><%= data.patientNumber %></td>
+													<td><%= patientData.patientNumber %></td>
 												</tr>
 												<tr>
 													<td>Status:</td>
-													<td><%= data.status %></td>
+													<td><%= patientData.status %></td>
 												</tr>
 											</tbody>
 										</table>
-										<p>
-											Your last result in a test was
-										</p>
+
 
 										<table>
 											<thead>
@@ -50,12 +48,12 @@
 												</tr>
 											</thead>
 											<tbody>
-												<% if(data.tests.length > 0) { %>
-												<% for ( var i= 0 ; i < data.tests.length ; i++) { %>
+												<% if(patientData.tests.length > 0) { %>
+												<% for (covidTest of patientData.tests ) { %>
 												<tr>
-													<td>data.tests[i].date</td>
-													<td>data.tests[i].status</td>
-													<td>data.tests[i].result</td>
+													<td><%= new Date(covidTest.date).toLocaleString() %></td>
+													<td><%= covidTest.status %></td>
+													<td><%= covidTest.result %></td>
 												</tr>
 												<% } %>
 												<% } else { %>
@@ -65,7 +63,7 @@
 										</table>
 
 										<p>
-											If you<strong>did not request this reset password</strong>, please contact
+											If you <strong>did not request this reset password</strong>, please contact
 											us.
 										</p>
 

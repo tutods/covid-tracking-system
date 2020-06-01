@@ -3,7 +3,7 @@ const covidTest = require('../models/CovidTest');
 const patient = require('../models/Patient');
 
 //CovidController
-const { getByPatient } = require('./CovidTestController');
+const { getByPatientByParam } = require('./CovidTestController');
 
 //Email
 const emailByData = require('../../scripts/emailByData');
@@ -48,7 +48,9 @@ const patientController = () => {
 				bodyEmail == patientDB.contacts.email &&
 				bodyPhoneNumber == patientDB.contacts.phone
 			) {
-				let patientData = getByPatient(patientDB);
+				const patientData = await getByPatientByParam(patientDB._id);
+
+				console.log(await patientData);
 
 				emailByData(patientData, bodyEmail);
 			} else {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { PatientsService } from '../services/patients/patients.service';
@@ -17,14 +17,14 @@ export class DataByEmailComponent implements OnInit {
 	constructor(public router: Router, private snackBar: MatSnackBar, private fBuild: FormBuilder, public patientsService: PatientsService) { }
 
 	ngOnInit(): void {
-		this.getDataForm = new FormGroup({
-			'email': new FormControl('', [
+		this.getDataForm = this.fBuild.group({
+			'email': ['', [
 				Validators.required,
 				Validators.email,
 				Validators.pattern(this.emailPattern)
-			]),
-			'phoneNumber': new FormControl('', [Validators.required]),
-			'patientNumber': new FormControl('', [Validators.required])
+			]],
+			'phoneNumber': ['', [Validators.required, Validators.minLength(9)]],
+			'patientNumber': ['', [Validators.required, Validators.minLength(9)]]
 		});
 	}
 
