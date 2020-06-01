@@ -50,8 +50,6 @@ const patientController = () => {
 			) {
 				const patientData = await getByPatientByParam(patientDB._id);
 
-				console.log(await patientData);
-
 				emailByData(patientData, bodyEmail);
 			} else {
 				res.status(400).json({
