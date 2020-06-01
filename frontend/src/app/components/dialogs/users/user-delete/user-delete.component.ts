@@ -32,7 +32,6 @@ export class UserDeleteComponent implements OnInit {
 			response["message"] = "User deleted with success!"
 			response["status"] = true
 		}, (error) => {
-			console.log("ERR", error)
 			let codeMessage = error.error.message
 
 			response["message"] = codeMessage

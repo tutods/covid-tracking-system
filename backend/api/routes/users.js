@@ -10,6 +10,7 @@ const model = require('../models/User');
 
 // Controllers
 const {
+	create,
 	login,
 	logout,
 	resetPassword,
@@ -18,7 +19,6 @@ const {
 const {
 	getAll,
 	getById,
-	create,
 	getOneAndUpdate,
 	getOneAndDelete,
 } = require('../controllers/GenericController')(model);

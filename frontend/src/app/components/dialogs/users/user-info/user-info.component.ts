@@ -24,8 +24,6 @@ export class UserInfoComponent implements OnInit {
 			let cleanScope = scope.split('--').join('').split('-').join(' ')
 			return cleanScope
 		})
-
-		console.log(this.scopes)
 	}
 
 	ngOnInit(): void {
