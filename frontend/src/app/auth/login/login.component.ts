@@ -15,8 +15,7 @@ export class LoginComponent implements OnInit {
 
 	loginForm: FormGroup;
 
-	constructor(public session: SessionService, public router: Router, private snackBar: MatSnackBar, private fBuild: FormBuilder) {
-	}
+	constructor(public session: SessionService, public router: Router, private snackBar: MatSnackBar, private fBuild: FormBuilder) { }
 
 	ngOnInit() {
 		const me = this.session.me()

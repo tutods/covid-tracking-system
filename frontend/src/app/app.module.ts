@@ -56,6 +56,7 @@ import { UserAddComponent } from './components/dialogs/users/user-add/user-add.c
 import { UserDeleteComponent } from './components/dialogs/users/user-delete/user-delete.component';
 import { UserEditComponent } from './components/dialogs/users/user-edit/user-edit.component';
 import { UserInfoComponent } from './components/dialogs/users/user-info/user-info.component';
+import { DataByEmailComponent } from './data-by-email/data-by-email.component';
 import { CanUseDirective } from './directives/can-use/can-use.directive';
 import { ScopeGuard } from './guards/scope/scope.guard';
 import { SessionLostInterceptor } from './interceptors/session-lost.interceptor';
@@ -70,6 +71,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 import { UsersComponent } from './pages/users/users.component';
 
+
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -79,6 +81,7 @@ import { UsersComponent } from './pages/users/users.component';
 		PtChartComponent,
 		WorldChartComponent,
 		HeaderComponent,
+		DataByEmailComponent,
 
 		// Admin Panel
 		TopbarComponent,

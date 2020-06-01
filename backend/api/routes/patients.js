@@ -18,7 +18,10 @@ const {
 	getOneAndUpdate,
 } = require('../controllers/GenericController')(model);
 
-const { getOneAndDelete } = require('../controllers/PatientController');
+const {
+	getOneAndDelete,
+	getDataByEmail,
+} = require('../controllers/PatientController');
 
 router.use(filters);
 
@@ -33,5 +36,7 @@ router.get('/:id', authorize(['--view-all']), getById);
 router.put('/:id', authorize(['--edit-all']), getOneAndUpdate);
 
 router.delete('/:id', authorize(['--delete-all']), getOneAndDelete);
+
+router.post('/getDataByEmail', getDataByEmail);
 
 module.exports = router;

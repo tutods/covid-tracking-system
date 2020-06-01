@@ -7,9 +7,7 @@ const nodemailer = require('nodemailer');
 // EJS
 const ejs = require('ejs');
 
-const resetEmail = (token, email) => {
-	const changeUrl = `http://localhost:4200/change-password/${token}`;
-
+const emailByData = (data, email) => {
 	// URL
 	const transporter = nodemailer.createTransport({
 		service: 'gmail',
@@ -20,9 +18,9 @@ const resetEmail = (token, email) => {
 	});
 
 	ejs.renderFile(
-		'./views/mail/reset.ejs',
+		'./views/mail/patientData.ejs',
 		{
-			link: changeUrl,
+			patientData: data,
 		},
 		(err, data) => {
 			if (err) {
@@ -31,7 +29,7 @@ const resetEmail = (token, email) => {
 				const mainOptions = {
 					from: EMAIL_USER,
 					to: email,
-					subject: 'Reset Password | COVID Tracking System',
+					subject: 'Patient Data',
 					html: data,
 				};
 
@@ -49,4 +47,4 @@ const resetEmail = (token, email) => {
 	);
 };
 
-module.exports = resetEmail;
+module.exports = emailByData;
