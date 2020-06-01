@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { CreateDialogComponent } from '../../components/dialogs/patients/create-dialog/create-dialog.component';
 import { DialogToDeleteComponent } from '../../components/dialogs/patients/dialog-to-delete/dialog-to-delete.component';
 import { EditDialogComponent } from '../../components/dialogs/patients/edit-dialog/edit-dialog.component';
 import { InformationDialogComponent } from '../../components/dialogs/patients/information-dialog/information-dialog.component';
-import { CreateDialogComponent } from '../../components/dialogs/patients/create-dialog/create-dialog.component';
 import { PatientsService } from '../../services/patients/patients.service';
 import { Patient } from './../../models/patient.model';
 
@@ -56,17 +56,16 @@ export class PatientsComponent implements OnInit {
 		let dialogRef = this.dialog.open(EditDialogComponent, dialogConfig);
 
 		dialogRef.afterClosed().subscribe((data) => {
-			console.log(data)
 			this.fetchData()
 		})
-    }
+	}
 
-    openCreateDialog(){
+	openCreateDialog() {
 		const dialogRef = this.dialog.open(CreateDialogComponent);
 
 		dialogRef.afterClosed().subscribe((data) => {
 			this.fetchData()
 		})
-    }
+	}
 }
 
