@@ -32,6 +32,7 @@ import { WorldChartComponent } from './layout/landing-page/components/world-char
 import { LandingPageComponent } from './layout/landing-page/landing-page.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
+import { CovidTestComponent } from './pages/covid-test/covid-test/covid-test.component';
 
 @NgModule({
 	declarations: [
@@ -52,6 +53,7 @@ import { PatientsComponent } from './pages/patients/patients.component';
 		InformationDialogComponent,
         EditDialogComponent,
         CreateDialogComponent,
+        CovidTestComponent,
 	],
 	imports: [
 		ReactiveFormsModule,

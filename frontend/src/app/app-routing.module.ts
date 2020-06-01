@@ -7,6 +7,7 @@ import { DefaultComponent } from './layout/default/default.component';
 import { LandingPageComponent } from './layout/landing-page/landing-page.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
+import { CovidTestComponent } from './pages/covid-test/covid-test/covid-test.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,10 @@ const routes: Routes = [
 						component: PatientsComponent
 					}
 				]
+            },
+            {
+				path: 'covid-test',
+				component: CovidTestComponent,
 			},
 		]
 	}

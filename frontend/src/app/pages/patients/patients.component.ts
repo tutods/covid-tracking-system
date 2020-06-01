@@ -15,7 +15,7 @@ import { Patient } from './../../models/patient.model';
 })
 export class PatientsComponent implements OnInit {
 
-	result: any
+	result: any;
 
 	constructor(public patients: PatientsService, private http: HttpClient, public dialog: MatDialog) { }
 

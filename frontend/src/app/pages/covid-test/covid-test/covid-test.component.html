@@ -27,27 +27,27 @@
           <mat-card-header>
             <div class="top-avatar"></div>
             <mat-card-title>
-              {{patient.name}}
+                Title
             </mat-card-title>
           </mat-card-header>
           <mat-card-content>
             <p>
               <mat-icon>healing</mat-icon>
-              <b>Status: </b>{{ patient.status }}
+              <b>Result: </b>
             </p>
             <p>
               <mat-icon>perm_identity</mat-icon>
-              <b>Patient number: </b>{{ patient.patientNumber }}
+              <b>Covid Test Code: </b>
             </p>
           </mat-card-content>
         </mat-card>
       </div>
-      <div fxFlex="0 1 25%" class="card-item" (click)="openCreateDialog()">
+      <div fxFlex="0 1 25%" class="card-item" >
         <mat-card id="add-card">
           <mat-card-header>
             <div class="add-btn"></div>
             <mat-card-title>
-              Add Patient
+              Add Covid Test
             </mat-card-title>
           </mat-card-header>
         </mat-card>
