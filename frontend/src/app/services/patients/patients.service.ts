@@ -38,4 +38,8 @@ export class PatientsService {
 	getOneAndDelete(id: string) {
 		return this.http.delete(`${API_URL}/patients/${id}`, httpOptions).pipe(share())
 	}
+
+	getDataByEmail(email: string, phoneNumber: number, patientNumber: number) {
+		return this.http.post(`${API_URL}/patients/getDataByEmail`, { email, phoneNumber, patientNumber }, httpOptions).pipe(share());
+	}
 }

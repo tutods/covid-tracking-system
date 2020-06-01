@@ -1,0 +1,59 @@
+<div class="get-data-page">
+	<mat-card>
+		<mat-card-content>
+			<div id="logo"></div>
+
+			<mat-card-title>Get Data</mat-card-title>
+
+			<form [formGroup]="getDataForm" (submit)="onSubmit($event)">
+				<mat-form-field>
+					<mat-label>Your Email</mat-label>
+					<input matInput placeholder="Email" name="email" formControlName="email">
+					<mat-icon matPrefix>email</mat-icon>
+
+					<mat-hint class="text-danger">
+						<span
+							*ngIf="(getDataFormControl.email.touched) && (getDataFormControl.email.errors?.email ||  getDataFormControl.email.errors?.pattern)">
+							Invalid email.
+						</span>
+
+						<span *ngIf="(getDataFormControl.email.touched) && getDataFormControl.email.errors?.required">
+							Email is required
+						</span>
+					</mat-hint>
+				</mat-form-field>
+
+				<mat-form-field>
+					<mat-label>Phone Number</mat-label>
+					<input matInput placeholder="Phone Number" type="number" formControlName="phoneNumber"
+						name="phoneNumber">
+					<mat-icon matPrefix>smartphone</mat-icon>
+
+					<mat-hint class="text-danger">
+						<span *ngIf="(getDataFormControl.phoneNumber.touched)">
+							Phone number is required
+						</span>
+					</mat-hint>
+				</mat-form-field>
+
+				<mat-form-field>
+					<mat-label>Patient Number</mat-label>
+					<input matInput placeholder="Patient Number" type="number" formControlName="patientNumber"
+						name="patientNumber">
+					<mat-icon matPrefix>person</mat-icon>
+
+					<mat-hint class="text-danger">
+						<span *ngIf="(getDataFormControl.patientNumber.touched)">
+							Patient number is required
+						</span>
+					</mat-hint>
+				</mat-form-field>
+
+				<button mat-raised-button type="submit" [disabled]="!getDataForm.valid" class="login-button">
+					Get Your Data
+				</button>
+			</form>
+
+		</mat-card-content>
+	</mat-card>
+</div>
