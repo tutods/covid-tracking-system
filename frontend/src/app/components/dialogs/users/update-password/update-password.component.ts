@@ -53,8 +53,8 @@ export class UpdatePasswordComponent implements OnInit {
     this.form = this.formBuilder.group(
       {
         oldPwd: ['', [Validators.required]],
-        newPwd: ['', [Validators.required, Validators.minLength(6)]],
-        confirmPwd: ['', [Validators.required, Validators.minLength(6)]],
+        newPassword: ['', [Validators.required, Validators.minLength(6)]],
+        confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
       },
       { validator: this.checkPasswords }
     );
@@ -67,8 +67,8 @@ export class UpdatePasswordComponent implements OnInit {
 
   checkPasswords(group: FormGroup) {
     // here we have the 'passwords' group
-    let pass = group.controls.newPwd.value;
-    let confirmPass = group.controls.confirmPwd.value;
+    let pass = group.controls.newPassword.value;
+    let confirmPass = group.controls.confirmPassword.value;
 
     return pass === confirmPass ? null : { notSame: true };
   }
@@ -80,8 +80,8 @@ export class UpdatePasswordComponent implements OnInit {
     const updatedData = {
       email: this.user.email,
       oldPwd: this.form.get('oldPwd').value,
-      newPwd: this.form.get('newPwd').value,
-      confirmPwd: this.form.get('confirmPwd').value,
+      newPassword: this.form.get('newPassword').value,
+      confirmPassword: this.form.get('confirmPassword').value,
     };
 
     const updated = this.usersService.updatePassword(updatedData);

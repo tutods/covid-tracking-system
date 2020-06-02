@@ -52,10 +52,10 @@ export class TopbarComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((response) => {
-      this.openSnackBar(response['message']);
+      if (response) {
+        this.openSnackBar(response['message']);
 
-      if (response.status === true) {
-        this.logout();
+        if (response.status == true) this.logout();
       }
     });
   }
