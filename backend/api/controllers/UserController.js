@@ -176,7 +176,61 @@ const userController = () => {
 		}
 	};
 
-	return { create, login, logout, resetPassword, changePassword };
-};
+	const updatePassword = async (req, res, next) => {
+		const data = req.body;
 
+		const userEmail = data.email;
+		const oldPwd = data.oldPwd;
+		const newPwd = data.newPwd;
+		const confirmPwd = data.confirmPwd;
+
+		try {
+			let myUser = await User.findOne({ email: userEmail });
+
+			let response;
+			if (myUser) {
+				if (await myUser.comparePassword(oldPwd)) {
+					if (newPwd == confirmPwd) {
+						await myUser.updateOne({
+							password: newPwd,
+						});
+
+						response = {
+							message: 'Password updated with success',
+							status: 200,
+						};
+					} else {
+						response = {
+							message: 'Password and confirm password dont match',
+							status: 400,
+						};
+					}
+				} else {
+					response = {
+						message: 'Please validate your old password.',
+						status: 400,
+					};
+				}
+			} else {
+				response = {
+					message: 'Please validate your data!',
+					status: 400,
+				};
+			}
+
+			res.status(response.status).json({ message: response.message });
+		} catch (catchError) {
+			res.status(500).json({ message: catchError });
+		}
+	};
+
+	return {
+		create,
+		login,
+		logout,
+		resetPassword,
+		changePassword,
+		updatePassword,
+	};
+};
 module.exports = userController();

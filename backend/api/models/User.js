@@ -68,7 +68,7 @@ userSchema.pre('save', async function (next) {
 	next();
 });
 
-userSchema.pre('findOneAndUpdate', async function (next) {
+userSchema.pre(/^(updateOne|update|findOneAndUpdate)$/, async function (next) {
 	if (
 		this.getUpdate().password != null ||
 		this.getUpdate().password != undefined

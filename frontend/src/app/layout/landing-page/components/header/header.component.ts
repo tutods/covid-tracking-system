@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { DataByEmailComponent } from '../../../../data-by-email/data-by-email.component';
+import { DataByEmailComponent } from '../../../../components/dialogs/data-by-email/data-by-email.component';
 
 @Component({
 	selector: 'app-header',

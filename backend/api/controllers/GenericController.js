@@ -79,7 +79,7 @@ const genericController = (model) => {
 				const updated = await founded.updateOne(data, {
 					runValidators: true,
 				});
-				console.log(updated);
+
 				response = {
 					status: 200,
 					message: updated,

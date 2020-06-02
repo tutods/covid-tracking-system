@@ -43,4 +43,10 @@ export class UsersService {
 			.post(`${API_URL}/users/`, body, httpOptions)
 			.pipe(share())
 	}
+
+	updatePassword(body: object): Observable<any> {
+		return this.http
+			.post(`${API_URL}/users/update-password`, body, httpOptions)
+			.pipe(share())
+	}
 }
