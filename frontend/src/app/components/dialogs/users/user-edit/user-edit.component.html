@@ -4,31 +4,25 @@
 		<mat-form-field>
 			<mat-label>Name</mat-label>
 			<input matInput placeholder="User Name" formControlName="name" name="name" />
+			<mat-error [hidden]="(userFormControl.name.touched) && userFormControl.name.errors?.required">
+				Name is required
+			</mat-error>
 			<mat-icon matPrefix>account_circle</mat-icon>
-
-			<mat-hint>
-				<span *ngIf="(userFormControl.name.touched) && userFormControl.name.errors?.required">
-					Name is required
-				</span>
-			</mat-hint>
 		</mat-form-field>
 
 		<mat-form-field>
 			<mat-label>Email</mat-label>
 			<input matInput placeholder="User email" type="email" formControlName="email" name="email" />
+			<mat-error [hidden]="(userFormControl.email.touched) && userFormControl.email.errors?.required">
+				Email is required
+			</mat-error>
+			<mat-error [hidden]="(userFormControl.email.touched) && userFormControl.email.errors?.email">
+				Email is invalid
+			</mat-error>
+			<mat-error [hidden]="(userFormControl.email.touched) && userFormControl.email.errors?.pattern">
+				Email is invalid
+			</mat-error>
 			<mat-icon matPrefix>email</mat-icon>
-
-			<mat-hint>
-				<span *ngIf="(userFormControl.email.touched) && userFormControl.email.errors?.required">
-					Email is required
-				</span>
-				<span *ngIf="(userFormControl.email.touched) && userFormControl.email.errors?.email">
-					Email is invalid
-				</span>
-				<span *ngIf="(userFormControl.email.touched) && userFormControl.email.errors?.pattern">
-					Email is invalid
-				</span>
-			</mat-hint>
 		</mat-form-field>
 
 		<mat-form-field>
@@ -38,13 +32,10 @@
 					{{ role.name | titlecase }}
 				</mat-option>
 			</mat-select>
+			<mat-error [hidden]="(userFormControl.role.touched) && userFormControl.role.errors?.required">
+				Role is required
+			</mat-error>
 			<mat-icon matPrefix>admin_panel_settings</mat-icon>
-
-			<mat-hint>
-				<span *ngIf="(userFormControl.role.touched) && userFormControl.role.errors?.required">
-					Role is required
-				</span>
-			</mat-hint>
 		</mat-form-field>
 
 	</mat-dialog-content>

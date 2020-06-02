@@ -9,18 +9,16 @@
         <mat-form-field>
           <mat-label>Your Email</mat-label>
           <input matInput placeholder="Email" name="email" formControlName="email">
+		  <mat-error
+			[hidden]="(resetFormControl.email.touched) && (resetFormControl.email.errors?.email ||  resetFormControl.email.errors?.pattern)">
+			Invalid email.
+		  </mat-error>
+
+		  <span *ngIf="(resetFormControl.email.touched) && resetFormControl.email.errors?.required">
+			Email is required
+		  </span>
           <mat-icon matPrefix>email</mat-icon>
 
-          <mat-hint>
-            <span
-              *ngIf="(resetFormControl.email.touched) && (resetFormControl.email.errors?.email ||  resetFormControl.email.errors?.pattern)">
-              Invalid email.
-            </span>
-
-            <span *ngIf="(resetFormControl.email.touched) && resetFormControl.email.errors?.required">
-              Email is required
-            </span>
-          </mat-hint>
         </mat-form-field>
         <button mat-raised-button color="primary" type="submit" [disabled]="!resetForm.valid" class="reset-button">
           Reset Password
