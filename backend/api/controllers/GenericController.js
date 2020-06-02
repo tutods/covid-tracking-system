@@ -42,7 +42,6 @@ const genericController = (model) => {
 
 	const create = async (req, res, next) => {
 		const data = req.body;
-		console.log('DATA', data);
 
 		try {
 			const newModel = await new model(data).save();

@@ -75,7 +75,6 @@ export class UserEditComponent implements OnInit {
 
         if (codeMessage.includes('E11000')) {
           if (codeMessage.includes('email:')) {
-            console.log('ERROR AQUI!');
             codeMessage = 'Email inserted already exists';
           } else {
             codeMessage = 'Unique error. Please validate all fields!';
