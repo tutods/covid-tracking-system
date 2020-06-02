@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CovidApiService } from '../../../services/covid-api/covid-api.service';
+import { SummaryService } from '../../../services/summary/summary.service';
 
 
 @Component({
@@ -10,10 +10,10 @@ import { CovidApiService } from '../../../services/covid-api/covid-api.service';
 export class ByStatusComponent implements OnInit {
 
 	chartReady = false;
-	pieChartLabels = ['Total Recovered', 'Total Death', 'Total Confirmed'];
-	pieChartType = 'pie';
+	pieChartLabels = [];
+	pieChartType = 'doughnut';
 	pieChartColors;
-	pieChartData;
+	pieChartData = [];
 	pieChartOptions = {
 		legend: {
 			labels: {
@@ -22,11 +22,7 @@ export class ByStatusComponent implements OnInit {
 		}
 	}
 
-
-
-
-
-	constructor(private covidApiService: CovidApiService) {
+	constructor(private summaryService: SummaryService) {
 		if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
 			this.pieChartColors = [
 				{
@@ -45,13 +41,18 @@ export class ByStatusComponent implements OnInit {
 	data;
 
 	ngOnInit(): void {
-		this.covidApiService.getSummary().subscribe((data) => {
-			this.data = this.covidApiService.getPortugalSummary(data);
-			this.pieChartData = [
-				20, 30, 10
-			];
+
+
+		this.summaryService.getByStatus().subscribe((data) => {
+
+			Object.values(data).map(element => {
+				this.pieChartLabels.push(element._id)
+				this.pieChartData.push(element.count)
+			});
+
 			this.chartReady = true;
-		});
+		})
+
 	}
 
 }

@@ -21,7 +21,6 @@ export class RolesService {
 	constructor(public http: HttpClient) { }
 
 	getAll(): Observable<any> {
-		let myRoles = []
 
 		const request = this.http
 			.get(`${API_URL}/roles/`, httpOptions)

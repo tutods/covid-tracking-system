@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { share } from 'rxjs/operators';
 import { environment } from "../../../environments/environment";
 
 const API_URL = environment.apiUrl;
@@ -19,8 +20,12 @@ export class SummaryService {
 	constructor(public http: HttpClient) { }
 
 
-	byStatus() {
-		return this.http.get(`${API_URL}/summary/patients/status`, httpOptions)
+	getByStatus() {
+		return this.http.get(`${API_URL}/summary/patients/status`, httpOptions).pipe(share());
+	}
+
+	getByDay() {
+		return this.http.get(`${API_URL}/summary/tests/day`, httpOptions).pipe(share());
 	}
 
 }

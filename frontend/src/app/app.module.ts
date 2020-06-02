@@ -70,6 +70,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 import { UsersComponent } from './pages/users/users.component';
 import { ByStatusComponent } from './dashboard/charts/by-status/by-status.component';
+import { ByDayComponent } from './dashboard/charts/by-day/by-day.component';
 
 @NgModule({
 	declarations: [
@@ -104,7 +105,8 @@ import { ByStatusComponent } from './dashboard/charts/by-status/by-status.compon
 		EditDialogComponent,
 		CreateDialogComponent,
 		CanUseDirective,
-		ByStatusComponent
+		ByStatusComponent,
+		ByDayComponent
 	],
 	imports: [
 		CommonModule,
