@@ -47,19 +47,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChangeComponent } from './auth/change/change.component';
 import { LoginComponent } from './auth/login/login.component';
-import { ResetComponent } from './auth/reset/reset.component';3
+import { ResetComponent } from './auth/reset/reset.component';
+import { DataByEmailComponent } from './components/dialogs/data-by-email/data-by-email.component';
 import { CreateDialogComponent } from './components/dialogs/patients/create-dialog/create-dialog.component';
 import { DialogToDeleteComponent } from './components/dialogs/patients/dialog-to-delete/dialog-to-delete.component';
 import { EditDialogComponent } from './components/dialogs/patients/edit-dialog/edit-dialog.component';
 import { InformationDialogComponent } from './components/dialogs/patients/information-dialog/information-dialog.component';
+import { UpdatePasswordComponent } from './components/dialogs/users/update-password/update-password.component';
 import { UserAddComponent } from './components/dialogs/users/user-add/user-add.component';
 import { UserDeleteComponent } from './components/dialogs/users/user-delete/user-delete.component';
 import { UserEditComponent } from './components/dialogs/users/user-edit/user-edit.component';
 import { UserInfoComponent } from './components/dialogs/users/user-info/user-info.component';
-import { DataByEmailComponent } from './components/dialogs/data-by-email/data-by-email.component';
 import { CanUseDirective } from './directives/can-use/can-use.directive';
 import { ScopeGuard } from './guards/scope/scope.guard';
 import { SessionLostInterceptor } from './interceptors/session-lost.interceptor';
+import { AuthComponent } from './layout/auth/auth.component';
 import { SidebarComponent } from './layout/default/components/sidebar/sidebar.component';
 import { TopbarComponent } from './layout/default/components/topbar/topbar.component';
 import { DefaultComponent } from './layout/default/default.component';
@@ -70,12 +72,12 @@ import { LandingPageComponent } from './layout/landing-page/landing-page.compone
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 import { UsersComponent } from './pages/users/users.component';
-import { UpdatePasswordComponent } from './components/dialogs/users/update-password/update-password.component';
 
 
 @NgModule({
 	declarations: [
 		AppComponent,
+		AuthComponent,
 
 		// Landing Page
 		LandingPageComponent,
@@ -97,22 +99,25 @@ import { UpdatePasswordComponent } from './components/dialogs/users/update-passw
 		UserDeleteComponent,
 		UserInfoComponent,
 		UserAddComponent,
+		UpdatePasswordComponent,
+		DialogToDeleteComponent,
+		InformationDialogComponent,
+		EditDialogComponent,
+		CreateDialogComponent,
 
 		// Auth
 		LoginComponent,
 		ChangeComponent,
 		ResetComponent,
-		DialogToDeleteComponent,
-		InformationDialogComponent,
-		EditDialogComponent,
-		CreateDialogComponent,
-		CanUseDirective,
-		UpdatePasswordComponent
+
+		// Directives
+		CanUseDirective
 	],
 	imports: [
 		CommonModule,
 		ReactiveFormsModule,
 		BrowserModule,
+		MatIconModule,
 		HttpClientModule,
 		BrowserModule,
 		AppRoutingModule,
@@ -122,7 +127,6 @@ import { UpdatePasswordComponent } from './components/dialogs/users/update-passw
 		MatButtonModule,
 		MatSidenavModule,
 		MatToolbarModule,
-		MatIconModule,
 		MatCardModule,
 		MatMenuModule,
 		MatGridListModule,

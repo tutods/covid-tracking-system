@@ -6,7 +6,7 @@
 			"items": {
 				"type": "object",
 				"properties": {
-					"_id": {
+					"status": {
 						"type": "string",
 						"enum": [
 							"Suspect",

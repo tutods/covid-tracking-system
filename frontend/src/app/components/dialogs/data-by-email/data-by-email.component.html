@@ -38,7 +38,12 @@
 	</mat-dialog-content>
 	<mat-dialog-actions>
 		<button mat-button color="primary" type="submit" [disabled]="!getDataForm.valid" class="login-button">
+			<mat-icon>email</mat-icon>
 			Get Your Data
+		</button>
+		<button mat-button color="accent" type="button" (click)="onClose()">
+			<mat-icon>close</mat-icon>
+			Close
 		</button>
 	</mat-dialog-actions>
 </form>

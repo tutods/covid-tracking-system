@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { PatientsService } from '../../../services/patients/patients.service';
 
@@ -14,7 +14,12 @@ export class DataByEmailComponent implements OnInit {
 	emailPattern = "^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}$";
 	getDataForm: FormGroup;
 
-	constructor(public router: Router, private snackBar: MatSnackBar, private fBuild: FormBuilder, public patientsService: PatientsService) { }
+	constructor(
+		public router: Router,
+		private fBuild: FormBuilder,
+		public patientsService: PatientsService,
+		public dialogRef: MatDialogRef<DataByEmailComponent>
+	) { }
 
 	ngOnInit(): void {
 		this.getDataForm = this.fBuild.group({
@@ -33,24 +38,29 @@ export class DataByEmailComponent implements OnInit {
 		return this.getDataForm.controls;
 	}
 
-	openSnackBar(message: string) {
-		this.snackBar.open(message, 'Close', { duration: 5000 })
-	}
-
 	onSubmit(evt) {
 		// Prevent Default
 		evt.preventDefault();
 
+		const email = this.getDataForm.get('email').value
+		const phoneNumber = this.getDataForm.get('phoneNumber').value
+		const patientNumber = this.getDataForm.get('patientNumber').value
+
 		this.patientsService
-			.getDataByEmail(this.getDataForm.get('email').value, this.getDataForm.get('phoneNumber').value, this.getDataForm.get('patientNumber').value)
+			.getDataByEmail(email, phoneNumber, patientNumber)
 			.subscribe(
-				(patient) => {
-					this.openSnackBar('Email sent with success!')
+				(success) => {
+					this.dialogRef.close({ message: success.message })
 				},
 				(error) => {
-					this.openSnackBar(error.error.message || "Invalid data");
+					this.dialogRef.close({ message: error.error.message })
+
 				}
 			)
+	}
+
+	onClose() {
+		this.dialogRef.close()
 	}
 
 }

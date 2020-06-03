@@ -37,6 +37,6 @@ router.put('/:id', authorize(['--edit-all']), getOneAndUpdate);
 
 router.delete('/:id', authorize(['--delete-all']), getOneAndDelete);
 
-router.post('/getDataByEmail', getDataByEmail);
+router.post('/get-data', getDataByEmail);
 
 module.exports = router;

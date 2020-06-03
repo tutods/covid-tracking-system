@@ -51,16 +51,18 @@ const patientController = () => {
 				const patientData = await getByPatientByParam(patientDB._id);
 
 				emailByData(patientData, bodyEmail);
+
+				res.status(200).json({
+					message: 'Email sent with success',
+				});
 			} else {
 				res.status(400).json({
 					message: 'Invalid data',
-					patient: {},
 				});
 			}
 		} else {
 			res.status(404).json({
 				message: "Patient doesn't exist",
-				patient: {},
 			});
 		}
 	};

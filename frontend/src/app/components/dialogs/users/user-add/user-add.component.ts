@@ -27,9 +27,7 @@ export class UserAddComponent implements OnInit {
 		const emailPattern = "^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}$";
 
 		this.rolesService.getAll().subscribe((roles) => {
-
 			roles.map((role) => {
-
 				this.roles.push(role)
 			})
 		})
