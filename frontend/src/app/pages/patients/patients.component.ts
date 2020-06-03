@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { CreateDialogComponent } from '../../components/dialogs/patients/create-dialog/create-dialog.component';
 import { DialogToDeleteComponent } from '../../components/dialogs/patients/dialog-to-delete/dialog-to-delete.component';
 import { EditDialogComponent } from '../../components/dialogs/patients/edit-dialog/edit-dialog.component';
@@ -32,7 +32,9 @@ export class PatientsComponent implements OnInit {
 	}
 
 	openDeleteDialog(patient: Patient) {
-		let dialogRef = this.dialog.open(DialogToDeleteComponent);
+		let dialogRef = this.dialog.open(DialogToDeleteComponent, {
+			width: '25vw'
+		});
 
 		dialogRef.afterClosed().subscribe(res => {
 			if (res === "true") {
@@ -41,19 +43,19 @@ export class PatientsComponent implements OnInit {
 		})
 	}
 	openInformationDialog(patient: Patient) {
-		const dialogConfig = new MatDialogConfig();
 
-		dialogConfig.data = patient;
-
-		this.dialog.open(InformationDialogComponent, dialogConfig);
+		this.dialog.open(InformationDialogComponent, {
+			data: patient,
+			width: '25vw'
+		});
 	}
 
 	openEditDialog(patient: Patient) {
-		const dialogConfig = new MatDialogConfig();
 
-		dialogConfig.data = patient;
-
-		let dialogRef = this.dialog.open(EditDialogComponent, dialogConfig);
+		let dialogRef = this.dialog.open(EditDialogComponent, {
+			data: patient,
+			width: '25vw',
+		});
 
 		dialogRef.afterClosed().subscribe((data) => {
 			this.fetchData()
