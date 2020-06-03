@@ -6,88 +6,90 @@ import { RolesService } from './../../../../services/roles-service/roles.service
 import { UsersService } from './../../../../services/users-service/users.service';
 
 @Component({
-	templateUrl: './user-edit.component.html',
-	styleUrls: ['./user-edit.component.sass']
+  templateUrl: './user-edit.component.html',
+  styleUrls: ['./user-edit.component.sass'],
 })
 export class UserEditComponent implements OnInit {
+  roles: any[] = [];
+  user: User;
+  userForm: FormGroup;
 
-	roles: any[] = []
-	user: User
-	userForm: FormGroup
+  constructor(
+    private formBuilder: FormBuilder,
+    public usersService: UsersService,
+    public rolesService: RolesService,
+    public dialogRef: MatDialogRef<UserEditComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    this.user = data;
+  }
 
-	constructor(
-		private formBuilder: FormBuilder,
-		public usersService: UsersService,
-		public rolesService: RolesService,
-		public dialogRef: MatDialogRef<UserEditComponent>,
-		@Inject(MAT_DIALOG_DATA) public data: any
-	) {
+  ngOnInit(): void {
+    const emailPattern = '^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}$';
 
-		this.user = data
-	}
+    this.rolesService.getAll().subscribe((roles) => {
+      roles.map((role) => {
+        this.roles.push(role);
+      });
+    });
 
-	ngOnInit(): void {
+    this.userForm = this.formBuilder.group({
+      name: [this.user.name, [Validators.required]],
+      email: [
+        this.user.email,
+        [
+          Validators.required,
+          Validators.email,
+          Validators.pattern(emailPattern),
+        ],
+      ],
+      role: [this.user.role['_id'], [Validators.required]],
+    });
+  }
 
-		const emailPattern = "^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}$";
+  // To disable button if have errors
+  get userFormControl() {
+    return this.userForm.controls;
+  }
 
-		this.rolesService.getAll().subscribe((roles) => {
+  // Submit Method
+  onSubmit(evt) {
+    // Prevent Default
+    evt.preventDefault();
 
-			roles.map((role) => {
+    const updatedData = {
+      name: this.userForm.get('name').value,
+      email: this.userForm.get('email').value,
+      role: this.userForm.get('role').value,
+    };
 
-				this.roles.push(role)
-			})
-		})
+    let response: object = {};
 
-		this.userForm = this.formBuilder.group({
-			"name": [this.user.name, [Validators.required]],
-			"email": [this.user.email, [Validators.required, Validators.email, Validators.pattern(emailPattern)]],
-			"role": [this.user.role["_id"], [Validators.required]]
-		})
+    this.usersService.getOneAndUpdate(this.user['_id'], updatedData).subscribe(
+      (updated) => {
+        response['message'] = 'User updated with success!';
+        response['status'] = true;
+      },
+      (error) => {
+        let codeMessage = error.error.message;
 
-	}
+        if (codeMessage.includes('E11000')) {
+          if (codeMessage.includes('email:')) {
+            codeMessage = 'Email inserted already exists';
+          } else {
+            codeMessage = 'Unique error. Please validate all fields!';
+          }
+        }
 
-	// To disable button if have errors
-	get userFormControl() {
-		return this.userForm.controls;
-	}
+        response['message'] = codeMessage;
+        response['status'] = false;
+      }
+    );
 
-	// Submit Method
-	onSubmit(evt) {
-		// Prevent Default
-		evt.preventDefault();
+    this.dialogRef.close(response);
+  }
 
-		const updatedData = {
-			name: this.userForm.get('name').value,
-			email: this.userForm.get('email').value,
-			role: this.userForm.get('role').value
-		}
-
-		let response: object = {}
-
-		this.usersService.getOneAndUpdate(this.user["_id"], updatedData).subscribe((updated) => {
-			response["message"] = "User updated with success!"
-			response["status"] = true
-		}, (error) => {
-			let codeMessage = error.error.message
-
-			if (codeMessage.includes("E11000")) {
-
-				if (codeMessage.includes("email:")) {
-					codeMessage = "Email inserted already exists"
-				} else {
-					codeMessage = "Unique error. Please validate all fields!"
-				}
-			}
-
-			response["message"] = codeMessage
-			response["status"] = false
-		})
-
-		this.dialogRef.close(response)
-	}
-
-	onClose(): void {
-		this.dialogRef.close();
-	}
-
+  onClose(): void {
+    this.dialogRef.close();
+  }
 }

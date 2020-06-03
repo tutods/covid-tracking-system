@@ -10,98 +10,96 @@ import { User } from './../../models/user.model';
 import { UsersService } from './../../services/users-service/users.service';
 
 @Component({
-	selector: 'app-users',
-	templateUrl: './users.component.html',
-	styleUrls: ['./users.component.sass']
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.sass'],
 })
 export class UsersComponent implements OnInit {
+  users;
+  loggedUserEmail: string;
 
-	users
-	loggedUserEmail: string
+  constructor(
+    private usersService: UsersService,
+    private sessionService: SessionService,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
+  ) {
+    this.loggedUserEmail = this.sessionService.me().user.email;
+  }
 
-	constructor(
-		private usersService: UsersService,
-		private sessionService: SessionService,
-		public dialog: MatDialog,
-		private snackBar: MatSnackBar
-	) {
-		this.loggedUserEmail = this.sessionService.me().user.email
-	}
+  ngOnInit(): void {
+    this.fetchData();
+  }
 
-	ngOnInit(): void {
-		this.fetchData()
-	}
+  fetchData() {
+    const getAll = this.usersService.getAll();
 
-	fetchData() {
-		const getAll = this.usersService.getAll()
+    return getAll.subscribe((data) => {
+      this.users = data;
+    });
+  }
 
-		return getAll.subscribe((data) => {
-			this.users = data
-		})
-	}
+  openSnackBar(message: string) {
+    this.snackBar.open(message, 'Close', { duration: 5000 });
+  }
 
-	openSnackBar(message: string) {
-		this.snackBar.open(message, 'Close', { duration: 5000 })
-	}
+  openEditDialog(user: User) {
+    let dialogRef = this.dialog.open(UserEditComponent, {
+      data: user,
+      width: '25vw',
+    });
 
-	openEditDialog(user: User) {
-		let dialogRef = this.dialog.open(UserEditComponent, {
-			data: user,
-			width: "25vw"
-		});
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        if (result.status == true) {
+          this.openSnackBar(result.message);
+          this.fetchData();
+        } else {
+          this.openSnackBar(result.message);
+        }
+      }
+    });
+  }
 
-		dialogRef.afterClosed().subscribe((result) => {
-			if (result) {
-				if (result.status == true) {
-					this.openSnackBar(result.message)
-					this.fetchData()
-				} else {
-					this.openSnackBar(result.message)
-				}
-			}
-		})
-	}
+  openDeleteDialog(user: User) {
+    let dialogRef = this.dialog.open(UserDeleteComponent, {
+      data: user,
+      width: '25vw',
+    });
 
-	openDeleteDialog(user: User) {
-		let dialogRef = this.dialog.open(UserDeleteComponent, {
-			data: user,
-			width: "25vw"
-		});
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        if (result.status == true) {
+          this.openSnackBar(result.message);
+          this.fetchData();
+        } else {
+          this.openSnackBar(result.message);
+        }
+      }
+    });
+  }
 
-		dialogRef.afterClosed().subscribe((result) => {
-			if (result) {
-				if (result.status == true) {
-					this.openSnackBar(result.message)
-					this.fetchData()
-				} else {
-					this.openSnackBar(result.message)
-				}
-			}
-		})
-	}
+  openInfoDialog(user: User) {
+    this.dialog.open(UserInfoComponent, {
+      data: user,
+      width: '25vw',
+    });
+  }
 
-	openInfoDialog(user: User) {
-		this.dialog.open(UserInfoComponent, {
-			data: user,
-			width: "25vw"
-		});
-	}
+  openAddDialog() {
+    let dialogRef = this.dialog.open(UserAddComponent, {
+      width: '25vw',
+    });
 
-
-	openAddDialog() {
-		let dialogRef = this.dialog.open(UserAddComponent, {
-			width: "25vw"
-		});
-
-		dialogRef.afterClosed().subscribe((result) => {
-			if (result) {
-				if (result.status == true) {
-					this.openSnackBar(result.message)
-					this.fetchData()
-				} else {
-					this.openSnackBar(result.message)
-				}
-			}
-		})
-	}
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        if (result.status == true) {
+          this.openSnackBar(result.message);
+          this.fetchData();
+        } else {
+          this.openSnackBar(result.message);
+        }
+      }
+    });
+  }
 }

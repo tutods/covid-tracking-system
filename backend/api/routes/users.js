@@ -15,6 +15,7 @@ const {
 	logout,
 	resetPassword,
 	changePassword,
+	updatePassword,
 } = require('../controllers/UserController');
 const {
 	getAll,
@@ -40,5 +41,7 @@ router.post('/logout', logout);
 router.post('/reset-password', resetPassword);
 
 router.post('/change-password/:token', changePassword);
+
+router.post('/update-password', updatePassword);
 
 module.exports = router;

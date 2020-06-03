@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { PatientsService } from '../services/patients/patients.service';
+import { PatientsService } from '../../../services/patients/patients.service';
 
 @Component({
 	selector: 'app-data-by-email',
