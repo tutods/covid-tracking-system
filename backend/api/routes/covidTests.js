@@ -41,9 +41,7 @@ const {
 
 const {
 	getOneAndUpdate,
-	getByPatient,
-	countByDay,
-	countByPatient,
+	getByPatient
 } = require('../controllers/CovidTestController');
 
 router.use(filters);
