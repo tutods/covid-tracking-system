@@ -31,7 +31,7 @@ export class SessionService {
 	login(email: String, password: String) {
 		const request = this.http
 			.post(
-				`${API_URL}/users/login`,
+				`${API_URL}/login`,
 				{
 					email, password
 				},
@@ -58,7 +58,7 @@ export class SessionService {
 		this.session = null
 		localStorage.removeItem('user')
 
-		const request = this.http.post(`${API_URL}/users/logout`, httpOptions).subscribe()
+		const request = this.http.post(`${API_URL}/logout`, httpOptions).subscribe()
 
 		return request
 	}
@@ -67,7 +67,7 @@ export class SessionService {
 
 
 		const request = this.http
-			.post(`${API_URL}/users/reset-password`, { email }, httpOptions)
+			.post(`${API_URL}/reset-password`, { email }, httpOptions)
 			.pipe(share());
 
 		return request
@@ -82,7 +82,7 @@ export class SessionService {
 	change(newPassword: string, confirmPassword: string, token: string): Observable<any> {
 
 		const request = this.http
-			.post(`${API_URL}/users/change-password/${token}`, {
+			.post(`${API_URL}/change-password/${token}`, {
 				newPassword, confirmPassword
 			}, httpOptions)
 			.pipe(share());

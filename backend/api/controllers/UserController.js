@@ -195,7 +195,7 @@ const userController = () => {
 
 			let response;
 			if (myUser) {
-				if (await myUser.comparePassword(oldPwd)) {
+				if (myUser.comparePassword(oldPwd)) {
 					if (newPwd == confirmPwd) {
 						await myUser.updateOne({
 							password: newPwd,
@@ -223,9 +223,11 @@ const userController = () => {
 					status: 400,
 				};
 			}
+			console.log(response);
 
 			res.status(response.status).json({ message: response.message });
 		} catch (catchError) {
+			console.log(catchError);
 			res.status(500).json({ message: catchError });
 		}
 	};
