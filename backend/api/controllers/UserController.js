@@ -220,7 +220,7 @@ const userController = () => {
 			} else {
 				response = {
 					message: 'Please validate your data!',
-					status: 400,
+					status: 404,
 				};
 			}
 			console.log(response);

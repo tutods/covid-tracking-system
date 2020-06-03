@@ -27,6 +27,6 @@ router.put('/:id', authorize(['--edit-users']), getOneAndUpdate);
 
 router.delete('/:id', authorize(['--delete-users']), getOneAndDelete);
 
-router.post('/update-password', updatePassword);
+router.post('/update-password', authorize(['--view-all']), updatePassword);
 
 module.exports = router;
