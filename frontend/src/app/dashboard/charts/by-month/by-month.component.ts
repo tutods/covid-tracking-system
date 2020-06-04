@@ -58,7 +58,7 @@ export class ByMonthComponent implements OnInit {
 
 
 			this.lineChartData = [
-				{ data: this.numberOfTests, label: 'Number of tests by Month' },
+				{ data: this.numberOfTests, label: 'Number of tests this year' },
 			];
 
 

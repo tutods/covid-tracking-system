@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChartDataSets } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { SummaryService } from '../../../services/summary/summary.service';
-;
+
 
 
 
@@ -63,7 +63,7 @@ export class ByDayComponent implements OnInit {
 
 
 			this.lineChartData = [
-				{ data: this.numberOfTests, label: 'Number of tests by Day' },
+				{ data: this.numberOfTests, label: 'Number of tests this month' },
 			];
 
 			if (this.numberOfDays == 28) {
