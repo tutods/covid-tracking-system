@@ -119,7 +119,6 @@ import { UsersComponent } from './pages/users/users.component';
 		BrowserModule,
 		MatIconModule,
 		HttpClientModule,
-		BrowserModule,
 		AppRoutingModule,
 		BrowserAnimationsModule,
 		ChartsModule,

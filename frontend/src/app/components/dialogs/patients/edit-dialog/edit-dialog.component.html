@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Edit Patient</h2>
+<h2 mat-dialog-title>Edit Patient {{ patient.name }}</h2>
 
 <form [formGroup]="patientForm" (submit)="onSubmit($event)">
 
@@ -12,8 +12,9 @@
 		<mat-form-field>
 			<mat-label>Birthday Date</mat-label>
 			<input matInput [matDatepicker]="myBirthdayDate" formControlName="birthdayDate">
-			<mat-datepicker-toggle matPrefix [for]="myBirthdayDate"></mat-datepicker-toggle>
+			<mat-datepicker-toggle matSuffix [for]="myBirthdayDate"></mat-datepicker-toggle>
 			<mat-datepicker #myBirthdayDate></mat-datepicker>
+			<mat-icon matPrefix>today</mat-icon>
 		</mat-form-field>
 
 		<mat-form-field>

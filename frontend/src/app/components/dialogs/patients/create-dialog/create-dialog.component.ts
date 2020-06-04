@@ -65,12 +65,16 @@ export class CreateDialogComponent implements OnInit {
 			]],
 			'patientNumber': ['', [
 				Validators.required,
+				Validators.min(100000000),
+				Validators.max(999999999)
 			]],
 			'status': ['', [
 				Validators.required,
 			]],
 			'phone': ['', [
 				Validators.required,
+				Validators.min(100000000),
+				Validators.max(999999999)
 			]],
 			'email': ['', [
 				Validators.required,
@@ -80,12 +84,13 @@ export class CreateDialogComponent implements OnInit {
 			'symptoms': ['', [
 				Validators.required,
 			]],
-			'observations': ['', [
-				Validators.required,
-			]],
+			'observations': ['', []],
 		})
 	}
 
+	get patientFormControl() {
+		return this.patientForm.controls;
+	}
 
 	onSubmit(evt) {
 		evt.preventDefault()
@@ -105,7 +110,6 @@ export class CreateDialogComponent implements OnInit {
 			}
 		}
 
-
 		const formData = {
 			name: this.patientForm.get('name').value,
 			birthdayDate: new Date(`${formDate.getFullYear()}-${formDate.getMonth() + 1}-${formDate.getDate()}`),
@@ -118,8 +122,31 @@ export class CreateDialogComponent implements OnInit {
 			symptoms: this.patientForm.get('symptoms').value,
 			observations: this.observationsToCreate,
 		}
-		this.patients.create(formData).subscribe();
-		this.dialogRef.close()
+		this.patients.create(formData).subscribe((success) => {
+			this.dialogRef.close({
+				status: true,
+				message: "Patient created with success!"
+			})
+		}, (error) => {
+			let codeMessage = error.error.message.errmsg || error.error.message;
+
+			if (codeMessage.includes('E11000')) {
+				if (codeMessage.includes('phone:')) {
+					codeMessage = 'Phone inserted already exists';
+				} else if (codeMessage.includes('patientNumber:')) {
+					codeMessage = 'Patient number inserted already exists';
+				} else {
+					codeMessage = 'Unique error. Please validate all fields!';
+				}
+			} else {
+				codeMessage = error.error.message
+			}
+
+				this.dialogRef.close({
+					status: false,
+					message: codeMessage
+				})
+		});
 	}
 
 	onClose(): void {
