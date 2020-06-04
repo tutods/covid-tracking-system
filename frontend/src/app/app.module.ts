@@ -71,6 +71,7 @@ import { PatientsComponent } from './pages/patients/patients.component';
 import { UsersComponent } from './pages/users/users.component';
 import { ByStatusComponent } from './dashboard/charts/by-status/by-status.component';
 import { ByDayComponent } from './dashboard/charts/by-day/by-day.component';
+import { ByMonthComponent } from './dashboard/charts/by-month/by-month.component';
 
 @NgModule({
 	declarations: [
@@ -106,7 +107,8 @@ import { ByDayComponent } from './dashboard/charts/by-day/by-day.component';
 		CreateDialogComponent,
 		CanUseDirective,
 		ByStatusComponent,
-		ByDayComponent
+		ByDayComponent,
+		ByMonthComponent
 	],
 	imports: [
 		CommonModule,
