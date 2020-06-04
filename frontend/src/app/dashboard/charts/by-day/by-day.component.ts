@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ChartDataSets } from 'chart.js';
+import { Color, Label } from 'ng2-charts';
 import { SummaryService } from '../../../services/summary/summary.service';
+;
 
 
 
@@ -10,6 +13,25 @@ import { SummaryService } from '../../../services/summary/summary.service';
 })
 export class ByDayComponent implements OnInit {
 
+	lineChartData: ChartDataSets[];
+
+
+	lineChartLabels: Label[];
+
+	lineChartOptions = {
+		responsive: true,
+	};
+
+	lineChartColors: Color[] = [
+		{
+			borderColor: 'black',
+			backgroundColor: 'red',
+		},
+	];
+
+	lineChartLegend = true;
+	lineChartType = 'line';
+	lineChart = false;
 
 	constructor(private summaryService: SummaryService) {
 
@@ -25,11 +47,12 @@ export class ByDayComponent implements OnInit {
 	numberOfTests: number[] = [this.numberOfDays];
 
 	ngOnInit(): void {
+
+
 		this.summaryService.getByDay().subscribe(data => {
 
 			for (var i = 0; i < this.numberOfDays; i++) {
 				this.numberOfTests[i] = 0;
-				console.log(this.numberOfTests[i])
 			}
 
 			Object.values(data).map(element => {
@@ -38,7 +61,22 @@ export class ByDayComponent implements OnInit {
 				}
 			});
 
-			console.log(this.numberOfTests);
+
+			this.lineChartData = [
+				{ data: this.numberOfTests, label: 'Number of tests by Day' },
+			];
+
+			if (this.numberOfDays == 28) {
+				this.lineChartLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28'];
+			} else if (this.numberOfDays == 29) {
+				this.lineChartLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29'];
+			} else if (this.numberOfDays == 30) {
+				this.lineChartLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30'];
+			} else {
+				this.lineChartLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
+			}
+
+			this.lineChart = true;
 
 		})
 	}
