@@ -89,10 +89,11 @@ export class UpdatePasswordComponent implements OnInit {
 				this.dialogRef.close(object);
 			},
 			(error) => {
+				console.log(error)
 				const codeMessage = error.error.message;
 				const object = {
 					status: false,
-					message: codeMessage,
+					message: codeMessage || "Error on update password! Please try again.",
 				};
 
 				this.dialogRef.close(object);

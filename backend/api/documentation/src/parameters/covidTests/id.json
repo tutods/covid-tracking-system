@@ -5,5 +5,12 @@
 		"description": "CovidTest ID storaged into database",
 		"required": true,
 		"type": "string"
+	},
+	"covidPatientId": {
+		"name": "patientId",
+		"in": "path",
+		"description": "Patient ID storaged into database",
+		"required": true,
+		"type": "string"
 	}
 }

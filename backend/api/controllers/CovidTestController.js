@@ -86,7 +86,7 @@ const covidTestController = () => {
 			  }
 			: {
 					code: 404,
-					body: 'No data',
+					body: { message: 'No data' },
 			  };
 		res.status(response.code).json(response.body);
 	};
@@ -134,16 +134,6 @@ const covidTestController = () => {
 			: {};
 
 		return result;
-		// const response = result
-		// 	? {
-		// 			code: 200,
-		// 			body: result,
-		// 	  }
-		// 	: {
-		// 			code: 404,
-		// 			body: 'No data',
-		// 	  };
-		// res.status(response.code).json(response.body);
 	};
 
 	const autoSchedule = async (patientId) => {
