@@ -33,12 +33,13 @@ export class PatientsComponent implements OnInit {
 
 	openDeleteDialog(patient: Patient) {
 		let dialogRef = this.dialog.open(DialogToDeleteComponent, {
-			width: '25vw'
+			width: '25vw',
+			data: patient
 		});
 
 		dialogRef.afterClosed().subscribe(res => {
 			if (res === "true") {
-				this.patients.getOneAndDelete(patient._id).subscribe(() => window.location.reload());
+				this.fetchData()
 			}
 		})
 	}
@@ -58,15 +59,21 @@ export class PatientsComponent implements OnInit {
 		});
 
 		dialogRef.afterClosed().subscribe((data) => {
-			this.fetchData()
+			if (data) {
+				this.fetchData()
+			}
 		})
 	}
 
 	openCreateDialog() {
-		const dialogRef = this.dialog.open(CreateDialogComponent);
+		const dialogRef = this.dialog.open(CreateDialogComponent, {
+			width: '25vw'
+		});
 
 		dialogRef.afterClosed().subscribe((data) => {
-			this.fetchData()
+			if (data) {
+				this.fetchData()
+			}
 		})
 	}
 }
