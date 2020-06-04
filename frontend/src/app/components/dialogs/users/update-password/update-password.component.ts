@@ -73,8 +73,8 @@ export class UpdatePasswordComponent implements OnInit {
 		const updatedData = {
 			email: this.user.email,
 			oldPwd: this.form.get('oldPwd').value,
-			newPassword: this.form.get('newPassword').value,
-			confirmPassword: this.form.get('confirmPassword').value,
+			newPwd: this.form.get('newPassword').value,
+			confirmPwd: this.form.get('confirmPassword').value,
 		};
 
 		const updated = this.usersService.updatePassword(updatedData);
