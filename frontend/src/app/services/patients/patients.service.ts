@@ -1,8 +1,8 @@
+import { Patient } from './../../models/patient.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { share } from 'rxjs/operators';
 import { environment } from "../../../environments/environment";
-import { Patient } from "../../models/patient.model";
 import { observable, Observable } from 'rxjs';
 
 const API_URL = environment.apiUrl;
@@ -28,8 +28,8 @@ export class PatientsService {
         return this.http.get(`${API_URL}/patients/`, httpOptions).pipe(share())
     }
 
-    getById(id: string) {
-        return this.http.get(`${API_URL}/patients/${id}`, httpOptions)
+    getById(id: string): Observable<any>  {
+        return this.http.get(`${API_URL}/patients/${id}`, httpOptions).pipe(share())
     }
 
     getOneAndUpdate(id: string, patient: Patient) {

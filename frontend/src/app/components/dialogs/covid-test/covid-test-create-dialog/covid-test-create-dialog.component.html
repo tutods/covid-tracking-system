@@ -3,7 +3,7 @@
 <mat-dialog-content>
   <form [formGroup]="covidTestForm">
     <mat-form-field>
-      <input type="text" aria-label="Number" matInput formControlName="patientsForm" placeholder="Name-Number"
+      <input type="text" aria-label="Number" matInput formControlName="patient" placeholder="Name-Number"
         [matAutocomplete]="auto">
       <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
