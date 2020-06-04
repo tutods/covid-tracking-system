@@ -27,6 +27,9 @@
 				},
 				"404": {
 					"$ref": "#/responses/notFoundError"
+				},
+				"500": {
+					"$ref": "#/responses/defaultError"
 				}
 			}
 		},
@@ -78,6 +81,9 @@
 				},
 				"404": {
 					"$ref": "#/responses/notFoundError"
+				},
+				"500": {
+					"$ref": "#/responses/defaultError"
 				}
 			}
 		},
@@ -111,6 +117,9 @@
 				},
 				"404": {
 					"$ref": "#/responses/notFoundError"
+				},
+				"500": {
+					"$ref": "#/responses/defaultError"
 				}
 			}
 		}
