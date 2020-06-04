@@ -11,7 +11,7 @@ const {
 	countByStatus,
 } = require('../controllers/SummaryController');
 
-router.get('/tests/day', authorize(['--view-all']), countByDay);
+router.get('/tests/day', countByDay); //depois meter
 
 router.get('/tests/patient', authorize(['--view-all']), countByPatient);
 

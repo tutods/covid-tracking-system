@@ -28,4 +28,6 @@ export class SummaryService {
 		return this.http.get(`${API_URL}/summary/tests/day`, httpOptions).pipe(share());
 	}
 
+
+
 }
