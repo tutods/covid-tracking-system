@@ -38,10 +38,7 @@ export class CreateDialogComponent implements OnInit {
     };
 
     currentObservations: any;
-
-    realForm: FormGroup;
-    patient: Patient;
-    date;
+    
     data: Patient;
 
     patientForm: FormGroup

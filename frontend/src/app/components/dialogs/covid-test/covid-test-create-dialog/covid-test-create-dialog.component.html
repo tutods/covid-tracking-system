@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>Edit</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="covidTestForm">
+    <mat-form-field>
+      <input type="text" aria-label="Number" matInput formControlName="patientsForm" placeholder="Name-Number"
+        [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Schedule Date</mat-label>
+      <input matInput [matDatepicker]="scheduleDate" formControlName="scheduleDate">
+      <mat-datepicker-toggle matSuffix [for]="scheduleDate"></mat-datepicker-toggle>
+      <mat-datepicker #scheduleDate></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="legacy">
+      <mat-label>Notes</mat-label>
+      <input matInput placeholder="Notes" formControlName="notes">
+      <mat-icon matSuffix>notes</mat-icon>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
+  &nbsp; &nbsp;
+  <button class="mat-raised-button mat-warn" (click)="onClose()">Cancel</button>
+</mat-dialog-actions>
