@@ -1,0 +1,23 @@
+{
+	"oldPwd": {
+		"name": "oldPwd",
+		"in": "formData",
+		"required": "true",
+		"type": "password",
+		"description": "Older password"
+	},
+	"newPwd": {
+		"name": "newPwd",
+		"in": "formData",
+		"required": "true",
+		"type": "password",
+		"description": "New password"
+	},
+	"confirmPwd": {
+		"name": "confirmPwd",
+		"in": "formData",
+		"required": "true",
+		"type": "password",
+		"description": "Confirm of new password"
+	}
+}

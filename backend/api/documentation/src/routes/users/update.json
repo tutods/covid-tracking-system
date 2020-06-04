@@ -1,0 +1,46 @@
+{
+	"/users/update-password": {
+		"post": {
+			"tags": [
+				"Users"
+			],
+			"summary": "Update password of logged user",
+			"description": "",
+			"operationId": "updatePwdUser",
+			"produces": [
+				"application/json"
+			],
+			"parameters": [
+				{
+					"$ref": "#/parameters/oldPwd"
+				},
+				{
+					"$ref": "#/parameters/newPwd"
+				},
+				{
+					"$ref": "#/parameters/confirmPwd"
+				}
+			],
+			"responses": {
+				"200": {
+					"$ref": "#/responses/passwordUpdated"
+				},
+				"400": {
+					"$ref": "#/responses/400Password"
+				},
+				"403": {
+					"$ref": "#/responses/unauthorized"
+				},
+				"401": {
+					"$ref": "#/responses/notAuthenticated"
+				},
+				"404": {
+					"$ref": "#/responses/invalidUser"
+				},
+				"500": {
+					"$ref": "#/responses/defaultError"
+				}
+			}
+		}
+	}
+}

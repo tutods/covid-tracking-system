@@ -33,6 +33,9 @@
 				},
 				"401": {
 					"$ref": "#/responses/notAuthenticated"
+				},
+				"500": {
+					"$ref": "#/responses/defaultError"
 				}
 			}
 		},
@@ -63,6 +66,9 @@
 				},
 				"401": {
 					"$ref": "#/responses/notAuthenticated"
+				},
+				"500": {
+					"$ref": "#/responses/defaultError"
 				}
 			}
 		}

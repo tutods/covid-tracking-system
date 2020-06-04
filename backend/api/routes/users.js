@@ -9,14 +9,7 @@ const authorize = require('../middlewares/authorize');
 const model = require('../models/User');
 
 // Controllers
-const {
-	create,
-	login,
-	logout,
-	resetPassword,
-	changePassword,
-	updatePassword,
-} = require('../controllers/UserController');
+const { create, updatePassword } = require('../controllers/UserController');
 const {
 	getAll,
 	getById,
@@ -34,14 +27,6 @@ router.put('/:id', authorize(['--edit-users']), getOneAndUpdate);
 
 router.delete('/:id', authorize(['--delete-users']), getOneAndDelete);
 
-router.post('/login', login);
-
-router.post('/logout', logout);
-
-router.post('/reset-password', resetPassword);
-
-router.post('/change-password/:token', changePassword);
-
-router.post('/update-password', updatePassword);
+router.post('/update-password', authorize(['--view-all']), updatePassword);
 
 module.exports = router;
