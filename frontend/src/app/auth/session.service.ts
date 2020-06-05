@@ -19,7 +19,11 @@ const httpOptions = {
 
 export class SessionService {
 
-	session: any = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null
+	expired: boolean
+	private session: any = localStorage.getItem("user")
+		? JSON.parse(localStorage.getItem("user"))
+		: null
+
 
 	constructor(public http: HttpClient) {
 	}
@@ -27,7 +31,7 @@ export class SessionService {
 	login(email: String, password: String) {
 		const request = this.http
 			.post(
-				`${API_URL}/users/login`,
+				`${API_URL}/login`,
 				{
 					email, password
 				},
@@ -50,28 +54,27 @@ export class SessionService {
 	}
 
 	logout() {
-
+		this.expired = false;
 		this.session = null
 		localStorage.removeItem('user')
 
-		const request = this.http.post(`${API_URL}/users/logout`, httpOptions)
+		const request = this.http.post(`${API_URL}/logout`, httpOptions).subscribe()
 
-		request.subscribe()
+		return request
 	}
 
 	reset(email: string) {
 
 
 		const request = this.http
-			.post(`${API_URL}/users/reset-password`, { email }, httpOptions)
+			.post(`${API_URL}/reset-password`, { email }, httpOptions)
 			.pipe(share());
-
-
 
 		return request
 	}
 
 	clearSession() {
+		this.expired = true;
 		this.session = null
 		localStorage.removeItem('user')
 	}
@@ -79,7 +82,7 @@ export class SessionService {
 	change(newPassword: string, confirmPassword: string, token: string): Observable<any> {
 
 		const request = this.http
-			.post(`${API_URL}/users/change-password/${token}`, {
+			.post(`${API_URL}/change-password/${token}`, {
 				newPassword, confirmPassword
 			}, httpOptions)
 			.pipe(share());

@@ -15,7 +15,7 @@ Content-Type: application/json
 }
 
 ### Login
-POST http://localhost:3000/api/users/login
+POST http://localhost:3000/api/login
 Content-Type: application/json
 
 {
@@ -24,7 +24,7 @@ Content-Type: application/json
 }
 
 ### Reset Password
-POST http://localhost:3000/api/users/reset-password/
+POST http://localhost:3000/api/reset-password/
 Content-Type: application/json
 
 {
@@ -32,7 +32,7 @@ Content-Type: application/json
 }
 
 ### Change Password
-POST http://localhost:3000/api/users/change-password/eyJhbGciOiJIUzI1NiJ9.anBjbV8xOTk4QGhvdG1haWwuY29t.UWUm4s_Y_Ezo7Fe8l0Yx5VjDbLPe2VaaQqkA__9SvQI
+POST http://localhost:3000/api/change-password/eyJhbGciOiJIUzI1NiJ9.anBjbV8xOTk4QGhvdG1haWwuY29t.UWUm4s_Y_Ezo7Fe8l0Yx5VjDbLPe2VaaQqkA__9SvQI
 Content-Type: application/json
 
 {
@@ -41,7 +41,7 @@ Content-Type: application/json
 }
 
 ### Logout
-POST http://localhost:3000/api/users/logout
+POST http://localhost:3000/api/logout
 
 ### Get By Id
 GET http://localhost:3000/api/users/5eb7148df8d17ea6af35bd0e

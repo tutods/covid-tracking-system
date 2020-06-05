@@ -3,16 +3,33 @@
 @include mat-core()
 
 $light-primary: mat-palette($mat-indigo)
-$light-accent:  mat-palette($mat-pink, A200, A100, A400)
+$light-accent:  mat-palette($mat-deep-orange)
+$light-warn: mat-palette($mat-cyan)
 $light-theme:   mat-light-theme($light-primary, $light-accent)
 
 @media (prefers-color-scheme: light)
     @include angular-material-theme($light-theme)
 
+    // Default Colors
+    .accent-color
+        color: mat-color($light-accent)
+    .primary-color
+        color: mat-color($light-primary)
+    .warn-color
+        color: mat-color($light-warn)
+
 $dark-primary: mat-palette($mat-blue)
-$dark-accent:  mat-palette($mat-amber, A200, A100, A400)
-$dark-warn:    mat-palette($mat-deep-orange)
+$dark-accent:  mat-palette($mat-amber)
+$dark-warn:    mat-palette($mat-cyan)
 $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn)
 
 @media (prefers-color-scheme: dark)
     @include angular-material-theme($dark-theme)
+
+    // Default Colors
+    .accent-color
+        color: mat-color($dark-accent)
+    .primary-color
+        color: mat-color($dark-primary)
+    .warn-color
+        color: mat-color($dark-warn)

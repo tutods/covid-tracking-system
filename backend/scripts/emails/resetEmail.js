@@ -1,9 +1,6 @@
 // ENV
 require('dotenv').config();
-const {
-	EMAIL_USER = 'covidtrackingsystem@gmail.com',
-	EMAIL_PWD = 'joaodanieljoao20',
-} = process.env;
+const { EMAIL_USER, EMAIL_PWD } = process.env;
 
 //Nodemailer
 const nodemailer = require('nodemailer');

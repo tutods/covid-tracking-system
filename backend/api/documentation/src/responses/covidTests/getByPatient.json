@@ -1,0 +1,136 @@
+{
+	"getCovidTestsByPatient": {
+		"description": "Get all COVID Tests by Patient Id storaged in database",
+		"schema": {
+			"type": "object",
+			"properties": {
+				"_id": {
+					"type": "string",
+					"format": "uuid"
+				},
+				"name": {
+					"type": "string",
+					"required": true
+				},
+				"birthdayDate": {
+					"type": "string",
+					"required": true,
+					"example": "2010-12-12"
+				},
+				"patientNumber": {
+					"type": "number",
+					"required": true,
+					"unique": true,
+					"minLength": 9,
+					"maxLength": 9,
+					"example": 999999999
+				},
+				"status": {
+					"type": "string",
+					"enum": [
+						"Suspect",
+						"Infected",
+						"Non Infected"
+					],
+					"default": "Suspect"
+				},
+				"contacts": {
+					"type": "object",
+					"properties": {
+						"phone": {
+							"type": "number",
+							"minLength": 9,
+							"maxLength": 9,
+							"required": true,
+							"unique": true,
+							"example": 919919919
+						},
+						"email": {
+							"type": "string",
+							"unique": true,
+							"format": "email",
+							"required": true,
+							"pattern": "/^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"
+						}
+					}
+				},
+				"symptoms": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"enum": [
+							"cough",
+							"fever",
+							"shortness of breathe",
+							"lack of smell",
+							"lack of taste",
+							"tiredness",
+							"burning eyes",
+							"headaches",
+							"diarrhea"
+						]
+					}
+				},
+				"tests": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"code": {
+								"type": "string",
+								"unique": true,
+								"format": "uuid"
+							},
+							"notes": {
+								"type": "string"
+							},
+							"status": {
+								"type": "string",
+								"enum": [
+									"pending",
+									"inProgress",
+									"finished",
+									"notRealized"
+								],
+								"default": "pending"
+							},
+							"result": {
+								"type": "string",
+								"enum": [
+									"positive",
+									"negative",
+									"inconclusive"
+								],
+								"default": "positive"
+							},
+							"date": {
+								"type": "string",
+								"format": "date",
+								"required": true
+							},
+							"file": {
+								"type": "string"
+							},
+							"createdAt": {
+								"type": "string",
+								"format": "date"
+							},
+							"updatedAt": {
+								"type": "string",
+								"format": "date"
+							}
+						}
+					}
+				},
+				"createdAt": {
+					"type": "string",
+					"format": "date"
+				},
+				"updatedAt": {
+					"type": "string",
+					"format": "date"
+				}
+			}
+		}
+	}
+}

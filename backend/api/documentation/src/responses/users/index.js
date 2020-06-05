@@ -6,6 +6,7 @@ const logout = require('./logout.json');
 const resetPassword = require('./resetPassword.json');
 const changePassword = require('./changePassword.json');
 const session = require('./session.json');
+const updatePassword = require('./updatePassword.json');
 
 const responses = {
 	...getOne,
@@ -16,6 +17,7 @@ const responses = {
 	...session,
 	...resetPassword,
 	...changePassword,
+	...updatePassword,
 };
 
 module.exports = responses;

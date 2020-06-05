@@ -6,7 +6,7 @@
 			"items": {
 				"type": "object",
 				"properties": {
-					"_id": {
+					"patient": {
 						"$ref": "#/definitions/Patient"
 					},
 					"numberOfTests": {

@@ -1,0 +1,57 @@
+<div class="container">
+  <div fxLayout="row wrap" fxLayoutWrap>
+    <div fxFlex="0 1 25%" *ngFor="let covidTest of result" class="card-item">
+      <mat-card>
+        <mat-card-actions>
+
+          <button mat-button [matMenuTriggerFor]="appMenu">
+            <mat-icon>more_vert</mat-icon>
+            Options
+          </button>
+
+          <mat-menu #appMenu="matMenu">
+            <button mat-menu-item (click)="openInformationDialog(covidTest)">
+              <mat-icon>info</mat-icon>
+              View
+            </button>
+            <button mat-menu-item (click)="openEditDialog(covidTest)">
+              <mat-icon>edit</mat-icon>
+              Edit
+            </button>
+            <button mat-menu-item (click)="openDeleteDialog(covidTest)">
+              <mat-icon>delete</mat-icon>
+              Delete
+            </button>
+          </mat-menu>
+        </mat-card-actions>
+        <mat-card-header>
+          <div class="top-avatar"></div>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            <mat-icon>perm_identity</mat-icon>
+            <b>Patient : </b> {{covidTest.patient.name}}
+          </p>
+          <p>
+            <mat-icon>healing</mat-icon>
+            <b>Status: </b> {{covidTest.status  | titlecase}}
+          </p>
+          <p>
+            <mat-icon>calendar_today</mat-icon>
+            <b>Date: </b> {{covidTest.date.split('T')[0]}}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxFlex="0 1 25%" class="card-item" (click)="openCreateDialog()">
+      <mat-card id="add-card">
+        <mat-card-header>
+          <div class="add-btn"></div>
+          <mat-card-title>
+            Schedule Covid Test
+          </mat-card-title>
+        </mat-card-header>
+      </mat-card>
+    </div>
+  </div>
+</div>

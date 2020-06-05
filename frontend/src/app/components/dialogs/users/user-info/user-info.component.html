@@ -1,0 +1,43 @@
+<h1 mat-dialog-title>User {{ user.name }}</h1>
+<mat-dialog-content>
+
+	<mat-form-field>
+		<mat-label>Name</mat-label>
+		<input matInput placeholder="User Name" disabled [value]="user.name" />
+		<mat-icon matPrefix>account_circle</mat-icon>
+	</mat-form-field>
+
+	<mat-form-field>
+		<mat-label>Role</mat-label>
+		<input matInput placeholder="User Role" disabled [value]="user.role.name | titlecase" />
+		<mat-icon matPrefix>admin_panel_settings</mat-icon>
+
+	</mat-form-field>
+	<mat-form-field>
+		<mat-label>Email</mat-label>
+		<input matInput placeholder="User Email" disabled [value]="user.email" />
+		<mat-icon matPrefix>email</mat-icon>
+
+	</mat-form-field>
+
+	<mat-expansion-panel>
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				Scopes / Permissions
+			</mat-panel-title>
+		</mat-expansion-panel-header>
+
+		<p>This user have permissions to:</p>
+
+		<mat-list>
+			<mat-list-item *ngFor="let scope of scopes">{{ scope | titlecase }}</mat-list-item>
+		</mat-list>
+
+	</mat-expansion-panel>
+</mat-dialog-content>
+<mat-dialog-actions>
+	<button mat-button color="accent" type="button" (click)="onClose()">
+		<mat-icon>cancel</mat-icon>
+		Close
+	</button>
+</mat-dialog-actions>

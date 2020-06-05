@@ -7,9 +7,6 @@
 			"summary": "Add a new user",
 			"description": "",
 			"operationId": "addUser",
-			"consumes": [
-				"application/json"
-			],
 			"produces": [
 				"application/json"
 			],

@@ -2,7 +2,6 @@ const nodemailer = require("nodemailer");
 const email = "covidtrackingsystem@gmail.com";
 const pw = "joaodanieljoao20";
 const ejs = require("ejs");
-const fs = require("fs");
 
 const transporter = nodemailer.createTransport({
   service: "gmail",

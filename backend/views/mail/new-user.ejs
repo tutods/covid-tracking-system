@@ -1,0 +1,79 @@
+<%- include('../partials/header.ejs') %>
+
+<%- include('../partials/preheader.ejs', {preheader: "You account has created. Please change your password to have access."}) %>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
+	<tr>
+		<td>
+			&nbsp;</td>
+		<td class="container">
+			<div class="content">
+
+				<%- include('../partials/logo.ejs') %>
+
+				<!-- START CENTERED WHITE CONTAINER -->
+				<table role="presentation" class="main" id="content">
+
+					<!-- START MAIN CONTENT AREA -->
+					<tr>
+						<td class="wrapper">
+							<table role="presentation" id="subtable" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td>
+										<p>Hi,</p>
+										<p>You account has created. Please change your password to have access.</p>
+										<p>To perform that action press button below.</p>
+										<table role="presentation" border="0" cellpadding="0" cellspacing="0"
+											class="btn btn-primary">
+											<tbody>
+												<tr>
+													<td align="left">
+														<table role="presentation" border="0" cellpadding="0"
+															cellspacing="0">
+															<tbody>
+																<tr>
+																	<td>
+																		<a href="<%= link %>" target="_blank">
+																			Set Password
+																		</a>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+										<p>
+											If that doesn't work, copy and paste the following link in your browser:
+										</p>
+										<p>
+											<a href="<%= link %>"><%= link %></a>
+										</p>
+
+										<p>
+											<strong>Note:</strong>
+											If you want to proceed, realize this action fast, because the token expire
+											in
+											30
+											minutes.
+										</p>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+
+					<!-- END MAIN CONTENT AREA -->
+				</table>
+				<!-- END CENTERED WHITE CONTAINER -->
+				<!-- START FOOTER -->
+				<%- include('../partials/copyright.ejs') %>
+				<!-- END FOOTER -->
+
+			</div>
+		</td>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+
+<%- include('../partials/footer.ejs') %>

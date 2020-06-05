@@ -30,6 +30,11 @@ const patientSchema = new Schema(
 			require: true,
 			unique: true,
 		},
+		gender: {
+			type: String,
+			enum: ['Male', 'Female'],
+			require: true,
+		},
 		status: {
 			type: String,
 			enum: ['Suspect', 'Infected', 'Non Infected'],

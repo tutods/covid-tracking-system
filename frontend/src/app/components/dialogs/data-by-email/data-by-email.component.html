@@ -1,0 +1,49 @@
+<h1 mat-dialog-title>Patient Data</h1>
+
+<form [formGroup]="getDataForm" (submit)="onSubmit($event)">
+	<mat-dialog-content>
+		<mat-form-field>
+			<mat-label>Your Email</mat-label>
+			<input matInput placeholder="Email" name="email" formControlName="email">
+			<mat-error
+				[hidden]="(getDataFormControl.email.touched) && (getDataFormControl.email.errors?.email ||  getDataFormControl.email.errors?.pattern)">
+				Invalid email.
+			</mat-error>
+			<mat-error [hidden]="(getDataFormControl.email.touched) && getDataFormControl.email.errors?.required">
+				Email is required
+			</mat-error>
+			<mat-icon matPrefix>email</mat-icon>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Phone Number</mat-label>
+			<input matInput placeholder="Phone Number" type="number" formControlName="phoneNumber" name="phoneNumber">
+			<mat-error
+				[hidden]="(getDataFormControl.phoneNumber.touched) && getDataFormControl.phoneNumber.errors?.required">
+				Phone number is required
+			</mat-error>
+			<mat-icon matPrefix>smartphone</mat-icon>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Patient Number</mat-label>
+			<input matInput placeholder="Patient Number" type="number" formControlName="patientNumber"
+				name="patientNumber">
+			<mat-error
+				[hidden]="(getDataFormControl.patientNumber.touched) && getDataFormControl.phoneNumber.errors?.required">
+				Patient number is required
+			</mat-error>
+			<mat-icon matPrefix>account_circle</mat-icon>
+		</mat-form-field>
+	</mat-dialog-content>
+	<mat-dialog-actions>
+		<button mat-button color="primary" type="submit" [disabled]="!getDataForm.valid" class="login-button">
+			<mat-icon>email</mat-icon>
+			Get Your Data
+		</button>
+		<button mat-button color="accent" type="button" (click)="onClose()">
+			<mat-icon>close</mat-icon>
+			Close
+		</button>
+	</mat-dialog-actions>
+</form>

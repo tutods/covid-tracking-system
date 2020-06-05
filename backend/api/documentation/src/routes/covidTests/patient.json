@@ -1,0 +1,37 @@
+{
+	"/covid-tests/patient/{patientId}": {
+		"get": {
+			"tags": [
+				"CovidTest"
+			],
+			"summary": "Find a Covid Test by Patient Id",
+			"description": "",
+			"operationId": "getCovidTestsByPatient",
+			"parameters": [
+				{
+					"$ref": "#/parameters/covidPatientId"
+				}
+			],
+			"responses": {
+				"200": {
+					"$ref": "#/responses/getCovidTestsByPatient"
+				},
+				"400": {
+					"$ref": "#/responses/defaultError"
+				},
+				"403": {
+					"$ref": "#/responses/unauthorized"
+				},
+				"401": {
+					"$ref": "#/responses/notAuthenticated"
+				},
+				"404": {
+					"$ref": "#/responses/notFoundError"
+				},
+				"500": {
+					"$ref": "#/responses/defaultError"
+				}
+			}
+		}
+	}
+}

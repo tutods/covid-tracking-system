@@ -25,6 +25,13 @@
 			],
 			"default": "Suspect"
 		},
+		"gender": {
+			"type": "string",
+			"enum": [
+				"Female",
+				"Male"
+			]
+		},
 		"contacts": {
 			"type": "object",
 			"properties": {

@@ -146,6 +146,27 @@
 			</div>
 		</div>
 
+		<div class="container px-30px">
+			<h2 class="section-title">Portugal Situation</h2>
+			<p class="text-center">Here are some information about Portugal with more details.</p>
+
+			<div class="row" fxLayout="row wrap" fxLayoutWrap>
+				<div class="col" fxFlex="0 1 100%">
+					<embed
+						src="https://esriportugal.maps.arcgis.com/apps/opsdashboard/index.html#/acf023da9a0b4f9dbb2332c13f635829"
+						style="width:100%;" height="800" frameborder="0" />
+
+					<small>
+						<strong>Source:</strong>
+						<a href="https://covid19.min-saude.pt/ponto-de-situacao-atual-em-portugal/" target="_blank">
+							DGS - Ponto de Situação Atual
+						</a>
+					</small>
+				</div>
+
+			</div>
+		</div>
+
 
 		<div class="footer-dark">
 			<div class="row" fxLayout="row wrap" fxLayoutWrap>
@@ -158,3 +179,13 @@
 
 	</mat-drawer-content>
 </mat-drawer-container>
+
+<div style="height: 100px;"></div>
+<app-by-status></app-by-status>
+
+
+<app-by-day></app-by-day>
+
+<app-by-month></app-by-month>
+
+<app-by-symptoms></app-by-symptoms>

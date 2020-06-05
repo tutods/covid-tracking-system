@@ -1,32 +1,40 @@
 <mat-nav-list>
 
-    <h2 matSubheader>Dashboard</h2>
-    <a mat-list-item routerLinkActive="active-menu" routerLink="/admin" [routerLinkActiveOptions]="{exact: true}">
-        <mat-icon>dashboard</mat-icon>
-        Dashboard
-    </a>
+	<h2 matSubheader>Dashboard</h2>
+	<a mat-list-item routerLinkActive="active-menu" routerLink="/admin" [routerLinkActiveOptions]="{exact: true}">
+		<mat-icon>dashboard</mat-icon>
+		Dashboard
+	</a>
 
-    <mat-divider></mat-divider>
+	<ng-template [canUse]="['--view-all']">
+		<mat-divider></mat-divider>
 
-    <h2 matSubheader>Records</h2>
+		<h2 matSubheader>Records</h2>
 
-    <a mat-list-item routerLinkActive="active-menu" routerLink="/admin/patients" [routerLinkActiveOptions]="{exact: true}">
-        <mat-icon>folder_shared</mat-icon>
-        Patients
-    </a>
+		<a mat-list-item routerLinkActive="active-menu" routerLink="/admin/patients"
+			[routerLinkActiveOptions]="{exact: true}">
+			<mat-icon>folder_shared</mat-icon>
+			Patients
+		</a>
 
-    <a mat-list-item routerLinkActive="active-menu" routerLink="/admin/covid-tests" [routerLinkActiveOptions]="{exact: true}">
-        <mat-icon>folder_special</mat-icon>
-        COVID Tests
-    </a>
+		<a mat-list-item routerLinkActive="active-menu" routerLink="/admin/covid-tests"
+			[routerLinkActiveOptions]="{exact: true}">
+			<mat-icon>folder_special</mat-icon>
+			COVID Tests
+		</a>
+	</ng-template>
 
-    <mat-divider></mat-divider>
 
-    <h2 matSubheader>Administration</h2>
+	<ng-template [canUse]="['--view-users']">
+		<mat-divider></mat-divider>
 
-    <a mat-list-item routerLinkActive="active-menu" routerLink="/admin/users" [routerLinkActiveOptions]="{exact: true}">
-        <mat-icon>supervised_user_circle</mat-icon>
-        Users
-    </a>
+		<h2 matSubheader>Administration</h2>
+
+		<a mat-list-item routerLinkActive="active-menu" routerLink="/admin/users"
+			[routerLinkActiveOptions]="{exact: true}">
+			<mat-icon>supervised_user_circle</mat-icon>
+			Users
+		</a>
+	</ng-template>
 
 </mat-nav-list>

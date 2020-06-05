@@ -10,11 +10,21 @@ const summaryController = () => {
 					_id: {
 						$dateToString: {
 							format: '%Y-%m-%d',
-							date: '$createdAt',
+							date: '$date',
 						},
 					},
 					numberOfTests: { $sum: 1 },
 				},
+			},
+			{
+				$project: {
+					date: '$_id',
+					_id: false,
+					numberOfTests: '$numberOfTests',
+				},
+			},
+			{
+				$sort: { date: 1 },
 			},
 		]);
 
@@ -53,10 +63,19 @@ const summaryController = () => {
 			},
 			{
 				$project: {
-					'_id._id': 0,
-					'_id.createdAt': 0,
-					'_id.updatedAt': 0,
+					patient: '$_id',
+					_id: false,
+					numberOfTests: '$numberOfTests',
 				},
+			},
+			{
+				$project: {
+					'patient.createdAt': 0,
+					'patient.updatedAt': 0,
+				},
+			},
+			{
+				$sort: { numberOfTests: 1 },
 			},
 		]);
 
@@ -82,12 +101,41 @@ const summaryController = () => {
 					count: { $sum: 1 },
 				},
 			},
+			{
+				$project: {
+					status: '$_id',
+					_id: false,
+					count: '$count',
+				},
+			},
+			{
+				$sort: { count: 1 },
+			},
 		]);
 
 		res.status(200).json(patients || []);
 	};
 
-	return { countByDay, countByPatient, countByStatus };
+	const countBySymptoms = async (req, res) => {
+		const patients = await patient.aggregate([
+			{
+				$unwind: '$symptoms',
+			},
+			{
+				$group: {
+					_id: '$symptoms',
+					count: { $sum: 1 },
+				},
+			},
+			{
+				$sort: { _id: 1 },
+			},
+		]);
+
+		res.status(200).json(patients || []);
+	};
+
+	return { countByDay, countByPatient, countByStatus, countBySymptoms };
 };
 
 module.exports = summaryController();

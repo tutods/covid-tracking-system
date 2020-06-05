@@ -16,8 +16,7 @@
 		"name": "role",
 		"in": "formData",
 		"required": "true",
-		"type": "string",
-		"format": "uuid"
+		"type": "string"
 	},
 	"userPassword": {
 		"name": "password",
