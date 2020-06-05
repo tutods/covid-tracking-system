@@ -13,7 +13,6 @@ import { SessionService } from './../../auth/session.service';
 })
 export class CanUseDirective implements OnInit {
   scopes: string[];
-
   session;
 
   constructor(
