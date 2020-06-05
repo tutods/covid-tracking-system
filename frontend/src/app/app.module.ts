@@ -1,3 +1,4 @@
+import { CovidTestEditDialogComponent } from './components/dialogs/covid-test/covid-test-edit-dialog/covid-test-edit-dialog.component';
 import { CovidTestInformationDialogComponent } from './components/dialogs/covid-test/covid-test-information-dialog/covid-test-information-dialog.component';
 import { CovidTestDeleteDialogComponent } from './components/dialogs/covid-test/covid-test-delete-dialog/covid-test-delete-dialog.component';
 // Material Module Imports
@@ -59,7 +60,8 @@ import { CovidTestComponent } from './pages/covid-test/covid-test/covid-test.com
         CovidTestComponent,
         CovidTestCreateDialogComponent,
         CovidTestDeleteDialogComponent,
-        CovidTestInformationDialogComponent
+        CovidTestInformationDialogComponent,
+        CovidTestEditDialogComponent
 	],
 	imports: [
 		ReactiveFormsModule,

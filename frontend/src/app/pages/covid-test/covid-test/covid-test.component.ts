@@ -1,3 +1,4 @@
+import { CovidTestEditDialogComponent } from './../../../components/dialogs/covid-test/covid-test-edit-dialog/covid-test-edit-dialog.component';
 import { CovidTestInformationDialogComponent } from './../../../components/dialogs/covid-test/covid-test-information-dialog/covid-test-information-dialog.component';
 import { CovidTestDeleteDialogComponent } from './../../../components/dialogs/covid-test/covid-test-delete-dialog/covid-test-delete-dialog.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -53,5 +54,17 @@ export class CovidTestComponent implements OnInit {
         dialogConfig.data = covidTest;
 
         this.dialog.open(CovidTestInformationDialogComponent, dialogConfig);
+    }
+    openEditDialog(covidTest: any) {
+        const dialogConfig = new MatDialogConfig();
+
+        dialogConfig.data = covidTest;
+
+        let dialogRef = this.dialog.open(CovidTestEditDialogComponent, dialogConfig);
+
+        dialogRef.afterClosed().subscribe((data) => {
+            console.log(data);
+            this.fetchData();
+        })
     }
 }

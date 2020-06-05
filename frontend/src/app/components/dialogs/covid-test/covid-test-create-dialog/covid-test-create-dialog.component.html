@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Edit</h2>
+<h2 mat-dialog-title>Create</h2>
 
 <mat-dialog-content>
   <form [formGroup]="covidTestForm">
@@ -21,14 +21,14 @@
     <br>
     <mat-form-field appearance="legacy">
       <mat-label>Notes</mat-label>
-      <input matInput placeholder="Notes" formControlName="notes">
+      <textarea matInput placeholder="Notes" formControlName="notes"></textarea>
       <mat-icon matSuffix>notes</mat-icon>
     </mat-form-field>
   </form>
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
-  &nbsp; &nbsp;
-  <button class="mat-raised-button mat-warn" (click)="onClose()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="save()">Save</button>
+    &nbsp; &nbsp;
+    <button mat-raised-button color="warn" (click)="onClose()">Cancel</button>
 </mat-dialog-actions>

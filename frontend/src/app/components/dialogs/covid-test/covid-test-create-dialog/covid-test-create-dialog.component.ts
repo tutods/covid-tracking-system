@@ -54,7 +54,7 @@ export class CovidTestCreateDialogComponent implements OnInit {
                 this.patients.push({ name: patient.name, patientNumber: patient.patientNumber, id: patient._id });
             })
         });
-        
+
         this.covidTestForm = this.formBuilder.group({
             patient: ['', [
                 Validators.required,

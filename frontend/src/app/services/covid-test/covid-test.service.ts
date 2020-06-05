@@ -32,7 +32,7 @@ export class CovidTestService {
         return this.http.get(`${API_URL}/covid-tests/${id}`, httpOptions);
     }
 
-    getOneAndUpdate(id: string, covidTest: CovidTest) {
+    getOneAndUpdate(id: string, covidTest: any) {
         return this.http.put(`${API_URL}/covid-tests/${id}`, covidTest, httpOptions);
     }
 
