@@ -72,6 +72,7 @@ import { LandingPageComponent } from './layout/landing-page/landing-page.compone
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 import { UsersComponent } from './pages/users/users.component';
+import { RoleEnableDirective } from './directives/role-enable/role-enable.directive';
 
 
 @NgModule({
@@ -111,7 +112,9 @@ import { UsersComponent } from './pages/users/users.component';
 		ResetComponent,
 
 		// Directives
-		CanUseDirective
+		CanUseDirective,
+
+		RoleEnableDirective
 	],
 	imports: [
 		CommonModule,
