@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
 					this.openSnackBar('Login with success!')
 				},
 				(error) => {
-					this.openSnackBar(error.error.message || "Error on connection");
+					this.openSnackBar(((typeof error.error.message != "object") ? error.error.message : "Sorry but have error on login. Try again later please.") || "Sorry but have error on login. Try again later please.");
 				}
 			)
 	}

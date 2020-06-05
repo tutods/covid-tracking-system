@@ -16,11 +16,9 @@
 			<mat-error [hidden]="(userFormControl.email.touched) && userFormControl.email.errors?.required">
 				Email is required
 			</mat-error>
-			<mat-error [hidden]="(userFormControl.email.touched) && userFormControl.email.errors?.email">
-				Email is invalid
-			</mat-error>
-			<mat-error [hidden]="(userFormControl.email.touched) && userFormControl.email.errors?.pattern">
-				Email is invalid
+			<mat-error
+				[hidden]="(userFormControl.email.touched) && (userFormControl.email.errors?.email ||  userFormControl.email.errors?.pattern)">
+				Invalid email.
 			</mat-error>
 			<mat-icon matPrefix>email</mat-icon>
 		</mat-form-field>

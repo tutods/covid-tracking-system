@@ -17,14 +17,13 @@ const userController = () => {
 		const bodyEmail = data.email;
 		const bodyPwd = data.password;
 
-		try {
-			const userDB = await User.findOne({ email: bodyEmail });
+		const userDB = await User.findOne({ email: bodyEmail });
 
+		try {
 			if (userDB) {
 				let response = {};
 
-				const validatePwd = userDB.comparePassword(bodyPwd);
-				if (validatePwd) {
+				if (await userDB.comparePassword(bodyPwd)) {
 					const user = {
 						email: userDB.email,
 						name: userDB.name,
