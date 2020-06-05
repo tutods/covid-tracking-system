@@ -27,9 +27,7 @@ export class UserAddComponent implements OnInit {
 		const emailPattern = "^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}$";
 
 		this.rolesService.getAll().subscribe((roles) => {
-
 			roles.map((role) => {
-
 				this.roles.push(role)
 			})
 		})
@@ -58,11 +56,9 @@ export class UserAddComponent implements OnInit {
 			password: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 		}
 
-		console.log(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15))
-
 		let response: object = {}
 
-		this.usersService.new(body).subscribe(() => {
+		this.usersService.new(body).subscribe((user) => {
 			response["message"] = "User created with success! Please tell to user request a reset password."
 			response["status"] = true
 		}, (error) => {

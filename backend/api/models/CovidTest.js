@@ -55,6 +55,7 @@ const covidTestSchema = new Schema(
 		date: {
 			type: Date,
 			required: true,
+			default: Date.now(),
 		},
 		pathFile: {
 			type: String,

@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateDialogComponent } from '../../components/dialogs/patients/create-dialog/create-dialog.component';
 import { DialogToDeleteComponent } from '../../components/dialogs/patients/dialog-to-delete/dialog-to-delete.component';
 import { EditDialogComponent } from '../../components/dialogs/patients/edit-dialog/edit-dialog.component';
 import { InformationDialogComponent } from '../../components/dialogs/patients/information-dialog/information-dialog.component';
-import { CreateDialogComponent } from '../../components/dialogs/patients/create-dialog/create-dialog.component';
 import { PatientsService } from '../../services/patients/patients.service';
 import { Patient } from './../../models/patient.model';
 
@@ -17,10 +18,19 @@ export class PatientsComponent implements OnInit {
 
 	result: any
 
-	constructor(public patients: PatientsService, private http: HttpClient, public dialog: MatDialog) { }
+	constructor(
+		public patients: PatientsService,
+		private http: HttpClient,
+		public dialog: MatDialog,
+		private snackBar: MatSnackBar
+		) { }
 
 	ngOnInit(): void {
 		this.fetchData()
+	}
+
+	openSnackBar(message: string) {
+		this.snackBar.open(message, 'Close', { duration: 5000 });
 	}
 
 	fetchData() {
@@ -32,41 +42,52 @@ export class PatientsComponent implements OnInit {
 	}
 
 	openDeleteDialog(patient: Patient) {
-		let dialogRef = this.dialog.open(DialogToDeleteComponent);
+		let dialogRef = this.dialog.open(DialogToDeleteComponent, {
+			width: '25vw',
+			data: patient
+		});
 
 		dialogRef.afterClosed().subscribe(res => {
 			if (res === "true") {
-				this.patients.getOneAndDelete(patient._id).subscribe(() => window.location.reload());
+				this.fetchData()
 			}
 		})
 	}
 	openInformationDialog(patient: Patient) {
-		const dialogConfig = new MatDialogConfig();
 
-		dialogConfig.data = patient;
-
-		this.dialog.open(InformationDialogComponent, dialogConfig);
+		this.dialog.open(InformationDialogComponent, {
+			data: patient,
+			width: '25vw'
+		});
 	}
 
 	openEditDialog(patient: Patient) {
-		const dialogConfig = new MatDialogConfig();
 
-		dialogConfig.data = patient;
-
-		let dialogRef = this.dialog.open(EditDialogComponent, dialogConfig);
-
-		dialogRef.afterClosed().subscribe((data) => {
-			console.log(data)
-			this.fetchData()
-		})
-    }
-
-    openCreateDialog(){
-		const dialogRef = this.dialog.open(CreateDialogComponent);
+		let dialogRef = this.dialog.open(EditDialogComponent, {
+			data: patient,
+			width: '25vw',
+		});
 
 		dialogRef.afterClosed().subscribe((data) => {
-			this.fetchData()
+			if (data) {
+				this.fetchData()
+			}
 		})
-    }
+	}
+
+	openCreateDialog() {
+		const dialogRef = this.dialog.open(CreateDialogComponent, {
+			width: '25vw'
+		});
+
+		dialogRef.afterClosed().subscribe((data) => {
+			if (data) {
+				this.openSnackBar(data.message)
+
+				if (data.status == true)
+					this.fetchData()
+			}
+		})
+	}
 }
 

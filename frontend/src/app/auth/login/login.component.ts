@@ -15,8 +15,7 @@ export class LoginComponent implements OnInit {
 
 	loginForm: FormGroup;
 
-	constructor(public session: SessionService, public router: Router, private snackBar: MatSnackBar, private fBuild: FormBuilder) {
-	}
+	constructor(public session: SessionService, public router: Router, private snackBar: MatSnackBar, private fBuild: FormBuilder) { }
 
 	ngOnInit() {
 		const me = this.session.me()
@@ -63,7 +62,7 @@ export class LoginComponent implements OnInit {
 					this.openSnackBar('Login with success!')
 				},
 				(error) => {
-					this.openSnackBar(error.error.message || "Error on connection");
+					this.openSnackBar(((typeof error.error.message != "object") ? error.error.message : "Sorry but have error on login. Try again later please.") || "Sorry but have error on login. Try again later please.");
 				}
 			)
 	}

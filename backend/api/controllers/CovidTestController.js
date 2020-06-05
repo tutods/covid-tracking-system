@@ -86,9 +86,54 @@ const covidTestController = () => {
 			  }
 			: {
 					code: 404,
-					body: 'No data',
+					body: { message: 'No data' },
 			  };
 		res.status(response.code).json(response.body);
+	};
+
+	const getByPatientByParam = async (id) => {
+		const patientId = id;
+
+		const tests = await covidTest.find({
+			patient: id,
+		});
+
+		const patientData = await patient.findOne({
+			_id: patientId,
+		});
+
+		// console.log('aqui', patientId);
+
+		let testsData = tests.map((test) => {
+			return {
+				id: test._id,
+				code: test.code,
+				status: test.status,
+				result: test.result,
+				notes: test.notes,
+				date: test.date,
+				createdAt: test.createdAt,
+				updatedAt: test.updatedAt,
+			};
+		});
+
+		const result = patientData
+			? {
+					_id: patientData._id,
+					name: patientData.name,
+					contacts: patientData.contacts,
+					patientNumber: patientData.patientNumber,
+					birthdayDate: patientData.birthdayDate,
+					status: patientData.status,
+					symptoms: patientData.symptoms,
+					observations: patientData.observations,
+					tests: testsData,
+					createdAt: patientData.createdAt,
+					updatedAt: patientData.updatedAt,
+			  }
+			: {};
+
+		return result;
 	};
 
 	const autoSchedule = async (patientId) => {
@@ -175,7 +220,7 @@ const covidTestController = () => {
 		}
 	};
 
-	return { getOneAndUpdate, getByPatient };
+	return { getOneAndUpdate, getByPatient, getByPatientByParam };
 };
 
 module.exports = covidTestController();
