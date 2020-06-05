@@ -103,7 +103,7 @@ const genericController = (model) => {
 		const id = req.params.id;
 
 		try {
-			const founded = await model.findOne(id);
+			const founded = await model.findOne({_id:id});
 
 			if (founded) {
 				const data = await founded.delete();
