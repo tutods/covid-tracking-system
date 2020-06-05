@@ -89,14 +89,18 @@ const summaryController = () => {
 	};
 
 	const countBySymptoms = async (req, res) => {
-		console.log('AQUIIII');
-
 		const patients = await patient.aggregate([
+			{
+				$unwind: '$symptoms',
+			},
 			{
 				$group: {
 					_id: '$symptoms',
 					count: { $sum: 1 },
 				},
+			},
+			{
+				$sort: { _id: 1 },
 			},
 		]);
 
