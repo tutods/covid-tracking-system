@@ -41,6 +41,22 @@
 		</mat-form-field>
 
 		<mat-form-field>
+			<mat-label>Gender</mat-label>
+			<mat-select matNativeControl formControlName="gender" name="gender">
+				<mat-option value="Male">
+					Male
+				</mat-option>
+				<mat-option value="Female">
+					Female
+				</mat-option>
+			</mat-select>
+			<mat-icon matPrefix>face</mat-icon>
+			<mat-error *ngIf="(patientFormControl.gender.touched) && patientFormControl.gender.errors?.required">
+				Patient gender is required!
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
 			<mat-label>Status</mat-label>
 			<mat-select matNativeControl formControlName="status" name="status">
 				<mat-option *ngFor="let stat of status" [value]="stat">

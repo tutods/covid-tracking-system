@@ -106,9 +106,9 @@ export class EditDialogComponent implements OnInit {
 				Validators.required,
 			]],
 			'observations': [this.currentObservations, []],
+			"gender": [this.patient.gender, [Validators.required]]
 		})
 
-		console.log(this.patientForm.controls.phone.errors)
 	}
 
 	get patientFormControl() {
@@ -137,8 +137,6 @@ export class EditDialogComponent implements OnInit {
 		}
 
 		const formData = {
-
-
 			name: this.patientForm.get('name').value,
 			birthdayDate: new Date(`${formDate.getFullYear()}-${formDate.getMonth() + 1}-${formDate.getDate()}`),
 			patientNumber: this.patientForm.get('patientNumber').value,
@@ -149,9 +147,35 @@ export class EditDialogComponent implements OnInit {
 			},
 			symptoms: this.patientForm.get('symptoms').value,
 			observations: this.observationsToUpdate,
+			gender: this.patientForm.get('gender').value
 		}
 
-		this.patients.getOneAndUpdate(this.patient._id, formData).subscribe();
+		this.patients.getOneAndUpdate(this.patient._id, formData).subscribe((success) => {
+			this.dialogRef.close({
+				status: true,
+				message: "Patient edited with success!"
+			})
+		}, (error) => {
+			let codeMessage = error.error.message.errmsg || error.error.message;
+			console.log(codeMessage)
+			if (codeMessage.includes('E11000')) {
+				if (codeMessage.includes('phone:')) {
+					codeMessage = 'Phone inserted already exists';
+				} else if (codeMessage.includes('patientNumber:')) {
+					codeMessage = 'Patient number inserted already exists';
+				} else {
+					codeMessage = 'Unique error. Please validate all fields!';
+				}
+			} else {
+				codeMessage = error.error.message
+			}
+
+			this.dialogRef.close({
+				status: false,
+				message: codeMessage
+			})
+		});
+		
 		this.dialogRef.close()
 	}
 

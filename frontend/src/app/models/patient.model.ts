@@ -4,6 +4,7 @@ export class Patient {
 	birthdayDate: Date;
 	patientNumber: number;
 	status: string;
+	gender: string;
 	contacts: {
 		phone: number;
 		email: string;

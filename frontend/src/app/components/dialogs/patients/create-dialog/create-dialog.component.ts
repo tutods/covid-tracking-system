@@ -85,6 +85,7 @@ export class CreateDialogComponent implements OnInit {
 				Validators.required,
 			]],
 			'observations': ['', []],
+			"gender": ['', [Validators.required]]
 		})
 	}
 
@@ -121,6 +122,7 @@ export class CreateDialogComponent implements OnInit {
 			},
 			symptoms: this.patientForm.get('symptoms').value,
 			observations: this.observationsToCreate,
+			gender: this.patientForm.get('gender').value
 		}
 		this.patients.create(formData).subscribe((success) => {
 			this.dialogRef.close({
@@ -142,10 +144,10 @@ export class CreateDialogComponent implements OnInit {
 				codeMessage = error.error.message
 			}
 
-				this.dialogRef.close({
-					status: false,
-					message: codeMessage
-				})
+			this.dialogRef.close({
+				status: false,
+				message: codeMessage
+			})
 		});
 	}
 

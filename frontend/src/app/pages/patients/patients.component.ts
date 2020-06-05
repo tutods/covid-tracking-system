@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { CreateDialogComponent } from '../../components/dialogs/patients/create-dialog/create-dialog.component';
 import { DialogToDeleteComponent } from '../../components/dialogs/patients/dialog-to-delete/dialog-to-delete.component';
 import { EditDialogComponent } from '../../components/dialogs/patients/edit-dialog/edit-dialog.component';
@@ -23,7 +23,7 @@ export class PatientsComponent implements OnInit {
 		private http: HttpClient,
 		public dialog: MatDialog,
 		private snackBar: MatSnackBar
-		) { }
+	) { }
 
 	ngOnInit(): void {
 		this.fetchData()
@@ -48,10 +48,14 @@ export class PatientsComponent implements OnInit {
 		});
 
 		dialogRef.afterClosed().subscribe(res => {
-			if (res === "true") {
-				this.fetchData()
+			if (res) {
+				this.openSnackBar(res.message)
+
+				if (res.status == true)
+					this.fetchData()
 			}
 		})
+
 	}
 	openInformationDialog(patient: Patient) {
 
@@ -70,7 +74,10 @@ export class PatientsComponent implements OnInit {
 
 		dialogRef.afterClosed().subscribe((data) => {
 			if (data) {
-				this.fetchData()
+				this.openSnackBar(data.message)
+
+				if (data.status == true)
+					this.fetchData()
 			}
 		})
 	}
