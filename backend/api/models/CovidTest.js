@@ -45,7 +45,7 @@ const covidTestSchema = new Schema(
 		},
 		status: {
 			type: String,
-			enum: ['pending', 'inProgress', 'finished', 'waitingResult'],
+			enum: ['pending', 'in Progress', 'finished', 'waiting Result'],
 			default: 'pending',
 		},
 		result: {
