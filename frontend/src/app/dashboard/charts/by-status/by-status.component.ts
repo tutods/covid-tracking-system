@@ -44,10 +44,7 @@ export class ByStatusComponent implements OnInit {
 
 
 		this.summaryService.getByStatus().subscribe((data) => {
-
-			console.log(data)
-
-			Object.values(data).map(element => {
+			data.map(element => {
 				this.pieChartLabels.push(element.status)
 				this.pieChartData.push(element.count)
 			});

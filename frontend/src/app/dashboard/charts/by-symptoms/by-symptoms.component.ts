@@ -39,7 +39,7 @@ export class BySymptomsComponent implements OnInit {
 		this.summaryService.getBySymptoms().subscribe((data) => {
 
 
-			Object.values(data).map(element => {
+			data.map(element => {
 				this.dataLabels.push(element._id)
 				this.dataValues.push(element.count)
 			});
