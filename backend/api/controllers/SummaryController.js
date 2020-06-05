@@ -128,6 +128,13 @@ const summaryController = () => {
 				},
 			},
 			{
+				$project: {
+					symptom: '$_id',
+					_id: false,
+					count: '$count',
+				},
+			},
+			{
 				$sort: { _id: 1 },
 			},
 		]);

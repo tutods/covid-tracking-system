@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartDataSets } from 'chart.js';
-import { Color, Label } from 'ng2-charts';
+import { ChartDataSets, ChartOptions } from 'chart.js';
+import { Label } from 'ng2-charts';
 import { SummaryService } from '../../../services/summary/summary.service';
 
 @Component({
@@ -11,18 +11,37 @@ import { SummaryService } from '../../../services/summary/summary.service';
 export class ByMonthComponent implements OnInit {
 
 	lineChartData: ChartDataSets[];
-
-
 	lineChartLabels: Label[] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-	lineChartOptions = {
-		responsive: true,
-	};
+	// lineChartOptions = {
+	// 	responsive: true,
+	// };
 
-	lineChartColors: Color[] = [
-		{
-			borderColor: 'black',
-			backgroundColor: 'red',
+	public lineChartOptions: (ChartOptions) = {
+		responsive: true,
+		scales: {
+			yAxes: [{
+				ticks: {
+					beginAtZero: true,
+					stepSize: 1
+				}
+			}],
+			xAxes: [{
+				gridLines: {
+					display: false
+				}
+			}],
+		},
+	}
+
+	lineChartColors = [
+		{ // grey
+			backgroundColor: 'rgba(148,159,177,0.2)',
+			borderColor: 'rgba(148,159,177,1)',
+			pointBackgroundColor: 'rgba(148,159,177,1)',
+			pointBorderColor: '#fff',
+			pointHoverBackgroundColor: '#fff',
+			pointHoverBorderColor: 'rgba(148,159,177,0.8)'
 		},
 	];
 
@@ -30,21 +49,19 @@ export class ByMonthComponent implements OnInit {
 	lineChartType = 'line';
 	lineChart = false;
 
-	constructor(private summaryService: SummaryService) {
 
+	constructor(private summaryService: SummaryService) {
 	}
 
-
 	actualYear = (new Date()).getFullYear();
-	numberOfDays = 12;
-	numberOfTests: number[] = [this.numberOfDays];
+	numberOfMonths = 12;
+	numberOfTests: number[] = [this.numberOfMonths];
 
 	ngOnInit(): void {
 
-
 		this.summaryService.getByDay().subscribe(data => {
 
-			for (var i = 0; i < this.numberOfDays; i++) {
+			for (var i = 0; i < this.numberOfMonths; i++) {
 				this.numberOfTests[i] = 0;
 			}
 
@@ -54,12 +71,9 @@ export class ByMonthComponent implements OnInit {
 				}
 			});
 
-
 			this.lineChartData = [
-				{ data: this.numberOfTests, label: 'Number of tests this month' },
+				{ data: this.numberOfTests, label: 'Number of tests by month' },
 			];
-
-			console.log(data);
 
 
 			this.lineChart = true;

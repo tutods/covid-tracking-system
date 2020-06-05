@@ -1,11 +1,6 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
-import { CovidTestEditDialogComponent } from './components/dialogs/covid-test/covid-test-edit-dialog/covid-test-edit-dialog.component';
-import { CovidTestInformationDialogComponent } from './components/dialogs/covid-test/covid-test-information-dialog/covid-test-information-dialog.component';
-import { CovidTestDeleteDialogComponent } from './components/dialogs/covid-test/covid-test-delete-dialog/covid-test-delete-dialog.component';
-// Material Module Imports
-// HTTP Client
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -53,10 +48,19 @@ import { AppComponent } from './app.component';
 import { ChangeComponent } from './auth/change/change.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ResetComponent } from './auth/reset/reset.component';
+import { ByDayComponent } from './components/charts/by-day/by-day.component';
+import { ByMonthComponent } from './components/charts/by-month/by-month.component';
+import { ByStatusComponent } from './components/charts/by-status/by-status.component';
+import { BySymptomsComponent } from './components/charts/by-symptoms/by-symptoms.component';
+import { PtChartComponent } from './components/charts/pt-chart/pt-chart.component';
+import { WorldChartComponent } from './components/charts/world-chart/world-chart.component';
+import { CovidTestCreateDialogComponent } from './components/dialogs/covid-test/covid-test-create-dialog/covid-test-create-dialog.component';
+import { CovidTestDeleteDialogComponent } from './components/dialogs/covid-test/covid-test-delete-dialog/covid-test-delete-dialog.component';
+import { CovidTestEditDialogComponent } from './components/dialogs/covid-test/covid-test-edit-dialog/covid-test-edit-dialog.component';
+import { CovidTestInformationDialogComponent } from './components/dialogs/covid-test/covid-test-information-dialog/covid-test-information-dialog.component';
 import { DataByEmailComponent } from './components/dialogs/data-by-email/data-by-email.component';
 import { CreateDialogComponent } from './components/dialogs/patients/create-dialog/create-dialog.component';
 import { DialogToDeleteComponent } from './components/dialogs/patients/dialog-to-delete/dialog-to-delete.component';
-import { CovidTestCreateDialogComponent } from './components/dialogs/covid-test/covid-test-create-dialog/covid-test-create-dialog.component';
 import { EditDialogComponent } from './components/dialogs/patients/edit-dialog/edit-dialog.component';
 import { InformationDialogComponent } from './components/dialogs/patients/information-dialog/information-dialog.component';
 import { UpdatePasswordComponent } from './components/dialogs/users/update-password/update-password.component';
@@ -64,10 +68,6 @@ import { UserAddComponent } from './components/dialogs/users/user-add/user-add.c
 import { UserDeleteComponent } from './components/dialogs/users/user-delete/user-delete.component';
 import { UserEditComponent } from './components/dialogs/users/user-edit/user-edit.component';
 import { UserInfoComponent } from './components/dialogs/users/user-info/user-info.component';
-import { ByDayComponent } from './dashboard/charts/by-day/by-day.component';
-import { ByMonthComponent } from './dashboard/charts/by-month/by-month.component';
-import { ByStatusComponent } from './dashboard/charts/by-status/by-status.component';
-import { BySymptomsComponent } from './dashboard/charts/by-symptoms/by-symptoms.component';
 import { CanUseDirective } from './directives/can-use/can-use.directive';
 import { RoleEnableDirective } from './directives/role-enable/role-enable.directive';
 import { ScopeGuard } from './guards/scope/scope.guard';
@@ -77,13 +77,11 @@ import { SidebarComponent } from './layout/default/components/sidebar/sidebar.co
 import { TopbarComponent } from './layout/default/components/topbar/topbar.component';
 import { DefaultComponent } from './layout/default/default.component';
 import { HeaderComponent } from './layout/landing-page/components/header/header.component';
-import { PtChartComponent } from './layout/landing-page/components/pt-chart/pt-chart.component';
-import { WorldChartComponent } from './layout/landing-page/components/world-chart/world-chart.component';
 import { LandingPageComponent } from './layout/landing-page/landing-page.component';
+import { CovidTestComponent } from './pages/covid-test/covid-test/covid-test.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 import { UsersComponent } from './pages/users/users.component';
-import { CovidTestComponent } from './pages/covid-test/covid-test/covid-test.component';
 
 @NgModule({
 	declarations: [
@@ -134,13 +132,13 @@ import { CovidTestComponent } from './pages/covid-test/covid-test/covid-test.com
 		// Directives
 		CanUseDirective,
 		RoleEnableDirective,
-        EditDialogComponent,
-        CreateDialogComponent,
-        CovidTestComponent,
-        CovidTestCreateDialogComponent,
-        CovidTestDeleteDialogComponent,
-        CovidTestInformationDialogComponent,
-        CovidTestEditDialogComponent
+		EditDialogComponent,
+		CreateDialogComponent,
+		CovidTestComponent,
+		CovidTestCreateDialogComponent,
+		CovidTestDeleteDialogComponent,
+		CovidTestInformationDialogComponent,
+		CovidTestEditDialogComponent
 	],
 	imports: [
 		CommonModule,

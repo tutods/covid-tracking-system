@@ -11,7 +11,11 @@ export class DefaultComponent implements OnInit {
 	sideBarOpen = true;
 	user: any
 
-	constructor(public session: SessionService, public router: Router) { }
+	constructor(
+		public session: SessionService,
+		public router: Router
+	) {
+	}
 
 	ngOnInit(): void {
 		if (window.innerWidth <= 1000) {
