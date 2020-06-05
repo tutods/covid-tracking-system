@@ -10,7 +10,7 @@
           </button>
 
           <mat-menu #appMenu="matMenu">
-            <button mat-menu-item>
+            <button mat-menu-item (click)="openInformationDialog(covidTest)">
               <mat-icon>info</mat-icon>
               View
             </button>
@@ -34,7 +34,7 @@
           </p>
           <p>
             <mat-icon>healing</mat-icon>
-            <b>Status: </b> {{covidTest.status}}
+            <b>Status: </b> {{covidTest.status  | titlecase}}
           </p>
           <p>
             <mat-icon>calendar_today</mat-icon>

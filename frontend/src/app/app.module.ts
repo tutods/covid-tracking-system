@@ -1,3 +1,4 @@
+import { CovidTestInformationDialogComponent } from './components/dialogs/covid-test/covid-test-information-dialog/covid-test-information-dialog.component';
 import { CovidTestDeleteDialogComponent } from './components/dialogs/covid-test/covid-test-delete-dialog/covid-test-delete-dialog.component';
 // Material Module Imports
 // HTTP Client
@@ -57,7 +58,8 @@ import { CovidTestComponent } from './pages/covid-test/covid-test/covid-test.com
         CreateDialogComponent,
         CovidTestComponent,
         CovidTestCreateDialogComponent,
-        CovidTestDeleteDialogComponent
+        CovidTestDeleteDialogComponent,
+        CovidTestInformationDialogComponent
 	],
 	imports: [
 		ReactiveFormsModule,

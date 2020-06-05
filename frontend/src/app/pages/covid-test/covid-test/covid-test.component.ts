@@ -1,3 +1,4 @@
+import { CovidTestInformationDialogComponent } from './../../../components/dialogs/covid-test/covid-test-information-dialog/covid-test-information-dialog.component';
 import { CovidTestDeleteDialogComponent } from './../../../components/dialogs/covid-test/covid-test-delete-dialog/covid-test-delete-dialog.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
@@ -45,5 +46,12 @@ export class CovidTestComponent implements OnInit {
                 this.covidTests.getOneAndDelete(covidTest._id).subscribe(() => window.location.reload());
             }
         })
+    }
+    openInformationDialog(covidTest: CovidTest) {
+        const dialogConfig = new MatDialogConfig();
+
+        dialogConfig.data = covidTest;
+
+        this.dialog.open(CovidTestInformationDialogComponent, dialogConfig);
     }
 }
