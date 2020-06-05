@@ -7,9 +7,11 @@ import { ScopeGuard } from './guards/scope/scope.guard';
 import { AuthComponent } from './layout/auth/auth.component';
 import { DefaultComponent } from './layout/default/default.component';
 import { LandingPageComponent } from './layout/landing-page/landing-page.component';
+import { CovidTestComponent } from './pages/covid-test/covid-test/covid-test.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 import { UsersComponent } from './pages/users/users.component';
+
 
 const routes: Routes = [
 	{
@@ -48,11 +50,11 @@ const routes: Routes = [
 			},
 			{
 				path: 'patients',
-				component: PatientsComponent,
-				canActivate: [ScopeGuard],
-				data: {
-					scopes: ['--view-all'],
-				},
+				component: PatientsComponent
+			},
+			{
+				path: 'covid-test',
+				component: CovidTestComponent,
 			},
 			{
 				path: 'users',

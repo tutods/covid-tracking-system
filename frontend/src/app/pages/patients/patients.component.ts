@@ -10,13 +10,13 @@ import { PatientsService } from '../../services/patients/patients.service';
 import { Patient } from './../../models/patient.model';
 
 @Component({
-	selector: 'app-patients',
-	templateUrl: './patients.component.html',
-	styleUrls: ['./patients.component.sass']
+    selector: 'app-patients',
+    templateUrl: './patients.component.html',
+    styleUrls: ['./patients.component.sass']
 })
 export class PatientsComponent implements OnInit {
 
-	result: any
+    result: any;
 
 	constructor(
 		public patients: PatientsService,
@@ -25,9 +25,9 @@ export class PatientsComponent implements OnInit {
 		private snackBar: MatSnackBar
 	) { }
 
-	ngOnInit(): void {
-		this.fetchData()
-	}
+    ngOnInit(): void {
+        this.fetchData();
+    }
 
 	openSnackBar(message: string) {
 		this.snackBar.open(message, 'Close', { duration: 5000 });
@@ -36,10 +36,10 @@ export class PatientsComponent implements OnInit {
 	fetchData() {
 		const getAll = this.patients.getAll()
 
-		return getAll.subscribe((data) => {
-			this.result = data
-		})
-	}
+        return getAll.subscribe((data) => {
+            this.result = data
+        })
+    }
 
 	openDeleteDialog(patient: Patient) {
 		let dialogRef = this.dialog.open(DialogToDeleteComponent, {

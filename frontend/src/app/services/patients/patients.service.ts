@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { share } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { Patient } from '../../models/patient.model';
+import { Patient } from './../../models/patient.model';
 
 const API_URL = environment.apiUrl;
 

@@ -1,6 +1,11 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
+import { CovidTestEditDialogComponent } from './components/dialogs/covid-test/covid-test-edit-dialog/covid-test-edit-dialog.component';
+import { CovidTestInformationDialogComponent } from './components/dialogs/covid-test/covid-test-information-dialog/covid-test-information-dialog.component';
+import { CovidTestDeleteDialogComponent } from './components/dialogs/covid-test/covid-test-delete-dialog/covid-test-delete-dialog.component';
+// Material Module Imports
+// HTTP Client
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -51,6 +56,7 @@ import { ResetComponent } from './auth/reset/reset.component';
 import { DataByEmailComponent } from './components/dialogs/data-by-email/data-by-email.component';
 import { CreateDialogComponent } from './components/dialogs/patients/create-dialog/create-dialog.component';
 import { DialogToDeleteComponent } from './components/dialogs/patients/dialog-to-delete/dialog-to-delete.component';
+import { CovidTestCreateDialogComponent } from './components/dialogs/covid-test/covid-test-create-dialog/covid-test-create-dialog.component';
 import { EditDialogComponent } from './components/dialogs/patients/edit-dialog/edit-dialog.component';
 import { InformationDialogComponent } from './components/dialogs/patients/information-dialog/information-dialog.component';
 import { UpdatePasswordComponent } from './components/dialogs/users/update-password/update-password.component';
@@ -77,6 +83,7 @@ import { LandingPageComponent } from './layout/landing-page/landing-page.compone
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 import { UsersComponent } from './pages/users/users.component';
+import { CovidTestComponent } from './pages/covid-test/covid-test/covid-test.component';
 
 @NgModule({
 	declarations: [
@@ -126,7 +133,14 @@ import { UsersComponent } from './pages/users/users.component';
 
 		// Directives
 		CanUseDirective,
-		RoleEnableDirective
+		RoleEnableDirective,
+        EditDialogComponent,
+        CreateDialogComponent,
+        CovidTestComponent,
+        CovidTestCreateDialogComponent,
+        CovidTestDeleteDialogComponent,
+        CovidTestInformationDialogComponent,
+        CovidTestEditDialogComponent
 	],
 	imports: [
 		CommonModule,
