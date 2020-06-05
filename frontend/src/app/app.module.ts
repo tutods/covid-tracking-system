@@ -72,6 +72,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { ByStatusComponent } from './dashboard/charts/by-status/by-status.component';
 import { ByDayComponent } from './dashboard/charts/by-day/by-day.component';
 import { ByMonthComponent } from './dashboard/charts/by-month/by-month.component';
+import { BySymptomsComponent } from './dashboard/charts/by-symptoms/by-symptoms.component';
 
 @NgModule({
 	declarations: [
@@ -108,7 +109,8 @@ import { ByMonthComponent } from './dashboard/charts/by-month/by-month.component
 		CanUseDirective,
 		ByStatusComponent,
 		ByDayComponent,
-		ByMonthComponent
+		ByMonthComponent,
+		BySymptomsComponent
 	],
 	imports: [
 		CommonModule,

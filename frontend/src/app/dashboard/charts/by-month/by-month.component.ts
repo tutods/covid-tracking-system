@@ -48,8 +48,6 @@ export class ByMonthComponent implements OnInit {
 				this.numberOfTests[i] = 0;
 			}
 
-			console.log(data)
-
 			Object.values(data).map(element => {
 				if ((new Date(element._id)).getFullYear() == this.actualYear) {
 					this.numberOfTests[new Date(element._id).getMonth()] += element.numberOfTests;
