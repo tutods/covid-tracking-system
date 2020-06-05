@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { share } from 'rxjs/operators';
 import { environment } from "../../../environments/environment";
 
@@ -16,16 +15,21 @@ const httpOptions = {
 @Injectable({
 	providedIn: 'root'
 })
-export class RolesService {
+export class SummaryService {
 
 	constructor(public http: HttpClient) { }
 
-	getAll(): Observable<any> {
 
-		const request = this.http
-			.get(`${API_URL}/roles/`, httpOptions)
-			.pipe(share());
-
-		return request
+	getByStatus() {
+		return this.http.get(`${API_URL}/summary/patients/status`, httpOptions).pipe(share());
 	}
+
+	getByDay() {
+		return this.http.get(`${API_URL}/summary/tests/day`, httpOptions).pipe(share());
+	}
+
+	getBySymptoms() {
+		return this.http.get(`${API_URL}/summary/patients/symptoms`, httpOptions).pipe(share());
+	}
+
 }

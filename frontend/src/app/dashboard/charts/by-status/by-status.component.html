@@ -1,0 +1,7 @@
+<div style="background-color: black;">
+	<div class="chart" *ngIf="chartReady">
+		<canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+			[colors]="pieChartColors" [options]="pieChartOptions">
+		</canvas>
+	</div>
+</div>

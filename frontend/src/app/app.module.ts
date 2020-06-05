@@ -72,8 +72,11 @@ import { LandingPageComponent } from './layout/landing-page/landing-page.compone
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 import { UsersComponent } from './pages/users/users.component';
+import { ByStatusComponent } from './dashboard/charts/by-status/by-status.component';
+import { ByDayComponent } from './dashboard/charts/by-day/by-day.component';
+import { ByMonthComponent } from './dashboard/charts/by-month/by-month.component';
+import { BySymptomsComponent } from './dashboard/charts/by-symptoms/by-symptoms.component';
 import { RoleEnableDirective } from './directives/role-enable/role-enable.directive';
-
 
 @NgModule({
 	declarations: [
@@ -110,10 +113,19 @@ import { RoleEnableDirective } from './directives/role-enable/role-enable.direct
 		LoginComponent,
 		ChangeComponent,
 		ResetComponent,
-
+    
+		DialogToDeleteComponent,
+		InformationDialogComponent,
+		EditDialogComponent,
+		CreateDialogComponent,
+		CanUseDirective,
+		ByStatusComponent,
+		ByDayComponent,
+		ByMonthComponent,
+		BySymptomsComponent
+    
 		// Directives
 		CanUseDirective,
-
 		RoleEnableDirective
 	],
 	imports: [

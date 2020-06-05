@@ -94,6 +94,7 @@ const summaryController = () => {
 	};
 
 	const countByStatus = async (req, res) => {
+		console.log('aquiiii');
 		const patients = await patient.aggregate([
 			{
 				$group: {
@@ -116,7 +117,26 @@ const summaryController = () => {
 		res.status(200).json(patients || []);
 	};
 
-	return { countByDay, countByPatient, countByStatus };
+	const countBySymptoms = async (req, res) => {
+		const patients = await patient.aggregate([
+			{
+				$unwind: '$symptoms',
+			},
+			{
+				$group: {
+					_id: '$symptoms',
+					count: { $sum: 1 },
+				},
+			},
+			{
+				$sort: { _id: 1 },
+			},
+		]);
+
+		res.status(200).json(patients || []);
+	};
+
+	return { countByDay, countByPatient, countByStatus, countBySymptoms };
 };
 
 module.exports = summaryController();
