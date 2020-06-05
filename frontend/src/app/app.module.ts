@@ -1,3 +1,4 @@
+import { CovidTestDeleteDialogComponent } from './components/dialogs/covid-test/covid-test-delete-dialog/covid-test-delete-dialog.component';
 // Material Module Imports
 // HTTP Client
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -56,6 +57,7 @@ import { CovidTestComponent } from './pages/covid-test/covid-test/covid-test.com
         CreateDialogComponent,
         CovidTestComponent,
         CovidTestCreateDialogComponent,
+        CovidTestDeleteDialogComponent
 	],
 	imports: [
 		ReactiveFormsModule,

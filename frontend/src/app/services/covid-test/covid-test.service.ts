@@ -8,38 +8,38 @@ import { CovidTest } from "../../models/covid-test.model";
 const API_URL = environment.apiUrl;
 
 const httpOptions = {
-	headers: new HttpHeaders({
-		'Content-Type': 'application/json'
-	}),
-	withCredentials: true,
+    headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+    }),
+    withCredentials: true,
 };
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class CovidTestService {
     constructor(public http: HttpClient) { }
 
-	create(covidTest: CovidTest) {
-		return this.http.post(`${API_URL}/covid-tests/`, covidTest, httpOptions)
-	}
+    create(covidTest: CovidTest) {
+        return this.http.post(`${API_URL}/covid-tests/`, covidTest, httpOptions);
+    }
 
-	getAll() {
-		return this.http.get(`${API_URL}/covid-tests/`, httpOptions)
-	}
+    getAll() {
+        return this.http.get(`${API_URL}/covid-tests/`, httpOptions);
+    }
 
-	getById(id: string) {
-		return this.http.get(`${API_URL}/covid-tests/${id}`, httpOptions)
-	}
+    getById(id: string) {
+        return this.http.get(`${API_URL}/covid-tests/${id}`, httpOptions);
+    }
 
-	getOneAndUpdate(id: string, covidTest: CovidTest) {
-		return this.http.put(`${API_URL}/covid-tests/${id}`, covidTest, httpOptions)
-	}
+    getOneAndUpdate(id: string, covidTest: CovidTest) {
+        return this.http.put(`${API_URL}/covid-tests/${id}`, covidTest, httpOptions);
+    }
 
-	getOneAndDelete(id: string) {
-		return this.http.delete(`${API_URL}/covid-tests/${id}`, httpOptions).pipe(share())
+    getOneAndDelete(id: string) {
+        return this.http.delete(`${API_URL}/covid-tests/${id}`, httpOptions).pipe(share());
     }
     getByPatient(patientId: string) {
-		return this.http.get(`${API_URL}/covid-tests/patient/${patientId}`, httpOptions).pipe(share())
+        return this.http.get(`${API_URL}/covid-tests/patient/${patientId}`, httpOptions).pipe(share());
     }
 }

@@ -1,3 +1,4 @@
+import { CovidTestDeleteDialogComponent } from './../../../components/dialogs/covid-test/covid-test-delete-dialog/covid-test-delete-dialog.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { CovidTestService } from './../../../services/covid-test/covid-test.service';
@@ -14,25 +15,35 @@ export class CovidTestComponent implements OnInit {
 
     result: any;
 
-    constructor(public covidTest: CovidTestService, private http: HttpClient, public dialog: MatDialog) { }
+    constructor(public covidTests: CovidTestService, private http: HttpClient, public dialog: MatDialog) { }
 
     ngOnInit(): void {
-        this.fetchData()
+        this.fetchData();
     }
 
     fetchData() {
-        const getAll = this.covidTest.getAll()
+        const getAll = this.covidTests.getAll()
 
         return getAll.subscribe((data) => {
             this.result = data;
         })
     }
 
-    openCreateDialog(){
-		const dialogRef = this.dialog.open(CovidTestCreateDialogComponent);
+    openCreateDialog() {
+        const dialogRef = this.dialog.open(CovidTestCreateDialogComponent);
 
-		dialogRef.afterClosed().subscribe((data) => {
-			this.fetchData();
-		})
+        dialogRef.afterClosed().subscribe((data) => {
+            this.fetchData();
+        })
+    }
+    openDeleteDialog(covidTest: CovidTest) {
+        let dialogRef = this.dialog.open(CovidTestDeleteDialogComponent);
+
+        dialogRef.afterClosed().subscribe(res => {
+            console.log(covidTest._id)
+            if (res === "true") {
+                this.covidTests.getOneAndDelete(covidTest._id).subscribe(() => window.location.reload());
+            }
+        })
     }
 }
