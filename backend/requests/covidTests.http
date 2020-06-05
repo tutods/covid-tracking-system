@@ -14,7 +14,7 @@ Content-Type: application/json
 }
 
 ### Get By ID
-GET http://localhost:3000/api/covid-tests/5ec0139dd8ebb629d817de80
+GET http://localhost:3000/api/covid-tests/5ed923241735153ad07bc4b6
 
 ### Get By Patient
 GET http://localhost:3000/api/covid-tests/patient/5ec0058f3035fa0564c62392
@@ -35,4 +35,4 @@ Content-Type: application/json
 }
 
 ### Get one and delete
-DELETE http://localhost:3000/api/covid-tests/5ebff8c28a6fa81e94bf6c5c
+DELETE http://localhost:3000/api/covid-tests/5ed923241735153ad07bc4b6
