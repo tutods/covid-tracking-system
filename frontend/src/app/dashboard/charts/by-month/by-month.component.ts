@@ -49,16 +49,17 @@ export class ByMonthComponent implements OnInit {
 			}
 
 			Object.values(data).map(element => {
-				if ((new Date(element._id)).getFullYear() == this.actualYear) {
-					this.numberOfTests[new Date(element._id).getMonth()] += element.numberOfTests;
+				if ((new Date(element.date)).getFullYear() == this.actualYear) {
+					this.numberOfTests[new Date(element.date).getMonth()] += element.numberOfTests;
 				}
 			});
 
 
 			this.lineChartData = [
-				{ data: this.numberOfTests, label: 'Number of tests this year' },
+				{ data: this.numberOfTests, label: 'Number of tests this month' },
 			];
 
+			console.log(data);
 
 
 			this.lineChart = true;

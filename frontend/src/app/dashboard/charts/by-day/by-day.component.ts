@@ -56,14 +56,14 @@ export class ByDayComponent implements OnInit {
 			}
 
 			Object.values(data).map(element => {
-				if ((new Date(element._id).getMonth() + 1) == this.actualMonth && (new Date(element._id)).getFullYear() == this.actualYear) {
-					this.numberOfTests[(new Date(element._id).getDate()) - 1] += element.numberOfTests;
+				if ((new Date(element.date).getMonth() + 1) == this.actualMonth && (new Date(element.date)).getFullYear() == this.actualYear) {
+					this.numberOfTests[(new Date(element.date).getDate()) - 1] += element.numberOfTests;
 				}
 			});
 
 
 			this.lineChartData = [
-				{ data: this.numberOfTests, label: 'Number of tests this month' },
+				{ data: this.numberOfTests, label: 'Number of tests this day' },
 			];
 
 			if (this.numberOfDays == 28) {
