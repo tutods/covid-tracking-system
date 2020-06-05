@@ -53,7 +53,7 @@ const routes: Routes = [
 				component: PatientsComponent
 			},
 			{
-				path: 'covid-test',
+				path: 'covid-tests',
 				component: CovidTestComponent,
 			},
 			{
