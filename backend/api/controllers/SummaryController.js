@@ -94,7 +94,6 @@ const summaryController = () => {
 	};
 
 	const countByStatus = async (req, res) => {
-		console.log('aquiiii');
 		const patients = await patient.aggregate([
 			{
 				$group: {
