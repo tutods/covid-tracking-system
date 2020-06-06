@@ -99,6 +99,10 @@
             <mat-icon>calendar_today</mat-icon>
             <b>Date: </b> {{covidTest.date.split('T')[0]}}
           </p>
+          <p *ngIf="covidTest.result">
+            <mat-icon>info</mat-icon>
+            <b>Result: </b> {{covidTest.result}}
+          </p>
         </mat-card-content>
       </mat-card>
     </div>
