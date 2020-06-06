@@ -1,6 +1,65 @@
+<div id="header">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon>folder_shared</mat-icon>
+        COVID Tests
+      </mat-card-title>
+    </mat-card-header>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Search
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <!--   <mat-form-field>
+        <mat-label>First name</mat-label>
+        <input matInput>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Age</mat-label>
+        <input matInput type="number" min="1">
+      </mat-form-field> -->
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Sort
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-form-field>
+        <mat-label>Field</mat-label>
+        <mat-select [(ngModel)]="selectedField" (selectionChange)="selectedFieldMethod()">
+          <mat-option *ngFor="let field of fields" [value]="field.value">
+            {{field.view}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Order</mat-label>
+        <mat-select [(ngModel)]="selectedOrder" (selectionChange)="selectedOrderMethod()">
+          <mat-option *ngFor="let order of orders" [value]="order.value">
+            {{order.view}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-expansion-panel>
+
+    <mat-card-actions>
+      <button mat-button color="primary" (click)="openCreateDialog()">
+        <mat-icon>add</mat-icon>
+        Adicionar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
 <div class="container">
   <div fxLayout="row wrap" fxLayoutWrap>
-    <div fxFlex="0 1 25%" *ngFor="let covidTest of result" class="card-item">
+    <div fxFlex="0 1 25%" fxLayoutAlign="center" *ngFor="let covidTest of result" class="card-item">
       <mat-card>
         <mat-card-actions>
 
@@ -41,16 +100,6 @@
             <b>Date: </b> {{covidTest.date.split('T')[0]}}
           </p>
         </mat-card-content>
-      </mat-card>
-    </div>
-    <div fxFlex="0 1 25%" class="card-item" (click)="openCreateDialog()">
-      <mat-card id="add-card">
-        <mat-card-header>
-          <div class="add-btn"></div>
-          <mat-card-title>
-            Schedule Covid Test
-          </mat-card-title>
-        </mat-card-header>
       </mat-card>
     </div>
   </div>

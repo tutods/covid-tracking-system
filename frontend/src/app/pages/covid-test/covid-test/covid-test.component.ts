@@ -1,3 +1,4 @@
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CovidTestEditDialogComponent } from './../../../components/dialogs/covid-test/covid-test-edit-dialog/covid-test-edit-dialog.component';
 import { CovidTestInformationDialogComponent } from './../../../components/dialogs/covid-test/covid-test-information-dialog/covid-test-information-dialog.component';
 import { CovidTestDeleteDialogComponent } from './../../../components/dialogs/covid-test/covid-test-delete-dialog/covid-test-delete-dialog.component';
@@ -14,8 +15,20 @@ import { CovidTestCreateDialogComponent } from '../../../components/dialogs/covi
     styleUrls: ['./covid-test.component.sass']
 })
 export class CovidTestComponent implements OnInit {
-
     result: any;
+
+    fields: Object[] = [
+        { value: 'date', view: 'Date' },
+        { value: 'status', view: 'Status' },
+        { value: 'result', view: 'Result' }
+    ];
+
+    orders: Object[] = [
+        { value: 'asc', view: 'Ascendent' },
+        { value: 'desc', view: 'Descendent' },
+    ];
+    selectedField: string;
+    selectedOrder: string;
 
     constructor(public covidTests: CovidTestService, private http: HttpClient, public dialog: MatDialog) { }
 
@@ -30,19 +43,37 @@ export class CovidTestComponent implements OnInit {
             this.result = data;
         })
     }
+    fetchOrderedData() {
+        const getAllWithSort = this.covidTests.getAllWithSort(this.selectedField, this.selectedOrder);
+
+        return getAllWithSort.subscribe((data) => {
+            this.result = data;
+        });
+    }
+
+    selectedFieldMethod() {
+        if (this.selectedOrder) {
+            this.fetchOrderedData();
+        }
+    }
+
+    selectedOrderMethod() {
+        if (this.selectedField) {
+            this.fetchOrderedData();
+        }
+    }
 
     openCreateDialog() {
         const dialogRef = this.dialog.open(CovidTestCreateDialogComponent);
 
         dialogRef.afterClosed().subscribe((data) => {
             this.fetchData();
-        })
+        });
     }
     openDeleteDialog(covidTest: CovidTest) {
         let dialogRef = this.dialog.open(CovidTestDeleteDialogComponent);
 
         dialogRef.afterClosed().subscribe(res => {
-            console.log(covidTest._id)
             if (res === "true") {
                 this.covidTests.getOneAndDelete(covidTest._id).subscribe(() => window.location.reload());
             }
@@ -63,7 +94,6 @@ export class CovidTestComponent implements OnInit {
         let dialogRef = this.dialog.open(CovidTestEditDialogComponent, dialogConfig);
 
         dialogRef.afterClosed().subscribe((data) => {
-            console.log(data);
             this.fetchData();
         })
     }

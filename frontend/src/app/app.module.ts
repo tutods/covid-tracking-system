@@ -9,7 +9,7 @@ import { CovidTestDeleteDialogComponent } from './components/dialogs/covid-test/
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
@@ -143,7 +143,8 @@ import { CovidTestComponent } from './pages/covid-test/covid-test/covid-test.com
         CovidTestEditDialogComponent
 	],
 	imports: [
-		CommonModule,
+        CommonModule,
+        FormsModule,
 		ReactiveFormsModule,
 		BrowserModule,
 		MatIconModule,
