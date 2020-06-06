@@ -1,5 +1,5 @@
-<div *ngIf="lineChart">
-	<canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
-		[colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType">
+<div *ngIf="chart">
+	<canvas baseChart [datasets]="chartData" [labels]="chartLabels" [options]="chartOptions" [colors]="chartColors"
+		[legend]="chartLegend" [chartType]="chartType" height="100px">
 	</canvas>
 </div>

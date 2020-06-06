@@ -12,7 +12,6 @@ export class BySymptomsComponent implements OnInit {
 	// Chart Options
 	public chartOptions: ChartOptions = {
 		legend: {
-			// display: false,
 			labels: {
 				fontColor: window.matchMedia('(prefers-color-scheme: dark)').matches
 					? 'white'
@@ -59,10 +58,12 @@ export class BySymptomsComponent implements OnInit {
 	public chartType: ChartType = 'bar';
 
 	// Chart Colors
-	// public chartColors = {
-	// 		borderColor: ['#146eb4', '#ff9933', '#146eb4', '#49c0b6'],
-	// 		backgroundColor: ['#146eb4', '#ff9933', '#146eb4', '#49c0b6'],
-	// 	}
+	public chartColors = [{
+		pointBackgroundColor: 'rgba(148,159,177,1)',
+		pointBorderColor: '#fff',
+		pointHoverBackgroundColor: '#fff',
+		pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+	}]
 
 	// Chart Data
 	public chartData;

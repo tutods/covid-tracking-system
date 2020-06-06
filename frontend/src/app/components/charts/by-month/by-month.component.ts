@@ -10,73 +10,98 @@ import { SummaryService } from '../../../services/summary/summary.service';
 })
 export class ByMonthComponent implements OnInit {
 
-	lineChartData: ChartDataSets[];
-	lineChartLabels: Label[] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+	public chartData: ChartDataSets[];
+	public chartLabels: Label[] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-	// lineChartOptions = {
-	// 	responsive: true,
-	// };
-
-	public lineChartOptions: (ChartOptions) = {
+	public chartOptions: ChartOptions = {
+		legend: {
+			display: false,
+			labels: {
+				fontColor: window.matchMedia('(prefers-color-scheme: dark)').matches
+					? 'white'
+					: 'black',
+			},
+		},
 		responsive: true,
 		scales: {
-			yAxes: [{
-				ticks: {
-					beginAtZero: true,
-					stepSize: 1
-				}
-			}],
-			xAxes: [{
-				gridLines: {
-					display: false
-				}
-			}],
+			yAxes: [
+				{
+					ticks: {
+						beginAtZero: true,
+						stepSize: 1,
+						fontColor: window.matchMedia('(prefers-color-scheme: dark)').matches
+							? 'white'
+							: 'black',
+					},
+					gridLines: {},
+				},
+			],
+			xAxes: [
+				{
+					ticks: {
+						display: true,
+						fontColor: window.matchMedia('(prefers-color-scheme: dark)').matches
+							? 'white'
+							: 'black',
+					},
+					gridLines: {
+						display: false,
+						color: window.matchMedia('(prefers-color-scheme: dark)').matches
+							? 'white'
+							: 'black',
+					},
+				},
+			],
 		},
-	}
+	};
 
-	lineChartColors = [
-		{ // grey
-			backgroundColor: 'rgba(148,159,177,0.2)',
-			borderColor: 'rgba(148,159,177,1)',
+	public chartColors = [
+		{
+			backgroundColor: '#56a0d3',
+			borderColor: '#56a0d3',
 			pointBackgroundColor: 'rgba(148,159,177,1)',
-			pointBorderColor: '#fff',
-			pointHoverBackgroundColor: '#fff',
+			pointBorderColor: window.matchMedia('(prefers-color-scheme: dark)').matches
+				? 'white'
+				: 'black',
+			pointHoverBackgroundColor: window.matchMedia('(prefers-color-scheme: dark)').matches
+				? 'white'
+				: 'black',
 			pointHoverBorderColor: 'rgba(148,159,177,0.8)'
 		},
 	];
 
-	lineChartLegend = true;
-	lineChartType = 'line';
-	lineChart = false;
+	public chartLegend = true;
+	public chartType = 'line';
+	public chart = false;
 
 
 	constructor(private summaryService: SummaryService) {
 	}
 
-	actualYear = (new Date()).getFullYear();
-	numberOfMonths = 12;
-	numberOfTests: number[] = [this.numberOfMonths];
-
 	ngOnInit(): void {
+
+		const actualYear = new Date().getFullYear()
+		const numberOfMonths = 12;
+		const numberOfTests: number[] = [numberOfMonths];
 
 		this.summaryService.getByDay().subscribe(data => {
 
-			for (var i = 0; i < this.numberOfMonths; i++) {
-				this.numberOfTests[i] = 0;
+			for (var i = 0; i < numberOfMonths; i++) {
+				numberOfTests[i] = 0;
 			}
 
 			data.map(element => {
-				if ((new Date(element.date)).getFullYear() == this.actualYear) {
-					this.numberOfTests[new Date(element.date).getMonth()] += element.numberOfTests;
+				if ((new Date(element.date)).getFullYear() == actualYear) {
+					numberOfTests[new Date(element.date).getMonth()] += element.numberOfTests;
 				}
 			});
 
-			this.lineChartData = [
-				{ data: this.numberOfTests, label: 'Number of tests by month' },
+			this.chartData = [
+				{ data: numberOfTests, label: 'Number of tests by month' },
 			];
 
 
-			this.lineChart = true;
+			this.chart = true;
 
 		})
 	}

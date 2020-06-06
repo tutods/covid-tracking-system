@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartDataSets } from 'chart.js';
-import { Color } from 'ng2-charts';
+import { ChartDataSets, ChartOptions } from 'chart.js';
 import { SummaryService } from '../../../services/summary/summary.service';
 
 
@@ -13,24 +12,78 @@ import { SummaryService } from '../../../services/summary/summary.service';
 })
 export class ByDayComponent implements OnInit {
 
-	lineChartData: ChartDataSets[];
+	chartData: ChartDataSets[];
+	chartLabels: number[] = [];
 
-	lineChartLabels: number[] = [];
-
-	lineChartOptions = {
+	public chartOptions: ChartOptions = {
+		tooltips: {
+			enabled: true,
+			mode: 'single',
+			callbacks: {
+				title: function (tooltipItem, data) {
+					return `Day ${data.labels[tooltipItem[0].index]}`;
+				}
+			}
+		},
+		legend: {
+			display: false,
+			labels: {
+				fontColor: window.matchMedia('(prefers-color-scheme: dark)').matches
+					? 'white'
+					: 'black',
+			},
+		},
 		responsive: true,
+		scales: {
+			yAxes: [
+				{
+					ticks: {
+						beginAtZero: true,
+						stepSize: 1,
+						fontColor: window.matchMedia('(prefers-color-scheme: dark)').matches
+							? 'white'
+							: 'black',
+					},
+					gridLines: {},
+				},
+			],
+			xAxes: [
+				{
+					ticks: {
+						display: true,
+						fontColor: window.matchMedia('(prefers-color-scheme: dark)').matches
+							? 'white'
+							: 'black',
+					},
+					gridLines: {
+						display: false,
+						color: window.matchMedia('(prefers-color-scheme: dark)').matches
+							? 'white'
+							: 'black',
+					},
+				},
+			],
+		},
 	};
 
-	lineChartColors: Color[] = [
+	public chartColors = [
 		{
-			borderColor: 'black',
-			backgroundColor: 'red',
+			backgroundColor: '#56a0d3',
+			borderColor: '#56a0d3',
+			pointBackgroundColor: '#56a0d3',
+			pointBorderColor: window.matchMedia('(prefers-color-scheme: dark)').matches
+				? 'white'
+				: 'black',
+			pointHoverBackgroundColor: window.matchMedia('(prefers-color-scheme: dark)').matches
+				? 'white'
+				: 'black',
+			pointHoverBorderColor: '#56a0d3'
 		},
 	];
 
-	lineChartLegend = true;
-	lineChartType = 'line';
-	lineChart = false;
+	public chartLegend = true;
+	public chartType = 'line';
+	public chart = false;
 
 	constructor(private summaryService: SummaryService) { }
 
@@ -38,37 +91,34 @@ export class ByDayComponent implements OnInit {
 		return new Date(year, month, 0).getDate();
 	}
 
-	actualMonth = (new Date().getMonth() + 1);
-	actualYear = (new Date()).getFullYear();
-	numberOfDays = this.daysInMonth(this.actualMonth, this.actualYear);
-	numberOfTests: number[] = [this.numberOfDays];
 
 	ngOnInit(): void {
-		this.summaryService.getByDay().subscribe(data => {
+		const actualMonth = (new Date().getMonth() + 1);
+		const actualYear = (new Date()).getFullYear();
+		const numberOfDays = this.daysInMonth(actualMonth, actualYear);
+		const numberOfTests: number[] = [numberOfDays];
 
-			for (var i = 0; i < this.numberOfDays; i++) {
-				this.numberOfTests[i] = 0;
+		this.summaryService.getByDay().subscribe(data => {
+			for (var i = 0; i < numberOfDays; i++) {
+				numberOfTests[i] = 0;
 			}
 
 			data.map((element) => {
-				if ((new Date(element.date).getMonth() + 1) == this.actualMonth && (new Date(element.date)).getFullYear() == this.actualYear) {
-					this.numberOfTests[(new Date(element.date).getDate()) - 1] += element.numberOfTests
+				if ((new Date(element.date).getMonth() + 1) == actualMonth && (new Date(element.date)).getFullYear() == actualYear) {
+					numberOfTests[(new Date(element.date).getDate()) - 1] += element.numberOfTests
 				}
 			})
 
-			this.lineChartData = [
-				{ data: this.numberOfTests, label: 'Number of tests by day' },
+			this.chartData = [
+				{ data: numberOfTests, label: 'Number of COVID Tests' },
 			];
 
-			for (i = 1; i <= this.numberOfDays; i++) {
-				this.lineChartLabels.push(i)
+			for (i = 1; i <= numberOfDays; i++) {
+				this.chartLabels.push(i)
 			}
 
-			this.lineChart = true;
-
+			this.chart = true;
 		})
 	}
-
-
 
 }
