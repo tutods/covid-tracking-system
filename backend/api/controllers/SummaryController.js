@@ -116,6 +116,29 @@ const summaryController = () => {
 		res.status(200).json(patients || []);
 	};
 
+	const countByGender = async (req, res) => {
+		const patients = await patient.aggregate([
+			{
+				$group: {
+					_id: '$gender',
+					count: { $sum: 1 },
+				},
+			},
+			{
+				$project: {
+					status: '$_id',
+					_id: false,
+					count: '$count',
+				},
+			},
+			{
+				$sort: { count: 1 },
+			},
+		]);
+
+		res.status(200).json(patients || []);
+	};
+
 	const countBySymptoms = async (req, res) => {
 		const patients = await patient.aggregate([
 			{
@@ -142,7 +165,7 @@ const summaryController = () => {
 		res.status(200).json(patients || []);
 	};
 
-	return { countByDay, countByPatient, countByStatus, countBySymptoms };
+	return { countByDay, countByPatient, countByStatus, countBySymptoms , countByGender };
 };
 
 module.exports = summaryController();
