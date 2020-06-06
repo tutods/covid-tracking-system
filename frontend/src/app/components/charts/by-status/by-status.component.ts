@@ -75,7 +75,7 @@ export class ByStatusComponent implements OnInit {
 				dataValues.push(element.count)
 			});
 
-			this.chartData = [{ data: dataValues, label: 'Number of each status', borderColor: (window.matchMedia('(prefers-color-scheme: dark)').matches) ? "white" : "black" }];
+			this.chartData = [{ data: dataValues, label: 'Number of status', borderColor: (window.matchMedia('(prefers-color-scheme: dark)').matches) ? "white" : "black" }];
 			this.chartLabels = dataLabels;
 
 			this.chartReady = true;
