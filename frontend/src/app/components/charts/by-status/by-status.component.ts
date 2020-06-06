@@ -13,6 +13,7 @@ export class ByStatusComponent implements OnInit {
 	// Chart Options
 	public chartOptions: (ChartOptions) = {
 		legend: {
+			display: false,
 			labels: {
 				fontColor: (window.matchMedia('(prefers-color-scheme: dark)').matches) ? "white" : "black"
 			}
