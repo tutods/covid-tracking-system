@@ -1,4 +1,3 @@
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CovidTestEditDialogComponent } from './../../../components/dialogs/covid-test/covid-test-edit-dialog/covid-test-edit-dialog.component';
 import { CovidTestInformationDialogComponent } from './../../../components/dialogs/covid-test/covid-test-information-dialog/covid-test-information-dialog.component';
 import { CovidTestDeleteDialogComponent } from './../../../components/dialogs/covid-test/covid-test-delete-dialog/covid-test-delete-dialog.component';
@@ -41,8 +40,9 @@ export class CovidTestComponent implements OnInit {
 
         return getAll.subscribe((data) => {
             this.result = data;
-        })
+        });
     }
+
     fetchOrderedData() {
         const getAllWithSort = this.covidTests.getAllWithSort(this.selectedField, this.selectedOrder);
 

@@ -28,7 +28,7 @@ export class CovidTestService {
         return this.http.get(`${API_URL}/covid-tests/`, httpOptions);
     }
 
-    getAllWithSort(field: string, order:string) {
+    getAllWithSort(field: string, order: string) {
         return this.http.get(`${API_URL}/covid-tests/?sort=${field},${order}`, httpOptions);
     }
 
