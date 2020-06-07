@@ -15,8 +15,8 @@ import { UiService } from './../../services/ui/ui.service';
 	styleUrls: ['./covid-test.component.sass']
 })
 export class CovidTestComponent implements OnInit {
-
-	result: any;
+	public dialogSize: string = (window.innerWidth >= 1200) ? '25vw' : (window.innerWidth >= 800) ? '50vw' : '85vw'
+	public result: any;
 
 	constructor(
 		public covidTests: CovidTestService,

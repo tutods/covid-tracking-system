@@ -15,8 +15,9 @@ import { UsersService } from './../../services/users-service/users.service';
 	styleUrls: ['./users.component.sass'],
 })
 export class UsersComponent implements OnInit {
-	users;
-	loggedUserEmail: string;
+	public dialogSize: string = (window.innerWidth >= 1200) ? '25vw' : (window.innerWidth >= 800) ? '50vw' : '85vw'
+	public users;
+	public loggedUserEmail: string;
 
 	constructor(
 		private usersService: UsersService,
@@ -42,7 +43,7 @@ export class UsersComponent implements OnInit {
 	openEditDialog(user: User) {
 		let dialogRef = this.dialog.open(UserEditComponent, {
 			data: user,
-			width: '25vw',
+			width: this.dialogSize,
 		});
 
 		dialogRef.afterClosed().subscribe((result) => {
@@ -60,7 +61,7 @@ export class UsersComponent implements OnInit {
 	openDeleteDialog(user: User) {
 		let dialogRef = this.dialog.open(UserDeleteComponent, {
 			data: user,
-			width: '25vw',
+			width: this.dialogSize,
 		});
 
 		dialogRef.afterClosed().subscribe((result) => {
@@ -78,13 +79,13 @@ export class UsersComponent implements OnInit {
 	openInfoDialog(user: User) {
 		this.dialog.open(UserInfoComponent, {
 			data: user,
-			width: '25vw',
+			width: this.dialogSize,
 		});
 	}
 
 	openAddDialog() {
 		let dialogRef = this.dialog.open(UserAddComponent, {
-			width: '25vw',
+			width: this.dialogSize,
 		});
 
 		dialogRef.afterClosed().subscribe((result) => {

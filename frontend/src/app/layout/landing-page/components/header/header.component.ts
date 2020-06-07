@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataByEmailComponent } from '../../../../components/dialogs/data-by-email/data-by-email.component';
+import { UiService } from './../../../../services/ui/ui.service';
 
 @Component({
 	selector: 'app-header',
@@ -9,21 +9,23 @@ import { DataByEmailComponent } from '../../../../components/dialogs/data-by-ema
 	styleUrls: ['./header.component.sass'],
 })
 export class HeaderComponent implements OnInit {
-	constructor(public dialog: MatDialog, private snackBar: MatSnackBar) { }
+	public dialogSize: string = (window.innerWidth >= 1200) ? '25vw' : (window.innerWidth >= 800) ? '50vw' : '85vw'
+
+	constructor(
+		public dialog: MatDialog,
+		private uiService: UiService
+	) { }
 
 	ngOnInit(): void { }
 
-	openSnackBar(message: string) {
-		this.snackBar.open(message, 'Close', { duration: 5000 });
-	}
 	openPatientDataForm() {
 		let dialogRef = this.dialog.open(DataByEmailComponent, {
-			width: '25vw',
+			width: this.dialogSize,
 		});
 
 		dialogRef.afterClosed().subscribe((response) => {
 			if (response) {
-				this.openSnackBar(response.message);
+				this.uiService.showSnackBar(response.message);
 			}
 		});
 	}
