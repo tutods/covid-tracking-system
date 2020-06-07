@@ -19,12 +19,20 @@ export class DefaultComponent implements OnInit {
 		window.matchMedia('(max-width: 800px)').addEventListener('change', e => {
 			window.location.reload()
 		});
+
 	}
 
 	ngOnInit(): void {
 		if (window.innerWidth <= 1000) {
 			this.sideBarOpen = !this.sideBarOpen
 		}
+
+		// Close sidebar when change router
+		this.router.events.subscribe((router) => {
+			if (window.innerWidth <= 1000) {
+				this.sideBarOpen = false;
+			}
+		})
 
 		const me = this.session.me()
 
