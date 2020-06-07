@@ -81,9 +81,7 @@ export class PatientAddComponent implements OnInit {
 				Validators.email,
 				Validators.pattern(this.emailPattern)
 			]],
-			'symptoms': ['', [
-				Validators.required,
-			]],
+			'symptoms': ['', []],
 			'observations': ['', []],
 			"gender": ['', [Validators.required]]
 		})
@@ -120,7 +118,7 @@ export class PatientAddComponent implements OnInit {
 				phone: this.patientForm.get('phone').value,
 				email: this.patientForm.get('email').value,
 			},
-			symptoms: this.patientForm.get('symptoms').value,
+			symptoms: this.patientForm.get('symptoms').value || undefined,
 			observations: this.observationsToCreate,
 			gender: this.patientForm.get('gender').value
 		}
@@ -131,6 +129,8 @@ export class PatientAddComponent implements OnInit {
 			})
 		}, (error) => {
 			let codeMessage = error.error.message.errmsg || error.error.message;
+
+			console.log(codeMessage, error)
 
 			if (codeMessage.includes('E11000')) {
 				if (codeMessage.includes('phone:')) {
@@ -154,4 +154,4 @@ export class PatientAddComponent implements OnInit {
 	onClose(): void {
 		this.dialogRef.close();
 	}
-} 
+}

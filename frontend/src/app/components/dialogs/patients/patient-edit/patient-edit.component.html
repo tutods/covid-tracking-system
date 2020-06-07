@@ -87,17 +87,20 @@
 		</mat-form-field>
 
 		<mat-form-field>
-			<mat-label>Sintomas</mat-label>
+			<mat-label>Symptoms</mat-label>
 			<mat-select matNativeControl formControlName="symptoms" name="symptoms" multiple>
 				<mat-option *ngFor="let symptom of symptoms" [value]="symptom">
 					{{symptom | titlecase}}
 				</mat-option>
 			</mat-select>
+			<mat-error [hidden]="(patientFormControl.symptoms.touched) && patientFormControl.symptoms.errors?.required">
+				Symptoms is required!
+			</mat-error>
 			<mat-icon matPrefix>local_hospital</mat-icon>
 		</mat-form-field>
 
 		<mat-form-field>
-			<mat-label>Observações</mat-label>
+			<mat-label>Observations</mat-label>
 			<mat-select matNativeControl formControlName="observations" name="observations" multiple>
 				<mat-option *ngFor="let observation of allObservationsArr" [value]="observation.value">
 					{{observation.label}}

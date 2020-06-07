@@ -102,9 +102,7 @@ export class PatientEditComponent implements OnInit {
 				Validators.email,
 				Validators.pattern(this.emailPattern)
 			]],
-			'symptoms': [this.patient.symptoms, [
-				Validators.required,
-			]],
+			'symptoms': [this.patient.symptoms, []],
 			'observations': [this.currentObservations, []],
 			"gender": [this.patient.gender, [Validators.required]]
 		})

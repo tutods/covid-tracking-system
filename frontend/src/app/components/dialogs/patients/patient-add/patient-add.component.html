@@ -95,7 +95,7 @@
 		</mat-form-field>
 
 		<mat-form-field>
-			<mat-label>Sintomas</mat-label>
+			<mat-label>Symptoms</mat-label>
 			<mat-select matNativeControl formControlName="symptoms" name="symptoms" multiple>
 				<mat-option *ngFor="let symptom of symptoms" [value]="symptom">
 					{{symptom | titlecase}}
@@ -108,7 +108,7 @@
 		</mat-form-field>
 
 		<mat-form-field>
-			<mat-label>Observações</mat-label>
+			<mat-label>Observations</mat-label>
 			<mat-select matNativeControl formControlName="observations" name="observations" multiple>
 				<mat-option *ngFor="let observation of observations" [value]="observation.value">
 					{{observation.label}}
