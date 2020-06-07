@@ -97,9 +97,8 @@ export class ByMonthComponent implements OnInit {
 			});
 
 			this.chartData = [
-				{ data: numberOfTests, label: 'Number of tests by month' },
+				{ data: numberOfTests, label: 'Number of COVID Tests by Month' },
 			];
-
 
 			this.chart = true;
 

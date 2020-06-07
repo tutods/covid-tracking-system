@@ -11,49 +11,60 @@ import { SummaryService } from '../../../services/summary/summary.service';
 })
 export class ByStatusComponent implements OnInit {
 	// Chart Options
-	public chartOptions: (ChartOptions) = {
+	public chartOptions: ChartOptions = {
 		legend: {
-			display: false,
 			labels: {
-				fontColor: (window.matchMedia('(prefers-color-scheme: dark)').matches) ? "white" : "black"
-			}
+				fontColor: window.matchMedia('(prefers-color-scheme: dark)').matches
+					? 'white'
+					: 'black',
+			},
 		},
 		responsive: true,
 		scales: {
-			yAxes: [{
-				ticks: {
-					beginAtZero: true,
-					stepSize: 1,
-					fontColor: (window.matchMedia('(prefers-color-scheme: dark)').matches) ? "white" : "black",
+			yAxes: [
+				{
+					ticks: {
+						beginAtZero: true,
+						stepSize: 1,
+						fontColor: window.matchMedia('(prefers-color-scheme: dark)').matches
+							? 'white'
+							: 'black',
+					},
+					gridLines: {},
 				},
-				gridLines: {
-				}
-			}],
-			xAxes: [{
-				ticks: {
-					fontColor: (window.matchMedia('(prefers-color-scheme: dark)').matches) ? "white" : "black",
+			],
+			xAxes: [
+				{
+					ticks: {
+						display: false, //this will remove only the label
+						fontColor: window.matchMedia('(prefers-color-scheme: dark)').matches
+							? 'white'
+							: 'black',
+					},
+					gridLines: {
+						display: false,
+						color: window.matchMedia('(prefers-color-scheme: dark)').matches
+							? 'white'
+							: 'black',
+					},
 				},
-				gridLines: {
-					display: false,
-					color: (window.matchMedia('(prefers-color-scheme: dark)').matches) ? "white" : "black",
-				},
-			}],
+			],
 		},
-	}
+	};
 
 	// Chart Labels
-	public chartLabels: Label[];
+	public chartLabels: Label[] = ["Status"];
 
 	// Chart Type
 	public chartType: ChartType = "bar";
 
 	// Chart Colors
-	public chartColors = [
-		{
-			borderColor: '#146eb4',
-			backgroundColor: '#0099cc',
-		}
-	];
+	public chartColors = [{
+		pointBackgroundColor: 'rgba(148,159,177,1)',
+		pointBorderColor: '#fff',
+		pointHoverBackgroundColor: '#fff',
+		pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+	}]
 
 	// Chart Data
 	public chartData;
@@ -67,32 +78,34 @@ export class ByStatusComponent implements OnInit {
 
 		this.summaryService.getByStatus().subscribe((data) => {
 
-			let dataLabels = []
-			let dataValues = []
+			const backgroundColor = [
+				'#56a0d3',
+				'#0a8ea0',
+				'#3369e7',
+				'#146eb4',
+				'#49c0b6',
+				'#ff9933',
+				'#ee6123',
+				'#075aaa',
+			];
+			let dataArray = [];
+			data.map((element, index) => {
 
-			data.map(element => {
-				dataLabels.push(element.status)
-				dataValues.push(element.count)
+				element.status =
+					element.status.charAt(0).toUpperCase() + element.status.slice(1);
+
+				dataArray.push({
+					label: element.status,
+					data: [element.count],
+					backgroundColor: backgroundColor[index || 0],
+					hoverBackgroundColor: backgroundColor[index || 0],
+				});
 			});
 
-			this.chartData = [{ data: dataValues, label: 'Number of status', borderColor: (window.matchMedia('(prefers-color-scheme: dark)').matches) ? "white" : "black" }];
-			this.chartLabels = dataLabels;
-
+			this.chartData = dataArray;
 			this.chartReady = true;
 
 		})
 	}
-
-	// ngOnInit(): void {
-	// 	this.summaryService.getByStatus().subscribe((data) => {
-	// 		console.log(data)
-	// 		data.map(element => {
-	// 			this.chartLabels.push(element.status)
-	// 			this.chartData.push(element.count)
-	// 		});
-
-	// 		this.chartReady = true;
-	// 	})
-	// }
 
 }
