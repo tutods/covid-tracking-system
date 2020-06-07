@@ -1,7 +1,30 @@
 {
 	"name": "covid-tracking-system",
-	"version": "2.4.0",
+	"version": "2.5.0",
 	"description": "Covid tracking system for PAW project",
+	"keywords": [
+		"mean",
+		"angular",
+		"nodejs",
+		"express"
+	],
+	"contributors": [
+		{
+			"name": "Daniel Sousa @TutoDS",
+			"url": "https://github.com/TutoDS"
+		},
+		{
+			"name": "João Moreira",
+			"url": "https://github.com/xPromate"
+		},
+		{
+			"name": "João Coimbra"
+		}
+	],
+	"bugs": {
+		"url": "https://github.com/TutoDS/covid-tracking-system/issues"
+	},
+	"homepage": "https://github.com/TutoDS/covid-tracking-system#readme",
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve",

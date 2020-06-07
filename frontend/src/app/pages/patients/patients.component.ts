@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { PatientAddComponent } from '../../components/dialogs/patients/patient-add/patient-add.component';
 import { PatientDeleteComponent } from '../../components/dialogs/patients/patient-delete/patient-delete.component';
 import { PatientEditComponent } from '../../components/dialogs/patients/patient-edit/patient-edit.component';
 import { PatientInfoComponent } from '../../components/dialogs/patients/patient-info/patient-info.component';
 import { PatientsService } from '../../services/patients/patients.service';
+import { UiService } from '../../services/ui/ui.service';
 import { Patient } from './../../models/patient.model';
 
 @Component({
@@ -24,15 +24,11 @@ export class PatientsComponent implements OnInit {
 		public patients: PatientsService,
 		private http: HttpClient,
 		public dialog: MatDialog,
-		private snackBar: MatSnackBar
+		private uiService: UiService
 	) { }
 
 	ngOnInit(): void {
 		this.fetchData();
-	}
-
-	openSnackBar(message: string) {
-		this.snackBar.open(message, 'Close', { duration: 5000 });
 	}
 
 	fetchData() {
@@ -51,7 +47,7 @@ export class PatientsComponent implements OnInit {
 
 		dialogRef.afterClosed().subscribe(res => {
 			if (res) {
-				this.openSnackBar(res.message)
+				this.uiService.showSnackBar(res.message)
 
 				if (res.status == true)
 					this.fetchData()
@@ -76,7 +72,7 @@ export class PatientsComponent implements OnInit {
 
 		dialogRef.afterClosed().subscribe((data) => {
 			if (data) {
-				this.openSnackBar(data.message)
+				this.uiService.showSnackBar(data.message)
 
 				if (data.status == true)
 					this.fetchData()
@@ -91,7 +87,7 @@ export class PatientsComponent implements OnInit {
 
 		dialogRef.afterClosed().subscribe((data) => {
 			if (data) {
-				this.openSnackBar(data.message)
+				this.uiService.showSnackBar(data.message)
 
 				if (data.status == true)
 					this.fetchData()

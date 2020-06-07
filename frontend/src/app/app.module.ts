@@ -78,7 +78,7 @@ import { TopbarComponent } from './layout/default/components/topbar/topbar.compo
 import { DefaultComponent } from './layout/default/default.component';
 import { HeaderComponent } from './layout/landing-page/components/header/header.component';
 import { LandingPageComponent } from './layout/landing-page/landing-page.component';
-import { CovidTestComponent } from './pages/covid-test/covid-test/covid-test.component';
+import { CovidTestComponent } from './pages/covid-test/covid-test.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 import { UsersComponent } from './pages/users/users.component';

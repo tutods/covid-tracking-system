@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { CovidTestCreateDialogComponent } from './../../../components/dialogs/covid-test/covid-test-create-dialog/covid-test-create-dialog.component';
-import { CovidTestDeleteDialogComponent } from './../../../components/dialogs/covid-test/covid-test-delete-dialog/covid-test-delete-dialog.component';
-import { CovidTestEditDialogComponent } from './../../../components/dialogs/covid-test/covid-test-edit-dialog/covid-test-edit-dialog.component';
-import { CovidTestInformationDialogComponent } from './../../../components/dialogs/covid-test/covid-test-information-dialog/covid-test-information-dialog.component';
-import { CovidTest } from './../../../models/covid-test.model';
-import { CovidTestService } from './../../../services/covid-test/covid-test.service';
+import { CovidTestCreateDialogComponent } from '../../components/dialogs/covid-test/covid-test-create-dialog/covid-test-create-dialog.component';
+import { CovidTestDeleteDialogComponent } from '../../components/dialogs/covid-test/covid-test-delete-dialog/covid-test-delete-dialog.component';
+import { CovidTestEditDialogComponent } from '../../components/dialogs/covid-test/covid-test-edit-dialog/covid-test-edit-dialog.component';
+import { CovidTestInformationDialogComponent } from '../../components/dialogs/covid-test/covid-test-information-dialog/covid-test-information-dialog.component';
+import { CovidTest } from '../../models/covid-test.model';
+import { CovidTestService } from '../../services/covid-test/covid-test.service';
+import { UiService } from './../../services/ui/ui.service';
 
 @Component({
 	selector: 'app-covid-test',
@@ -17,7 +18,12 @@ export class CovidTestComponent implements OnInit {
 
 	result: any;
 
-	constructor(public covidTests: CovidTestService, private http: HttpClient, public dialog: MatDialog) { }
+	constructor(
+		public covidTests: CovidTestService,
+		private http: HttpClient,
+		public dialog: MatDialog,
+		public uiService: UiService
+	) { }
 
 	ngOnInit(): void {
 		this.fetchData();
