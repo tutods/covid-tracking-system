@@ -16,7 +16,9 @@ import { Patient } from './../../models/patient.model';
 })
 export class PatientsComponent implements OnInit {
 
-	result: any;
+	public result: any;
+
+	public dialogSize: string = (window.innerWidth >= 1200) ? '25vw' : (window.innerWidth >= 800) ? '50vw' : '85vw'
 
 	constructor(
 		public patients: PatientsService,
@@ -43,7 +45,7 @@ export class PatientsComponent implements OnInit {
 
 	openDeleteDialog(patient: Patient) {
 		let dialogRef = this.dialog.open(PatientDeleteComponent, {
-			width: '25vw',
+			width: this.dialogSize,
 			data: patient
 		});
 
@@ -61,7 +63,7 @@ export class PatientsComponent implements OnInit {
 
 		this.dialog.open(PatientInfoComponent, {
 			data: patient,
-			width: '25vw'
+			width: this.dialogSize
 		});
 	}
 
@@ -69,7 +71,7 @@ export class PatientsComponent implements OnInit {
 
 		let dialogRef = this.dialog.open(PatientEditComponent, {
 			data: patient,
-			width: '25vw',
+			width: this.dialogSize,
 		});
 
 		dialogRef.afterClosed().subscribe((data) => {
@@ -84,7 +86,7 @@ export class PatientsComponent implements OnInit {
 
 	openCreateDialog() {
 		const dialogRef = this.dialog.open(PatientAddComponent, {
-			width: '25vw'
+			width: this.dialogSize
 		});
 
 		dialogRef.afterClosed().subscribe((data) => {

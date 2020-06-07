@@ -1,6 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Patient } from '../../../../models/patient.model';
 import { PatientsService } from '../../../../services/patients/patients.service';
 
@@ -31,7 +31,7 @@ export class PatientAddComponent implements OnInit {
 		{ value: 'riskZone', label: "Risk Zone" }
 	];
 
-	observationsToCreate = {
+	private observationsToCreate = {
 		saude24: false,
 		riskGroup: false,
 		riskZone: false,
@@ -39,19 +39,17 @@ export class PatientAddComponent implements OnInit {
 
 	currentObservations: any;
 
-	realForm: FormGroup;
 	patient: Patient;
-	date;
-	data: Patient;
 
 	patientForm: FormGroup
 
 	emailPattern = "^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}$";
 
-	constructor(private formBuilder: FormBuilder, public patients: PatientsService,
-		public dialogRef: MatDialogRef<PatientAddComponent>,
-		@Inject(MAT_DIALOG_DATA) data) {
-	}
+	constructor(
+		private formBuilder: FormBuilder,
+		public patients: PatientsService,
+		public dialogRef: MatDialogRef<PatientAddComponent>
+	) { }
 
 
 	ngOnInit(): void {
@@ -65,8 +63,8 @@ export class PatientAddComponent implements OnInit {
 			]],
 			'patientNumber': ['', [
 				Validators.required,
-				Validators.min(100000000),
-				Validators.max(999999999)
+				Validators.min(100000000), // Min value
+				Validators.max(999999999) // Max value
 			]],
 			'status': ['', [
 				Validators.required,
@@ -92,6 +90,7 @@ export class PatientAddComponent implements OnInit {
 	}
 
 	onSubmit(evt) {
+		// Prevent duplicate submit of form
 		evt.preventDefault()
 
 		const formDate = new Date(this.patientForm.get('birthdayDate').value)
