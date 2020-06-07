@@ -1,19 +1,19 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PatientsService } from 'src/app/services/patients/patients.service';
-import { Patient } from './../../../../models/patient.model';
+import { Patient } from '../../../../models/patient.model';
 
 @Component({
-	selector: 'app-dialog-to-delete',
-	templateUrl: './dialog-to-delete.component.html',
-	styleUrls: ['./dialog-to-delete.component.sass']
+	selector: 'app-patient-delete',
+	templateUrl: './patient-delete.component.html',
+	styleUrls: ['./patient-delete.component.sass']
 })
-export class DialogToDeleteComponent implements OnInit {
+export class PatientDeleteComponent implements OnInit {
 	patient: Patient
 
 	constructor(
 		private patientService: PatientsService,
-		public dialogRef: MatDialogRef<DialogToDeleteComponent>,
+		public dialogRef: MatDialogRef<PatientDeleteComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: Patient
 	) {
 		this.patient = data

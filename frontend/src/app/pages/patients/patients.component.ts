@@ -2,21 +2,21 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CreateDialogComponent } from '../../components/dialogs/patients/create-dialog/create-dialog.component';
-import { DialogToDeleteComponent } from '../../components/dialogs/patients/dialog-to-delete/dialog-to-delete.component';
-import { EditDialogComponent } from '../../components/dialogs/patients/edit-dialog/edit-dialog.component';
-import { InformationDialogComponent } from '../../components/dialogs/patients/information-dialog/information-dialog.component';
+import { PatientAddComponent } from '../../components/dialogs/patients/patient-add/patient-add.component';
+import { PatientDeleteComponent } from '../../components/dialogs/patients/patient-delete/patient-delete.component';
+import { PatientEditComponent } from '../../components/dialogs/patients/patient-edit/patient-edit.component';
+import { PatientInfoComponent } from '../../components/dialogs/patients/patient-info/patient-info.component';
 import { PatientsService } from '../../services/patients/patients.service';
 import { Patient } from './../../models/patient.model';
 
 @Component({
-    selector: 'app-patients',
-    templateUrl: './patients.component.html',
-    styleUrls: ['./patients.component.sass']
+	selector: 'app-patients',
+	templateUrl: './patients.component.html',
+	styleUrls: ['./patients.component.sass']
 })
 export class PatientsComponent implements OnInit {
 
-    result: any;
+	result: any;
 
 	constructor(
 		public patients: PatientsService,
@@ -25,9 +25,9 @@ export class PatientsComponent implements OnInit {
 		private snackBar: MatSnackBar
 	) { }
 
-    ngOnInit(): void {
-        this.fetchData();
-    }
+	ngOnInit(): void {
+		this.fetchData();
+	}
 
 	openSnackBar(message: string) {
 		this.snackBar.open(message, 'Close', { duration: 5000 });
@@ -36,13 +36,13 @@ export class PatientsComponent implements OnInit {
 	fetchData() {
 		const getAll = this.patients.getAll()
 
-        return getAll.subscribe((data) => {
-            this.result = data
-        })
-    }
+		return getAll.subscribe((data) => {
+			this.result = data
+		})
+	}
 
 	openDeleteDialog(patient: Patient) {
-		let dialogRef = this.dialog.open(DialogToDeleteComponent, {
+		let dialogRef = this.dialog.open(PatientDeleteComponent, {
 			width: '25vw',
 			data: patient
 		});
@@ -59,7 +59,7 @@ export class PatientsComponent implements OnInit {
 	}
 	openInformationDialog(patient: Patient) {
 
-		this.dialog.open(InformationDialogComponent, {
+		this.dialog.open(PatientInfoComponent, {
 			data: patient,
 			width: '25vw'
 		});
@@ -67,7 +67,7 @@ export class PatientsComponent implements OnInit {
 
 	openEditDialog(patient: Patient) {
 
-		let dialogRef = this.dialog.open(EditDialogComponent, {
+		let dialogRef = this.dialog.open(PatientEditComponent, {
 			data: patient,
 			width: '25vw',
 		});
@@ -83,7 +83,7 @@ export class PatientsComponent implements OnInit {
 	}
 
 	openCreateDialog() {
-		const dialogRef = this.dialog.open(CreateDialogComponent, {
+		const dialogRef = this.dialog.open(PatientAddComponent, {
 			width: '25vw'
 		});
 

@@ -59,10 +59,10 @@ import { CovidTestDeleteDialogComponent } from './components/dialogs/covid-test/
 import { CovidTestEditDialogComponent } from './components/dialogs/covid-test/covid-test-edit-dialog/covid-test-edit-dialog.component';
 import { CovidTestInformationDialogComponent } from './components/dialogs/covid-test/covid-test-information-dialog/covid-test-information-dialog.component';
 import { DataByEmailComponent } from './components/dialogs/data-by-email/data-by-email.component';
-import { CreateDialogComponent } from './components/dialogs/patients/create-dialog/create-dialog.component';
-import { DialogToDeleteComponent } from './components/dialogs/patients/dialog-to-delete/dialog-to-delete.component';
-import { EditDialogComponent } from './components/dialogs/patients/edit-dialog/edit-dialog.component';
-import { InformationDialogComponent } from './components/dialogs/patients/information-dialog/information-dialog.component';
+import { PatientAddComponent } from './components/dialogs/patients/patient-add/patient-add.component';
+import { PatientDeleteComponent } from './components/dialogs/patients/patient-delete/patient-delete.component';
+import { PatientEditComponent } from './components/dialogs/patients/patient-edit/patient-edit.component';
+import { PatientInfoComponent } from './components/dialogs/patients/patient-info/patient-info.component';
 import { UpdatePasswordComponent } from './components/dialogs/users/update-password/update-password.component';
 import { UserAddComponent } from './components/dialogs/users/user-add/user-add.component';
 import { UserDeleteComponent } from './components/dialogs/users/user-delete/user-delete.component';
@@ -82,6 +82,7 @@ import { CovidTestComponent } from './pages/covid-test/covid-test/covid-test.com
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 import { UsersComponent } from './pages/users/users.component';
+
 
 @NgModule({
 	declarations: [
@@ -109,20 +110,20 @@ import { UsersComponent } from './pages/users/users.component';
 		UserInfoComponent,
 		UserAddComponent,
 		UpdatePasswordComponent,
-		DialogToDeleteComponent,
-		InformationDialogComponent,
-		EditDialogComponent,
-		CreateDialogComponent,
+		PatientDeleteComponent,
+		PatientInfoComponent,
+		PatientEditComponent,
+		PatientAddComponent,
 
 		// Auth
 		LoginComponent,
 		ChangeComponent,
 		ResetComponent,
 
-		DialogToDeleteComponent,
-		InformationDialogComponent,
-		EditDialogComponent,
-		CreateDialogComponent,
+		PatientDeleteComponent,
+		PatientInfoComponent,
+		PatientEditComponent,
+		PatientAddComponent,
 		CanUseDirective,
 		ByStatusComponent,
 		ByDayComponent,
@@ -132,13 +133,13 @@ import { UsersComponent } from './pages/users/users.component';
 		// Directives
 		CanUseDirective,
 		RoleEnableDirective,
-		EditDialogComponent,
-		CreateDialogComponent,
+		PatientEditComponent,
+		PatientAddComponent,
 		CovidTestComponent,
 		CovidTestCreateDialogComponent,
 		CovidTestDeleteDialogComponent,
-		CovidTestInformationDialogComponent,
-		CovidTestEditDialogComponent
+		CovidTestEditDialogComponent,
+		CovidTestInformationDialogComponent
 	],
 	imports: [
 		CommonModule,
