@@ -6,6 +6,7 @@ import { UserDeleteComponent } from './../../components/dialogs/users/user-delet
 import { UserEditComponent } from './../../components/dialogs/users/user-edit/user-edit.component';
 import { UserInfoComponent } from './../../components/dialogs/users/user-info/user-info.component';
 import { User } from './../../models/user.model';
+import { TitleService } from './../../services/title/title.service';
 import { UiService } from './../../services/ui/ui.service';
 import { UsersService } from './../../services/users-service/users.service';
 
@@ -23,8 +24,10 @@ export class UsersComponent implements OnInit {
 		private usersService: UsersService,
 		private sessionService: SessionService,
 		public dialog: MatDialog,
-		private uiService: UiService
+		private uiService: UiService,
+		private titleService: TitleService
 	) {
+		this.titleService.setPageTitle('Users')
 		this.loggedUserEmail = this.sessionService.me().user.email;
 	}
 

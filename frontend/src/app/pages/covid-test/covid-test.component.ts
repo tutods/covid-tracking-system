@@ -7,6 +7,7 @@ import { CovidTestEditDialogComponent } from '../../components/dialogs/covid-tes
 import { CovidTestInformationDialogComponent } from '../../components/dialogs/covid-test/covid-test-information-dialog/covid-test-information-dialog.component';
 import { CovidTest } from '../../models/covid-test.model';
 import { CovidTestService } from '../../services/covid-test/covid-test.service';
+import { TitleService } from './../../services/title/title.service';
 import { UiService } from './../../services/ui/ui.service';
 
 @Component({
@@ -22,8 +23,11 @@ export class CovidTestComponent implements OnInit {
 		public covidTests: CovidTestService,
 		private http: HttpClient,
 		public dialog: MatDialog,
-		public uiService: UiService
-	) { }
+		public uiService: UiService,
+		private titleService: TitleService
+	) {
+		this.titleService.setPageTitle('COVID Tests')
+	}
 
 	ngOnInit(): void {
 		this.fetchData();

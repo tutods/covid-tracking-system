@@ -8,6 +8,7 @@ import { PatientInfoComponent } from '../../components/dialogs/patients/patient-
 import { PatientsService } from '../../services/patients/patients.service';
 import { UiService } from '../../services/ui/ui.service';
 import { Patient } from './../../models/patient.model';
+import { TitleService } from './../../services/title/title.service';
 
 @Component({
 	selector: 'app-patients',
@@ -24,8 +25,11 @@ export class PatientsComponent implements OnInit {
 		public patients: PatientsService,
 		private http: HttpClient,
 		public dialog: MatDialog,
-		private uiService: UiService
-	) { }
+		private uiService: UiService,
+		private titleService: TitleService
+	) {
+		this.titleService.setPageTitle('Patients')
+	}
 
 	ngOnInit(): void {
 		this.fetchData();

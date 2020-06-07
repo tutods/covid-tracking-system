@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TitleService } from './../../services/title/title.service';
 
 @Component({
 	selector: 'app-landing-page',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
 
-	constructor() {
+	constructor(
+		private titleService: TitleService
+	) {
+		this.titleService.setPageTitle()
+
 		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
 			window.location.reload()
 		});

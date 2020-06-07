@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TitleService } from './../../services/title/title.service';
 
 @Component({
 	selector: 'app-dashboard',
@@ -7,7 +8,12 @@ import { Component } from '@angular/core';
 })
 export class DashboardComponent {
 
-	constructor() {
+
+	constructor(
+		private titleService: TitleService
+	) {
+		this.titleService.setPageTitle("Dashboard")
+
 		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
 			window.location.reload()
 		});
