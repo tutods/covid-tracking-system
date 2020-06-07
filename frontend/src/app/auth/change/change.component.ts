@@ -36,11 +36,11 @@ export class ChangeComponent implements OnInit {
 
 	constructor(
 		public session: SessionService,
-		public router: Router,
 		private uiService: UiService,
 		private titleService: TitleService,
 		private activatedRoute: ActivatedRoute,
-		private formBuilder: FormBuilder
+		private formBuilder: FormBuilder,
+		private router: Router
 	) {
 		this.titleService.setPageTitle("Change Password")
 
