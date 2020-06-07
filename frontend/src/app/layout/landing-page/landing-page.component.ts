@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class LandingPageComponent implements OnInit {
 
 	constructor() {
-		window.matchMedia('(prefers-color-scheme: dark)' || '(max-width: 800px)').addEventListener('change', e => {
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
 			window.location.reload()
 		});
 	}

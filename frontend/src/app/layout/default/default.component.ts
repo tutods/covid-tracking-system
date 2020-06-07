@@ -15,16 +15,15 @@ export class DefaultComponent implements OnInit {
 		public session: SessionService,
 		public router: Router
 	) {
-
-		window.matchMedia('(max-width: 800px)').addEventListener('change', e => {
-			window.location.reload()
-		});
-
+		// window.matchMedia('(max-width: 800px)').addEventListener('change', e => {
+		// 	window.location.reload()
+		// });
 	}
+
 
 	ngOnInit(): void {
 		if (window.innerWidth <= 1000) {
-			this.sideBarOpen = !this.sideBarOpen
+			this.sideBarOpen = false
 		}
 
 		// Close sidebar when change router
