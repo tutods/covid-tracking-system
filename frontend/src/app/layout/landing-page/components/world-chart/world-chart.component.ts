@@ -42,13 +42,14 @@ export class WorldChartComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.covidApiService.getSummary().subscribe((data) => {
+
 			this.data = data
 			this.pieChartData = [
-				this.data.Global.TotalRecovered,
-				this.data.Global.TotalDeaths,
-				this.data.Global.TotalConfirmed,
+				this.data[0].Global.TotalRecovered,
+				this.data[0].Global.TotalDeaths,
+				this.data[0].Global.TotalConfirmed,
 			];
-			this.updatedAt = new Date(this.data.Date).toLocaleString();
+			this.updatedAt = new Date(this.data[0].Date).toLocaleString();
 			this.chartReady = true;
 		});
 	}

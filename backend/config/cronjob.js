@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 const ApiCovid = require('../api/models/ApiCovid');
 
-module.exports = cron.schedule('* * * * *', () => {
+module.exports = cron.schedule('0,15,30,45 * * * *', () => {
 	//https://api.covid19api.com/summary
 
 	client.get('summary', function (err, res, body) {
