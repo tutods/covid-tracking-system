@@ -34,6 +34,14 @@ export class PatientsService {
         return this.http.get(`${API_URL}/patients/?sort=${field},${order}`, httpOptions);
     }
 
+    getAllWithFilter(field: string, filter: string) {
+        return this.http.get(`${API_URL}/patients/?${field}=${filter}`, httpOptions);
+    }
+
+    getAllFilteredWithDate(from: string, to: string) {
+        return this.http.get(`${API_URL}/patients/?birthdayDate=${from},${to}`, httpOptions);
+    }
+
     getById(id: string): Observable<any> {
         return this.http
             .get(`${API_URL}/patients/${id}`, httpOptions)

@@ -8,6 +8,8 @@ import { EditDialogComponent } from '../../components/dialogs/patients/edit-dial
 import { InformationDialogComponent } from '../../components/dialogs/patients/information-dialog/information-dialog.component';
 import { PatientsService } from '../../services/patients/patients.service';
 import { Patient } from './../../models/patient.model';
+import { ageToDate } from 'src/app/functions/ageToDate';
+import { formatDate } from '../../functions/formatDate'
 
 @Component({
     selector: 'app-patients',
@@ -23,12 +25,35 @@ export class PatientsComponent implements OnInit {
         { value: 'status', view: 'Status' },
     ];
 
+    filters: Object[] = [
+        { value: 'age', view: 'Age' },
+        { value: 'status', view: 'Status' },
+        { value: 'gender', view: 'Gender' },
+    ];
+
     orders: Object[] = [
         { value: 'asc', view: 'Ascendent' },
         { value: 'desc', view: 'Descendent' },
     ];
+
+    status: Object[] = [
+        { value: 'Suspect', view: 'Suspect' },
+        { value: 'Infected', view: 'Infected' },
+        { value: 'Non Infected', view: 'Non Infected' }
+    ];
+
+    genders: Object[] = [
+        { value: 'Male', view: 'Male' },
+        { value: 'Female', view: 'Female' }
+    ];
+
     selectedField: string;
     selectedOrder: string;
+    selectedSearchField: string;
+    selectedSearchFilter: string;
+
+    selectedSearchFilterFromAge: number;
+    selectedSearchFilterToAge: number;
 
     constructor(
         public patients: PatientsService,
@@ -59,6 +84,45 @@ export class PatientsComponent implements OnInit {
         return getAllWithSort.subscribe((data) => {
             this.result = data;
         });
+    }
+
+    fetchFilteredData() {
+        const getAllWithFilter = this.patients.getAllWithFilter(this.selectedSearchField, this.selectedSearchFilter);
+
+        return getAllWithFilter.subscribe((data) => {
+            this.result = data;
+        });
+    }
+
+    fetchFilteredDataWithDate() {
+        const from = ageToDate(this.selectedSearchFilterFromAge);
+        var to;
+        if (this.selectedSearchFilterToAge > 0) {
+            to = ageToDate(this.selectedSearchFilterToAge);
+        }
+        else if (this.selectedSearchFilterToAge === 0) {
+            to = formatDate(new Date());
+        }
+
+
+        const getAllWithFilter = this.patients.getAllFilteredWithDate(to, from);
+
+        return getAllWithFilter.subscribe((data) => {
+            this.result = data;
+        });
+    }
+
+    selectedSearchFieldMethod() {
+        return this.selectedSearchField;
+    }
+
+    selectedSearchFilterMethod() {
+        if ((this.selectedSearchField === 'status' || this.selectedSearchField === 'gender') && this.selectedSearchFilter) {
+            this.fetchFilteredData();
+        }
+        if (this.selectedSearchField === 'age' && this.selectedSearchFilterToAge > -1) {
+            this.fetchFilteredDataWithDate();
+        }
     }
 
     selectedFieldMethod() {
