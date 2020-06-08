@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Create</h2>
 
 <mat-dialog-content>
-	<form [formGroup]="covidTestForm">
+	<form [formGroup]="covidTestForm" (submit)="onSubmit($event)">
 		<mat-form-field>
 			<input type="text" aria-label="Number" matInput formControlName="patient" placeholder="Name-Number"
 				[matAutocomplete]="auto">
