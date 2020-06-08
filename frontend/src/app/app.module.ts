@@ -54,9 +54,9 @@ import { ByStatusComponent } from './components/charts/by-status/by-status.compo
 import { BySymptomsComponent } from './components/charts/by-symptoms/by-symptoms.component';
 import { PtChartComponent } from './components/charts/pt-chart/pt-chart.component';
 import { WorldChartComponent } from './components/charts/world-chart/world-chart.component';
-import { CovidTestCreateDialogComponent } from './components/dialogs/covid-test/covid-test-create-dialog/covid-test-create-dialog.component';
-import { CovidTestDeleteDialogComponent } from './components/dialogs/covid-test/covid-test-delete-dialog/covid-test-delete-dialog.component';
-import { CovidTestEditDialogComponent } from './components/dialogs/covid-test/covid-test-edit-dialog/covid-test-edit-dialog.component';
+import { CovidTestCreateComponent } from './components/dialogs/covid-test/covid-test-create/covid-test-create.component';
+import { CovidTestDeleteComponent } from './components/dialogs/covid-test/covid-test-delete/covid-test-delete.component';
+import { CovidTestEditComponent } from './components/dialogs/covid-test/covid-test-edit/covid-test-edit.component';
 import { CovidTestInformationDialogComponent } from './components/dialogs/covid-test/covid-test-information-dialog/covid-test-information-dialog.component';
 import { DataByEmailComponent } from './components/dialogs/data-by-email/data-by-email.component';
 import { PatientAddComponent } from './components/dialogs/patients/patient-add/patient-add.component';
@@ -82,7 +82,6 @@ import { CovidTestComponent } from './pages/covid-test/covid-test.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 import { UsersComponent } from './pages/users/users.component';
-
 
 @NgModule({
 	declarations: [
@@ -136,9 +135,9 @@ import { UsersComponent } from './pages/users/users.component';
 		PatientEditComponent,
 		PatientAddComponent,
 		CovidTestComponent,
-		CovidTestCreateDialogComponent,
-		CovidTestDeleteDialogComponent,
-		CovidTestEditDialogComponent,
+		CovidTestCreateComponent,
+		CovidTestDeleteComponent,
+		CovidTestEditComponent,
 		CovidTestInformationDialogComponent
 	],
 	imports: [

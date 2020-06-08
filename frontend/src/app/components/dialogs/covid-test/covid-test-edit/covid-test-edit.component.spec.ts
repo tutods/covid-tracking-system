@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CovidTestEditDialogComponent } from './covid-test-edit-dialog.component';
+import { CovidTestEditDialogComponent } from './covid-test-edit.component';
 
 describe('CovidTestEditDialogComponent', () => {
   let component: CovidTestEditDialogComponent;

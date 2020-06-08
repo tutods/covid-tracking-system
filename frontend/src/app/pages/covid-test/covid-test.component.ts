@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { CovidTestCreateDialogComponent } from '../../components/dialogs/covid-test/covid-test-create-dialog/covid-test-create-dialog.component';
-import { CovidTestDeleteDialogComponent } from '../../components/dialogs/covid-test/covid-test-delete-dialog/covid-test-delete-dialog.component';
-import { CovidTestEditDialogComponent } from '../../components/dialogs/covid-test/covid-test-edit-dialog/covid-test-edit-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { CovidTestCreateComponent } from '../../components/dialogs/covid-test/covid-test-create/covid-test-create.component';
+import { CovidTestDeleteComponent } from '../../components/dialogs/covid-test/covid-test-delete/covid-test-delete.component';
+import { CovidTestEditComponent } from '../../components/dialogs/covid-test/covid-test-edit/covid-test-edit.component';
 import { CovidTestInformationDialogComponent } from '../../components/dialogs/covid-test/covid-test-information-dialog/covid-test-information-dialog.component';
 import { CovidTest } from '../../models/covid-test.model';
 import { CovidTestService } from '../../services/covid-test/covid-test.service';
@@ -42,39 +42,56 @@ export class CovidTestComponent implements OnInit {
 	}
 
 	openCreateDialog() {
-		const dialogRef = this.dialog.open(CovidTestCreateDialogComponent);
+		const dialogRef = this.dialog.open(CovidTestCreateComponent, {
+			width: this.dialogSize
+		});
 
 		dialogRef.afterClosed().subscribe((data) => {
 			this.fetchData();
 		})
 	}
 	openDeleteDialog(covidTest: CovidTest) {
-		let dialogRef = this.dialog.open(CovidTestDeleteDialogComponent);
+		let dialogRef = this.dialog.open(CovidTestDeleteComponent, {
+			width: this.dialogSize,
+			data: covidTest
+		});
 
 		dialogRef.afterClosed().subscribe(res => {
-			console.log(covidTest._id)
-			if (res === "true") {
-				this.covidTests.getOneAndDelete(covidTest._id).subscribe(() => window.location.reload());
+
+			if (res) {
+				this.uiService.showSnackBar(res.message)
+
+				if (res.status == true) {
+					this.fetchData()
+				}
+
 			}
 		})
 	}
 	openInformationDialog(covidTest: CovidTest) {
-		const dialogConfig = new MatDialogConfig();
-
-		dialogConfig.data = covidTest;
-
-		this.dialog.open(CovidTestInformationDialogComponent, dialogConfig);
+		this.dialog.open(CovidTestInformationDialogComponent, {
+			width: this.dialogSize,
+			data: covidTest
+		});
 	}
+
+
 	openEditDialog(covidTest: any) {
-		const dialogConfig = new MatDialogConfig();
-
-		dialogConfig.data = covidTest;
-
-		let dialogRef = this.dialog.open(CovidTestEditDialogComponent, dialogConfig);
+		let dialogRef = this.dialog.open(CovidTestEditComponent, {
+			width: this.dialogSize,
+			data: covidTest
+		});
 
 		dialogRef.afterClosed().subscribe((data) => {
-			console.log(data);
-			this.fetchData();
+
+			if (data) {
+				this.uiService.showSnackBar(data.message)
+
+				if (data.status == true) {
+					this.fetchData();
+				}
+			}
+
 		})
 	}
 }

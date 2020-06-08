@@ -14,11 +14,11 @@ import { PatientsService } from '../../../../services/patients/patients.service'
 	styleUrls: ['./covid-test-create.component.sass']
 })
 export class CovidTestCreateComponent implements OnInit {
-	data: CovidTest;
-	covidTestForm: FormGroup;
-	patients: any[] = [];
-	patientsForm = new FormControl();
-	filteredOptions: Observable<any[]>;
+	public data: CovidTest;
+	public covidTestForm: FormGroup;
+	public patients: any[] = [];
+	public patientsForm = new FormControl();
+	public filteredOptions: Observable<any[]>;
 
 	constructor(
 		private formBuilder: FormBuilder,
