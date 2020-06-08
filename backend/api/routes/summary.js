@@ -10,6 +10,7 @@ const {
 	countByPatient,
 	countByStatus,
 	countBySymptoms,
+	countByGender,
 } = require('../controllers/SummaryController');
 
 router.get('/tests/day', countByDay); //depois meter
@@ -18,6 +19,8 @@ router.get('/tests/patient', authorize(['--view-all']), countByPatient);
 
 router.get('/patients/status', countByStatus); //depois meter
 
-router.get('/patients/symptoms', countBySymptoms);
+router.get('/patients/symptoms', countBySymptoms); // depois meter
+
+router.get('/patients/gender', countByGender); // depois meter
 
 module.exports = router;

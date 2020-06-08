@@ -8,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class LandingPageComponent implements OnInit {
 
 	constructor() {
-		// window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-		// 	window.location.reload()
-		// });
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+			window.location.reload()
+		});
 	}
 
 	ngOnInit(): void {
