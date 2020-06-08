@@ -77,34 +77,37 @@ export class ByStatusComponent implements OnInit {
 	ngOnInit(): void {
 
 		this.summaryService.getByStatus().subscribe((data) => {
+			if (data.length > 0) {
 
-			const backgroundColor = [
-				'#56a0d3',
-				'#0a8ea0',
-				'#3369e7',
-				'#146eb4',
-				'#49c0b6',
-				'#ff9933',
-				'#ee6123',
-				'#075aaa',
-			];
-			let dataArray = [];
-			data.map((element, index) => {
+				const backgroundColor = [
+					'#56a0d3',
+					'#0a8ea0',
+					'#3369e7',
+					'#146eb4',
+					'#49c0b6',
+					'#ff9933',
+					'#ee6123',
+					'#075aaa',
+				];
+				let dataArray = [];
+				data.map((element, index) => {
 
-				element.status =
-					element.status.charAt(0).toUpperCase() + element.status.slice(1);
+					element.status =
+						element.status.charAt(0).toUpperCase() + element.status.slice(1);
 
-				dataArray.push({
-					label: element.status,
-					data: [element.count],
-					backgroundColor: backgroundColor[index || 0],
-					hoverBackgroundColor: backgroundColor[index || 0],
+					dataArray.push({
+						label: element.status,
+						data: [element.count],
+						backgroundColor: backgroundColor[index || 0],
+						hoverBackgroundColor: backgroundColor[index || 0],
+					});
 				});
-			});
 
-			this.chartData = dataArray;
-			this.chartReady = true;
-
+				this.chartData = dataArray;
+				this.chartReady = true;
+			} else {
+				this.chartReady = false
+			}
 		})
 	}
 

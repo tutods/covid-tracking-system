@@ -85,23 +85,25 @@ export class ByMonthComponent implements OnInit {
 		const numberOfTests: number[] = [numberOfMonths];
 
 		this.summaryService.getByDay().subscribe(data => {
-
-			for (var i = 0; i < numberOfMonths; i++) {
-				numberOfTests[i] = 0;
-			}
-
-			data.map(element => {
-				if ((new Date(element.date)).getFullYear() == actualYear) {
-					numberOfTests[new Date(element.date).getMonth()] += element.numberOfTests;
+			if (data.length > 0) {
+				for (var i = 0; i < numberOfMonths; i++) {
+					numberOfTests[i] = 0;
 				}
-			});
 
-			this.chartData = [
-				{ data: numberOfTests, label: 'Number of COVID Tests by Month' },
-			];
+				data.map(element => {
+					if ((new Date(element.date)).getFullYear() == actualYear) {
+						numberOfTests[new Date(element.date).getMonth()] += element.numberOfTests;
+					}
+				});
 
-			this.chart = true;
+				this.chartData = [
+					{ data: numberOfTests, label: 'Number of COVID Tests by Month' },
+				];
 
+				this.chart = true;
+			} else {
+				this.chart = false;
+			}
 		})
 	}
 

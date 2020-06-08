@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { SummaryService } from '../../../services/summary/summary.service';
 
-
-
-
 @Component({
 	selector: 'app-by-day',
 	templateUrl: './by-day.component.html',
@@ -99,25 +96,31 @@ export class ByDayComponent implements OnInit {
 		const numberOfTests: number[] = [numberOfDays];
 
 		this.summaryService.getByDay().subscribe(data => {
-			for (var i = 0; i < numberOfDays; i++) {
-				numberOfTests[i] = 0;
-			}
-
-			data.map((element) => {
-				if ((new Date(element.date).getMonth() + 1) == actualMonth && (new Date(element.date)).getFullYear() == actualYear) {
-					numberOfTests[(new Date(element.date).getDate()) - 1] += element.numberOfTests
+			if (data.length > 0) {
+				for (var i = 0; i < numberOfDays; i++) {
+					numberOfTests[i] = 0;
 				}
-			})
 
-			this.chartData = [
-				{ data: numberOfTests, label: 'Number of COVID Tests' },
-			];
+				data.map((element) => {
+					if ((new Date(element.date).getMonth() + 1) == actualMonth && (new Date(element.date)).getFullYear() == actualYear) {
+						numberOfTests[(new Date(element.date).getDate()) - 1] += element.numberOfTests
+					}
+				})
 
-			for (i = 1; i <= numberOfDays; i++) {
-				this.chartLabels.push(i)
+				this.chartData = [
+					{ data: numberOfTests, label: 'Number of COVID Tests' },
+				];
+
+				for (i = 1; i <= numberOfDays; i++) {
+					this.chartLabels.push(i)
+				}
+
+				this.chart = true;
+			} else {
+				this.chart = false;
 			}
 
-			this.chart = true;
+
 		})
 	}
 

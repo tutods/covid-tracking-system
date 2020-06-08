@@ -8,7 +8,7 @@ import { UserInfoComponent } from './../../components/dialogs/users/user-info/us
 import { User } from './../../models/user.model';
 import { TitleService } from './../../services/title/title.service';
 import { UiService } from './../../services/ui/ui.service';
-import { UsersService } from './../../services/users-service/users.service';
+import { UsersService } from '../../services/users/users.service';
 
 @Component({
 	selector: 'app-users',

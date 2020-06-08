@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { UsersService } from '../../../../services/users/users.service';
 import { Role } from './../../../../models/role.model';
-import { RolesService } from './../../../../services/roles-service/roles.service';
-import { UsersService } from './../../../../services/users-service/users.service';
+import { RolesService } from './../../../../services/roles/roles.service';
 
 @Component({
 	selector: 'app-user-add',

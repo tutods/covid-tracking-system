@@ -75,31 +75,36 @@ export class BySymptomsComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.summaryService.getBySymptoms().subscribe((data) => {
-			const backgroundColor = [
-				'#56a0d3',
-				'#ff9933',
-				'#146eb4',
-				'#49c0b6',
-				'#3369e7',
-				'#0a8ea0',
-				'#ee6123',
-				'#075aaa',
-			];
-			let dataArray = [];
+			if (data.length > 0) {
 
-			data.map((element, index) => {
-				element.symptom =
-					element.symptom.charAt(0).toUpperCase() + element.symptom.slice(1);
-				dataArray.push({
-					label: element.symptom,
-					data: [element.count],
-					backgroundColor: backgroundColor[index || 0],
-					hoverBackgroundColor: backgroundColor[index || 0],
+				const backgroundColor = [
+					'#56a0d3',
+					'#ff9933',
+					'#146eb4',
+					'#49c0b6',
+					'#3369e7',
+					'#0a8ea0',
+					'#ee6123',
+					'#075aaa',
+				];
+				let dataArray = [];
+
+				data.map((element, index) => {
+					element.symptom =
+						element.symptom.charAt(0).toUpperCase() + element.symptom.slice(1);
+					dataArray.push({
+						label: element.symptom,
+						data: [element.count],
+						backgroundColor: backgroundColor[index || 0],
+						hoverBackgroundColor: backgroundColor[index || 0],
+					});
 				});
-			});
 
-			this.chartData = dataArray;
-			this.chartReady = true;
+				this.chartData = dataArray;
+				this.chartReady = true;
+			} else {
+				this.chartReady = false
+			}
 		});
 	}
 }
