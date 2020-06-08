@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from "../../../environments/environment";
 
-const API_URL = environment.apiUrl;
 
 @Injectable({
 	providedIn: 'root'
@@ -13,7 +11,7 @@ export class CovidApiService {
 	constructor(public http: HttpClient) { }
 
 	getSummary() {
-		const result = this.http.get(`${API_URL}/api-covid/`);
+		const result = this.http.get(`http://localhost:3000/api/api-covid/`);
 		return result
 	}
 
