@@ -5,6 +5,9 @@ const { PORT = 3000 } = process.env;
 // Get Mongoose connection
 require('./config/mongoose');
 
+//Cronjob
+require('./config/cronjob');
+
 // Packages
 const express = require('express');
 const bodyParser = require('body-parser');

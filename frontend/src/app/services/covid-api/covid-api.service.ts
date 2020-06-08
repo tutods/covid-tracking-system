@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { share } from 'rxjs/operators';
 import { environment } from "../../../environments/environment";
 
-const COVID_API = environment.covidAPI;
+const API_URL = environment.apiUrl;
 
 @Injectable({
 	providedIn: 'root'
@@ -14,15 +12,14 @@ export class CovidApiService {
 
 	constructor(public http: HttpClient) { }
 
-	getSummary(): Observable<any> {
-		const result = this.http.get(`${COVID_API}/summary`).pipe(share());
+	getSummary() {
+		const result = this.http.get(`${API_URL}/api-covid/`);
 		return result
 	}
 
 	getPortugalSummary(data) {
 		let Portugal;
-
-		data.Countries.forEach(element => {
+		data[0].Countries.forEach(element => {
 			if (element.Country == "Portugal") {
 				Portugal = element;
 			}
