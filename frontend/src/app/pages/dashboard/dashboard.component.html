@@ -1,7 +1,7 @@
 <div class="container">
 	<div fxFlex="100" fxLayout="row wrap">
 		<div fxFlex="0 1 40%" fxLayoutAlign="center" class="card-item">
-			<ng-template [roleEnable]="['Admin']">
+			<ng-template [roleEnable]="['Admin', 'Technic']">
 				<mat-card id="card-symptoms">
 					<mat-card-header>
 						<mat-card-title>
@@ -14,8 +14,8 @@
 				</mat-card>
 			</ng-template>
 		</div>
-		<div fxFlex="0 1 30%" fxLayoutAlign="center" class="card-item">
-			<ng-template [roleEnable]="['Admin']">
+		<ng-template [roleEnable]="['Admin']">
+			<div fxFlex="0 1 30%" fxLayoutAlign="center" class="card-item">
 				<mat-card class="card-flex-column">
 					<mat-card-header>
 						<mat-card-title>
@@ -26,10 +26,10 @@
 						<app-by-status></app-by-status>
 					</mat-card-content>
 				</mat-card>
-			</ng-template>
-		</div>
-		<div fxFlex="0 1 30%" fxLayoutAlign="center" class="card-item">
-			<ng-template [roleEnable]="['Admin']">
+			</div>
+		</ng-template>
+		<ng-template [roleEnable]="['Admin']">
+			<div fxFlex="0 1 30%" fxLayoutAlign="center" class="card-item">
 				<mat-card class="card-flex-column">
 					<mat-card-header>
 						<mat-card-title>
@@ -40,8 +40,8 @@
 						<app-by-status></app-by-status>
 					</mat-card-content>
 				</mat-card>
-			</ng-template>
-		</div>
+			</div>
+		</ng-template>
 	</div>
 </div>
 <div class="container mb-40px">
