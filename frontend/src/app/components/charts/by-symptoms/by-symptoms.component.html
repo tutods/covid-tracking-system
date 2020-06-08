@@ -3,5 +3,5 @@
 		[options]="chartOptions" [colors]="chartColors">
 	</canvas>
 
-	<h3 *ngIf="chartReady == false">No data to show!</h3>
+	<h3 *ngIf="!chartReady">No data to show!</h3>
 </div>
