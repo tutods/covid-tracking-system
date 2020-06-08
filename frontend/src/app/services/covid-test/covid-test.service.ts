@@ -32,6 +32,14 @@ export class CovidTestService {
         return this.http.get(`${API_URL}/covid-tests/?sort=${field},${order}`, httpOptions);
     }
 
+    getAllWithFilter(field: string, filter: string) {
+        return this.http.get(`${API_URL}/covid-tests/?${field}=${filter}`, httpOptions);
+    }
+
+    getAllFilteredWithDate(field: string, from: string, to: string) {
+        return this.http.get(`${API_URL}/covid-tests/?${field}=${from},${to}`, httpOptions);
+    }
+
     getById(id: string) {
         return this.http.get(`${API_URL}/covid-tests/${id}`, httpOptions);
     }

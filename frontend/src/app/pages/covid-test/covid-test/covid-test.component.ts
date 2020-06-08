@@ -7,12 +7,14 @@ import { CovidTestService } from './../../../services/covid-test/covid-test.serv
 import { Component, OnInit } from '@angular/core';
 import { CovidTest } from './../../../models/covid-test.model';
 import { CovidTestCreateDialogComponent } from '../../../components/dialogs/covid-test/covid-test-create-dialog/covid-test-create-dialog.component';
+import { formatDate } from '../../../functions/formatDate';
 
 @Component({
     selector: 'app-covid-test',
     templateUrl: './covid-test.component.html',
     styleUrls: ['./covid-test.component.sass']
 })
+
 export class CovidTestComponent implements OnInit {
     result: any;
 
@@ -26,8 +28,27 @@ export class CovidTestComponent implements OnInit {
         { value: 'asc', view: 'Ascendent' },
         { value: 'desc', view: 'Descendent' },
     ];
+
+    status: Object[] = [
+        { value: 'pending', view: 'Pending' },
+        { value: 'in Progress', view: 'In Progress' },
+        { value: 'finished', view: 'Finished' },
+        { value: 'waiting Result', view: 'Waiting Result' },
+    ];
+
+    results: Object[] = [
+        { value: 'positive', view: 'Positive' },
+        { value: 'negative', view: 'Negative' },
+        { value: 'inconclusive', view: 'Inconclusive' }
+    ];
     selectedField: string;
     selectedOrder: string;
+    selectedSearchField: string;
+    selectedSearchFilter: string;
+    fromDate: Date;
+    toDate: Date;
+    selectedSearchFilterFrom: Date;
+    selectedSearchFilterTo: Date;
 
     constructor(public covidTests: CovidTestService, private http: HttpClient, public dialog: MatDialog) { }
 
@@ -49,6 +70,38 @@ export class CovidTestComponent implements OnInit {
         return getAllWithSort.subscribe((data) => {
             this.result = data;
         });
+    }
+
+    fetchFilteredData() {
+        const getAllWithFilter = this.covidTests.getAllWithFilter(this.selectedSearchField, this.selectedSearchFilter);
+
+        return getAllWithFilter.subscribe((data) => {
+            this.result = data;
+        });
+    }
+
+    fetchFilteredDataWithDate() {
+        const from = formatDate(this.selectedSearchFilterFrom);
+        const to = formatDate(this.selectedSearchFilterTo);
+        const getAllWithFilter = this.covidTests.getAllFilteredWithDate(this.selectedSearchField, from, to);
+
+        return getAllWithFilter.subscribe((data) => {
+            this.result = data;
+        });
+    }
+
+
+    selectedSearchFieldMethod() {
+        return this.selectedSearchField;
+    }
+
+    selectedSearchFilterMethod() {
+        if ((this.selectedSearchField === 'status' || this.selectedSearchField === 'result') && this.selectedSearchFilter) {
+            this.fetchFilteredData();
+        }
+        if (this.selectedSearchField === 'date' && this.selectedSearchFilterFrom && this.selectedSearchFilterTo) {
+            this.fetchFilteredDataWithDate();
+        }
     }
 
     selectedFieldMethod() {

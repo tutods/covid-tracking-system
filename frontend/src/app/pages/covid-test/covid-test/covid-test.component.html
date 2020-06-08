@@ -9,9 +9,50 @@
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Search
+          Filter
         </mat-panel-title>
       </mat-expansion-panel-header>
+      <mat-form-field>
+        <mat-label>Field</mat-label>
+        <mat-select [(ngModel)]="selectedSearchField" (selectionChange)="selectedSearchFieldMethod()">
+          <mat-option *ngFor="let field of fields" [value]="field.value">
+            {{field.view}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field *ngIf="selectedSearchFieldMethod()==='status'">
+        <mat-label>Filter</mat-label>
+        <mat-select [(ngModel)]="selectedSearchFilter" (selectionChange)="selectedSearchFilterMethod()">
+          <mat-option *ngFor="let filter of status" [value]="filter.value">
+            {{filter.view}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field *ngIf="selectedSearchFieldMethod()==='result'">
+        <mat-label>Filter</mat-label>
+        <mat-select [(ngModel)]="selectedSearchFilter" (selectionChange)="selectedSearchFilterMethod()">
+          <mat-option *ngFor="let filter of results" [value]="filter.value">
+            {{filter.view}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field *ngIf="selectedSearchFieldMethod()==='date'">
+        <mat-label>From Date</mat-label>
+        <input matInput [matDatepicker]="fromDate" [(ngModel)]="selectedSearchFilterFrom"
+          (dateChange)="selectedSearchFilterMethod()">
+        <mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
+        <mat-datepicker #fromDate></mat-datepicker>
+      </mat-form-field>
+      <br>
+      <mat-form-field *ngIf="selectedSearchFieldMethod()==='date'">
+        <br>
+        <mat-label>To Date</mat-label>
+        <input matInput [matDatepicker]="toDate" [(ngModel)]="selectedSearchFilterTo"
+          (dateChange)="selectedSearchFilterMethod()">
+        <mat-datepicker-toggle matSuffix [for]="toDate"></mat-datepicker-toggle>
+        <mat-datepicker #toDate></mat-datepicker>
+      </mat-form-field>
     </mat-expansion-panel>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -91,7 +132,7 @@
           </p>
           <p *ngIf="covidTest.result">
             <mat-icon>info</mat-icon>
-            <b>Result: </b> {{covidTest.result}}
+            <b>Result: </b> {{covidTest.result | titlecase}}
           </p>
         </mat-card-content>
       </mat-card>
