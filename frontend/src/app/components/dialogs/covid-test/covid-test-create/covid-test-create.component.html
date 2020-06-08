@@ -3,13 +3,18 @@
 <form [formGroup]="covidTestForm" (submit)="onSubmit($event)">
 	<mat-dialog-content>
 		<mat-form-field>
-			<input type="text" aria-label="Number" matInput formControlName="patient" placeholder="Patient Name"
-				[matAutocomplete]="auto">
+			<input type="text" matInput formControlName="patient" placeholder="Patient Name" [matAutocomplete]="auto">
 			<mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
 				<mat-option *ngFor="let option of filteredOptions | async" [value]="option">
 					{{option.name}}
 				</mat-option>
 			</mat-autocomplete>
+			<mat-icon matPrefix>account_circle</mat-icon>
+
+			<mat-error
+				[hidden]="(covidTestFormControl.patient.touched) && covidTestFormControl.patient.errors?.required">
+				Patient is required
+			</mat-error>
 		</mat-form-field>
 
 		<mat-form-field>
@@ -17,17 +22,26 @@
 			<input matInput [matDatepicker]="scheduleDate" formControlName="scheduleDate">
 			<mat-datepicker-toggle matSuffix [for]="scheduleDate"></mat-datepicker-toggle>
 			<mat-datepicker #scheduleDate></mat-datepicker>
+			<mat-icon matPrefix>today</mat-icon>
+
+			<mat-error
+				[hidden]="(covidTestFormControl.scheduleDate.touched) && covidTestFormControl.scheduleDate.errors?.required">
+				Schedule Date is required
+			</mat-error>
 		</mat-form-field>
 
 		<mat-form-field>
 			<mat-label>Notes</mat-label>
 			<textarea matInput placeholder="Notes" formControlName="notes"></textarea>
-			<mat-icon matSuffix>notes</mat-icon>
+			<mat-icon matPrefix>notes</mat-icon>
+			<mat-error [hidden]="(covidTestFormControl.notes.touched) && covidTestFormControl.notes.errors?.required">
+				Notes is required
+			</mat-error>
 		</mat-form-field>
 	</mat-dialog-content>
 
 	<mat-dialog-actions>
-		<button mat-button color="primary" type="primary">Save</button>
+		<button mat-button color="primary" type="primary" [disabled]="!covidTestForm.valid">Save</button>
 		<button mat-button color="warn" type="button" (click)="onClose()">Cancel</button>
 	</mat-dialog-actions>
 </form>

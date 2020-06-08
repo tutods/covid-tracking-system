@@ -57,7 +57,7 @@ import { WorldChartComponent } from './components/charts/world-chart/world-chart
 import { CovidTestCreateComponent } from './components/dialogs/covid-test/covid-test-create/covid-test-create.component';
 import { CovidTestDeleteComponent } from './components/dialogs/covid-test/covid-test-delete/covid-test-delete.component';
 import { CovidTestEditComponent } from './components/dialogs/covid-test/covid-test-edit/covid-test-edit.component';
-import { CovidTestInformationDialogComponent } from './components/dialogs/covid-test/covid-test-information-dialog/covid-test-information-dialog.component';
+import { CovidTestInformationComponent } from './components/dialogs/covid-test/covid-test-information/covid-test-information.component';
 import { DataByEmailComponent } from './components/dialogs/data-by-email/data-by-email.component';
 import { PatientAddComponent } from './components/dialogs/patients/patient-add/patient-add.component';
 import { PatientDeleteComponent } from './components/dialogs/patients/patient-delete/patient-delete.component';
@@ -138,7 +138,7 @@ import { UsersComponent } from './pages/users/users.component';
 		CovidTestCreateComponent,
 		CovidTestDeleteComponent,
 		CovidTestEditComponent,
-		CovidTestInformationDialogComponent
+		CovidTestInformationComponent
 	],
 	imports: [
 		CommonModule,

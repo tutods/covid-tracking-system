@@ -1,43 +1,53 @@
 <h2 mat-dialog-title>Edit</h2>
 
-<mat-dialog-content>
-  <form [formGroup]="covidTestForm">
-    <mat-form-field appearance="legacy">
-      <mat-label>Notes</mat-label>
-      <textarea matInput placeholder="Notes" formControlName="notes"></textarea>
-      <mat-icon matSuffix>notes</mat-icon>
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-      <mat-label>Schedule Date</mat-label>
-      <input matInput [matDatepicker]="scheduleDate" formControlName="scheduleDate">
-      <mat-datepicker-toggle matSuffix [for]="scheduleDate"></mat-datepicker-toggle>
-      <mat-datepicker #scheduleDate></mat-datepicker>
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-      <mat-label>Status</mat-label>
-      <mat-select matNativeControl formControlName="status" name="status">
-        <mat-option *ngFor="let stat of status" [value]="stat">
-          {{stat | titlecase}}
-        </mat-option>
-      </mat-select>
-      <mat-icon matSuffix>healing</mat-icon>
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-      <mat-label>Result</mat-label>
-      <mat-select matNativeControl formControlName="result" name="result">
-        <mat-option *ngFor="let result of results" [value]="result">
-          {{result | titlecase}}
-        </mat-option>
-      </mat-select>
-      <mat-icon matSuffix>info</mat-icon>
-    </mat-form-field>
-  </form>
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-raised-button color="primary" (click)="save()">Save</button>
-  &nbsp; &nbsp;
-  <button mat-raised-button color="warn" (click)="onClose()">Cancel</button>
-</mat-dialog-actions>
+<form [formGroup]="covidTestForm">
+	<mat-dialog-content>
+		<mat-form-field>
+			<mat-label>Notes</mat-label>
+			<textarea matInput placeholder="Notes" formControlName="notes"></textarea>
+			<mat-icon matPrefix>notes</mat-icon>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Schedule Date</mat-label>
+			<input matInput [matDatepicker]="scheduleDate" formControlName="scheduleDate">
+			<mat-datepicker-toggle matSuffix [for]="scheduleDate"></mat-datepicker-toggle>
+			<mat-datepicker #scheduleDate></mat-datepicker>
+			<mat-error
+				[hidden]="(covidTestFormControl.scheduleDate.touched) && covidTestFormControl.scheduleDate.errors?.required">
+				Schedul Date is required.
+			</mat-error>
+			<mat-icon matPrefix>today</mat-icon>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Status</mat-label>
+			<mat-select matNativeControl formControlName="status" name="status">
+				<mat-option *ngFor="let stat of status" [value]="stat">
+					{{stat | titlecase}}
+				</mat-option>
+			</mat-select>
+			<mat-icon matSuffix>healing</mat-icon>
+			<mat-error [hidden]="(covidTestFormControl.status.touched) && covidTestFormControl.status.errors?.required">
+				Status is required.
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Result</mat-label>
+			<mat-select matNativeControl formControlName="result" name="result">
+				<mat-option *ngFor="let result of results" [value]="result">
+					{{result | titlecase}}
+				</mat-option>
+			</mat-select>
+			<mat-icon matSuffix>info</mat-icon>
+			<mat-error [hidden]="(covidTestFormControl.result.touched) && covidTestFormControl.result.errors?.required">
+				Result is required.
+			</mat-error>
+		</mat-form-field>
+	</mat-dialog-content>
+	<mat-dialog-actions>
+		<button mat-button color="primary" type="submit" [disabled]="!covidTestForm.valid">Save</button>
+		<button mat-button color="warn" (click)="onClose()" type="button">Cancel</button>
+	</mat-dialog-actions>
+</form>

@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CovidTestCreateComponent } from '../../components/dialogs/covid-test/covid-test-create/covid-test-create.component';
 import { CovidTestDeleteComponent } from '../../components/dialogs/covid-test/covid-test-delete/covid-test-delete.component';
 import { CovidTestEditComponent } from '../../components/dialogs/covid-test/covid-test-edit/covid-test-edit.component';
-import { CovidTestInformationDialogComponent } from '../../components/dialogs/covid-test/covid-test-information-dialog/covid-test-information-dialog.component';
+import { CovidTestInformationComponent } from '../../components/dialogs/covid-test/covid-test-information/covid-test-information.component';
 import { CovidTest } from '../../models/covid-test.model';
 import { CovidTestService } from '../../services/covid-test/covid-test.service';
 import { TitleService } from './../../services/title/title.service';
@@ -47,9 +47,17 @@ export class CovidTestComponent implements OnInit {
 		});
 
 		dialogRef.afterClosed().subscribe((data) => {
-			this.fetchData();
+			if (data) {
+
+				if (data.status == true) {
+					this.fetchData();
+				}
+
+				this.uiService.showSnackBar(data.message)
+			}
 		})
 	}
+
 	openDeleteDialog(covidTest: CovidTest) {
 		let dialogRef = this.dialog.open(CovidTestDeleteComponent, {
 			width: this.dialogSize,
@@ -64,17 +72,16 @@ export class CovidTestComponent implements OnInit {
 				if (res.status == true) {
 					this.fetchData()
 				}
-
 			}
 		})
 	}
+
 	openInformationDialog(covidTest: CovidTest) {
-		this.dialog.open(CovidTestInformationDialogComponent, {
+		this.dialog.open(CovidTestInformationComponent, {
 			width: this.dialogSize,
 			data: covidTest
 		});
 	}
-
 
 	openEditDialog(covidTest: any) {
 		let dialogRef = this.dialog.open(CovidTestEditComponent, {

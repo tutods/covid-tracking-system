@@ -31,9 +31,15 @@ export class CovidTestCreateComponent implements OnInit {
 		return this.patients.filter(option => option.name.toLowerCase().indexOf(value.toLowerCase()) === 0);
 	}
 
+	// To disable button if have errors
+	get covidTestFormControl() {
+		return this.covidTestForm.controls;
+	}
+
 	displayFn(object?: any): string | undefined {
 		return object ? object.name : undefined;
 	}
+
 
 	onSubmit(evt) {
 		evt.preventDefault();
@@ -46,14 +52,24 @@ export class CovidTestCreateComponent implements OnInit {
 			notes: this.covidTestForm.get('notes').value,
 		};
 
-		this.covidTest.create(formData).subscribe();
-		this.dialogRef.close();
+		this.covidTest.create(formData).subscribe((success) => {
+			this.dialogRef.close({
+				message: "COVID Test created with success!",
+				status: true
+			})
+		}, (error) => {
+			const errorMessage = error.error.message
+			this.dialogRef.close({
+				message: errorMessage,
+				status: false
+			});
+		});
 	}
-
 
 	onClose(): void {
 		this.dialogRef.close();
 	}
+
 	ngOnInit(): void {
 		this.patientsService.getAll().subscribe((patients) => {
 			patients.map((patient) => {

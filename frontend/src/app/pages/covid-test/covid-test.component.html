@@ -1,9 +1,44 @@
-<div class="container">
-	<div fxLayout="row wrap" fxLayoutWrap>
-		<div fxFlex="0 1 25" fxFlex.xs="100" fxFlex.sm="0 1 50" *ngFor="let covidTest of result" class="card-item">
-			<mat-card>
-				<mat-card-actions>
+<div id="header">
+	<mat-card>
+		<mat-card-header>
+			<mat-card-title>
+				<mat-icon>folder_special</mat-icon>
+				COVID Tests
+			</mat-card-title>
+		</mat-card-header>
+		<mat-card-actions>
+			<button mat-button color="primary" (click)="openCreateDialog()">
+				<mat-icon>add</mat-icon>
+				Add
+			</button>
+		</mat-card-actions>
+	</mat-card>
+</div>
 
+<div class="container">
+	<div fxFlex="100" fxLayout="row wrap">
+		<div fxFlex="0 1 25" fxFlex.xs="100" fxFlex.sm="0 1 50" fxLayoutAlign="center" *ngFor="let covidTest of result"
+			class="card-item">
+			<mat-card>
+
+				<mat-card-header>
+					<div class="top-avatar"></div>
+				</mat-card-header>
+				<mat-card-content>
+					<p>
+						<mat-icon>perm_identity</mat-icon>
+						<b>Patient : </b> {{covidTest.patient.name}}
+					</p>
+					<p>
+						<mat-icon>healing</mat-icon>
+						<b>Status: </b> {{covidTest.status  | titlecase}}
+					</p>
+					<p>
+						<mat-icon>calendar_today</mat-icon>
+						<b>Date: </b> {{covidTest.date.split('T')[0]}}
+					</p>
+				</mat-card-content>
+				<mat-card-actions>
 					<button mat-button [matMenuTriggerFor]="appMenu">
 						<mat-icon>more_vert</mat-icon>
 						Options
@@ -24,33 +59,6 @@
 						</button>
 					</mat-menu>
 				</mat-card-actions>
-				<mat-card-header>
-					<div class="top-avatar"></div>
-				</mat-card-header>
-				<mat-card-content>
-					<p>
-						<mat-icon>perm_identity</mat-icon>
-						<b>Patient : </b> {{covidTest.patient.name}}
-					</p>
-					<p>
-						<mat-icon>healing</mat-icon>
-						<b>Status: </b> {{covidTest.status  | titlecase}}
-					</p>
-					<p>
-						<mat-icon>calendar_today</mat-icon>
-						<b>Date: </b> {{covidTest.date.split('T')[0]}}
-					</p>
-				</mat-card-content>
-			</mat-card>
-		</div>
-		<div fxFlex="0 1 25%" class="card-item" (click)="openCreateDialog()">
-			<mat-card id="add-card">
-				<mat-card-header>
-					<div class="add-btn"></div>
-					<mat-card-title>
-						Schedule Covid Test
-					</mat-card-title>
-				</mat-card-header>
 			</mat-card>
 		</div>
 	</div>

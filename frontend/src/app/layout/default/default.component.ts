@@ -15,9 +15,9 @@ export class DefaultComponent implements OnInit {
 		public session: SessionService,
 		public router: Router
 	) {
-		// window.matchMedia('(max-width: 800px)').addEventListener('change', e => {
-		// 	window.location.reload()
-		// });
+		window.matchMedia('(max-width: 800px)' || '(max-width: 600px)').addEventListener('change', e => {
+			window.location.reload()
+		});
 	}
 
 

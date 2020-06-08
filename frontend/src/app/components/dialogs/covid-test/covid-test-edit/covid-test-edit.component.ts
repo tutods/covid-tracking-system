@@ -25,9 +25,7 @@ export class CovidTestEditComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.covidTestForm = this.formBuilder.group({
-			'notes': [this.covidTest.notes, [
-				Validators.required
-			]],
+			'notes': [this.covidTest.notes, []],
 			'scheduleDate': [new Date(this.covidTest.date), [
 				Validators.required,
 			]],
@@ -66,6 +64,10 @@ export class CovidTestEditComponent implements OnInit {
 		);
 	}
 
+	// To disable button if have errors
+	get covidTestFormControl() {
+		return this.covidTestForm.controls;
+	}
 
 	onClose(): void {
 		this.dialogRef.close();

@@ -1,0 +1,65 @@
+<h1 mat-dialog-title>COVID Test <strong>{{ covidTest.code }}</strong></h1>
+
+<mat-dialog-content>
+	<mat-form-field>
+		<mat-label>COVID Test Code</mat-label>
+		<input matInput placeholder="COVID Test Code" disabled [value]="covidTest.code" />
+		<mat-icon matPrefix>copyright</mat-icon>
+	</mat-form-field>
+
+	<mat-expansion-panel>
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				Patient
+			</mat-panel-title>
+		</mat-expansion-panel-header>
+
+		<div>
+			<mat-form-field>
+				<mat-label>Patient Name</mat-label>
+				<input matInput placeholder="Patient" disabled [value]="covidTest.patient.name" />
+				<mat-icon matPrefix>account_circle</mat-icon>
+			</mat-form-field>
+
+			<mat-form-field>
+				<mat-label>Patient Number</mat-label>
+				<input matInput placeholder="Patient Number" disabled [value]="covidTest.patient.patientNumber" />
+				<mat-icon matPrefix>info</mat-icon>
+			</mat-form-field>
+		</div>
+
+		<mat-list>
+			<mat-list-item *ngFor="let symptom of covidTest.patient.symptoms">{{ symptom | titlecase }}</mat-list-item>
+		</mat-list>
+
+		<button mat-button mat-dialog-close color="primary" (click)="openInformationDialog()">
+			Patient Info
+		</button>
+
+	</mat-expansion-panel>
+
+	<mat-form-field>
+		<mat-label>Notes</mat-label>
+		<input matInput placeholder="Notes" disabled [value]="covidTest.notes || ''" />
+		<mat-icon matPrefix>subject</mat-icon>
+	</mat-form-field>
+
+	<mat-form-field>
+		<mat-label>Result</mat-label>
+		<input matInput placeholder="Result" disabled [value]="covidTest.result || 'No result for now'" />
+		<mat-icon matPrefix>info</mat-icon>
+	</mat-form-field>
+
+	<mat-form-field>
+		<mat-label>Test Date</mat-label>
+		<input matInput placeholder="Test Date" disabled [value]="scheduleDate" />
+		<mat-icon matPrefix>today</mat-icon>
+	</mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+	<button mat-button color="accent" type="button" (click)="onClose()">
+		Close
+	</button>
+</mat-dialog-actions>
