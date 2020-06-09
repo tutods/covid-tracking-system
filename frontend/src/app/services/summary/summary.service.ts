@@ -33,4 +33,8 @@ export class SummaryService {
 		return this.http.get(`${API_URL}/summary/patients/symptoms`, httpOptions).pipe(share());
 	}
 
+	getByGender(): Observable<any> {
+		return this.http.get(`${API_URL}/summary/patients/gender`, httpOptions).pipe(share());
+	}
+
 }

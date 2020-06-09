@@ -82,6 +82,7 @@ import { CovidTestComponent } from './pages/covid-test/covid-test.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 import { UsersComponent } from './pages/users/users.component';
+import { ByGenderComponent } from './components/charts/by-gender/by-gender.component';
 
 @NgModule({
 	declarations: [
@@ -138,7 +139,8 @@ import { UsersComponent } from './pages/users/users.component';
 		CovidTestCreateComponent,
 		CovidTestDeleteComponent,
 		CovidTestEditComponent,
-		CovidTestInformationComponent
+		CovidTestInformationComponent,
+		ByGenderComponent
 	],
 	imports: [
         CommonModule,

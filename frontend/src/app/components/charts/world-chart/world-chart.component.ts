@@ -45,11 +45,11 @@ export class WorldChartComponent implements OnInit {
 		this.covidApiService.getSummary().subscribe((summary) => {
 			console.log(summary)
 			this.pieChartData = [
-				summary.Global.TotalRecovered,
-				summary.Global.TotalDeaths,
-				summary.Global.TotalConfirmed,
+				summary[0].Global.TotalRecovered,
+				summary[0].Global.TotalDeaths,
+				summary[0].Global.TotalConfirmed,
 			];
-			this.updatedAt = new Date(summary.Date).toLocaleString();
+			this.updatedAt = new Date(summary[0].Date).toLocaleString();
 			this.chartReady = true;
 		});
 	}
