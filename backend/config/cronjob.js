@@ -4,7 +4,6 @@ const request = require('request');
 const ApiCovid = require('../api/models/ApiCovid');
 
 module.exports = cron.schedule('*/15 * * * *', () => {
-	console.log('ola');
 	request('https://api.covid19api.com/summary', (err, res, body) => {
 		if (!err) {
 			const json = JSON.parse(body);
