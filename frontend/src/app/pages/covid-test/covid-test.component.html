@@ -29,6 +29,7 @@
 					</mat-option>
 				</mat-select>
 			</mat-form-field>
+
 			<mat-form-field *ngIf="selectedSearchFieldMethod()==='result'">
 				<mat-label>Filter</mat-label>
 				<mat-select [(ngModel)]="selectedSearchFilter" (selectionChange)="selectedSearchFilterMethod()">
@@ -53,6 +54,10 @@
 				<mat-datepicker-toggle matSuffix [for]="toDate"></mat-datepicker-toggle>
 				<mat-datepicker #toDate></mat-datepicker>
 			</mat-form-field>
+
+			<button mat-button color="accent" [disabled]="!selectedSearchField" (click)="clearFilters()">
+				Clear Filters
+			</button>
 		</mat-expansion-panel>
 		<mat-expansion-panel>
 			<mat-expansion-panel-header>

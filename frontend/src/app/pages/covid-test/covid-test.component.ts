@@ -74,6 +74,12 @@ export class CovidTestComponent implements OnInit {
 		});
 	}
 
+	clearFilters() {
+		this.selectedSearchField = undefined
+		this.selectedSearchFilter = undefined
+		this.fetchData()
+	}
+
 	fetchOrderedData() {
 		const getAllWithSort = this.covidTests.getAllWithSort(this.selectedField, this.selectedOrder);
 

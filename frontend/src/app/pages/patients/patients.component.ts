@@ -140,67 +140,11 @@ export class PatientsComponent implements OnInit {
 		}
 	}
 
-	// 	openDeleteDialog(patient: Patient) {
-	// 		let dialogRef = this.dialog.open(DialogToDeleteComponent, {
-	// 			width: '25vw',
-	// 			data: patient
-	// 		});
-
-	// 		dialogRef.afterClosed().subscribe(res => {
-	// 			if (res) {
-	// 				this.uiService.showSnackBar(res.message)
-
-	// 				if (res.status == true)
-	// 					this.fetchData()
-	// 			}
-	// 		})
-
-	// 	}
-
-	// 	openInformationDialog(patient: Patient) {
-
-	// 		this.dialog.open(CovidTestInformationComponent, {
-	// 			data: patient,
-	// 			width: '25vw'
-	// 		});
-	// 	}
-
-	// 	openEditDialog(patient: Patient) {
-
-	// 		let dialogRef = this.dialog.open(CovidTestEditComponent, {
-	// 			data: patient,
-	// 			width: '25vw',
-	// 		});
-
-	// 		dialogRef.afterClosed().subscribe((data) => {
-	// 			if (data) {
-	// 				this.uiService.showSnackBar(data.message)
-
-	// 				if (data.status == true)
-	// 					this.fetchData()
-	// 			}
-	// 		})
-	// 	}
-
-	// 	openCreateDialog() {
-	// 		const dialogRef = this.dialog.open(CreateDialogComponent, {
-	// 			width: '25vw'
-	// 		});
-
-	// 		dialogRef.afterClosed().subscribe((data) => {
-	// 			if (data) {
-	// 				this.uiService.showSnackBar(data.message)
-
-	// 				if (data.status == true)
-	// 					this.fetchData()
-	// 			}
-	// 		})
-	// 	}
-	// =======
-	// 		return getAll.subscribe((data) => {
-	// 			this.result = data
-	// 		})
-	// 	}
+	clearFilters() {
+		this.selectedSearchField = undefined
+		this.selectedSearchFilter = undefined
+		this.fetchData()
+	}
 
 	openDeleteDialog(patient: Patient) {
 		let dialogRef = this.dialog.open(PatientDeleteComponent, {

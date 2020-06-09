@@ -36,6 +36,9 @@
 						{{filter.view}}
 					</mat-option>
 				</mat-select>
+				<button mat-button color="accent" [disabled]="!selectedSearchField" (click)="clearFilters()">
+					Clear Filters
+				</button>
 			</mat-form-field>
 			<mat-form-field *ngIf="selectedSearchFieldMethod()==='age'">
 				<mat-label>Age From</mat-label>
