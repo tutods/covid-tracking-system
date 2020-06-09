@@ -1,0 +1,18 @@
+<mat-dialog-content>
+	<h2 class="accent-color">
+		<mat-icon>delete</mat-icon>
+		You want delete COVID Test?
+	</h2>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+	<button mat-button color="primary" type="submit" (click)="onSubmit()">
+		<mat-icon>check</mat-icon>
+		Yes
+	</button>
+
+	<button mat-button color="accent" type="button" (click)="onClose()">
+		<mat-icon>cancel</mat-icon>
+		No
+	</button>
+</mat-dialog-actions>

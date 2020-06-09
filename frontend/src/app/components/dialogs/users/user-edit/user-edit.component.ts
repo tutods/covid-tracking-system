@@ -1,95 +1,95 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UsersService } from '../../../../services/users/users.service';
 import { User } from './../../../../models/user.model';
-import { RolesService } from './../../../../services/roles-service/roles.service';
-import { UsersService } from './../../../../services/users-service/users.service';
+import { RolesService } from './../../../../services/roles/roles.service';
 
 @Component({
-  templateUrl: './user-edit.component.html',
-  styleUrls: ['./user-edit.component.sass'],
+	templateUrl: './user-edit.component.html',
+	styleUrls: ['./user-edit.component.sass'],
 })
 export class UserEditComponent implements OnInit {
-  roles: any[] = [];
-  user: User;
-  userForm: FormGroup;
+	roles: any[] = [];
+	user: User;
+	userForm: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    public usersService: UsersService,
-    public rolesService: RolesService,
-    public dialogRef: MatDialogRef<UserEditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {
-    this.user = data;
-  }
+	constructor(
+		private formBuilder: FormBuilder,
+		public usersService: UsersService,
+		public rolesService: RolesService,
+		public dialogRef: MatDialogRef<UserEditComponent>,
+		@Inject(MAT_DIALOG_DATA) public data: any
+	) {
+		this.user = data;
+	}
 
-  ngOnInit(): void {
-    const emailPattern = '^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}$';
+	ngOnInit(): void {
+		const emailPattern = '^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}$';
 
-    this.rolesService.getAll().subscribe((roles) => {
-      roles.map((role) => {
-        this.roles.push(role);
-      });
-    });
+		this.rolesService.getAll().subscribe((roles) => {
+			roles.map((role) => {
+				this.roles.push(role);
+			});
+		});
 
-    this.userForm = this.formBuilder.group({
-      name: [this.user.name, [Validators.required]],
-      email: [
-        this.user.email,
-        [
-          Validators.required,
-          Validators.email,
-          Validators.pattern(emailPattern),
-        ],
-      ],
-      role: [this.user.role['_id'], [Validators.required]],
-    });
-  }
+		this.userForm = this.formBuilder.group({
+			name: [this.user.name, [Validators.required]],
+			email: [
+				this.user.email,
+				[
+					Validators.required,
+					Validators.email,
+					Validators.pattern(emailPattern),
+				],
+			],
+			role: [this.user.role['_id'], [Validators.required]],
+		});
+	}
 
-  // To disable button if have errors
-  get userFormControl() {
-    return this.userForm.controls;
-  }
+	// To disable button if have errors
+	get userFormControl() {
+		return this.userForm.controls;
+	}
 
-  // Submit Method
-  onSubmit(evt) {
-    // Prevent Default
-    evt.preventDefault();
+	// Submit Method
+	onSubmit(evt) {
+		// Prevent Default
+		evt.preventDefault();
 
-    const updatedData = {
-      name: this.userForm.get('name').value,
-      email: this.userForm.get('email').value,
-      role: this.userForm.get('role').value,
-    };
+		const updatedData = {
+			name: this.userForm.get('name').value,
+			email: this.userForm.get('email').value,
+			role: this.userForm.get('role').value,
+		};
 
-    let response: object = {};
+		let response: object = {};
 
-    this.usersService.getOneAndUpdate(this.user['_id'], updatedData).subscribe(
-      (updated) => {
-        response['message'] = 'User updated with success!';
-        response['status'] = true;
-      },
-      (error) => {
-        let codeMessage = error.error.message;
+		this.usersService.getOneAndUpdate(this.user['_id'], updatedData).subscribe(
+			(updated) => {
+				response['message'] = 'User updated with success!';
+				response['status'] = true;
+			},
+			(error) => {
+				let codeMessage = error.error.message;
 
-        if (codeMessage.includes('E11000')) {
-          if (codeMessage.includes('email:')) {
-            codeMessage = 'Email inserted already exists';
-          } else {
-            codeMessage = 'Unique error. Please validate all fields!';
-          }
-        }
+				if (codeMessage.includes('E11000')) {
+					if (codeMessage.includes('email:')) {
+						codeMessage = 'Email inserted already exists';
+					} else {
+						codeMessage = 'Unique error. Please validate all fields!';
+					}
+				}
 
-        response['message'] = codeMessage;
-        response['status'] = false;
-      }
-    );
+				response['message'] = codeMessage;
+				response['status'] = false;
+			}
+		);
 
-    this.dialogRef.close(response);
-  }
+		this.dialogRef.close(response);
+	}
 
-  onClose(): void {
-    this.dialogRef.close();
-  }
+	onClose(): void {
+		this.dialogRef.close();
+	}
 }

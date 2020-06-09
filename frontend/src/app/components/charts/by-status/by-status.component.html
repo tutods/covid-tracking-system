@@ -2,4 +2,5 @@
 	<canvas *ngIf="chartReady" baseChart [datasets]="chartData" [labels]="chartLabels" [chartType]="chartType"
 		[options]="chartOptions" [colors]="chartColors">
 	</canvas>
+	<h3 *ngIf="!chartReady">No data to show!</h3>
 </div>

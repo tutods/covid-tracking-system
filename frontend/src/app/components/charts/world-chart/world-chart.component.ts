@@ -43,7 +43,7 @@ export class WorldChartComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.covidApiService.getSummary().subscribe((summary) => {
-
+			console.log(summary)
 			this.pieChartData = [
 				summary.Global.TotalRecovered,
 				summary.Global.TotalDeaths,

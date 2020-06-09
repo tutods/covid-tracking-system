@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SessionService } from '../session.service';
+import { TitleService } from './../../services/title/title.service';
+import { UiService } from './../../services/ui/ui.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
 	isErrorState(
@@ -35,11 +36,14 @@ export class ChangeComponent implements OnInit {
 
 	constructor(
 		public session: SessionService,
-		public router: Router,
-		private snackBar: MatSnackBar,
+		private uiService: UiService,
+		private titleService: TitleService,
 		private activatedRoute: ActivatedRoute,
-		private formBuilder: FormBuilder
+		private formBuilder: FormBuilder,
+		private router: Router
 	) {
+		this.titleService.setPageTitle("Change Password")
+
 		this.changeForm = this.formBuilder.group(
 			{
 				newPassword: ['', [Validators.required]],
@@ -66,10 +70,6 @@ export class ChangeComponent implements OnInit {
 		return this.changeForm.controls;
 	}
 
-	openSnackBar(message: string) {
-		this.snackBar.open(message, 'Close', { duration: 5000 });
-	}
-
 	onSubmit(evt) {
 		evt.preventDefault();
 
@@ -81,10 +81,10 @@ export class ChangeComponent implements OnInit {
 			)
 			.subscribe(
 				(data) => {
-					this.openSnackBar('Password changed with success');
+					this.uiService.showSnackBar('Password changed with success');
 				},
 				(error) => {
-					this.openSnackBar(error.error.message.message || 'Token expired');
+					this.uiService.showSnackBar((error.error.message.message || 'Token expired'));
 				}
 			);
 

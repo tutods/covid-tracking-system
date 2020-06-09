@@ -2,9 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UsersService } from '../../../../services/users/users.service';
 import { User } from './../../../../models/user.model';
-import { RolesService } from './../../../../services/roles-service/roles.service';
-import { UsersService } from './../../../../services/users-service/users.service';
+import { RolesService } from './../../../../services/roles/roles.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
 	isErrorState(

@@ -23,9 +23,15 @@
         text-transform: uppercase
         text-align: center
 
+@media screen and (max-width: 800px)
+    .hero
+        height: 40vh !important
+
+@media screen and (min-width: 1200px)
+    .hero
+        height: 75vh
+
 .hero
-    min-height: 50vh
-    min-height: 100vh
     background-image: url(/assets/images/backgrounds/doctor.jpg)
     background-size: cover
     background-position: center
@@ -63,6 +69,17 @@ mat-card
         text-align: center
         word-wrap: break-word
 
+    mat-card-title
+        margin-bottom: 30px
+        font-size: 1.25rem
+
+    @media screen and (max-width: 800px)
+        mat-card-title
+            font-size: 1.75rem
+
+    mat-card-subtitle
+        font-weight: 400
+
 .chart-card
     mat-card-header
         mat-card-title, mat-card-subtitle
@@ -71,6 +88,10 @@ mat-card
 .row
     .col
         padding: 10px
+
+    @media screen and (max-width: 800px)
+        .col
+            margin-bottom: 20px
 
 .footer-dark
     margin-top: 3rem

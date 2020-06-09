@@ -3,9 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-    production: false,
-    apiUrl: '/api',
-    covidAPI: 'https://api.covid19api.com'
+	production: false,
+	apiUrl: '/api',
+	baseTitle: 'COVID Tracking System',
+	covidAPI: 'https://api.covid19api.com'
 };
 
 

@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from './../../../../models/user.model';
-import { UsersService } from './../../../../services/users-service/users.service';
+import { UsersService } from '../../../../services/users/users.service';
 
 @Component({
 	selector: 'app-user-delete',

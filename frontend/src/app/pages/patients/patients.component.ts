@@ -1,196 +1,262 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { CreateDialogComponent } from '../../components/dialogs/patients/create-dialog/create-dialog.component';
-import { DialogToDeleteComponent } from '../../components/dialogs/patients/dialog-to-delete/dialog-to-delete.component';
-import { EditDialogComponent } from '../../components/dialogs/patients/edit-dialog/edit-dialog.component';
-import { InformationDialogComponent } from '../../components/dialogs/patients/information-dialog/information-dialog.component';
-import { PatientsService } from '../../services/patients/patients.service';
-import { Patient } from './../../models/patient.model';
 import { ageToDate } from 'src/app/functions/ageToDate';
-import { formatDate } from '../../functions/formatDate'
+import { formatDate } from '../../functions/formatDate';
+import { PatientsService } from '../../services/patients/patients.service';
+import { UiService } from '../../services/ui/ui.service';
+import { PatientAddComponent } from './../../components/dialogs/patients/patient-add/patient-add.component';
+import { PatientDeleteComponent } from './../../components/dialogs/patients/patient-delete/patient-delete.component';
+import { PatientEditComponent } from './../../components/dialogs/patients/patient-edit/patient-edit.component';
+import { PatientInfoComponent } from './../../components/dialogs/patients/patient-info/patient-info.component';
+import { Patient } from './../../models/patient.model';
+import { TitleService } from './../../services/title/title.service';
 
 @Component({
-    selector: 'app-patients',
-    templateUrl: './patients.component.html',
-    styleUrls: ['./patients.component.sass']
+	selector: 'app-patients',
+	templateUrl: './patients.component.html',
+	styleUrls: ['./patients.component.sass']
 })
 export class PatientsComponent implements OnInit {
-    result: any;
+	public dialogSize: string = (window.innerWidth >= 1200) ? '25vw' : (window.innerWidth >= 800) ? '50vw' : '85vw'
 
-    fields: Object[] = [
-        { value: 'name', view: 'Name' },
-        { value: 'birthdayDate', view: 'Birthday Date' },
-        { value: 'status', view: 'Status' },
-    ];
+	result: any;
 
-    filters: Object[] = [
-        { value: 'age', view: 'Age' },
-        { value: 'status', view: 'Status' },
-        { value: 'gender', view: 'Gender' },
-    ];
+	fields: Object[] = [
+		{ value: 'name', view: 'Name' },
+		{ value: 'birthdayDate', view: 'Birthday Date' },
+		{ value: 'status', view: 'Status' },
+	];
 
-    orders: Object[] = [
-        { value: 'asc', view: 'Ascendent' },
-        { value: 'desc', view: 'Descendent' },
-    ];
+	filters: Object[] = [
+		{ value: 'age', view: 'Age' },
+		{ value: 'status', view: 'Status' },
+		{ value: 'gender', view: 'Gender' },
+	];
 
-    status: Object[] = [
-        { value: 'Suspect', view: 'Suspect' },
-        { value: 'Infected', view: 'Infected' },
-        { value: 'Non Infected', view: 'Non Infected' }
-    ];
+	orders: Object[] = [
+		{ value: 'asc', view: 'Ascendent' },
+		{ value: 'desc', view: 'Descendent' },
+	];
 
-    genders: Object[] = [
-        { value: 'Male', view: 'Male' },
-        { value: 'Female', view: 'Female' }
-    ];
+	status: Object[] = [
+		{ value: 'Suspect', view: 'Suspect' },
+		{ value: 'Infected', view: 'Infected' },
+		{ value: 'Non Infected', view: 'Non Infected' }
+	];
 
-    selectedField: string;
-    selectedOrder: string;
-    selectedSearchField: string;
-    selectedSearchFilter: string;
+	genders: Object[] = [
+		{ value: 'Male', view: 'Male' },
+		{ value: 'Female', view: 'Female' }
+	];
 
-    selectedSearchFilterFromAge: number;
-    selectedSearchFilterToAge: number;
+	selectedField: string;
+	selectedOrder: string;
+	selectedSearchField: string;
+	selectedSearchFilter: string;
 
-    constructor(
-        public patients: PatientsService,
-        private http: HttpClient,
-        public dialog: MatDialog,
-        private snackBar: MatSnackBar
-    ) { }
+	selectedSearchFilterFromAge: number;
+	selectedSearchFilterToAge: number;
 
-    ngOnInit(): void {
-        this.fetchData();
-    }
+	constructor(
+		public patients: PatientsService,
+		private http: HttpClient,
+		public dialog: MatDialog,
+		private uiService: UiService,
+		private titleService: TitleService
+	) {
+		this.titleService.setPageTitle('Patients')
+	}
 
-    openSnackBar(message: string) {
-        this.snackBar.open(message, 'Close', { duration: 5000 });
-    }
-
-    fetchData() {
-        const getAll = this.patients.getAll()
-
-        return getAll.subscribe((data) => {
-            this.result = data;
-        });
-    }
-
-    fetchOrderedData() {
-        const getAllWithSort = this.patients.getAllWithSort(this.selectedField, this.selectedOrder);
-
-        return getAllWithSort.subscribe((data) => {
-            this.result = data;
-        });
-    }
-
-    fetchFilteredData() {
-        const getAllWithFilter = this.patients.getAllWithFilter(this.selectedSearchField, this.selectedSearchFilter);
-
-        return getAllWithFilter.subscribe((data) => {
-            this.result = data;
-        });
-    }
-
-    fetchFilteredDataWithDate() {
-        const from = ageToDate(this.selectedSearchFilterFromAge);
-        var to;
-        if (this.selectedSearchFilterToAge > 0) {
-            to = ageToDate(this.selectedSearchFilterToAge);
-        }
-        else if (this.selectedSearchFilterToAge === 0) {
-            to = formatDate(new Date());
-        }
+	ngOnInit(): void {
+		this.fetchData();
+	}
 
 
-        const getAllWithFilter = this.patients.getAllFilteredWithDate(to, from);
+	fetchData() {
+		const getAll = this.patients.getAll()
 
-        return getAllWithFilter.subscribe((data) => {
-            this.result = data;
-        });
-    }
+		return getAll.subscribe((data) => {
+			this.result = data;
+		});
+	}
 
-    selectedSearchFieldMethod() {
-        return this.selectedSearchField;
-    }
+	fetchOrderedData() {
+		const getAllWithSort = this.patients.getAllWithSort(this.selectedField, this.selectedOrder);
 
-    selectedSearchFilterMethod() {
-        if ((this.selectedSearchField === 'status' || this.selectedSearchField === 'gender') && this.selectedSearchFilter) {
-            this.fetchFilteredData();
-        }
-        if (this.selectedSearchField === 'age' && this.selectedSearchFilterToAge > -1) {
-            this.fetchFilteredDataWithDate();
-        }
-    }
+		return getAllWithSort.subscribe((data) => {
+			this.result = data;
+		});
+	}
 
-    selectedFieldMethod() {
-        if (this.selectedOrder) {
-            this.fetchOrderedData();
-        }
-    }
+	fetchFilteredData() {
+		const getAllWithFilter = this.patients.getAllWithFilter(this.selectedSearchField, this.selectedSearchFilter);
 
-    selectedOrderMethod() {
-        if (this.selectedField) {
-            this.fetchOrderedData();
-        }
-    }
+		return getAllWithFilter.subscribe((data) => {
+			this.result = data;
+		});
+	}
 
-    openDeleteDialog(patient: Patient) {
-        let dialogRef = this.dialog.open(DialogToDeleteComponent, {
-            width: '25vw',
-            data: patient
-        });
+	fetchFilteredDataWithDate() {
+		const from = ageToDate(this.selectedSearchFilterFromAge);
+		var to;
+		if (this.selectedSearchFilterToAge > 0) {
+			to = ageToDate(this.selectedSearchFilterToAge);
+		}
+		else if (this.selectedSearchFilterToAge === 0) {
+			to = formatDate(new Date());
+		}
 
-        dialogRef.afterClosed().subscribe(res => {
-            if (res) {
-                this.openSnackBar(res.message)
 
-                if (res.status == true)
-                    this.fetchData()
-            }
-        })
+		const getAllWithFilter = this.patients.getAllFilteredWithDate(to, from);
 
-    }
-    openInformationDialog(patient: Patient) {
+		return getAllWithFilter.subscribe((data) => {
+			this.result = data;
+		});
+	}
 
-        this.dialog.open(InformationDialogComponent, {
-            data: patient,
-            width: '25vw'
-        });
-    }
+	selectedSearchFieldMethod() {
+		return this.selectedSearchField;
+	}
 
-    openEditDialog(patient: Patient) {
+	selectedSearchFilterMethod() {
+		if ((this.selectedSearchField === 'status' || this.selectedSearchField === 'gender') && this.selectedSearchFilter) {
+			this.fetchFilteredData();
+		}
+		if (this.selectedSearchField === 'age' && this.selectedSearchFilterToAge > -1) {
+			this.fetchFilteredDataWithDate();
+		}
+	}
 
-        let dialogRef = this.dialog.open(EditDialogComponent, {
-            data: patient,
-            width: '25vw',
-        });
+	selectedFieldMethod() {
+		if (this.selectedOrder) {
+			this.fetchOrderedData();
+		}
+	}
 
-        dialogRef.afterClosed().subscribe((data) => {
-            if (data) {
-                this.openSnackBar(data.message)
+	selectedOrderMethod() {
+		if (this.selectedField) {
+			this.fetchOrderedData();
+		}
+	}
 
-                if (data.status == true)
-                    this.fetchData()
-            }
-        })
-    }
+	// 	openDeleteDialog(patient: Patient) {
+	// 		let dialogRef = this.dialog.open(DialogToDeleteComponent, {
+	// 			width: '25vw',
+	// 			data: patient
+	// 		});
 
-    openCreateDialog() {
-        const dialogRef = this.dialog.open(CreateDialogComponent, {
-            width: '25vw'
-        });
+	// 		dialogRef.afterClosed().subscribe(res => {
+	// 			if (res) {
+	// 				this.uiService.showSnackBar(res.message)
 
-        dialogRef.afterClosed().subscribe((data) => {
-            if (data) {
-                this.openSnackBar(data.message)
+	// 				if (res.status == true)
+	// 					this.fetchData()
+	// 			}
+	// 		})
 
-                if (data.status == true)
-                    this.fetchData()
-            }
-        })
-    }
+	// 	}
+
+	// 	openInformationDialog(patient: Patient) {
+
+	// 		this.dialog.open(CovidTestInformationComponent, {
+	// 			data: patient,
+	// 			width: '25vw'
+	// 		});
+	// 	}
+
+	// 	openEditDialog(patient: Patient) {
+
+	// 		let dialogRef = this.dialog.open(CovidTestEditComponent, {
+	// 			data: patient,
+	// 			width: '25vw',
+	// 		});
+
+	// 		dialogRef.afterClosed().subscribe((data) => {
+	// 			if (data) {
+	// 				this.uiService.showSnackBar(data.message)
+
+	// 				if (data.status == true)
+	// 					this.fetchData()
+	// 			}
+	// 		})
+	// 	}
+
+	// 	openCreateDialog() {
+	// 		const dialogRef = this.dialog.open(CreateDialogComponent, {
+	// 			width: '25vw'
+	// 		});
+
+	// 		dialogRef.afterClosed().subscribe((data) => {
+	// 			if (data) {
+	// 				this.uiService.showSnackBar(data.message)
+
+	// 				if (data.status == true)
+	// 					this.fetchData()
+	// 			}
+	// 		})
+	// 	}
+	// =======
+	// 		return getAll.subscribe((data) => {
+	// 			this.result = data
+	// 		})
+	// 	}
+
+	openDeleteDialog(patient: Patient) {
+		let dialogRef = this.dialog.open(PatientDeleteComponent, {
+			width: this.dialogSize,
+			data: patient
+		});
+
+		dialogRef.afterClosed().subscribe(res => {
+			if (res) {
+				this.uiService.showSnackBar(res.message)
+
+				if (res.status == true)
+					this.fetchData()
+			}
+		})
+
+	}
+
+	openInformationDialog(patient: Patient) {
+
+		this.dialog.open(PatientInfoComponent, {
+			data: patient,
+			width: this.dialogSize
+		});
+	}
+
+	openEditDialog(patient: Patient) {
+
+		let dialogRef = this.dialog.open(PatientEditComponent, {
+			data: patient,
+			width: this.dialogSize,
+		});
+
+		dialogRef.afterClosed().subscribe((data) => {
+			if (data) {
+				this.uiService.showSnackBar(data.message)
+
+				if (data.status == true)
+					this.fetchData()
+			}
+		})
+	}
+
+	openCreateDialog() {
+		const dialogRef = this.dialog.open(PatientAddComponent, {
+			width: this.dialogSize
+		});
+
+		dialogRef.afterClosed().subscribe((data) => {
+			if (data) {
+				this.uiService.showSnackBar(data.message)
+
+				if (data.status == true)
+					this.fetchData()
+			}
+		})
+	}
 }
 

@@ -301,7 +301,7 @@ COVID Tracking System
 │	│       ├── patients
 │	│       ├── patients.service.spec.ts
 │	│       ├── patients.service.ts
-│	│       ├── roles-service
+│	│       ├── roles
 │	│       └── users-service
 │	├── assets
 │	│   └── images

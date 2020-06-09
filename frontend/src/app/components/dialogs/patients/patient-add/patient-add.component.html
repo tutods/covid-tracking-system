@@ -1,0 +1,127 @@
+<h2 mat-dialog-title>New Patient</h2>
+
+<form [formGroup]="patientForm" (submit)="onSubmit($event)">
+	<mat-dialog-content>
+		<mat-form-field appearance="legacy">
+			<mat-label>Name</mat-label>
+			<input matInput placeholder="Name" formControlName="name">
+			<mat-icon matPrefix>account_circle</mat-icon>
+			<mat-error [hidden]="(patientFormControl.name.touched) && patientFormControl.name.errors?.required">
+				Patient name is required!
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Birthday Date</mat-label>
+			<input matInput [matDatepicker]="myBirthdayDate" formControlName="birthdayDate">
+			<mat-datepicker-toggle matSuffix [for]="myBirthdayDate"></mat-datepicker-toggle>
+			<mat-datepicker #myBirthdayDate></mat-datepicker>
+			<mat-icon matPrefix>today</mat-icon>
+			<mat-error [hidden]="(patientFormControl.name.touched) && patientFormControl.name.errors?.required">
+				Birthay date is required!
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Patient Number</mat-label>
+			<input matInput type="number" formControlName="patientNumber">
+			<mat-icon matPrefix>local_parking</mat-icon>
+			<mat-error
+				*ngIf="(patientFormControl.patientNumber.touched) && patientFormControl.patientNumber.errors?.required">
+				Patient number number is required!
+			</mat-error>
+			<mat-error
+				*ngIf="(patientFormControl.patientNumber.touched) && patientFormControl.patientNumber.errors?.min">
+				Patient number number needs 9 digits!
+			</mat-error>
+			<mat-error
+				*ngIf="(patientFormControl.patientNumber.touched) && patientFormControl.patientNumber.errors?.max">
+				Patient number only support max of 9 digits!
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Gender</mat-label>
+			<mat-select matNativeControl formControlName="gender" name="gender">
+				<mat-option value="Male">
+					Male
+				</mat-option>
+				<mat-option value="Female">
+					Female
+				</mat-option>
+			</mat-select>
+			<mat-icon matPrefix>face</mat-icon>
+			<mat-error *ngIf="(patientFormControl.gender.touched) && patientFormControl.gender.errors?.required">
+				Patient gender is required!
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Status</mat-label>
+			<mat-select matNativeControl formControlName="status" name="status">
+				<mat-option *ngFor="let stat of status" [value]="stat">
+					{{stat}}
+				</mat-option>
+			</mat-select>
+			<mat-icon matPrefix>healing</mat-icon>
+			<mat-error *ngIf="(patientFormControl.status.touched) && patientFormControl.status.errors?.required">
+				Patient status is required!
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Phone</mat-label>
+			<input matInput type="number" maxlength="9" minlength="9" formControlName="phone">
+			<mat-icon matPrefix>phone</mat-icon>
+			<mat-error *ngIf="(patientFormControl.phone.touched) && patientFormControl.phone.errors?.required">
+				Phone number is required!
+			</mat-error>
+			<mat-error *ngIf="(patientFormControl.phone.touched) && patientFormControl.phone.errors?.min">
+				Phone number needs 9 digits!
+			</mat-error>
+			<mat-error *ngIf="(patientFormControl.phone.touched) && patientFormControl.phone.errors?.max">
+				Phone number only support max of 9 digits!
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>E-mail</mat-label>
+			<input matInput type="email" formControlName="email">
+			<mat-icon matPrefix>alternate_email</mat-icon>
+			<mat-error
+				[hidden]="(patientFormControl.email.touched) && (patientFormControl.email.errors?.email || patientFormControl.email.errors?.pattern)">
+				Invalid email.
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Symptoms</mat-label>
+			<mat-select matNativeControl formControlName="symptoms" name="symptoms" multiple>
+				<mat-option *ngFor="let symptom of symptoms" [value]="symptom">
+					{{symptom | titlecase}}
+				</mat-option>
+			</mat-select>
+			<mat-icon matPrefix>local_hospital</mat-icon>
+			<mat-error *ngIf="(patientFormControl.symptoms.touched) && patientFormControl.symptoms.errors?.required">
+				Patient symptoms is required!
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Observations</mat-label>
+			<mat-select matNativeControl formControlName="observations" name="observations" multiple>
+				<mat-option *ngFor="let observation of observations" [value]="observation.value">
+					{{observation.label}}
+				</mat-option>
+			</mat-select>
+			<mat-icon matPrefix>remove_red_eye</mat-icon>
+		</mat-form-field>
+	</mat-dialog-content>
+
+
+	<mat-dialog-actions>
+		<button mat-button color="primary" type="submit" [disabled]="!patientForm.valid">Save</button>
+		<button mat-button color="accent" (click)="onClose()" type="button">Cancel</button>
+
+	</mat-dialog-actions>
+</form>
