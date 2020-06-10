@@ -5,7 +5,7 @@ const ApiCovid = require('../api/models/ApiCovid');
 
 module.exports = cron.schedule('*/15 * * * *', () => {
 	request('https://api.covid19api.com/summary', (err, res, body) => {
-		if (!err) {
+		if (!err && body != 'You have reached maximum request limit.') {
 			const json = JSON.parse(body);
 			const api = new ApiCovid(json);
 			mongoose.connection.db
