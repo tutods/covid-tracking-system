@@ -1,0 +1,24 @@
+{
+	"numberOfPatientsByGender": {
+		"description": "Return number of patients by gender",
+		"schema": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"gender": {
+						"type": "string",
+						"enum": [
+							"Male",
+							"Female"
+						]
+					},
+					"count": {
+						"type": "number",
+						"example": 2
+					}
+				}
+			}
+		}
+	}
+}

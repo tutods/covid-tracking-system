@@ -92,11 +92,11 @@ export class ByGenderComponent implements OnInit {
 				let dataArray = [];
 				data.map((element, index) => {
 
-					element.status =
-						element.status.charAt(0).toUpperCase() + element.status.slice(1);
+					element.gender =
+						element.gender.charAt(0).toUpperCase() + element.gender.slice(1);
 
 					dataArray.push({
-						label: element.status,
+						label: element.gender,
 						data: [element.count],
 						backgroundColor: backgroundColor[index || 0],
 						hoverBackgroundColor: backgroundColor[index || 0],

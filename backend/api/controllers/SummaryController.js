@@ -126,7 +126,7 @@ const summaryController = () => {
 			},
 			{
 				$project: {
-					status: '$_id',
+					gender: '$_id',
 					_id: false,
 					count: '$count',
 				},

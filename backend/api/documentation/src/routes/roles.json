@@ -11,7 +11,7 @@
 				"200": {
 					"$ref": "#/responses/getAllRoles"
 				},
-				"500": {
+				"400": {
 					"$ref": "#/responses/defaultError"
 				}
 			}

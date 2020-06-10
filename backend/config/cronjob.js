@@ -5,6 +5,7 @@ const ApiCovid = require('../api/models/ApiCovid');
 
 module.exports = cron.schedule('*/15 * * * *', () => {
 	request('https://api.covid19api.com/summary', (err, res, body) => {
+		console.log('[CRONJOB STARTED]');
 		if (!err && body != 'You have reached maximum request limit.') {
 			const json = JSON.parse(body);
 			const api = new ApiCovid(json);
@@ -18,5 +19,6 @@ module.exports = cron.schedule('*/15 * * * *', () => {
 
 			api.save();
 		}
+		console.log('[CRONJOB ENDED]');
 	});
 });
