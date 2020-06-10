@@ -51,6 +51,7 @@ const covidTestSchema = new Schema(
 		result: {
 			type: String,
 			enum: ['positive', 'negative', 'inconclusive'],
+			required: false,
 		},
 		date: {
 			type: Date,

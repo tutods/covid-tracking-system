@@ -22,7 +22,7 @@ const covidTestController = () => {
 			{
 				runValidators: true,
 			},
-			(error, data) => {
+			(error, success) => {
 				const response = error
 					? {
 							status: 401,
@@ -33,8 +33,8 @@ const covidTestController = () => {
 							body: data,
 					  };
 
+				autoSchedule(success.patient._id);
 				res.status(response.status).json(response.body);
-				autoSchedule(response.body.patient._id);
 			}
 		);
 	};
@@ -101,8 +101,6 @@ const covidTestController = () => {
 		const patientData = await patient.findOne({
 			_id: patientId,
 		});
-
-		// console.log('aqui', patientId);
 
 		let testsData = tests.map((test) => {
 			return {

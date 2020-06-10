@@ -101,14 +101,13 @@ export class PatientsComponent implements OnInit {
 
 	fetchFilteredDataWithDate() {
 		const from = ageToDate(this.selectedSearchFilterFromAge);
-		var to;
+		let to;
 		if (this.selectedSearchFilterToAge > 0) {
 			to = ageToDate(this.selectedSearchFilterToAge);
 		}
 		else if (this.selectedSearchFilterToAge === 0) {
 			to = formatDate(new Date());
 		}
-
 
 		const getAllWithFilter = this.patients.getAllFilteredWithDate(to, from);
 
@@ -125,7 +124,8 @@ export class PatientsComponent implements OnInit {
 		if ((this.selectedSearchField === 'status' || this.selectedSearchField === 'gender') && this.selectedSearchFilter) {
 			this.fetchFilteredData();
 		}
-		if (this.selectedSearchField === 'age' && this.selectedSearchFilterToAge > -1) {
+
+		if (this.selectedSearchField === 'age' && this.selectedSearchFilterToAge > -1 && this.selectedSearchFilterToAge != undefined) {
 			this.fetchFilteredDataWithDate();
 		}
 	}

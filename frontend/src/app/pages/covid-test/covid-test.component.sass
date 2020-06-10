@@ -32,18 +32,6 @@
                 align-items: center
                 justify-content: center
 
-                .mat-icon
-                    width: fit-content
-                    height: fit-content
-
-                .material-icons
-                    font-size: inherit
-                    padding-right: 0.25rem
-
-// @media screen and (min-width: 1000px)
-//     .card-item
-//         flex: 0 1 33% !important
-
 .card-item
     padding: 0 10px 10px 10px
     margin-bottom: 0.5rem
@@ -93,14 +81,6 @@
 p
     font-size: 16px
 
-    .mat-icon
-        width: fit-content
-        height: fit-content
-
-    .material-icons
-        font-size: inherit
-        padding-right: 0.25rem
-
 #warning-text
     display: flex
     align-items: center
@@ -109,11 +89,37 @@ p
     font-weight: 200
     font-size: 0.85rem
 
-    .mat-icon
-        margin-right: 10px
-        width: fit-content
-        height: fit-content
+::ng-deep mat-tab-group
+    padding: 0 10px 10px 10px
 
-    .material-icons
-        font-size: inherit
-        padding-right: 0.1rem
+    mat-tab-body
+        padding: 10px 0 10px 0
+
+::ng-deep .mat-tab-body-content
+    display: flex
+    align-items: center
+    justify-content: flex-start
+
+
+    mat-form-field
+        &:not(:last-child)
+            margin-right: 20px
+
+@media screen and ( max-width: 800px )
+    ::ng-deep mat-tab-group
+        mat-tab-body
+            padding-top: 10px
+
+    ::ng-deep .mat-tab-body-content
+        // padding-top: 10px
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        height: 100%
+
+        mat-form-field
+            width: 80%
+
+            &:not(:last-child)
+                margin-right: 0px

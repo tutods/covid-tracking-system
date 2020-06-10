@@ -31,8 +31,8 @@ export class CovidTestService {
 		return this.http.get(`${API_URL}/covid-tests/${id}`, httpOptions).pipe(share());
 	}
 
-	getOneAndUpdate(id: string, covidTest: any) {
-		return this.http.put(`${API_URL}/covid-tests/${id}`, covidTest, httpOptions).pipe(share());
+	getOneAndUpdate(id: string, body) {
+		return this.http.put(`${API_URL}/covid-tests/${id}`, body).pipe(share());
 	}
 
 	getOneAndDelete(id: string) {

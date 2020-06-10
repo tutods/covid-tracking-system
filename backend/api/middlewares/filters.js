@@ -9,6 +9,7 @@ module.exports = (req, _, next) => {
 			const filterValue = req.query[name];
 			if (filterValue.indexOf(',') >= 0) {
 				const [min, max] = filterValue.split(',');
+
 				filters[name] = {
 					$gte: new Date(min),
 					$lte: new Date(max),

@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Edit</h2>
 
-<form [formGroup]="covidTestForm" (submit)="save($event)">
+<form [formGroup]="covidTestForm" (submit)="save($event)" enctype="multipart/form-data">
 	<mat-dialog-content>
 		<mat-form-field>
 			<mat-label>Notes</mat-label>
@@ -27,7 +27,7 @@
 					{{stat | titlecase}}
 				</mat-option>
 			</mat-select>
-			<mat-icon matSuffix>healing</mat-icon>
+			<mat-icon matPrefix>healing</mat-icon>
 			<mat-error [hidden]="(covidTestFormControl.status.touched) && covidTestFormControl.status.errors?.required">
 				Status is required.
 			</mat-error>
@@ -40,8 +40,14 @@
 					{{result | titlecase}}
 				</mat-option>
 			</mat-select>
-			<mat-icon matSuffix>info</mat-icon>
+			<mat-icon matPrefix>info</mat-icon>
 		</mat-form-field>
+
+		<input type="file" formControlName="file" (change)="onFileSelected($event)">
+
+		<div class="accent-color" *ngIf="covidTest.pathFile">
+			<small>Already have upload one file.</small>
+		</div>
 	</mat-dialog-content>
 	<mat-dialog-actions>
 		<button mat-button color="primary" type="submit" [disabled]="!covidTestForm.valid">Save</button>

@@ -12,6 +12,7 @@ import { CovidTestService } from '../../../../services/covid-test/covid-test.ser
 export class CovidTestEditComponent implements OnInit {
 	covidTest: CovidTest;
 	covidTestForm: FormGroup;
+	file: File = null
 	// Default Status
 	status: string[] = ['pending', 'in Progress', 'finished', 'waiting Result'];
 	results: string[] = ['positive', 'negative', 'inconclusive'];
@@ -32,23 +33,37 @@ export class CovidTestEditComponent implements OnInit {
 			'status': [this.covidTest.status, [
 				Validators.required,
 			]],
-			'result': [this.covidTest.result, []]
+			'result': [this.covidTest.result, []],
+			'file': ['', []]
 		});
 	}
+
+	onFileSelected(e) {
+		this.file = <File>(e.target.files || [])[0]
+	}
+
+
 
 	save(evt) {
 		evt.preventDefault()
 
-		const formDate = new Date(this.covidTestForm.get('scheduleDate').value)
+		let formDate: Date = new Date(this.covidTestForm.get('scheduleDate').value)
+		console.log(formDate)
 
-		const formData = {
-			notes: this.covidTestForm.get('notes').value,
-			date: new Date(`${formDate.getFullYear()}-${formDate.getMonth() + 1}-${formDate.getDate()}`),
-			status: this.covidTestForm.get('status').value,
-			result: this.covidTestForm.get('result').value || undefined,
-		}
+		formDate = new Date(`${formDate.getFullYear()}-${formDate.getMonth() + 1}-${formDate.getDate()}`)
 
-		this.covidTests.getOneAndUpdate(this.covidTest._id, formData).subscribe(
+		let fData = new FormData();
+		fData.append('notes', this.covidTestForm.get('notes').value)
+		fData.append('date', formDate.toString())
+		fData.append('status', this.covidTestForm.get('status').value)
+
+		if (this.covidTestForm.get('result').value)
+			fData.append('result', this.covidTestForm.get('result').value)
+
+		if (this.file)
+			fData.append('file', this.file, this.file.name)
+
+		this.covidTests.getOneAndUpdate(this.covidTest._id, fData).subscribe(
 			(success) => {
 				this.dialogRef.close({
 					message: "COVID Test updated with success!",

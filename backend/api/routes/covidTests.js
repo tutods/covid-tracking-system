@@ -21,15 +21,25 @@ const storage = multer.diskStorage({
 		fs.mkdirSync(path, { recursive: true });
 		cb(null, path);
 	},
-	filename: function (req, file, cb) {
+	filename: (req, file, cb) => {
 		const defaultExt = '.pdf';
-		//default extension protects from attackers
-		const date = Date.now();
-		cb(null, `test_${req.params.id}_${date}${defaultExt}`);
+		cb(null, `test_${req.params.id}${defaultExt}`);
 	},
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({
+	storage: storage,
+	fileFilter: (req, file, cb) => {
+		console.log('aqui');
+		if (file.mimetype == 'application/pdf') {
+			cb(null, true);
+		} else {
+			console.log('error!!!!');
+			cb(null, false);
+			return cb(new Error('Only .pdf format allowed!'));
+		}
+	},
+});
 
 // Controllers
 const {
@@ -59,7 +69,7 @@ router.get('/patient/:patientId', authorize(['--view-all']), getByPatient);
 router.put(
 	'/:id',
 	authorize(['--edit-all']),
-	upload.single('covid_test_result'),
+	upload.single('file'),
 	getOneAndUpdate
 );
 

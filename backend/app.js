@@ -29,6 +29,7 @@ const app = express();
 app
 	// Static Files
 	.use('/public', express.static('./public'))
+	.use('/uploads', express.static('./uploads'))
 
 	// Cookie Parser
 	.use(cookieParser())
@@ -40,7 +41,7 @@ app
 	.use(swaggerRouter)
 
 	// Set body-parser
-	.use(bodyParser.json())
+	.use(bodyParser.json({ limit: '50mb' }))
 
 	// URL Encoded
 	.use(express.urlencoded({ extended: true }))
