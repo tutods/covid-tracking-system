@@ -8,8 +8,9 @@ const fs = require('fs');
 //Path
 const filePath = 'uploads/covid-tests/';
 
-// Auto Schedule Email
+// Email
 const autoScheduleEmail = require('../../scripts/emails/autoScheduleEmail');
+const resultEmail = require('../../scripts/emails/resultEmail');
 
 const covidTestController = () => {
 	const getOneAndUpdate = async (req, res, next) => {
@@ -17,8 +18,9 @@ const covidTestController = () => {
 		const data = req.body;
 
 		try {
-			if (req.file)
+			if (req.file) {
 				data.pathFile = `${filePath}test_${req.params.id}.pdf`;
+			}
 
 			covidTest.findOneAndUpdate(
 				{
@@ -38,6 +40,14 @@ const covidTestController = () => {
 								status: 200,
 								body: data,
 						  };
+
+					if (req.file) {
+						resultEmail(
+							success.patient.contacts.email,
+							success.patient,
+							success.pathFile
+						);
+					}
 
 					autoSchedule(success.patient._id);
 					res.status(response.status).json(response.body);
@@ -147,7 +157,6 @@ const covidTestController = () => {
 	};
 
 	const autoSchedule = async (patientId) => {
-
 		const today = new Date();
 		const covid = await covidTest
 			.find({

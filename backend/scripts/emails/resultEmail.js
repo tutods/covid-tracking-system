@@ -7,7 +7,7 @@ const nodemailer = require('nodemailer');
 // EJS
 const ejs = require('ejs');
 
-const autoScheduleEmail = (email, patient) => {
+const resultEmail = (email, patient, file) => {
 	const formatDate = (date) => {
 		const shortDate = new Date(date);
 		const year = shortDate.getFullYear();
@@ -28,8 +28,8 @@ const autoScheduleEmail = (email, patient) => {
 	ejs.renderFile(
 		'./views/mail/resultEmail.ejs',
 		{
-			date: formatDate(date),
-			name: patient.name,
+			file: file,
+			patient: patient,
 		},
 		(err, data) => {
 			if (err) {
@@ -40,6 +40,13 @@ const autoScheduleEmail = (email, patient) => {
 					to: email,
 					subject: 'COVID Test',
 					html: data,
+					attachments: [
+						{
+							filename: 'result.pdf',
+							path: file,
+							contentType: 'application/pdf',
+						},
+					],
 				};
 
 				transporter.sendMail(mainOptions, function (err, info) {
@@ -55,4 +62,4 @@ const autoScheduleEmail = (email, patient) => {
 		}
 	);
 };
-module.exports = autoScheduleEmail;
+module.exports = resultEmail;

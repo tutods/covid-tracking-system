@@ -1,0 +1,68 @@
+<%- include('../partials/header.ejs') %>
+
+<%- include('../partials/preheader.ejs', {preheader: "Your COVID Test already have a result"}) %>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
+	<tr>
+		<td>
+			&nbsp;</td>
+		<td class="container">
+			<div class="content">
+
+				<%- include('../partials/logo.ejs') %>
+
+				<!-- START CENTERED WHITE CONTAINER -->
+				<table role="presentation" class="main" id="content">
+
+					<!-- START MAIN CONTENT AREA -->
+					<tr>
+						<td class="wrapper">
+							<table role="presentation" id="subtable" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td>
+										<p>Hi <%= patient.name %>,</p>
+										<p>Your test already have result.</p>
+										<p>Please see attachment, or if not work please open file on browser, clicking
+											on button below.</p>
+
+										<table role="presentation" border="0" cellpadding="0" cellspacing="0"
+											class="btn btn-primary">
+											<tbody>
+												<tr>
+													<td align="left">
+														<table role="presentation" border="0" cellpadding="0"
+															cellspacing="0">
+															<tbody>
+																<tr>
+																	<td>
+																		<a href="http://localhost:3000/<%= file %>"
+																			target="_blank">
+																			View on browser
+																		</a>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+
+					<!-- END MAIN CONTENT AREA -->
+				</table>
+				<!-- END CENTERED WHITE CONTAINER -->
+				<!-- START FOOTER -->
+				<%- include('../partials/copyright.ejs') %>
+				<!-- END FOOTER -->
+
+			</div>
+		</td>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+
+<%- include('../partials/footer.ejs') %>
