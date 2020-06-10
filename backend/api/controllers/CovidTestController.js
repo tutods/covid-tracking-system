@@ -168,9 +168,13 @@ const covidTestController = () => {
 			.limit(2);
 		const patientToTest = covid[0].patient;
 
-		const date = `${today.getFullYear()}-${today.getMonth() + 1}-${
-			today.getDate() + patientToTest.verifyObservations() ? 1 : 2
-		}`;
+		const daysAfter = patientToTest.verifyObservations() ? 2 : 3;
+
+		const scheduleDay = today.getDate() + daysAfter;
+
+		const date = `${today.getFullYear()}-${
+			today.getMonth() + 1
+		}-${scheduleDay}`;
 
 		const data = {
 			patient: patientId,
