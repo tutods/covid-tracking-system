@@ -3,21 +3,15 @@ const mongoose = require('mongoose');
 const request = require('request');
 const ApiCovid = require('../api/models/ApiCovid');
 
-module.exports = cron.schedule('*/15 * * * *', () => {
-	request('https://api.covid19api.com/summary', (err, res, body) => {
+module.exports = cron.schedule('* * * * *', () => {
+	request('https://api.covid19api.com/summary', async (err, res, body) => {
 		console.log('[CRONJOB STARTED]');
+
 		if (!err && body != 'You have reached maximum request limit.') {
 			const json = JSON.parse(body);
-			const api = new ApiCovid(json);
-			mongoose.connection.db
-				.listCollections({ name: 'apicovids' })
-				.next(function (err, exists) {
-					if (exists) {
-						mongoose.connection.collections['apicovids'].drop();
-					}
-				});
 
-			api.save();
+			await ApiCovid.collection.drop();
+			await new ApiCovid(json).save();
 		}
 		console.log('[CRONJOB ENDED]');
 	});

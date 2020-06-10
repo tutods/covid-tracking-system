@@ -56,7 +56,6 @@
 		"node-cron": "^2.0.3",
 		"nodemailer": "^6.4.6",
 		"request": "^2.88.2",
-		"request-json": "^0.6.5",
 		"rxjs-compat": "^6.5.5",
 		"shortid": "^2.2.15",
 		"swagger-ui-express": "^4.1.4"
