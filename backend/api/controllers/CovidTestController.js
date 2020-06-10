@@ -184,8 +184,11 @@ const covidTestController = () => {
 
 		if (covid.length < 2) {
 			if (covid[0].result != undefined) {
-				if (covid[0].result.localeCompare('inconclusive') == 0) {
-					createByData(data);
+				if (
+					covid[0].result.localeCompare('inconclusive') == 0 ||
+					covid[0].result.localeCompare('negative') == 0
+				) {
+					createFunction(data);
 				}
 			}
 		} else {
