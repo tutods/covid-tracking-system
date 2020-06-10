@@ -22,6 +22,8 @@ export class PatientsComponent implements OnInit {
 
 	result: any;
 
+	searchText;
+
 	fields: Object[] = [
 		{ value: 'name', view: 'Name' },
 		{ value: 'birthdayDate', view: 'Birthday Date' },

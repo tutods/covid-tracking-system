@@ -1,5 +1,7 @@
 <div id="header">
 	<mat-card>
+		<input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+			placeholder="&#61442;  search by text">
 		<mat-card-header>
 			<mat-card-title>
 				<mat-icon>supervised_user_circle</mat-icon>
@@ -17,8 +19,8 @@
 
 <div class="container">
 	<div fxFlex="100" fxLayout="row wrap">
-		<div fxFlex="0 1 25" fxFlex.xs="100" fxFlex.sm="0 1 50" fxLayoutAlign="start" *ngFor="let user of users"
-			class="card-item">
+		<div fxFlex="0 1 25" fxFlex.xs="100" fxFlex.sm="0 1 50" fxLayoutAlign="start"
+			*ngFor="let user of users | filter:searchText" class="card-item">
 			<mat-card>
 				<mat-card-header>
 					<div class="top-avatar"></div>
