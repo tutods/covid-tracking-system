@@ -8,6 +8,7 @@ import { CovidTestInformationComponent } from '../../components/dialogs/covid-te
 import { formatDate } from '../../functions/formatDate';
 import { CovidTest } from '../../models/covid-test.model';
 import { CovidTestService } from '../../services/covid-test/covid-test.service';
+import { PatientInfoComponent } from './../../components/dialogs/patients/patient-info/patient-info.component';
 import { TitleService } from './../../services/title/title.service';
 import { UiService } from './../../services/ui/ui.service';
 
@@ -92,6 +93,13 @@ export class CovidTestComponent implements OnInit {
 
 		return getAllWithSort.subscribe((data) => {
 			this.result = data;
+		});
+	}
+
+	openPatientInfoDialog(patient) {
+		this.dialog.open(PatientInfoComponent, {
+			data: patient,
+			width: this.dialogSize
 		});
 	}
 

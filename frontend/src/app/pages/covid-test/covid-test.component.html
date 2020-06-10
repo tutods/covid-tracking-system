@@ -114,6 +114,9 @@
 					<p>
 						<mat-icon>perm_identity</mat-icon>
 						<b>Patient:</b> {{covidTest.patient.name}}
+						<a (click)="openPatientInfoDialog(covidTest.patient)" id="patientInfo">
+							<mat-icon>visibility</mat-icon>
+						</a>
 					</p>
 					<p>
 						<mat-icon>healing</mat-icon>
