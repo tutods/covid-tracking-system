@@ -190,6 +190,12 @@ const covidTestController = () => {
 				) {
 					createFunction(data);
 				}
+				if (covid[0].result.localeCompare('positive') == 0) {
+					await patient.findOneAndUpdate(
+						{ _id: patientToTest._id },
+						{ status: 'Infected' }
+					);
+				}
 			}
 		} else {
 			if (covid[0].result != undefined && covid[1].result != undefined) {
@@ -198,6 +204,24 @@ const covidTestController = () => {
 					covid[1].result.localeCompare('positive') == 0
 				) {
 					createFunction(data);
+				}
+				if (
+					covid[0].result.localeCompare('negative') == 0 &&
+					covid[1].result.localeCompare('negative') == 0
+				) {
+					await patient.findOneAndUpdate(
+						{ _id: patientToTest._id },
+						{ status: 'Non Infected' }
+					);
+				}
+				if (
+					covid[0].result.localeCompare('positive') == 0 ||
+					covid[1].result.localeCompare('positive') == 0
+				) {
+					await patient.findOneAndUpdate(
+						{ _id: patientToTest._id },
+						{ status: 'Infected' }
+					);
 				}
 			}
 		}
