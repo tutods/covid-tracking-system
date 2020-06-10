@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
@@ -43,12 +43,14 @@ import { MatTreeModule } from '@angular/material/tree';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartsModule } from 'ng2-charts';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChangeComponent } from './auth/change/change.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ResetComponent } from './auth/reset/reset.component';
 import { ByDayComponent } from './components/charts/by-day/by-day.component';
+import { ByGenderComponent } from './components/charts/by-gender/by-gender.component';
 import { ByMonthComponent } from './components/charts/by-month/by-month.component';
 import { ByStatusComponent } from './components/charts/by-status/by-status.component';
 import { BySymptomsComponent } from './components/charts/by-symptoms/by-symptoms.component';
@@ -82,7 +84,6 @@ import { CovidTestComponent } from './pages/covid-test/covid-test.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 import { UsersComponent } from './pages/users/users.component';
-import { ByGenderComponent } from './components/charts/by-gender/by-gender.component';
 
 @NgModule({
 	declarations: [
@@ -143,8 +144,8 @@ import { ByGenderComponent } from './components/charts/by-gender/by-gender.compo
 		ByGenderComponent
 	],
 	imports: [
-        CommonModule,
-        FormsModule,
+		CommonModule,
+		FormsModule,
 		ReactiveFormsModule,
 		BrowserModule,
 		MatIconModule,
@@ -191,6 +192,7 @@ import { ByGenderComponent } from './components/charts/by-gender/by-gender.compo
 		MatTableModule,
 		MatTreeModule,
 		ScrollingModule,
+		Ng2SearchPipeModule
 	],
 	providers: [
 		ScopeGuard,

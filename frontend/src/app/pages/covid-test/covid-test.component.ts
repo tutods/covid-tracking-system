@@ -20,6 +20,8 @@ export class CovidTestComponent implements OnInit {
 	public dialogSize: string = (window.innerWidth >= 1200) ? '25vw' : (window.innerWidth >= 800) ? '50vw' : '85vw'
 	result: any;
 
+	searchText;
+
 	fields: Object[] = [
 		{ value: 'date', view: 'Date' },
 		{ value: 'status', view: 'Status' },

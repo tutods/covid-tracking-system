@@ -48,6 +48,7 @@
 		"@angular/router": "~9.1.9",
 		"chart.js": "^2.9.3",
 		"ng2-charts": "^2.3.2",
+		"ng2-search-filter": "^0.5.1",
 		"rxjs": "~6.5.5",
 		"tslib": "^2.0.0",
 		"zone.js": "~0.10.3"
