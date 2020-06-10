@@ -84,9 +84,7 @@ export class CovidTestCreateComponent implements OnInit {
 			scheduleDate: ['', [
 				Validators.required,
 			]],
-			notes: ['', [
-				Validators.required,
-			]],
+			notes: ['', []],
 		})
 
 		this.filteredOptions = this.covidTestForm.get('patient').valueChanges.pipe(

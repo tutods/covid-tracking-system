@@ -48,8 +48,6 @@ export class CovidTestEditComponent implements OnInit {
 		evt.preventDefault()
 
 		let formDate: Date = new Date(this.covidTestForm.get('scheduleDate').value)
-		console.log(formDate)
-
 		formDate = new Date(`${formDate.getFullYear()}-${formDate.getMonth() + 1}-${formDate.getDate()}`)
 
 		let fData = new FormData();

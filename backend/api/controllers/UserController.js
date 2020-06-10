@@ -13,17 +13,15 @@ const jwt = require('jsonwebtoken');
 
 const userController = () => {
 	const login = async (req, res, next) => {
-		const data = req.body;
-		const bodyEmail = data.email;
-		const bodyPwd = data.password;
+		const { email, password } = req.body;
 
-		const userDB = await User.findOne({ email: bodyEmail });
+		const userDB = await User.findOne({ email: email });
 
 		try {
 			if (userDB) {
 				let response = {};
 
-				if (await userDB.comparePassword(bodyPwd)) {
+				if (await userDB.comparePassword(password)) {
 					const user = {
 						email: userDB.email,
 						name: userDB.name,
@@ -73,7 +71,7 @@ const userController = () => {
 	};
 
 	const resetPassword = async (req, res) => {
-		const email = req.body.email;
+		const { email } = req.body;
 
 		const user = await User.findOne({ email: email });
 
@@ -102,12 +100,10 @@ const userController = () => {
 
 	const changePassword = async (req, res, next) => {
 		const token = req.params.token;
-		const data = req.body;
+		const { newPassword, confirmPassword } = req.body;
 
 		try {
 			jwt.verify(token, SECRET);
-			const newPassword = data.newPassword;
-			const confirmPassword = data.confirmPassword;
 
 			if (newPassword !== confirmPassword) {
 				res.status(401).json({
@@ -146,9 +142,9 @@ const userController = () => {
 			let response;
 
 			if (newModel) {
-				const token = generateToken(data.email);
+				const token = generateToken(email);
 
-				newUserEmail(token, data.email);
+				newUserEmail(token, email);
 
 				response = { status: 201, message: newModel };
 			} else {
@@ -182,17 +178,13 @@ const userController = () => {
 	};
 
 	const updatePassword = async (req, res, next) => {
-		const data = req.body;
-
-		const userEmail = data.email;
-		const oldPwd = data.oldPwd;
-		const newPwd = data.newPwd;
-		const confirmPwd = data.confirmPwd;
+		const { email, oldPwd, newPwd, confirmPwd } = req.body;
 
 		try {
-			let myUser = await User.findOne({ email: userEmail });
+			let myUser = await User.findOne({ email: email });
 
 			let response;
+
 			if (myUser) {
 				if (myUser.comparePassword(oldPwd)) {
 					if (newPwd == confirmPwd) {
@@ -222,11 +214,9 @@ const userController = () => {
 					status: 404,
 				};
 			}
-			console.log(response);
 
 			res.status(response.status).json({ message: response.message });
 		} catch (catchError) {
-			console.log(catchError);
 			res.status(500).json({ message: catchError });
 		}
 	};

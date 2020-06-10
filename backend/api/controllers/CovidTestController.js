@@ -8,35 +8,40 @@ const filePath = 'uploads/covid-tests/';
 const nodemailer = require('nodemailer');
 
 const covidTestController = () => {
-	const getOneAndUpdate = (req, res) => {
+	const getOneAndUpdate = async (req, res, next) => {
 		const id = req.params.id;
 		const data = req.body;
 
-		data.pathFile = `${filePath}test_${req.params.id}.pdf`;
+		try {
+			const testToUpdate = await covidTest.findOne({ _id: id });
 
-		covidTest.findOneAndUpdate(
-			{
-				_id: id,
-			},
-			data,
-			{
-				runValidators: true,
-			},
-			(error, success) => {
-				const response = error
+			if (testToUpdate) {
+				data.pathFile = `${filePath}test_${req.params.id}.pdf`;
+
+				const updated = await covidTest.updateOne(data);
+
+				const response = !updated
 					? {
 							status: 401,
-							body: error,
+							body: `Error on update COVID Teste ${testToUpdate.code}`,
 					  }
 					: {
 							status: 200,
-							body: data,
+							body: updated,
 					  };
 
-				autoSchedule(success.patient._id);
+				autoSchedule(testToUpdate.patient._id);
 				res.status(response.status).json(response.body);
+			} else {
+				res.status(400).json({ message: 'Error updating COVID Test' });
 			}
-		);
+		} catch (catchError) {
+			console.log(catchError);
+			next({
+				status: 400,
+				message: catchError,
+			});
+		}
 	};
 
 	const getByPatient = async (req, res) => {

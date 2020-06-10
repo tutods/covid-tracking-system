@@ -9,9 +9,9 @@
 			Invalid email.
 		</mat-error>
 
-		<span *ngIf="(resetFormControl.email.touched) && resetFormControl.email.errors?.required">
+		<mat-error *ngIf="(resetFormControl.email.touched) && resetFormControl.email.errors?.required">
 			Email is required
-		</span>
+		</mat-error>
 		<mat-icon matPrefix>email</mat-icon>
 
 	</mat-form-field>

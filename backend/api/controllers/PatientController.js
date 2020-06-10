@@ -33,24 +33,20 @@ const patientController = () => {
 	};
 
 	const getDataByEmail = async (req, res) => {
-		const data = req.body;
-
-		const bodyEmail = data.email;
-		const bodyPatientNumber = data.patientNumber;
-		const bodyPhoneNumber = data.phoneNumber;
+		const { email, patientNumber, phoneNumber } = req.body;
 
 		const patientDB = await patient.findOne({
-			patientNumber: bodyPatientNumber,
+			patientNumber: patientNumber,
 		});
 
 		if (patientDB) {
 			if (
-				bodyEmail == patientDB.contacts.email &&
-				bodyPhoneNumber == patientDB.contacts.phone
+				email == patientDB.contacts.email &&
+				phoneNumber == patientDB.contacts.phone
 			) {
 				const patientData = await getByPatientByParam(patientDB._id);
 
-				emailByData(patientData, bodyEmail);
+				emailByData(patientData, email);
 
 				res.status(200).json({
 					message: 'Email sent with success',

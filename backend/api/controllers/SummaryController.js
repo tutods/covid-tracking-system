@@ -165,7 +165,13 @@ const summaryController = () => {
 		res.status(200).json(patients || []);
 	};
 
-	return { countByDay, countByPatient, countByStatus, countBySymptoms , countByGender };
+	return {
+		countByDay,
+		countByPatient,
+		countByStatus,
+		countBySymptoms,
+		countByGender,
+	};
 };
 
 module.exports = summaryController();

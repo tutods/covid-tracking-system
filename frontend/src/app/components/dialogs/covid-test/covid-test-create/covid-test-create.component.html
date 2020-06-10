@@ -34,9 +34,6 @@
 			<mat-label>Notes</mat-label>
 			<textarea matInput placeholder="Notes" formControlName="notes"></textarea>
 			<mat-icon matPrefix>notes</mat-icon>
-			<mat-error [hidden]="(covidTestFormControl.notes.touched) && covidTestFormControl.notes.errors?.required">
-				Notes is required
-			</mat-error>
 		</mat-form-field>
 	</mat-dialog-content>
 
