@@ -17,7 +17,7 @@ import { UiService } from './../../services/ui/ui.service';
 	styleUrls: ['./covid-test.component.sass']
 })
 export class CovidTestComponent implements OnInit {
-	public dialogSize: string = (window.innerWidth >= 1200) ? '25vw' : (window.innerWidth >= 800) ? '50vw' : '85vw'
+	dialogSize: string = (window.innerWidth >= 1200) ? '25vw' : (window.innerWidth >= 800) ? '50vw' : '85vw'
 	result: any;
 
 	searchText;
@@ -45,6 +45,7 @@ export class CovidTestComponent implements OnInit {
 		{ value: 'negative', view: 'Negative' },
 		{ value: 'inconclusive', view: 'Inconclusive' }
 	];
+
 	selectedField: string;
 	selectedOrder: string;
 	selectedSearchField: string;
@@ -107,7 +108,6 @@ export class CovidTestComponent implements OnInit {
 			this.result = data;
 		});
 	}
-
 
 	selectedSearchFieldMethod() {
 		return this.selectedSearchField;

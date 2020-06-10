@@ -1,7 +1,5 @@
 <div id="header">
 	<mat-card>
-		<input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
-			placeholder="&#61442;  search by text">
 		<mat-card-header>
 			<mat-card-title>
 				<mat-icon>folder_shared</mat-icon>
@@ -21,6 +19,16 @@
 
 <div class="container">
 	<mat-tab-group>
+		<mat-tab label="Search">
+			<ng-template matTabContent>
+				<mat-form-field>
+					<mat-label>Search</mat-label>
+					<input matInput class="form-control" type="text" name="search" [(ngModel)]="searchText"
+						autocomplete="off" placeholder="Insert text to search">
+					<mat-icon matPrefix>search</mat-icon>
+				</mat-form-field>
+			</ng-template>
+		</mat-tab>
 		<mat-tab label="Filters">
 			<ng-template matTabContent>
 				<mat-form-field>

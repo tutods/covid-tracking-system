@@ -34,7 +34,7 @@
 		"format": "date"
 	},
 	"testFile": {
-		"name": "covid_test_result",
+		"name": "file",
 		"in": "formData",
 		"description": "File with result",
 		"type": "file"

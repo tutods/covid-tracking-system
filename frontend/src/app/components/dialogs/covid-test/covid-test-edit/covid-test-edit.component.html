@@ -43,7 +43,7 @@
 			<mat-icon matPrefix>info</mat-icon>
 		</mat-form-field>
 
-		<input type="file" formControlName="file" (change)="onFileSelected($event)">
+		<input type="file" formControlName="file" (change)="onFileSelected($event)" accept=".pdf">
 
 		<div class="accent-color" *ngIf="covidTest.pathFile">
 			<small>Already have upload one file.</small>
