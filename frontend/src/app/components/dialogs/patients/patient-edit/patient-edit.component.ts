@@ -155,7 +155,7 @@ export class PatientEditComponent implements OnInit {
 			})
 		}, (error) => {
 			let codeMessage = error.error.message.errmsg || error.error.message;
-			console.log(codeMessage)
+
 			if (codeMessage.includes('E11000')) {
 				if (codeMessage.includes('phone:')) {
 					codeMessage = 'Phone inserted already exists';
