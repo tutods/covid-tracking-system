@@ -69,6 +69,10 @@ export class CovidTestComponent implements OnInit {
 		this.fetchData();
 	}
 
+	dateFormated(date) {
+		return formatDate(date)
+	}
+
 	fetchData() {
 		const getAll = this.covidTests.getAll()
 

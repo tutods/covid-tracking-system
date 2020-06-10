@@ -46,7 +46,7 @@
 
 	<mat-form-field>
 		<mat-label>Result</mat-label>
-		<input matInput placeholder="Result" disabled [value]="covidTest.result || 'No result for now'" />
+		<input matInput placeholder="Result" disabled [value]="(covidTest.result | titlecase) || 'No result for now'" />
 		<mat-icon matPrefix>info</mat-icon>
 	</mat-form-field>
 

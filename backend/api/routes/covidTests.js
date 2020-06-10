@@ -40,15 +40,13 @@ const upload = multer({
 });
 
 // Controllers
-const {
-	create,
-	getAll,
-	getById,
-	getOneAndDelete,
-} = require('../controllers/GenericController')(model);
+const { create, getAll, getById } = require('../controllers/GenericController')(
+	model
+);
 
 const {
 	getOneAndUpdate,
+	getOneAndDelete,
 	getByPatient,
 } = require('../controllers/CovidTestController');
 

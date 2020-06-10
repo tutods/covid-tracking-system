@@ -2,6 +2,10 @@
 const covidTest = require('../models/CovidTest');
 const patient = require('../models/Patient');
 
+// FS & Path
+const fs = require('fs');
+const path = require('path');
+
 //Path
 const filePath = 'uploads/covid-tests/';
 
@@ -13,28 +17,32 @@ const covidTestController = () => {
 		const data = req.body;
 
 		try {
-			const testToUpdate = await covidTest.findOne({ _id: id });
-
-			if (testToUpdate) {
+			if (req.file)
 				data.pathFile = `${filePath}test_${req.params.id}.pdf`;
 
-				const updated = await covidTest.updateOne(data);
+			covidTest.findOneAndUpdate(
+				{
+					_id: id,
+				},
+				data,
+				{
+					runValidators: true,
+				},
+				(error, success) => {
+					const response = error
+						? {
+								status: 401,
+								body: error,
+						  }
+						: {
+								status: 200,
+								body: data,
+						  };
 
-				const response = !updated
-					? {
-							status: 401,
-							body: `Error on update COVID Teste ${testToUpdate.code}`,
-					  }
-					: {
-							status: 200,
-							body: updated,
-					  };
-
-				autoSchedule(testToUpdate.patient._id);
-				res.status(response.status).json(response.body);
-			} else {
-				res.status(400).json({ message: 'Error updating COVID Test' });
-			}
+					autoSchedule(success.patient._id);
+					res.status(response.status).json(response.body);
+				}
+			);
 		} catch (catchError) {
 			console.log(catchError);
 			next({
@@ -223,7 +231,37 @@ const covidTestController = () => {
 		}
 	};
 
-	return { getOneAndUpdate, getByPatient, getByPatientByParam };
+	const getOneAndDelete = async (req, res, next) => {
+		const id = req.params.id;
+
+		try {
+			const founded = await covidTest.findOne({ _id: id });
+
+			if (founded) {
+				if (founded.pathFile && fs.existsSync(founded.pathFile)) {
+					fs.unlinkSync(founded.pathFile);
+				}
+
+				const data = await founded.delete();
+
+				res.status(200).json(data);
+			} else {
+				res.status(404).json({ message: `${id} not found` });
+			}
+		} catch (catchError) {
+			next({
+				message: catchError,
+				status: 400,
+			});
+		}
+	};
+
+	return {
+		getOneAndUpdate,
+		getByPatient,
+		getByPatientByParam,
+		getOneAndDelete,
+	};
 };
 
 module.exports = covidTestController();

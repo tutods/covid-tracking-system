@@ -113,15 +113,19 @@
 				<mat-card-content>
 					<p>
 						<mat-icon>perm_identity</mat-icon>
-						<b>Patient : </b> {{covidTest.patient.name}}
+						<b>Patient:</b> {{covidTest.patient.name}}
 					</p>
 					<p>
 						<mat-icon>healing</mat-icon>
-						<b>Status: </b> {{covidTest.status  | titlecase}}
+						<b>Status:</b> {{covidTest.status  | titlecase}}
 					</p>
 					<p>
 						<mat-icon>calendar_today</mat-icon>
-						<b>Date: </b> {{covidTest.date.split('T')[0]}}
+						<b>Date:</b> {{dateFormated(covidTest.date)}}
+					</p>
+					<p *ngIf="covidTest.result">
+						<mat-icon>description</mat-icon>
+						<b>Result:</b> {{covidTest.result | titlecase}}
 					</p>
 				</mat-card-content>
 				<mat-card-actions>

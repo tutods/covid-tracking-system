@@ -63,6 +63,7 @@ export class CovidTestEditComponent implements OnInit {
 
 		this.covidTests.getOneAndUpdate(this.covidTest._id, fData).subscribe(
 			(success) => {
+				console.log(success)
 				this.dialogRef.close({
 					message: "COVID Test updated with success!",
 					status: true
