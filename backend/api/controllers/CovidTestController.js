@@ -2,14 +2,14 @@
 const covidTest = require('../models/CovidTest');
 const patient = require('../models/Patient');
 
-// FS & Path
+// FS
 const fs = require('fs');
-const path = require('path');
 
 //Path
 const filePath = 'uploads/covid-tests/';
 
-const nodemailer = require('nodemailer');
+// Auto Schedule Email
+const autoScheduleEmail = require('../../scripts/emails/autoScheduleEmail');
 
 const covidTestController = () => {
 	const getOneAndUpdate = async (req, res, next) => {
@@ -44,7 +44,6 @@ const covidTestController = () => {
 				}
 			);
 		} catch (catchError) {
-			console.log(catchError);
 			next({
 				status: 400,
 				message: catchError,
@@ -148,6 +147,7 @@ const covidTestController = () => {
 	};
 
 	const autoSchedule = async (patientId) => {
+
 		const today = new Date();
 		const covid = await covidTest
 			.find({
@@ -172,7 +172,7 @@ const covidTestController = () => {
 		if (covid.length < 2) {
 			if (covid[0].result != undefined) {
 				if (covid[0].result.localeCompare('inconclusive') == 0) {
-					create(data, patientToTest);
+					createByData(data);
 				}
 			}
 		} else {
@@ -181,52 +181,42 @@ const covidTestController = () => {
 					covid[0].result.localeCompare('negative') == 0 &&
 					covid[1].result.localeCompare('positive') == 0
 				) {
-					create(data, patientToTest);
+					createFunction(data);
 				}
 			}
 		}
 	};
 
-	const create = async (data, patient) => {
-		new covidTest(data).save((error, data) => {
-			const response = error
-				? {
-						status: 401,
-						body: error,
-				  }
-				: {
-						status: 201,
-						body: data,
-				  };
-		});
+	const create = async (req, res) => {
+		const result = await createFunction(req.body);
+		res.status(result.status).json(result.body);
+	};
 
-		if (response.status == 201) {
-			const smtpTransport = nodemailer.createTransport({
-				service: 'gmail',
-				auth: {
-					user: 'covidtrackingsystem@gmail.com',
-					pass: 'joaodanieljoao20',
-				},
-			});
+	const createFunction = async (data, next) => {
+		try {
+			const newTest = await new covidTest(data).save();
 
-			const mailOptions = {
-				to: patient.contacts.email,
-				from: 'covidtrackingsystem@gmail.com',
-				subject: 'Covid Tracking System',
-				text:
-					'You are receiving this email because we need you to repeat the test.\n\n' +
-					'Please call 808 24 24 24 informations and instructions.' +
-					'Best regards\n' +
-					'Covid Tracking System',
-			};
-
-			smtpTransport.sendMail(mailOptions, function (err) {
-				console.log('HI:' + patient.name);
-				res.status(200).json({
-					sucess: true,
-					message: `An e-amil has been sent to ${patient.contacts.email} with further instructions`,
+			if (await newTest) {
+				const testPatient = await patient.findOne({
+					_id: data.patient,
 				});
-				done(err, 'done');
+				autoScheduleEmail(
+					await testPatient.contacts.email,
+					data.date,
+					await testPatient
+				);
+
+				return { status: 201, body: data };
+			} else {
+				return {
+					status: 400,
+					body: { message: 'Not possible create COVID Test' },
+				};
+			}
+		} catch (catchError) {
+			next({
+				message: catchError,
+				status: 400,
 			});
 		}
 	};
@@ -257,6 +247,7 @@ const covidTestController = () => {
 	};
 
 	return {
+		create,
 		getOneAndUpdate,
 		getByPatient,
 		getByPatientByParam,

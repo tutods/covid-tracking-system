@@ -6,7 +6,7 @@ const patient = require('../models/Patient');
 const { getByPatientByParam } = require('./CovidTestController');
 
 //Email
-const emailByData = require('../../scripts/emailByData');
+const emailByData = require('../../scripts/emails/emailByData');
 
 const patientController = () => {
 	const getOneAndDelete = async (req, res, next) => {

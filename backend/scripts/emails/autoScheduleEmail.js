@@ -7,10 +7,16 @@ const nodemailer = require('nodemailer');
 // EJS
 const ejs = require('ejs');
 
-const newUserEmail = (token, email) => {
-	const changeUrl = `http://localhost:4200/change-password/${token}`;
+const autoScheduleEmail = (email, date, patient) => {
+	const formatDate = (date) => {
+		const shortDate = new Date(date);
+		const year = shortDate.getFullYear();
+		const month = ('0' + (shortDate.getMonth() + 1)).slice(-2);
+		const day = ('0' + shortDate.getDate()).slice(-2);
 
-	// URL
+		return [year, month, day].join('-');
+	};
+
 	const transporter = nodemailer.createTransport({
 		service: 'gmail',
 		auth: {
@@ -20,9 +26,10 @@ const newUserEmail = (token, email) => {
 	});
 
 	ejs.renderFile(
-		'./views/mail/newUser.ejs',
+		'./views/mail/autoScheduleEmail.ejs',
 		{
-			link: changeUrl,
+			date: formatDate(date),
+			name: patient.name,
 		},
 		(err, data) => {
 			if (err) {
@@ -31,7 +38,7 @@ const newUserEmail = (token, email) => {
 				const mainOptions = {
 					from: EMAIL_USER,
 					to: email,
-					subject: 'New User | COVID Tracking System',
+					subject: 'COVID Test',
 					html: data,
 				};
 
@@ -48,5 +55,4 @@ const newUserEmail = (token, email) => {
 		}
 	);
 };
-
-module.exports = newUserEmail;
+module.exports = autoScheduleEmail;
