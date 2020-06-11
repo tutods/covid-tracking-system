@@ -46,6 +46,16 @@ export class CovidTestEditComponent implements OnInit {
         return this.covidTestForm.get('status').value || '';
     }
 
+    isUpdateValid() {
+        if (!this.covidTestForm.valid) {
+            return false;
+        }
+        if (this.covidTestForm.get('status').value === 'finished' && (this.covidTestForm.get('result').value === null || this.file === null)) {
+            return false;
+        }
+        return true;
+    }
+
     save(evt) {
         evt.preventDefault()
 

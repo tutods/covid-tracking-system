@@ -33,10 +33,9 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field *ngIf="statusValue() ==='finished'">
       <mat-label>Result</mat-label>
-      <mat-select matNativeControl formControlName="result" name="result" [disabled]="statusValue() !='finished'"
-        matTooltip="Status need to be Finished ">
+      <mat-select matNativeControl formControlName="result" name="result">
         <mat-option *ngFor="let result of results" [value]="result">
           {{result | titlecase}}
         </mat-option>
@@ -44,14 +43,18 @@
       <mat-icon matPrefix>info</mat-icon>
     </mat-form-field>
 
-    <input type="file" formControlName="file" (change)="onFileSelected($event)" accept=".pdf">
+    <input type="file" formControlName="file" (change)="onFileSelected($event)" accept=".pdf"
+      *ngIf="statusValue() ==='finished'">
 
     <div class="accent-color" *ngIf="covidTest.pathFile">
       <small>Already have upload one file.</small>
     </div>
+    <mat-error class="validation-error" *ngIf="!isUpdateValid()">Please make sure if status is Finished, both Result and
+      File should be
+      insert</mat-error>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button color="primary" type="submit" [disabled]="!covidTestForm.valid">Save</button>
+    <button mat-button color="primary" type="submit" [disabled]="!isUpdateValid()">Save</button>
     <button mat-button color="warn" (click)="onClose()" type="button">Cancel</button>
   </mat-dialog-actions>
 </form>
