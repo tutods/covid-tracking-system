@@ -30,7 +30,7 @@ const covidTestController = () => {
 				{
 					runValidators: true,
 				},
-				(error, success) => {
+				async (error, success) => {
 					const response = error
 						? {
 								status: 401,
@@ -41,16 +41,16 @@ const covidTestController = () => {
 								body: data,
 						  };
 
-					if (req.file) {
+					autoSchedule(success.patient._id);
+					res.status(response.status).json(response.body);
+
+					if (await req.file) {
 						resultEmail(
 							success.patient.contacts.email,
 							success.patient,
 							success.pathFile
 						);
 					}
-
-					autoSchedule(success.patient._id);
-					res.status(response.status).json(response.body);
 				}
 			);
 		} catch (catchError) {
