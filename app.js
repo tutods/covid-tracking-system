@@ -1,6 +1,6 @@
 // Get ENV variables
 require('dotenv').config();
-const { PORT = 8080 } = process.env;
+const { PORT = 3000 } = process.env;
 
 // Get Mongoose connection
 require('./config/mongoose');
