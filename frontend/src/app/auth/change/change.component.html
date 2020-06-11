@@ -1,16 +1,16 @@
 <mat-card-title>Change Password</mat-card-title>
 <form [formGroup]="changeForm" (submit)="onSubmit($event)">
 	<mat-form-field>
-		<mat-label>Your Password</mat-label>
+		<mat-label>New Password</mat-label>
 		<input matInput placeholder="Password" type="password" formControlName="newPassword" name="newPassword">
 		<mat-error [hidden]="(changeFormControl.newPassword.touched) && changeFormControl.newPassword.errors?.required">
-			Password is required
+			New Password is required
 		</mat-error>
 		<mat-icon matPrefix>lock</mat-icon>
 	</mat-form-field>
 
 	<mat-form-field>
-		<mat-label>Your Password</mat-label>
+		<mat-label>Confirm Password</mat-label>
 		<input matInput placeholder="Password" type="password" formControlName="confirmPassword" name="confirmPassword"
 			[errorStateMatcher]="matcher">
 		<mat-error [hidden]="changeForm.hasError('notSame')">
@@ -18,7 +18,7 @@
 		</mat-error>
 		<mat-error
 			[hidden]="(changeFormControl.confirmPassword.touched) && changeFormControl.confirmPassword.errors?.required">
-			Password is required
+			Confirm Password is required
 		</mat-error>
 		<mat-icon matPrefix>lock</mat-icon>
 	</mat-form-field>
