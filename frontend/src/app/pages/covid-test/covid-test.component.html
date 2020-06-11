@@ -8,10 +8,12 @@
 		</mat-card-header>
 
 		<mat-card-actions>
-			<button mat-button color="primary" (click)="openCreateDialog()">
-				<mat-icon>add</mat-icon>
-				Add
-			</button>
+			<ng-template [canUse]="['--create-all']">
+				<button mat-button color="primary" (click)="openCreateDialog()">
+					<mat-icon>add</mat-icon>
+					Add
+				</button>
+			</ng-template>
 		</mat-card-actions>
 	</mat-card>
 </div>
