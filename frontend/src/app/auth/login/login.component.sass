@@ -27,17 +27,17 @@ form
 
     button
         background-color: $darkColor
-        margin-top: 2em
+        margin-top: 0.75em
         color: $white
     [disabled]
         background-color: $disabledColor
 
-    mat-form-field + mat-form-field
-        margin-top: 0.5em
-
     mat-form-field
         mat-icon[matprefix]
             margin-right: 10px
+
+        &:not(:last-child)
+            margin-bottom: 1.75rem
 
 @media screen and (max-width: 800px)
     mat-card
