@@ -77,6 +77,7 @@ const genericController = (model) => {
 			if (founded) {
 				const updated = await founded.updateOne(data, {
 					runValidators: true,
+					new: true,
 				});
 
 				response = {

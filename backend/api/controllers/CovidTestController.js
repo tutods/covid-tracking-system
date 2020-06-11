@@ -29,6 +29,7 @@ const covidTestController = () => {
 				data,
 				{
 					runValidators: true,
+					new: true,
 				},
 				(error, success) => {
 					const response = error
@@ -42,10 +43,7 @@ const covidTestController = () => {
 						  };
 
 					if (req.file) {
-						resultEmail(
-							success.patient,
-							success
-						);
+						resultEmail(success.patient, success);
 					}
 
 					autoSchedule(success.patient._id);
