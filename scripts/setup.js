@@ -34,7 +34,7 @@ mongoose
 				console.log('[USER ALREADY EXISTS]');
 			} else {
 				const admin = await Role.findOne({ name: 'ADMIN' });
-
+				console.log(await admin)
 				await new User({
 					name: ADMIN_NAME,
 					email: ADMIN_EMAIL,

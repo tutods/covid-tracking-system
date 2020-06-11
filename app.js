@@ -33,7 +33,7 @@ app
 	.use('/uploads', express.static('./uploads'))
 	.use(
 		express.static(
-			path.join(__dirname, 'client', 'dist', 'client', 'index.html')
+			path.join(__dirname, 'client', 'dist', 'webapp')
 		)
 	)
 
@@ -72,7 +72,7 @@ app
 	.use('/*', (req, res) => {
 		try {
 			res.sendFile(
-				path.join(__dirname, 'client', 'dist', 'client', 'index.html')
+				path.join(__dirname, 'client', 'dist', 'webapp', 'index.html')
 			);
 		} catch (err) {
 			console.log(err);
