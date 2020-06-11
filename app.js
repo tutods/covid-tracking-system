@@ -65,9 +65,9 @@ app
 	// Routes
 	.use('/api', apiRoutes)
 
-	.get('/', (req, res) => {
-		res.redirect('http://localhost:4200');
-	})
+	// .get('/', (req, res) => {
+	// 	res.redirect('http://localhost:4200');
+	// })
 
 	.use('/*', (req, res) => {
 		try {
