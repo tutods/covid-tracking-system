@@ -3,7 +3,7 @@
 <form [formGroup]="getDataForm" (submit)="onSubmit($event)">
 	<mat-dialog-content>
 		<mat-form-field>
-			<mat-label>Your Email</mat-label>
+			<mat-label>Email</mat-label>
 			<input matInput placeholder="Email" name="email" formControlName="email">
 			<mat-error
 				[hidden]="(getDataFormControl.email.touched) && (getDataFormControl.email.errors?.email ||  getDataFormControl.email.errors?.pattern)">
