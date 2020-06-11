@@ -27,7 +27,7 @@ export class PatientAddComponent implements OnInit {
 	// Default Observations
 	observations: object[] = [
 		{ value: 'saude24', label: "Saúde 24" },
-		{ value: 'riskGroup', label: "Rizk Group" },
+		{ value: 'riskGroup', label: "Risk Group" },
 		{ value: 'riskZone', label: "Risk Zone" }
 	];
 
