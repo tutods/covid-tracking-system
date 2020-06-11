@@ -12,8 +12,10 @@ module.exports = cron.schedule('*/15 * * * *', () => {
 			const all = await ApiCovid.find();
 
 			if (await all[0]) {
+				console.log('[CRONJOB - UPDATE]');
 				await ApiCovid.findOneAndUpdate(all._id, json);
 			} else {
+				console.log('[CRONJOB - CREATE]');
 				await new ApiCovid(json).save();
 			}
 		}
