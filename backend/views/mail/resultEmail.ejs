@@ -46,6 +46,25 @@
 												</tr>
 											</tbody>
 										</table>
+
+										<h4 id="table-header">Test Details</h4>
+
+										<table id="covid-tests-table">
+											<thead>
+												<tr>
+													<th>Date</th>
+													<th>Status</th>
+													<th>Result</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td><%= new Date(covidTest.date).toLocaleString() %></td>
+													<td><%= covidTest.status %></td>
+													<td><%= covidTest.result %></td>
+												</tr>
+											</tbody>
+										</table>
 									</td>
 								</tr>
 							</table>

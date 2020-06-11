@@ -70,7 +70,7 @@ export class CovidTestEditComponent implements OnInit {
 			}, (error) => {
 				const codeMessage = error.error.message;
 				this.dialogRef.close({
-					message: codeMessage,
+					message: codeMessage || "Error on update COVID Test. Try again please.",
 					status: false
 				})
 			}

@@ -43,9 +43,8 @@ const covidTestController = () => {
 
 					if (req.file) {
 						resultEmail(
-							success.patient.contacts.email,
 							success.patient,
-							success.pathFile
+							success
 						);
 					}
 
