@@ -1,5 +1,5 @@
 // ENV
-require('dotenv').config();
+
 const { EMAIL_USER, EMAIL_PWD } = process.env;
 
 //Nodemailer

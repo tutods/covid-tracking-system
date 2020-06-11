@@ -1,5 +1,5 @@
 // ENV
-require('dotenv').config();
+
 const { SECRET = 'coV!d#19_$ystem$', EXPIRES = 1800000 } = process.env;
 
 // Model

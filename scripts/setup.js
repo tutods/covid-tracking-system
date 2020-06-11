@@ -1,4 +1,4 @@
-require('dotenv').config();
+
 const { ADMIN_EMAIL, ADMIN_NAME, ADMIN_PWD } = process.env;
 
 // Mongoose Connection
