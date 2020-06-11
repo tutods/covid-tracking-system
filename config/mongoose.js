@@ -1,6 +1,4 @@
 // Import Packages
-
-
 const mongoose = require('mongoose');
 
 // Get ENV variables - Object Destructuring ES6
@@ -12,7 +10,7 @@ const {
 } = process.env;
 
 const url = `mongodb+srv://${MONGO_USER}:${MONGO_PASS}@${MONGO_HOST}/${MONGO_DB}?retryWrites=true&w=majority`;
-
+console.log(url)
 // Enable debug mode if you need see queries
 // mongoose.set('debug', true);
 

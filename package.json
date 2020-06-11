@@ -5,7 +5,7 @@
 	"description": "Covid tracking system for PAW project",
 	"main": "app.js",
 	"scripts": {
-		"start": "node app.js",
+		"start": "cd client && ng build && cd .. && node app.js",
 		"dev": "nodemon -e yaml,http,js,json app.js",
 		"setup": "node ./scripts/setup.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
@@ -42,6 +42,7 @@
 		"nodemon": "^2.0.3"
 	},
 	"dependencies": {
+		"@angular/cli": "^9.1.8",
 		"bcryptjs": "^2.4.3",
 		"body-parser": "^1.19.0",
 		"cookie-parser": "^1.4.5",
