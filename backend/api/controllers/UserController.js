@@ -141,7 +141,6 @@ const userController = () => {
 
 			let response;
 			if (await newModel) {
-				console.log('AQUI!!!');
 				const token = await jwt.sign(
 					{ email: newModel.email },
 					SECRET,
