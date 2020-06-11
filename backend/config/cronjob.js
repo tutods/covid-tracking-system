@@ -9,9 +9,13 @@ module.exports = cron.schedule('* * * * *', () => {
 
 		if (!err && body != 'You have reached maximum request limit.') {
 			const json = JSON.parse(body);
+			const all = await ApiCovid.find();
 
-			await ApiCovid.collection.drop();
-			await new ApiCovid(json).save();
+			if (await all[0]) {
+				await ApiCovid.findOneAndUpdate(all._id, json);
+			} else {
+				await new ApiCovid(json).save();
+			}
 		}
 		console.log('[CRONJOB ENDED]');
 	});
