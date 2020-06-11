@@ -1,0 +1,158 @@
+<div id="header">
+	<mat-card>
+		<mat-card-header>
+			<mat-card-title>
+				<mat-icon>folder_shared</mat-icon>
+				COVID Tests
+			</mat-card-title>
+		</mat-card-header>
+
+		<mat-card-actions>
+			<button mat-button color="primary" (click)="openCreateDialog()">
+				<mat-icon>add</mat-icon>
+				Add
+			</button>
+		</mat-card-actions>
+	</mat-card>
+</div>
+
+<div class="container">
+	<mat-tab-group>
+		<mat-tab label="Search">
+			<ng-template matTabContent>
+				<mat-form-field id="search">
+					<mat-label>Search</mat-label>
+					<input matInput class="form-control" type="text" name="search" [(ngModel)]="searchText"
+						autocomplete="off" placeholder="Insert text to search">
+					<mat-icon matPrefix>search</mat-icon>
+				</mat-form-field>
+			</ng-template>
+		</mat-tab>
+		<mat-tab label="Filters">
+			<ng-template matTabContent>
+				<mat-form-field>
+					<mat-label>Field</mat-label>
+					<mat-select [(ngModel)]="selectedSearchField" (selectionChange)="selectedSearchFieldMethod()">
+						<mat-option *ngFor="let field of fields" [value]="field.value">
+							{{field.view}}
+						</mat-option>
+					</mat-select>
+				</mat-form-field>
+
+				<mat-form-field *ngIf="selectedSearchFieldMethod()==='status'">
+					<mat-label>Filter</mat-label>
+					<mat-select [(ngModel)]="selectedSearchFilter" (selectionChange)="selectedSearchFilterMethod()">
+						<mat-option *ngFor="let filter of status" [value]="filter.value">
+							{{filter.view}}
+						</mat-option>
+					</mat-select>
+				</mat-form-field>
+
+				<mat-form-field *ngIf="selectedSearchFieldMethod()==='result'">
+					<mat-label>Filter</mat-label>
+					<mat-select [(ngModel)]="selectedSearchFilter" (selectionChange)="selectedSearchFilterMethod()">
+						<mat-option *ngFor="let filter of results" [value]="filter.value">
+							{{filter.view}}
+						</mat-option>
+					</mat-select>
+				</mat-form-field>
+
+				<mat-form-field *ngIf="selectedSearchFieldMethod()==='date'">
+					<mat-label>From Date</mat-label>
+					<input matInput [matDatepicker]="fromDate" [(ngModel)]="selectedSearchFilterFrom"
+						(dateChange)="selectedSearchFilterMethod()">
+					<mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
+					<mat-datepicker #fromDate></mat-datepicker>
+				</mat-form-field>
+
+				<mat-form-field *ngIf="selectedSearchFieldMethod()==='date'">
+
+					<mat-label>To Date</mat-label>
+					<input matInput [matDatepicker]="toDate" [(ngModel)]="selectedSearchFilterTo"
+						(dateChange)="selectedSearchFilterMethod()">
+					<mat-datepicker-toggle matSuffix [for]="toDate"></mat-datepicker-toggle>
+					<mat-datepicker #toDate></mat-datepicker>
+				</mat-form-field>
+
+				<button mat-button color="accent" [disabled]="!selectedSearchField" (click)="clearFilters()">
+					Clear Filters
+				</button>
+			</ng-template>
+		</mat-tab>
+		<mat-tab label="Sort">
+			<mat-form-field>
+				<mat-label>Field</mat-label>
+				<mat-select [(ngModel)]="selectedField" (selectionChange)="selectedFieldMethod()">
+					<mat-option *ngFor="let field of fields" [value]="field.value">
+						{{field.view}}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+
+			<mat-form-field>
+				<mat-label>Order</mat-label>
+				<mat-select [(ngModel)]="selectedOrder" (selectionChange)="selectedOrderMethod()">
+					<mat-option *ngFor="let order of orders" [value]="order.value">
+						{{order.view}}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</mat-tab>
+	</mat-tab-group>
+</div>
+
+<div class="container">
+	<div fxFlex="100" fxLayout="row wrap">
+		<div fxFlex="0 1 25" fxFlex.xs="100" fxFlex.sm="0 1 50" fxLayoutAlign="center"
+			*ngFor="let covidTest of result | filter:searchText" class="card-item">
+			<mat-card>
+
+				<mat-card-header>
+					<div class="top-avatar"></div>
+				</mat-card-header>
+				<mat-card-content>
+					<p>
+						<mat-icon>perm_identity</mat-icon>
+						<b>Patient:</b> {{covidTest.patient.name}}
+						<a (click)="openPatientInfoDialog(covidTest.patient)" id="patientInfo">
+							<mat-icon>visibility</mat-icon>
+						</a>
+					</p>
+					<p>
+						<mat-icon>healing</mat-icon>
+						<b>Status:</b> {{covidTest.status  | titlecase}}
+					</p>
+					<p>
+						<mat-icon>calendar_today</mat-icon>
+						<b>Date:</b> {{dateFormated(covidTest.date)}}
+					</p>
+					<p *ngIf="covidTest.result">
+						<mat-icon>description</mat-icon>
+						<b>Result:</b> {{covidTest.result | titlecase}}
+					</p>
+				</mat-card-content>
+				<mat-card-actions>
+					<button mat-button [matMenuTriggerFor]="appMenu">
+						<mat-icon>more_vert</mat-icon>
+						Options
+					</button>
+
+					<mat-menu #appMenu="matMenu">
+						<button mat-menu-item (click)="openInformationDialog(covidTest)">
+							<mat-icon>info</mat-icon>
+							View
+						</button>
+						<button mat-menu-item (click)="openEditDialog(covidTest)">
+							<mat-icon>edit</mat-icon>
+							Edit
+						</button>
+						<button mat-menu-item (click)="openDeleteDialog(covidTest)">
+							<mat-icon>delete</mat-icon>
+							Delete
+						</button>
+					</mat-menu>
+				</mat-card-actions>
+			</mat-card>
+		</div>
+	</div>
+</div>

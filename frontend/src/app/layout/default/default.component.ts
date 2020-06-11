@@ -11,12 +11,27 @@ export class DefaultComponent implements OnInit {
 	sideBarOpen = true;
 	user: any
 
-	constructor(public session: SessionService, public router: Router) { }
+	constructor(
+		public session: SessionService,
+		public router: Router
+	) {
+		window.matchMedia('(max-width: 800px)' || '(max-width: 600px)').addEventListener('change', e => {
+			window.location.reload()
+		});
+	}
+
 
 	ngOnInit(): void {
 		if (window.innerWidth <= 1000) {
-			this.sideBarOpen = !this.sideBarOpen
+			this.sideBarOpen = false
 		}
+
+		// Close sidebar when change router
+		this.router.events.subscribe((router) => {
+			if (window.innerWidth <= 1000) {
+				this.sideBarOpen = false;
+			}
+		})
 
 		const me = this.session.me()
 

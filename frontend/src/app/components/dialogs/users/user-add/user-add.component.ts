@@ -1,9 +1,10 @@
+import { UiService } from './../../../../services/ui/ui.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { UsersService } from '../../../../services/users/users.service';
 import { Role } from './../../../../models/role.model';
-import { RolesService } from './../../../../services/roles-service/roles.service';
-import { UsersService } from './../../../../services/users-service/users.service';
+import { RolesService } from './../../../../services/roles/roles.service';
 
 @Component({
 	selector: 'app-user-add',
@@ -20,6 +21,7 @@ export class UserAddComponent implements OnInit {
 		public usersService: UsersService,
 		public rolesService: RolesService,
 		public dialogRef: MatDialogRef<UserAddComponent>,
+		private uiService: UiService
 	) { }
 
 	ngOnInit(): void {
@@ -27,9 +29,7 @@ export class UserAddComponent implements OnInit {
 		const emailPattern = "^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}$";
 
 		this.rolesService.getAll().subscribe((roles) => {
-
 			roles.map((role) => {
-
 				this.roles.push(role)
 			})
 		})
@@ -51,26 +51,29 @@ export class UserAddComponent implements OnInit {
 		// Prevent Default
 		evt.preventDefault();
 
-		const body = {
-			name: this.userForm.get('name').value,
-			email: this.userForm.get('email').value,
-			role: this.userForm.get('role').value,
-			password: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+		if (this.userForm.valid) {
+			const body = {
+				name: this.userForm.get('name').value,
+				email: this.userForm.get('email').value,
+				role: this.userForm.get('role').value,
+				password: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+			}
+
+			this.usersService.new(body).subscribe((user) => {
+				this.dialogRef.close({
+					message: "User created with success! Please tell to user request a reset password.",
+					status: true
+				})
+			}, (error) => {
+				console.log(error)
+				this.dialogRef.close({
+					message: error.error.message || "Error when create user. Try again please.",
+					status: false
+				})
+			})
+		} else {
+			this.uiService.showSnackBar("Please validate all fields on form and try again.")
 		}
-
-		console.log(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15))
-
-		let response: object = {}
-
-		this.usersService.new(body).subscribe(() => {
-			response["message"] = "User created with success! Please tell to user request a reset password."
-			response["status"] = true
-		}, (error) => {
-			response["message"] = "Upps! The user not created because an error has occurred."
-			response["status"] = false
-		})
-
-		this.dialogRef.close(response)
 	}
 
 	onClose(): void {

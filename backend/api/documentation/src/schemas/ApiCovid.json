@@ -1,0 +1,93 @@
+{
+	"properties": {
+		"_id": {
+			"type": "string",
+			"format": "uuid"
+		},
+		"Global": {
+			"type": "object",
+			"properties": {
+				"NewConfirmed": {
+					"type": "number",
+					"example": 124338
+				},
+				"TotalConfirmed": {
+					"type": "number",
+					"example": 7339755
+				},
+				"NewDeaths": {
+					"type": "number",
+					"example": 4974
+				},
+				"TotalDeaths": {
+					"type": "number",
+					"example": 419389
+				},
+				"NewRecovered": {
+					"type": "number",
+					"example": 82260
+				},
+				"TotalRecovered": {
+					"type": "number",
+					"example": 3375017
+				}
+			}
+		},
+		"Countries": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"Country": {
+						"type": "string",
+						"example": "Estonia"
+					},
+					"CountryCode": {
+						"type": "string",
+						"example": "EE"
+					},
+					"Slug": {
+						"type": "string",
+						"example": "estonia"
+					},
+					"NewConfirmed": {
+						"type": "number",
+						"example": 7
+					},
+					"TotalConfirmed": {
+						"type": "number",
+						"example": 1947
+					},
+					"NewDeaths": {
+						"type": "number",
+						"example": 0
+					},
+					"TotalDeaths": {
+						"type": "number",
+						"example": 69
+					},
+					"NewRecovered": {
+						"type": "number",
+						"example": 1
+					},
+					"TotalRecovered": {
+						"type": "number",
+						"example": 1684
+					},
+					"Date": {
+						"type": "string",
+						"format": "date"
+					}
+				}
+			}
+		},
+		"Date": {
+			"type": "string",
+			"format": "date"
+		}
+	}
+}

@@ -1,0 +1,31 @@
+{
+	"numberOfSymptoms": {
+		"description": "Return number of symptoms",
+		"schema": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"symptom": {
+						"type": "string",
+						"enum": [
+							"cough",
+							"fever",
+							"shortness of breathe",
+							"lack of smell",
+							"lack of taste",
+							"tiredness",
+							"burning eyes",
+							"headaches",
+							"diarrhea"
+						]
+					},
+					"count": {
+						"type": "number",
+						"example": 2
+					}
+				}
+			}
+		}
+	}
+}

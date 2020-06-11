@@ -1,0 +1,6 @@
+<div>
+	<canvas *ngIf="chart" baseChart [datasets]="chartData" [labels]="chartLabels" [options]="chartOptions"
+		[colors]="chartColors" [legend]="chartLegend" [chartType]="chartType" height="100px">
+	</canvas>
+	<h3 *ngIf="!chart">No data to show!</h3>
+</div>

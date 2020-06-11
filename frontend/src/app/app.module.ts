@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
@@ -43,30 +43,44 @@ import { MatTreeModule } from '@angular/material/tree';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartsModule } from 'ng2-charts';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChangeComponent } from './auth/change/change.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ResetComponent } from './auth/reset/reset.component';
-import { CreateDialogComponent } from './components/dialogs/patients/create-dialog/create-dialog.component';
-import { DialogToDeleteComponent } from './components/dialogs/patients/dialog-to-delete/dialog-to-delete.component';
-import { EditDialogComponent } from './components/dialogs/patients/edit-dialog/edit-dialog.component';
-import { InformationDialogComponent } from './components/dialogs/patients/information-dialog/information-dialog.component';
+import { ByDayComponent } from './components/charts/by-day/by-day.component';
+import { ByGenderComponent } from './components/charts/by-gender/by-gender.component';
+import { ByMonthComponent } from './components/charts/by-month/by-month.component';
+import { ByStatusComponent } from './components/charts/by-status/by-status.component';
+import { BySymptomsComponent } from './components/charts/by-symptoms/by-symptoms.component';
+import { PtChartComponent } from './components/charts/pt-chart/pt-chart.component';
+import { WorldChartComponent } from './components/charts/world-chart/world-chart.component';
+import { CovidTestCreateComponent } from './components/dialogs/covid-test/covid-test-create/covid-test-create.component';
+import { CovidTestDeleteComponent } from './components/dialogs/covid-test/covid-test-delete/covid-test-delete.component';
+import { CovidTestEditComponent } from './components/dialogs/covid-test/covid-test-edit/covid-test-edit.component';
+import { CovidTestInformationComponent } from './components/dialogs/covid-test/covid-test-information/covid-test-information.component';
+import { DataByEmailComponent } from './components/dialogs/data-by-email/data-by-email.component';
+import { PatientAddComponent } from './components/dialogs/patients/patient-add/patient-add.component';
+import { PatientDeleteComponent } from './components/dialogs/patients/patient-delete/patient-delete.component';
+import { PatientEditComponent } from './components/dialogs/patients/patient-edit/patient-edit.component';
+import { PatientInfoComponent } from './components/dialogs/patients/patient-info/patient-info.component';
+import { UpdatePasswordComponent } from './components/dialogs/users/update-password/update-password.component';
 import { UserAddComponent } from './components/dialogs/users/user-add/user-add.component';
 import { UserDeleteComponent } from './components/dialogs/users/user-delete/user-delete.component';
 import { UserEditComponent } from './components/dialogs/users/user-edit/user-edit.component';
 import { UserInfoComponent } from './components/dialogs/users/user-info/user-info.component';
 import { CanUseDirective } from './directives/can-use/can-use.directive';
-import { EnableMenuDirective } from './directives/enable-menu/enable-menu.directive';
+import { RoleEnableDirective } from './directives/role-enable/role-enable.directive';
 import { ScopeGuard } from './guards/scope/scope.guard';
 import { SessionLostInterceptor } from './interceptors/session-lost.interceptor';
+import { AuthComponent } from './layout/auth/auth.component';
 import { SidebarComponent } from './layout/default/components/sidebar/sidebar.component';
 import { TopbarComponent } from './layout/default/components/topbar/topbar.component';
 import { DefaultComponent } from './layout/default/default.component';
 import { HeaderComponent } from './layout/landing-page/components/header/header.component';
-import { PtChartComponent } from './layout/landing-page/components/pt-chart/pt-chart.component';
-import { WorldChartComponent } from './layout/landing-page/components/world-chart/world-chart.component';
 import { LandingPageComponent } from './layout/landing-page/landing-page.component';
+import { CovidTestComponent } from './pages/covid-test/covid-test.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 import { UsersComponent } from './pages/users/users.component';
@@ -74,12 +88,14 @@ import { UsersComponent } from './pages/users/users.component';
 @NgModule({
 	declarations: [
 		AppComponent,
+		AuthComponent,
 
 		// Landing Page
 		LandingPageComponent,
 		PtChartComponent,
 		WorldChartComponent,
 		HeaderComponent,
+		DataByEmailComponent,
 
 		// Admin Panel
 		TopbarComponent,
@@ -94,24 +110,46 @@ import { UsersComponent } from './pages/users/users.component';
 		UserDeleteComponent,
 		UserInfoComponent,
 		UserAddComponent,
+		UpdatePasswordComponent,
+		PatientDeleteComponent,
+		PatientInfoComponent,
+		PatientEditComponent,
+		PatientAddComponent,
 
 		// Auth
 		LoginComponent,
 		ChangeComponent,
 		ResetComponent,
-		DialogToDeleteComponent,
-		InformationDialogComponent,
-		EditDialogComponent,
-		CreateDialogComponent,
+
+		PatientDeleteComponent,
+		PatientInfoComponent,
+		PatientEditComponent,
+		PatientAddComponent,
 		CanUseDirective,
-		EnableMenuDirective
+		ByStatusComponent,
+		ByDayComponent,
+		ByMonthComponent,
+		BySymptomsComponent,
+
+		// Directives
+		CanUseDirective,
+		RoleEnableDirective,
+		PatientEditComponent,
+		PatientAddComponent,
+		CovidTestComponent,
+		CovidTestCreateComponent,
+		CovidTestDeleteComponent,
+		CovidTestEditComponent,
+		CovidTestInformationComponent,
+		ByGenderComponent
 	],
 	imports: [
 		CommonModule,
+		FormsModule,
 		ReactiveFormsModule,
 		BrowserModule,
+		MatIconModule,
 		HttpClientModule,
-		BrowserModule,
 		AppRoutingModule,
 		BrowserAnimationsModule,
 		ChartsModule,
@@ -119,7 +157,6 @@ import { UsersComponent } from './pages/users/users.component';
 		MatButtonModule,
 		MatSidenavModule,
 		MatToolbarModule,
-		MatIconModule,
 		MatCardModule,
 		MatMenuModule,
 		MatGridListModule,
@@ -155,6 +192,7 @@ import { UsersComponent } from './pages/users/users.component';
 		MatTableModule,
 		MatTreeModule,
 		ScrollingModule,
+		Ng2SearchPipeModule
 	],
 	providers: [
 		ScopeGuard,

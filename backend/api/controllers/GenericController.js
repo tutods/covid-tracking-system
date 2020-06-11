@@ -42,7 +42,6 @@ const genericController = (model) => {
 
 	const create = async (req, res, next) => {
 		const data = req.body;
-		console.log('DATA', data);
 
 		try {
 			const newModel = await new model(data).save();
@@ -78,8 +77,9 @@ const genericController = (model) => {
 			if (founded) {
 				const updated = await founded.updateOne(data, {
 					runValidators: true,
+					new: true,
 				});
-				console.log(updated);
+
 				response = {
 					status: 200,
 					message: updated,

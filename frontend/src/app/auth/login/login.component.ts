@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { TitleService } from './../../services/title/title.service';
+import { UiService } from './../../services/ui/ui.service';
 import { SessionService } from './../session.service';
 
 @Component({
@@ -15,7 +16,14 @@ export class LoginComponent implements OnInit {
 
 	loginForm: FormGroup;
 
-	constructor(public session: SessionService, public router: Router, private snackBar: MatSnackBar, private fBuild: FormBuilder) {
+	constructor(
+		public session: SessionService,
+		public router: Router,
+		private uiService: UiService,
+		private fBuild: FormBuilder,
+		private titleService: TitleService
+	) {
+		this.titleService.setPageTitle("Sing In")
 	}
 
 	ngOnInit() {
@@ -40,31 +48,32 @@ export class LoginComponent implements OnInit {
 		return this.loginForm.controls;
 	}
 
-	openSnackBar(message: string) {
-		this.snackBar.open(message, 'Close', { duration: 5000 })
-	}
-
 	// When submit form
 	onSubmit(evt) {
 		// Prevent Default
 		evt.preventDefault();
 
-		const user = {
-			email: this.loginForm.get('email').value,
-			password: this.loginForm.get('password').value
-		};
+		if (this.loginForm.valid) {
 
-		// Send POST Request to API
-		this.session
-			.login(user.email, user.password)
-			.subscribe(
-				(user) => {
-					this.router.navigateByUrl('/admin')
-					this.openSnackBar('Login with success!')
-				},
-				(error) => {
-					this.openSnackBar(error.error.message || "Error on connection");
-				}
-			)
+			const user = {
+				email: this.loginForm.get('email').value,
+				password: this.loginForm.get('password').value
+			};
+
+			// Send POST Request to API
+			this.session
+				.login(user.email, user.password)
+				.subscribe(
+					(user) => {
+						this.router.navigateByUrl('/admin')
+						this.uiService.showSnackBar('Login with success!')
+					},
+					(error) => {
+						this.uiService.showSnackBar(((typeof error.error.message != "object") ? error.error.message : "Sorry but have error on login. Try again later please.") || "Sorry but have error on login. Try again later please.")
+					}
+				)
+		} else {
+			this.uiService.showSnackBar('Please validate all fields on form.')
+		}
 	}
 }

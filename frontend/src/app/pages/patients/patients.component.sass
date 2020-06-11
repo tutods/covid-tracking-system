@@ -1,13 +1,47 @@
-.icon-12px
-    font-size: 12px
-    height: auto
-    width: auto
-
-.card-item
-    padding: 0px 10px 10px 10px
+#header
+    padding: 0 10px 20px 10px
 
     mat-card
+        display: flex
+        flex: 1 1 auto
+        align-items: center
+        justify-content: space-between
+
+        mat-card-header
+            mat-card-title
+                display: flex
+                align-items: center
+                justify-content: center
+                margin: 0
+                font-weight: 300
+
+                .mat-icon
+                    margin-right: 10px
+
+        mat-card-actions
+            padding: 0
+            margin: 0
+
+            button,.mat-button
+                display: flex
+                align-items: center
+                justify-content: center
+
+.card-item
+    padding: 0 10px 10px 10px
+    margin-bottom: 0.5rem
+    // height: 100%
+
+    mat-card
+        width: 100%
         padding: 30px 20px
+        word-break: break-word
+
+        mat-card-content
+            text-align: center
+
+            p
+                text-align: center
 
         mat-card-header
             display: flex
@@ -27,20 +61,11 @@
                 height: 85px
                 margin-bottom: 1rem
 
-            .add-btn
-                order: 1
-                content: ""
-                background-image: url("/assets/images/add.png")
-                background-position: center
-                background-repeat: no-repeat
-                background-size: contain
-                width: 85px
-                height: 85px
-                margin-bottom: 1rem
-
             mat-card-title
                 order: 2
-                font-size: 1.5rem
+                font-size: 1.35rem
+                word-wrap: break-word
+                text-align: center
 
         mat-card-actions
             display: flex
@@ -48,29 +73,61 @@
             justify-content: flex-end
             padding-top: 0
 
-            // > button
-            //     font-size: 14px
-            //     margin: 0
-            //     padding: 5px 10px
-
-            //     .mat-icon
-            //         width: fit-content
-            //         height: fit-content
-
-            //     .material-icons
-            //         font-size: inherit
-            //         padding-right: 0.1rem
-
-            // > button + button
-            //     margin-right: 10px
-
 p
     font-size: 16px
-
     .mat-icon
         width: fit-content
         height: fit-content
-
-    .material-icons
         font-size: inherit
-        padding-right: 0.5rem
+        margin-right: 10px
+
+#warning-text
+    display: flex
+    align-items: center
+    justify-content: center
+    margin-top: 1.25rem
+    font-weight: 200
+    font-size: 0.85rem
+
+::ng-deep mat-tab-group
+    padding: 0 10px 10px 10px
+
+    mat-tab-body
+        padding: 10px 0 10px 0
+
+::ng-deep .mat-tab-body-content
+    display: flex
+    align-items: center
+    justify-content: flex-start
+
+    mat-form-field
+        &:not(:last-child)
+            margin-right: 20px
+
+@media screen and ( max-width: 800px )
+    ::ng-deep mat-tab-group
+        mat-tab-body
+            padding-top: 10px
+
+    ::ng-deep .mat-tab-body-content
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        height: 100%
+
+        mat-form-field
+            width: 80%
+
+            &:not(:last-child)
+                margin-right: 0px
+
+mat-form-field#search
+    width: 25%
+
+    .mat-icon
+        margin-right: 10px
+
+@media screen and ( max-width: 800px)
+    mat-form-field#search
+        width: 80%

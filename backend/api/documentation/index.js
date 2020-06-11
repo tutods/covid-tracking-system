@@ -30,7 +30,7 @@ const options = {
 	// Info About the App
 	info: {
 		title: 'COVID Tracking System',
-		version: '2.2.0',
+		version: '3.0.0',
 		description: 'API Documentation to COVID Tracking System project',
 		server: `http://localhost:${PORT}`,
 	},

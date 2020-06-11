@@ -23,6 +23,7 @@ COVID Tracking System
 
 ### 📦️ Packages
 
+
 <table>
 <tr>
 <td>
@@ -144,6 +145,24 @@ COVID Tracking System
   + `npm install jsonwebtoken`
 
 </td>
+<td>
+
+#### Node-cron
++ **[URL](https://www.npmjs.com/package/node-cron)**
++ **How to install**?
+  + `npm install node-cron`
+
+</td>
+</tr>
+<tr>
+<td>
+
+#### Request
++ **[URL](https://www.npmjs.com/package/request)**
++ **How to install**?
+  + `npm install request`
+
+</td>
 </tr>
 </table>
 
@@ -252,7 +271,7 @@ COVID Tracking System
 </a>
 
 ### ℹ️ How to run
-1. Change to `webapp/` folder (on terminal: `cd webapp`)
+1. Change to `frontend/` folder (on terminal: `cd frontend`)
 1. Execute the command `npm install`
 1. Execute the command `ng serve` to run **Angular** application
 
@@ -301,7 +320,7 @@ COVID Tracking System
 │	│       ├── patients
 │	│       ├── patients.service.spec.ts
 │	│       ├── patients.service.ts
-│	│       ├── roles-service
+│	│       ├── roles
 │	│       └── users-service
 │	├── assets
 │	│   └── images
@@ -352,9 +371,37 @@ COVID Tracking System
 <td>
 
 #### Angular Flex Layout
-+ **[URL](https://www.npmjs.com/package/@angular/flex-layoutm)**
++ **[URL](https://github.com/angular/flex-layout)**
 + **How to install**?
-  + `npm i @angular/flex-layout`
+  + `npm i -s @angular/flex-layout @angular/cdk`
+
+</td>
+</tr>
+<tr>
+<td>
+
+#### ChartJS
++ **[URL](https://github.com/chartjs/Chart.js)**
++ **How to install**?
+  + `npm i -s chart.js`
+
+</td>
+<td>
+
+#### NG2-Charts
++ **[URL](https://www.npmjs.com/package/ng2-charts)**
++ **How to install**?
+  + `npm i ng2-charts`
+
+</td>
+</tr>
+<tr>
+<td>
+
+#### NG2-Search-Filter
++ **[URL](https://www.npmjs.com/package/ng2-search-filter)**
++ **How to install**?
+  + `npm i ng2-search-filter`
 
 </td>
 </tr>

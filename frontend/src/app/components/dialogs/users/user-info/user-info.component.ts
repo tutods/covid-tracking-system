@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UsersService } from '../../../../services/users/users.service';
 import { User } from './../../../../models/user.model';
-import { RolesService } from './../../../../services/roles-service/roles.service';
-import { UsersService } from './../../../../services/users-service/users.service';
+import { RolesService } from './../../../../services/roles/roles.service';
 
 @Component({
 	selector: 'app-user-info',
@@ -24,8 +24,6 @@ export class UserInfoComponent implements OnInit {
 			let cleanScope = scope.split('--').join('').split('-').join(' ')
 			return cleanScope
 		})
-
-		console.log(this.scopes)
 	}
 
 	ngOnInit(): void {

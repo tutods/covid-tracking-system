@@ -1,0 +1,20 @@
+{
+	"/api-covid/": {
+		"get": {
+			"tags": [
+				"API COVID"
+			],
+			"summary": "Get all data by COVID-19 API (external)",
+			"description": "The data by external COVID-19 API\n\n**Link:** [COVID-19 API](https://covid19api.com/)\n\n**Note:** this data are storaged into database using **CronJob**, because sometime API is down, and not have data.",
+			"operationId": "getApiCovid",
+			"responses": {
+				"200": {
+					"$ref": "#/responses/getApiCovid"
+				},
+				"400": {
+					"$ref": "#/responses/defaultError"
+				}
+			}
+		}
+	}
+}

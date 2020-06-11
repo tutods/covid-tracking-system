@@ -1,0 +1,8 @@
+{
+	"getApiCovid": {
+		"description": "Return all data of external API storaged into database",
+		"schema": {
+			"$ref": "#/definitions/ApiCovid"
+		}
+	}
+}

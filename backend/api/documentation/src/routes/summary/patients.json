@@ -22,5 +22,53 @@
 				}
 			}
 		}
+	},
+	"/summary/patients/gender": {
+		"get": {
+			"tags": [
+				"Summary"
+			],
+			"summary": "Get number of patients by gender",
+			"description": "",
+			"operationId": "patientsByGender",
+			"responses": {
+				"200": {
+					"$ref": "#/responses/numberOfPatientsByGender"
+				},
+				"400": {
+					"$ref": "#/responses/defaultError"
+				},
+				"403": {
+					"$ref": "#/responses/unauthorized"
+				},
+				"401": {
+					"$ref": "#/responses/notAuthenticated"
+				}
+			}
+		}
+	},
+	"/summary/patients/symptoms": {
+		"get": {
+			"tags": [
+				"Summary"
+			],
+			"summary": "Get number of Symptoms",
+			"description": "Use to create chart with most common symptoms",
+			"operationId": "symptomsPatient",
+			"responses": {
+				"200": {
+					"$ref": "#/responses/numberOfSymptoms"
+				},
+				"400": {
+					"$ref": "#/responses/defaultError"
+				},
+				"403": {
+					"$ref": "#/responses/unauthorized"
+				},
+				"401": {
+					"$ref": "#/responses/notAuthenticated"
+				}
+			}
+		}
 	}
 }

@@ -45,16 +45,18 @@ const covidTestSchema = new Schema(
 		},
 		status: {
 			type: String,
-			enum: ['pending', 'inProgress', 'finished', 'waitingResult'],
+			enum: ['pending', 'in Progress', 'finished', 'waiting Result'],
 			default: 'pending',
 		},
 		result: {
 			type: String,
 			enum: ['positive', 'negative', 'inconclusive'],
+			required: false,
 		},
 		date: {
 			type: Date,
 			required: true,
+			default: Date.now(),
 		},
 		pathFile: {
 			type: String,

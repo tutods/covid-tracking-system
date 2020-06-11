@@ -8,6 +8,8 @@ const covidTestRoutes = require('./routes/covidTests');
 const patientRoutes = require('./routes/patients');
 const rolesRoutes = require('./routes/roles');
 const summaryRoutes = require('./routes/summary');
+const authRoutes = require('./routes/auth');
+const apicovidRoutes = require('./routes/apiCovid');
 
 // Middlewares
 const logger = require('./middlewares/logger');
@@ -27,5 +29,9 @@ router.use('/patients', patientRoutes);
 router.use('/roles', rolesRoutes);
 
 router.use('/summary', summaryRoutes);
+
+router.use('', authRoutes);
+
+router.use('/api-covid', apicovidRoutes);
 
 module.exports = router;

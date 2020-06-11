@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { TitleService } from './../../services/title/title.service';
+import { UiService } from './../../services/ui/ui.service';
 import { SessionService } from './../session.service';
 
 @Component({
@@ -14,7 +15,13 @@ export class ResetComponent implements OnInit {
 
 	resetForm: FormGroup;
 
-	constructor(public session: SessionService, private snackBar: MatSnackBar) { }
+	constructor(
+		public session: SessionService,
+		private titleService: TitleService,
+		private uiService: UiService
+	) {
+		this.titleService.setPageTitle('Reset Password')
+	}
 
 	ngOnInit(): void {
 		this.resetForm = new FormGroup({
@@ -30,27 +37,26 @@ export class ResetComponent implements OnInit {
 		return this.resetForm.controls;
 	}
 
-	openSnackBar(message: string) {
-		this.snackBar.open(message, 'Close', { duration: 5000 })
-	}
-
 	onSubmit(evt) {
 		//Prevent Default
 		evt.preventDefault();
 
-		const email = this.resetForm.get('email').value;
+		if (this.resetForm.valid) {
+			const email = this.resetForm.get('email').value;
 
-		this.session
-			.reset(email)
-			.subscribe(
-				() => {
-					this.openSnackBar(`An email was sent to ${email} with sucess!`);
-				},
-				(error) => {
-					this.openSnackBar(error.error.message);
-				}
-			)
-
+			this.session
+				.reset(email)
+				.subscribe(
+					() => {
+						this.uiService.showSnackBar(`An email was sent to ${email} with sucess!`)
+					},
+					(error) => {
+						this.uiService.showSnackBar(error.error.message)
+					}
+				)
+		} else {
+			this.uiService.showSnackBar("Upps! Have any error, please validate all fields on form.")
+		}
 	}
 
 

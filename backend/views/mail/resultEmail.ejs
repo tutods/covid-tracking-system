@@ -1,0 +1,87 @@
+<%- include('../partials/header.ejs') %>
+
+<%- include('../partials/preheader.ejs', {preheader: "Your COVID Test already have a result"}) %>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
+	<tr>
+		<td>
+			&nbsp;</td>
+		<td class="container">
+			<div class="content">
+
+				<%- include('../partials/logo.ejs') %>
+
+				<!-- START CENTERED WHITE CONTAINER -->
+				<table role="presentation" class="main" id="content">
+
+					<!-- START MAIN CONTENT AREA -->
+					<tr>
+						<td class="wrapper">
+							<table role="presentation" id="subtable" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td>
+										<p>Hi <%= patient.name %>,</p>
+										<p>Your test already have result.</p>
+										<p>Please check the attachment and, if that doesn't work, please open the file
+											on browser , by clicking on the button below.</p>
+
+										<table role="presentation" border="0" cellpadding="0" cellspacing="0"
+											class="btn btn-primary">
+											<tbody>
+												<tr>
+													<td align="left">
+														<table role="presentation" border="0" cellpadding="0"
+															cellspacing="0">
+															<tbody>
+																<tr>
+																	<td>
+																		<a href="http://localhost:3000/<%= file %>"
+																			target="_blank">
+																			View on browser
+																		</a>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+
+										<h4 id="table-header">Test Details</h4>
+
+										<table id="covid-tests-table">
+											<thead>
+												<tr>
+													<th>Date</th>
+													<th>Status</th>
+													<th>Result</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td><%= new Date(covidTest.date).toLocaleString() %></td>
+													<td><%= covidTest.status %></td>
+													<td><%= covidTest.result %></td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+
+					<!-- END MAIN CONTENT AREA -->
+				</table>
+				<!-- END CENTERED WHITE CONTAINER -->
+				<!-- START FOOTER -->
+				<%- include('../partials/copyright.ejs') %>
+				<!-- END FOOTER -->
+
+			</div>
+		</td>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+
+<%- include('../partials/footer.ejs') %>

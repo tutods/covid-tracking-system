@@ -5,6 +5,9 @@ const { PORT = 3000 } = process.env;
 // Get Mongoose connection
 require('./config/mongoose');
 
+//Cronjob
+require('./config/cronjob');
+
 // Packages
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -26,6 +29,7 @@ const app = express();
 app
 	// Static Files
 	.use('/public', express.static('./public'))
+	.use('/uploads', express.static('./uploads'))
 
 	// Cookie Parser
 	.use(cookieParser())
@@ -37,7 +41,7 @@ app
 	.use(swaggerRouter)
 
 	// Set body-parser
-	.use(bodyParser.json())
+	.use(bodyParser.json({ limit: '50mb' }))
 
 	// URL Encoded
 	.use(express.urlencoded({ extended: true }))
@@ -54,6 +58,10 @@ app
 
 	// Routes
 	.use('/api', apiRoutes)
+
+	.get('/', (req, res) => {
+		res.redirect('http://localhost:4200');
+	})
 
 	// Error Handler Middleware
 	.use(errorHandler)

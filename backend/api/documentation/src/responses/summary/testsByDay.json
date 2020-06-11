@@ -6,7 +6,7 @@
 			"items": {
 				"type": "object",
 				"properties": {
-					"_id": {
+					"date": {
 						"type": "string",
 						"format": "date"
 					},
