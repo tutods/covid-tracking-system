@@ -140,12 +140,16 @@ const userController = () => {
 			const newModel = await new User(data).save();
 
 			let response;
-
-			if (newModel) {
-				const token = generateToken(email);
-
-				newUserEmail(token, email);
-
+			if (await newModel) {
+				console.log('AQUI!!!');
+				const token = await jwt.sign(
+					{ email: newModel.email },
+					SECRET,
+					{
+						expiresIn: 60 * 5,
+					}
+				);
+				newUserEmail(await token, newModel.email);
 				response = { status: 201, message: newModel };
 			} else {
 				response = {
@@ -160,20 +164,6 @@ const userController = () => {
 				message: catchError,
 				status: 400,
 			});
-		}
-	};
-
-	const generateToken = (email) => {
-		let jwtT;
-
-		try {
-			jwtT = jwt.sign({ email: email }, SECRET, {
-				expiresIn: 60 * 30,
-			});
-
-			return jwtT;
-		} catch (err) {
-			next({ message: err, status: 408 });
 		}
 	};
 

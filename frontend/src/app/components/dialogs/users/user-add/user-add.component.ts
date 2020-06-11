@@ -56,17 +56,19 @@ export class UserAddComponent implements OnInit {
 			password: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 		}
 
-		let response: object = {}
-
 		this.usersService.new(body).subscribe((user) => {
-			response["message"] = "User created with success! Please tell to user request a reset password."
-			response["status"] = true
+			this.dialogRef.close({
+				message: "User created with success! Please tell to user request a reset password.",
+				status: true
+			})
 		}, (error) => {
-			response["message"] = "Upps! The user not created because an error has occurred."
-			response["status"] = false
+			console.log(error)
+			this.dialogRef.close({
+				message: error.error.message || "Error when create user. Try again please.",
+				status: false
+			})
 		})
 
-		this.dialogRef.close(response)
 	}
 
 	onClose(): void {
