@@ -12,7 +12,7 @@ const {
 	MOGNO_PASS,
 } = process.env;
 
-const url = `mongodb+srv:://${MONGO_USER}:${MOGNO_PASS}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}?retryWrites=true&w=majority`;
+const url = `mongodb+srv:://${MONGO_USER}:${MOGNO_PASS}@${MONGO_HOST}/${MONGO_DB}?retryWrites=true&w=majority`;
 
 // Enable debug mode if you need see queries
 // mongoose.set('debug', true);
