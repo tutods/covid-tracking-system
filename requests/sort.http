@@ -1,5 +1,0 @@
-### Get All covid tests sorted
-GET http://localhost:3000/api/covid-tests/?sort=status,asc
-
-### Get All patients sorted
-GET http://localhost:3000/api/patients/?sort=name,desc
