@@ -8,9 +8,11 @@ const {
 	MONGO_HOST = 'localhost',
 	MONGO_PORT = 27017,
 	MONGO_DB = 'covidSystem',
+	MONGO_USER,
+	MOGNO_PASS,
 } = process.env;
 
-const url = `mongodb://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}`;
+const url = `mongodb+srv:://${MONGO_USER}:${MOGNO_PASS}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}?retryWrites=true&w=majority`;
 
 // Enable debug mode if you need see queries
 // mongoose.set('debug', true);
