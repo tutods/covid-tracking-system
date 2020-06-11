@@ -53,22 +53,27 @@ export class LoginComponent implements OnInit {
 		// Prevent Default
 		evt.preventDefault();
 
-		const user = {
-			email: this.loginForm.get('email').value,
-			password: this.loginForm.get('password').value
-		};
+		if (this.loginForm.valid) {
 
-		// Send POST Request to API
-		this.session
-			.login(user.email, user.password)
-			.subscribe(
-				(user) => {
-					this.router.navigateByUrl('/admin')
-					this.uiService.showSnackBar('Login with success!')
-				},
-				(error) => {
-					this.uiService.showSnackBar(((typeof error.error.message != "object") ? error.error.message : "Sorry but have error on login. Try again later please.") || "Sorry but have error on login. Try again later please.")
-				}
-			)
+			const user = {
+				email: this.loginForm.get('email').value,
+				password: this.loginForm.get('password').value
+			};
+
+			// Send POST Request to API
+			this.session
+				.login(user.email, user.password)
+				.subscribe(
+					(user) => {
+						this.router.navigateByUrl('/admin')
+						this.uiService.showSnackBar('Login with success!')
+					},
+					(error) => {
+						this.uiService.showSnackBar(((typeof error.error.message != "object") ? error.error.message : "Sorry but have error on login. Try again later please.") || "Sorry but have error on login. Try again later please.")
+					}
+				)
+		} else {
+			this.uiService.showSnackBar('Please validate all fields on form.')
+		}
 	}
 }

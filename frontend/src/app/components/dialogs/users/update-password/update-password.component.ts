@@ -5,6 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UsersService } from '../../../../services/users/users.service';
 import { User } from './../../../../models/user.model';
 import { RolesService } from './../../../../services/roles/roles.service';
+import { UiService } from './../../../../services/ui/ui.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
 	isErrorState(
@@ -36,6 +37,7 @@ export class UpdatePasswordComponent implements OnInit {
 		private formBuilder: FormBuilder,
 		public usersService: UsersService,
 		public rolesService: RolesService,
+		public uiService: UiService,
 		public dialogRef: MatDialogRef<UpdatePasswordComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any
 	) {
@@ -70,34 +72,39 @@ export class UpdatePasswordComponent implements OnInit {
 	onSubmit(evt) {
 		// Prevent Default
 		evt.preventDefault();
-		const updatedData = {
-			email: this.user.email,
-			oldPwd: this.form.get('oldPwd').value,
-			newPwd: this.form.get('newPassword').value,
-			confirmPwd: this.form.get('confirmPassword').value,
-		};
 
-		const updated = this.usersService.updatePassword(updatedData);
+		if (this.form.valid) {
+			const updatedData = {
+				email: this.user.email,
+				oldPwd: this.form.get('oldPwd').value,
+				newPwd: this.form.get('newPassword').value,
+				confirmPwd: this.form.get('confirmPassword').value,
+			};
 
-		updated.subscribe(
-			(success) => {
-				const object = {
-					status: true,
-					message: success.message,
-				};
+			const updated = this.usersService.updatePassword(updatedData);
 
-				this.dialogRef.close(object);
-			},
-			(error) => {
-				const codeMessage = error.error.message;
-				const object = {
-					status: false,
-					message: codeMessage || "Error on update password! Please try again.",
-				};
+			updated.subscribe(
+				(success) => {
+					const object = {
+						status: true,
+						message: success.message,
+					};
 
-				this.dialogRef.close(object);
-			}
-		);
+					this.dialogRef.close(object);
+				},
+				(error) => {
+					const codeMessage = error.error.message;
+					const object = {
+						status: false,
+						message: codeMessage || "Error on update password! Please try again.",
+					};
+
+					this.dialogRef.close(object);
+				}
+			);
+		} else {
+			this.uiService.showSnackBar("Please validate all fields on form and try again.")
+		}
 	}
 
 	onClose(): void {

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Patient } from '../../../../models/patient.model';
 import { PatientsService } from '../../../../services/patients/patients.service';
+import { UiService } from './../../../../services/ui/ui.service';
 
 @Component({
 	selector: 'app-patient-edit',
@@ -69,6 +70,7 @@ export class PatientEditComponent implements OnInit {
 	constructor(
 		private formBuilder: FormBuilder,
 		public patients: PatientsService,
+		private uiService: UiService,
 		public dialogRef: MatDialogRef<PatientEditComponent>,
 		@Inject(MAT_DIALOG_DATA) data
 	) {
@@ -118,63 +120,66 @@ export class PatientEditComponent implements OnInit {
 	onSubmit(evt) {
 		// Prevent Default
 		evt.preventDefault();
-		const formDate = new Date(this.patientForm.get('birthdayDate').value)
 
-		this.currentObservations = this.patientForm.get('observations').value;
+		if (this.patientForm.valid) {
+			const formDate = new Date(this.patientForm.get('birthdayDate').value)
 
-		for (let element in this.currentObservations) {
-			if (this.currentObservations[element] === 'saude24') {
-				this.observationsToUpdate.saude24 = true;
-			}
-			if (this.currentObservations[element] === 'riskGroup') {
-				this.observationsToUpdate.riskGroup = true;
-			}
-			if (this.currentObservations[element] === 'riskZone') {
-				this.observationsToUpdate.riskZone = true;
-			}
-		}
+			this.currentObservations = this.patientForm.get('observations').value;
 
-		const formData = {
-			name: this.patientForm.get('name').value,
-			birthdayDate: new Date(`${formDate.getFullYear()}-${formDate.getMonth() + 1}-${formDate.getDate()}`),
-			patientNumber: this.patientForm.get('patientNumber').value,
-			status: this.patientForm.get('status').value,
-			contacts: {
-				phone: this.patientForm.get('phone').value,
-				email: this.patientForm.get('email').value,
-			},
-			symptoms: this.patientForm.get('symptoms').value,
-			observations: this.observationsToUpdate,
-			gender: this.patientForm.get('gender').value
-		}
-
-		this.patients.getOneAndUpdate(this.patient._id, formData).subscribe((success) => {
-			this.dialogRef.close({
-				status: true,
-				message: "Patient edited with success!"
-			})
-		}, (error) => {
-			let codeMessage = error.error.message.errmsg || error.error.message;
-
-			if (codeMessage.includes('E11000')) {
-				if (codeMessage.includes('phone:')) {
-					codeMessage = 'Phone inserted already exists';
-				} else if (codeMessage.includes('patientNumber:')) {
-					codeMessage = 'Patient number inserted already exists';
-				} else {
-					codeMessage = 'Unique error. Please validate all fields!';
+			for (let element in this.currentObservations) {
+				if (this.currentObservations[element] === 'saude24') {
+					this.observationsToUpdate.saude24 = true;
 				}
-			} else {
-				codeMessage = error.error.message
+				if (this.currentObservations[element] === 'riskGroup') {
+					this.observationsToUpdate.riskGroup = true;
+				}
+				if (this.currentObservations[element] === 'riskZone') {
+					this.observationsToUpdate.riskZone = true;
+				}
 			}
 
-			this.dialogRef.close({
-				status: false,
-				message: codeMessage
-			})
-		});
+			const formData = {
+				name: this.patientForm.get('name').value,
+				birthdayDate: new Date(`${formDate.getFullYear()}-${formDate.getMonth() + 1}-${formDate.getDate()}`),
+				patientNumber: this.patientForm.get('patientNumber').value,
+				status: this.patientForm.get('status').value,
+				contacts: {
+					phone: this.patientForm.get('phone').value,
+					email: this.patientForm.get('email').value,
+				},
+				symptoms: this.patientForm.get('symptoms').value,
+				observations: this.observationsToUpdate,
+				gender: this.patientForm.get('gender').value
+			}
 
-		this.dialogRef.close()
+			this.patients.getOneAndUpdate(this.patient._id, formData).subscribe((success) => {
+				this.dialogRef.close({
+					status: true,
+					message: "Patient edited with success!"
+				})
+			}, (error) => {
+				let codeMessage = error.error.message.errmsg || error.error.message;
+
+				if (codeMessage.includes('E11000')) {
+					if (codeMessage.includes('phone:')) {
+						codeMessage = 'Phone inserted already exists';
+					} else if (codeMessage.includes('patientNumber:')) {
+						codeMessage = 'Patient number inserted already exists';
+					} else {
+						codeMessage = 'Unique error. Please validate all fields!';
+					}
+				} else {
+					codeMessage = error.error.message
+				}
+
+				this.dialogRef.close({
+					status: false,
+					message: codeMessage
+				})
+			});
+		} else {
+			this.uiService.showSnackBar("Please validate all fields on form and try again.")
+		}
 	}
 
 	onClose(): void {

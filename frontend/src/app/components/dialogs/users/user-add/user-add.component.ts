@@ -1,3 +1,4 @@
+import { UiService } from './../../../../services/ui/ui.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -20,6 +21,7 @@ export class UserAddComponent implements OnInit {
 		public usersService: UsersService,
 		public rolesService: RolesService,
 		public dialogRef: MatDialogRef<UserAddComponent>,
+		private uiService: UiService
 	) { }
 
 	ngOnInit(): void {
@@ -49,26 +51,29 @@ export class UserAddComponent implements OnInit {
 		// Prevent Default
 		evt.preventDefault();
 
-		const body = {
-			name: this.userForm.get('name').value,
-			email: this.userForm.get('email').value,
-			role: this.userForm.get('role').value,
-			password: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+		if (this.userForm.valid) {
+			const body = {
+				name: this.userForm.get('name').value,
+				email: this.userForm.get('email').value,
+				role: this.userForm.get('role').value,
+				password: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+			}
+
+			this.usersService.new(body).subscribe((user) => {
+				this.dialogRef.close({
+					message: "User created with success! Please tell to user request a reset password.",
+					status: true
+				})
+			}, (error) => {
+				console.log(error)
+				this.dialogRef.close({
+					message: error.error.message || "Error when create user. Try again please.",
+					status: false
+				})
+			})
+		} else {
+			this.uiService.showSnackBar("Please validate all fields on form and try again.")
 		}
-
-		this.usersService.new(body).subscribe((user) => {
-			this.dialogRef.close({
-				message: "User created with success! Please tell to user request a reset password.",
-				status: true
-			})
-		}, (error) => {
-			console.log(error)
-			this.dialogRef.close({
-				message: error.error.message || "Error when create user. Try again please.",
-				status: false
-			})
-		})
-
 	}
 
 	onClose(): void {

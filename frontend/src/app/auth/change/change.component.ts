@@ -73,21 +73,28 @@ export class ChangeComponent implements OnInit {
 	onSubmit(evt) {
 		evt.preventDefault();
 
-		this.session
-			.change(
-				this.changeForm.get('newPassword').value,
-				this.changeForm.get('confirmPassword').value,
-				this.token
-			)
-			.subscribe(
-				(data) => {
-					this.uiService.showSnackBar('Password changed with success');
-				},
-				(error) => {
-					this.uiService.showSnackBar((error.error.message.message || 'Token expired'));
-				}
-			);
+		if (this.changeForm.valid) {
+			this.session
+				.change(
+					this.changeForm.get('newPassword').value,
+					this.changeForm.get('confirmPassword').value,
+					this.token
+				)
+				.subscribe(
+					(data) => {
+						this.uiService.showSnackBar('Password changed with success');
+					},
+					(error) => {
 
-		this.router.navigateByUrl('/login');
+						let errorMessage = error.error.message || "Token expired. Please send a new request."
+
+						this.uiService.showSnackBar(errorMessage);
+					}
+				);
+
+			this.router.navigateByUrl('/login');
+		} else {
+			this.uiService.showSnackBar("Please validate all fields and try again.")
+		}
 	}
 }

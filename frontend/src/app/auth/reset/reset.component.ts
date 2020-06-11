@@ -41,19 +41,22 @@ export class ResetComponent implements OnInit {
 		//Prevent Default
 		evt.preventDefault();
 
-		const email = this.resetForm.get('email').value;
+		if (this.resetForm.valid) {
+			const email = this.resetForm.get('email').value;
 
-		this.session
-			.reset(email)
-			.subscribe(
-				() => {
-					this.uiService.showSnackBar(`An email was sent to ${email} with sucess!`)
-				},
-				(error) => {
-					this.uiService.showSnackBar(error.error.message)
-				}
-			)
-
+			this.session
+				.reset(email)
+				.subscribe(
+					() => {
+						this.uiService.showSnackBar(`An email was sent to ${email} with sucess!`)
+					},
+					(error) => {
+						this.uiService.showSnackBar(error.error.message)
+					}
+				)
+		} else {
+			this.uiService.showSnackBar("Upps! Have any error, please validate all fields on form.")
+		}
 	}
 
 

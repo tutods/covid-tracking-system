@@ -1,3 +1,4 @@
+import { UiService } from './../../../../services/ui/ui.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -24,6 +25,7 @@ export class CovidTestCreateComponent implements OnInit {
 		private formBuilder: FormBuilder,
 		public covidTest: CovidTestService,
 		public patientsService: PatientsService,
+		public uiService: UiService,
 		public dialogRef: MatDialogRef<CovidTestCreateComponent>
 	) { }
 
@@ -44,26 +46,31 @@ export class CovidTestCreateComponent implements OnInit {
 	onSubmit(evt) {
 		evt.preventDefault();
 
-		const formDate = new Date(this.covidTestForm.get('scheduleDate').value);
+		if (this.covidTestForm.valid) {
 
-		const formData = {
-			patient: this.covidTestForm.get('patient').value.id,
-			date: new Date(`${formDate.getFullYear()}-${formDate.getMonth() + 1}-${formDate.getDate()}`),
-			notes: this.covidTestForm.get('notes').value,
-		};
+			const formDate = new Date(this.covidTestForm.get('scheduleDate').value);
 
-		this.covidTest.create(formData).subscribe((success) => {
-			this.dialogRef.close({
-				message: "COVID Test created with success!",
-				status: true
-			})
-		}, (error) => {
-			const errorMessage = error.error.message
-			this.dialogRef.close({
-				message: errorMessage,
-				status: false
+			const formData = {
+				patient: this.covidTestForm.get('patient').value.id,
+				date: new Date(`${formDate.getFullYear()}-${formDate.getMonth() + 1}-${formDate.getDate()}`),
+				notes: this.covidTestForm.get('notes').value,
+			};
+
+			this.covidTest.create(formData).subscribe((success) => {
+				this.dialogRef.close({
+					message: "COVID Test created with success!",
+					status: true
+				})
+			}, (error) => {
+				const errorMessage = error.error.message
+				this.dialogRef.close({
+					message: errorMessage,
+					status: false
+				});
 			});
-		});
+		} else {
+			this.uiService.showSnackBar("Please validate all fields on form and try again.")
+		}
 	}
 
 	onClose(): void {

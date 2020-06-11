@@ -124,7 +124,13 @@ const userController = () => {
 				});
 			}
 		} catch (err) {
-			next({ message: err, status: 408 });
+			let errMessage = err;
+
+			if (errMessage.message.toString().includes('jwt expired'))
+				errMessage = 'Token expired, please send a new request.';
+
+			console.log(errMessage);
+			next({ message: errMessage, status: 408 });
 		}
 	};
 

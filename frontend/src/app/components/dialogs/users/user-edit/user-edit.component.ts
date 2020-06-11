@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UsersService } from '../../../../services/users/users.service';
 import { User } from './../../../../models/user.model';
 import { RolesService } from './../../../../services/roles/roles.service';
+import { UiService } from './../../../../services/ui/ui.service';
 
 @Component({
 	templateUrl: './user-edit.component.html',
@@ -18,6 +19,7 @@ export class UserEditComponent implements OnInit {
 		private formBuilder: FormBuilder,
 		public usersService: UsersService,
 		public rolesService: RolesService,
+		private uiService: UiService,
 		public dialogRef: MatDialogRef<UserEditComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any
 	) {
@@ -57,36 +59,40 @@ export class UserEditComponent implements OnInit {
 		// Prevent Default
 		evt.preventDefault();
 
-		const updatedData = {
-			name: this.userForm.get('name').value,
-			email: this.userForm.get('email').value,
-			role: this.userForm.get('role').value,
-		};
+		if (this.userForm.valid) {
+			const updatedData = {
+				name: this.userForm.get('name').value,
+				email: this.userForm.get('email').value,
+				role: this.userForm.get('role').value,
+			};
 
-		let response: object = {};
+			let response: object = {};
 
-		this.usersService.getOneAndUpdate(this.user['_id'], updatedData).subscribe(
-			(updated) => {
-				response['message'] = 'User updated with success!';
-				response['status'] = true;
-			},
-			(error) => {
-				let codeMessage = error.error.message;
+			this.usersService.getOneAndUpdate(this.user['_id'], updatedData).subscribe(
+				(updated) => {
+					response['message'] = 'User updated with success!';
+					response['status'] = true;
+				},
+				(error) => {
+					let codeMessage = error.error.message;
 
-				if (codeMessage.includes('E11000')) {
-					if (codeMessage.includes('email:')) {
-						codeMessage = 'Email inserted already exists';
-					} else {
-						codeMessage = 'Unique error. Please validate all fields!';
+					if (codeMessage.includes('E11000')) {
+						if (codeMessage.includes('email:')) {
+							codeMessage = 'Email inserted already exists';
+						} else {
+							codeMessage = 'Unique error. Please validate all fields!';
+						}
 					}
+
+					response['message'] = codeMessage;
+					response['status'] = false;
 				}
+			);
 
-				response['message'] = codeMessage;
-				response['status'] = false;
-			}
-		);
-
-		this.dialogRef.close(response);
+			this.dialogRef.close(response);
+		} else {
+			this.uiService.showSnackBar("Please validate all fields on form and try again.")
+		}
 	}
 
 	onClose(): void {

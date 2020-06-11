@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { PatientsService } from '../../../services/patients/patients.service';
+import { UiService } from './../../../services/ui/ui.service';
 
 @Component({
 	selector: 'app-data-by-email',
@@ -18,6 +19,7 @@ export class DataByEmailComponent implements OnInit {
 		public router: Router,
 		private fBuild: FormBuilder,
 		public patientsService: PatientsService,
+		private uiService: UiService,
 		public dialogRef: MatDialogRef<DataByEmailComponent>
 	) { }
 
@@ -42,21 +44,26 @@ export class DataByEmailComponent implements OnInit {
 		// Prevent Default
 		evt.preventDefault();
 
-		const email = this.getDataForm.get('email').value
-		const phoneNumber = this.getDataForm.get('phoneNumber').value
-		const patientNumber = this.getDataForm.get('patientNumber').value
+		if (this.getDataForm.valid) {
 
-		this.patientsService
-			.getDataByEmail(email, phoneNumber, patientNumber)
-			.subscribe(
-				(success) => {
-					this.dialogRef.close({ message: success.message })
-				},
-				(error) => {
-					this.dialogRef.close({ message: error.error.message })
+			const email = this.getDataForm.get('email').value
+			const phoneNumber = this.getDataForm.get('phoneNumber').value
+			const patientNumber = this.getDataForm.get('patientNumber').value
 
-				}
-			)
+			this.patientsService
+				.getDataByEmail(email, phoneNumber, patientNumber)
+				.subscribe(
+					(success) => {
+						this.dialogRef.close({ message: success.message })
+					},
+					(error) => {
+						this.dialogRef.close({ message: error.error.message })
+
+					}
+				)
+		} else {
+			this.uiService.showSnackBar("Please validate all fields on form and try again.")
+		}
 	}
 
 	onClose() {
