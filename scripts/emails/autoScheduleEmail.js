@@ -18,7 +18,7 @@ const autoScheduleEmail = (email, date, patient) => {
 	};
 
 	const transporter = nodemailer.createTransport({
-		service: 'mail.tutods.net',
+		service: 'outlook',
 		auth: {
 			user: EMAIL_USER,
 			pass: EMAIL_PWD,
