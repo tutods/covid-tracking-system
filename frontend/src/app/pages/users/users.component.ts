@@ -20,8 +20,6 @@ export class UsersComponent implements OnInit {
 	public users;
 	public loggedUserEmail: string;
 
-	searchText;
-
 	constructor(
 		private usersService: UsersService,
 		private sessionService: SessionService,
