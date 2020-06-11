@@ -1,56 +1,57 @@
 <h2 mat-dialog-title>Edit</h2>
 
 <form [formGroup]="covidTestForm" (submit)="save($event)" enctype="multipart/form-data">
-	<mat-dialog-content>
-		<mat-form-field>
-			<mat-label>Notes</mat-label>
-			<textarea matInput placeholder="Notes" formControlName="notes"></textarea>
-			<mat-icon matPrefix>notes</mat-icon>
-		</mat-form-field>
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Notes</mat-label>
+      <textarea matInput placeholder="Notes" formControlName="notes"></textarea>
+      <mat-icon matPrefix>notes</mat-icon>
+    </mat-form-field>
 
-		<mat-form-field>
-			<mat-label>Schedule Date</mat-label>
-			<input matInput [matDatepicker]="scheduleDate" formControlName="scheduleDate">
-			<mat-datepicker-toggle matSuffix [for]="scheduleDate"></mat-datepicker-toggle>
-			<mat-datepicker #scheduleDate></mat-datepicker>
-			<mat-error
-				[hidden]="(covidTestFormControl.scheduleDate.touched) && covidTestFormControl.scheduleDate.errors?.required">
-				Schedul Date is required.
-			</mat-error>
-			<mat-icon matPrefix>today</mat-icon>
-		</mat-form-field>
+    <mat-form-field>
+      <mat-label>Schedule Date</mat-label>
+      <input matInput [matDatepicker]="scheduleDate" formControlName="scheduleDate">
+      <mat-datepicker-toggle matSuffix [for]="scheduleDate"></mat-datepicker-toggle>
+      <mat-datepicker #scheduleDate></mat-datepicker>
+      <mat-error
+        [hidden]="(covidTestFormControl.scheduleDate.touched) && covidTestFormControl.scheduleDate.errors?.required">
+        Schedul Date is required.
+      </mat-error>
+      <mat-icon matPrefix>today</mat-icon>
+    </mat-form-field>
 
-		<mat-form-field>
-			<mat-label>Status</mat-label>
-			<mat-select matNativeControl formControlName="status" name="status">
-				<mat-option *ngFor="let stat of status" [value]="stat">
-					{{stat | titlecase}}
-				</mat-option>
-			</mat-select>
-			<mat-icon matPrefix>healing</mat-icon>
-			<mat-error [hidden]="(covidTestFormControl.status.touched) && covidTestFormControl.status.errors?.required">
-				Status is required.
-			</mat-error>
-		</mat-form-field>
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select matNativeControl formControlName="status" name="status">
+        <mat-option *ngFor="let stat of status" [value]="stat">
+          {{stat | titlecase}}
+        </mat-option>
+      </mat-select>
+      <mat-icon matPrefix>healing</mat-icon>
+      <mat-error [hidden]="(covidTestFormControl.status.touched) && covidTestFormControl.status.errors?.required">
+        Status is required.
+      </mat-error>
+    </mat-form-field>
 
-		<mat-form-field>
-			<mat-label>Result</mat-label>
-			<mat-select matNativeControl formControlName="result" name="result">
-				<mat-option *ngFor="let result of results" [value]="result">
-					{{result | titlecase}}
-				</mat-option>
-			</mat-select>
-			<mat-icon matPrefix>info</mat-icon>
-		</mat-form-field>
+    <mat-form-field>
+      <mat-label>Result</mat-label>
+      <mat-select matNativeControl formControlName="result" name="result" [disabled]="statusValue() !='finished'"
+        matTooltip="Status need to be Finished ">
+        <mat-option *ngFor="let result of results" [value]="result">
+          {{result | titlecase}}
+        </mat-option>
+      </mat-select>
+      <mat-icon matPrefix>info</mat-icon>
+    </mat-form-field>
 
-		<input type="file" formControlName="file" (change)="onFileSelected($event)" accept=".pdf">
+    <input type="file" formControlName="file" (change)="onFileSelected($event)" accept=".pdf">
 
-		<div class="accent-color" *ngIf="covidTest.pathFile">
-			<small>Already have upload one file.</small>
-		</div>
-	</mat-dialog-content>
-	<mat-dialog-actions>
-		<button mat-button color="primary" type="submit" [disabled]="!covidTestForm.valid">Save</button>
-		<button mat-button color="warn" (click)="onClose()" type="button">Cancel</button>
-	</mat-dialog-actions>
+    <div class="accent-color" *ngIf="covidTest.pathFile">
+      <small>Already have upload one file.</small>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button color="primary" type="submit" [disabled]="!covidTestForm.valid">Save</button>
+    <button mat-button color="warn" (click)="onClose()" type="button">Cancel</button>
+  </mat-dialog-actions>
 </form>
