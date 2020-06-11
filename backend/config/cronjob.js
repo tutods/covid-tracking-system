@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const request = require('request');
 const ApiCovid = require('../api/models/ApiCovid');
 
-module.exports = cron.schedule('* * * * *', () => {
+module.exports = cron.schedule('*/15 * * * *', () => {
 	request('https://api.covid19api.com/summary', async (err, res, body) => {
 		console.log('[CRONJOB STARTED]');
 
@@ -12,8 +12,10 @@ module.exports = cron.schedule('* * * * *', () => {
 			const all = await ApiCovid.find();
 
 			if (await all[0]) {
+				console.log('[CRONJOB - UPDATE]');
 				await ApiCovid.findOneAndUpdate(all._id, json);
 			} else {
+				console.log('[CRONJOB - CREATE]');
 				await new ApiCovid(json).save();
 			}
 		}

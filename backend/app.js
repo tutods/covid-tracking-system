@@ -59,6 +59,10 @@ app
 	// Routes
 	.use('/api', apiRoutes)
 
+	.get('/', (req, res) => {
+		res.redirect('http://localhost:4200');
+	})
+
 	// Error Handler Middleware
 	.use(errorHandler)
 

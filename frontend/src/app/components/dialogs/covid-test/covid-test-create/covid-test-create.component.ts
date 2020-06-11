@@ -37,7 +37,7 @@ export class CovidTestCreateComponent implements OnInit {
 	}
 
 	displayFn(object?: any): string | undefined {
-		return object ? object.name : undefined;
+		return object ? `${object.name} (${object.patientNumber})` : undefined;
 	}
 
 

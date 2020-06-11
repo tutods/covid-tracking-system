@@ -79,11 +79,11 @@ export class BySymptomsComponent implements OnInit {
 
 				const backgroundColor = [
 					'#56a0d3',
-					'#ff9933',
+					'#0a8ea0',
+					'#3369e7',
 					'#146eb4',
 					'#49c0b6',
-					'#3369e7',
-					'#0a8ea0',
+					'#ff9933',
 					'#ee6123',
 					'#075aaa',
 				];

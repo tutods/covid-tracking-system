@@ -3,10 +3,11 @@
 <form [formGroup]="covidTestForm" (submit)="onSubmit($event)">
 	<mat-dialog-content>
 		<mat-form-field>
-			<input type="text" matInput formControlName="patient" placeholder="Patient Name" [matAutocomplete]="auto">
+			<input type="text" matInput formControlName="patient" placeholder="Patient Name (Patient Number)"
+				[matAutocomplete]="auto">
 			<mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
 				<mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-					{{option.name}}
+					{{option.name}} <small>({{ option.patientNumber }})</small>
 				</mat-option>
 			</mat-autocomplete>
 			<mat-icon matPrefix>account_circle</mat-icon>

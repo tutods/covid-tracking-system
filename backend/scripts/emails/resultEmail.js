@@ -7,7 +7,7 @@ const nodemailer = require('nodemailer');
 // EJS
 const ejs = require('ejs');
 
-const resultEmail = (email, patient, file) => {
+const resultEmail = (patient, covidTest) => {
 	const formatDate = (date) => {
 		const shortDate = new Date(date);
 		const year = shortDate.getFullYear();
@@ -28,8 +28,9 @@ const resultEmail = (email, patient, file) => {
 	ejs.renderFile(
 		'./views/mail/resultEmail.ejs',
 		{
-			file: file,
+			file: covidTest.pathFile,
 			patient: patient,
+			covidTest: covidTest,
 		},
 		(err, data) => {
 			if (err) {
@@ -37,13 +38,13 @@ const resultEmail = (email, patient, file) => {
 			} else {
 				const mainOptions = {
 					from: EMAIL_USER,
-					to: email,
+					to: patient.contacts.email,
 					subject: 'COVID Test',
 					html: data,
 					attachments: [
 						{
 							filename: 'result.pdf',
-							path: file,
+							path: covidTest.pathFile,
 							contentType: 'application/pdf',
 						},
 					],
