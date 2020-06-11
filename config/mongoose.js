@@ -6,13 +6,12 @@ const mongoose = require('mongoose');
 // Get ENV variables - Object Destructuring ES6
 const {
 	MONGO_HOST,
-	MONGO_PORT = 27017,
 	MONGO_DB = 'covidSystem',
 	MONGO_USER,
 	MONGO_PASS,
 } = process.env;
 
-const url = `mongodb+srv://CovidTrackingSystem:joaodanieljoao20@covidtrackingsystem-reerj.mongodb.net/covidSystem?retryWrites=true&w=majority`;
+const url = `mongodb+srv://${MONGO_USER}:${MONGO_PASS}@${MONGO_HOST}/${MONGO_DB}?retryWrites=true&w=majority`;
 
 // Enable debug mode if you need see queries
 // mongoose.set('debug', true);
