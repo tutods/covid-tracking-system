@@ -1,16 +1,17 @@
 // Import Packages
+require('dotenv').config();
+
 const mongoose = require('mongoose');
 
 // Get ENV variables - Object Destructuring ES6
 const {
-	MONGO_HOST,
+	MONGO_HOST = 'localhost',
+	MONGO_PORT = 27017,
 	MONGO_DB = 'covidSystem',
-	MONGO_USER,
-	MONGO_PASS,
 } = process.env;
 
-const url = `mongodb+srv://${MONGO_USER}:${MONGO_PASS}@${MONGO_HOST}/${MONGO_DB}?retryWrites=true&w=majority`;
-console.log(url)
+const url = `mongodb://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}`;
+
 // Enable debug mode if you need see queries
 // mongoose.set('debug', true);
 

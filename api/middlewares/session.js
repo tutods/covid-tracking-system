@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-
+require('dotenv').config();
 const { SECRET = 'coV!d#19_$ystem$' } = process.env;
 
 const sessionMiddleware = (req, res, next) => {
