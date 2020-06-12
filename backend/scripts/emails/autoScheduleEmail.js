@@ -1,9 +1,6 @@
-// ENV
-require('dotenv').config();
-const { EMAIL_USER, EMAIL_PWD } = process.env;
+// Email Config
+const emailConfig = require('./emailConfig');
 
-//Nodemailer
-const nodemailer = require('nodemailer');
 // EJS
 const ejs = require('ejs');
 
@@ -17,14 +14,6 @@ const autoScheduleEmail = (email, date, patient) => {
 		return [year, month, day].join('-');
 	};
 
-	const transporter = nodemailer.createTransport({
-		service: 'gmail',
-		auth: {
-			user: EMAIL_USER,
-			pass: EMAIL_PWD,
-		},
-	});
-
 	ejs.renderFile(
 		'./views/mail/autoScheduleEmail.ejs',
 		{
@@ -35,22 +24,7 @@ const autoScheduleEmail = (email, date, patient) => {
 			if (err) {
 				console.log(`[ERROR: ${err}]`);
 			} else {
-				const mainOptions = {
-					from: EMAIL_USER,
-					to: email,
-					subject: 'COVID Test',
-					html: data,
-				};
-
-				transporter.sendMail(mainOptions, function (err, info) {
-					if (err) {
-						console.log(`[ERROR ON SEND EMAIL: ${err}]`);
-					} else {
-						console.log(
-							`[MAIL SENT WITH SUCCESS: ${info.response}]`
-						);
-					}
-				});
+				emailConfig(email, data, 'COVID Test - Auto Schedule');
 			}
 		}
 	);

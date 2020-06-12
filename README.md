@@ -5,14 +5,13 @@
 
 COVID Tracking System
 
-[![Version](https://img.shields.io/badge/Version-2.4-blue)](#)
+[![Version](https://img.shields.io/badge/Version-3.0.0-blue)](#)
 
 </h1>
 
 
 ## API
 + **Folder:** `backend/`
-+ **Status:** *in progress*
 
 <a href="http://nodejs.org" style="margin-right: 10px">
 <img src="https://img.shields.io/badge/NodeJS-✓-blue" alt="NodeJS">
@@ -264,7 +263,6 @@ COVID Tracking System
 
 ## Frontend
 + **Folder:** `frontend/`
-+ **Status:** *in progress*
 
 <a href="https://angular.io">
 <img src="https://img.shields.io/badge/Angular-✓-red" alt="Angular" />

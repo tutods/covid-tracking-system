@@ -1,23 +1,11 @@
-// ENV
-require('dotenv').config();
-const { EMAIL_USER, EMAIL_PWD } = process.env;
+// Mail Config
+const emailConfig = require('./emailConfig');
 
-//Nodemailer
-const nodemailer = require('nodemailer');
 // EJS
 const ejs = require('ejs');
 
 const resetEmail = (token, email) => {
 	const changeUrl = `http://localhost:4200/change-password/${token}`;
-
-	// URL
-	const transporter = nodemailer.createTransport({
-		service: 'gmail',
-		auth: {
-			user: EMAIL_USER,
-			pass: EMAIL_PWD,
-		},
-	});
 
 	ejs.renderFile(
 		'./views/mail/reset.ejs',
@@ -28,22 +16,11 @@ const resetEmail = (token, email) => {
 			if (err) {
 				console.log(`[ERROR: ${err}]`);
 			} else {
-				const mainOptions = {
-					from: EMAIL_USER,
-					to: email,
-					subject: 'Reset Password | COVID Tracking System',
-					html: data,
-				};
-
-				transporter.sendMail(mainOptions, function (err, info) {
-					if (err) {
-						console.log(`[ERROR ON SEND EMAIL: ${err}]`);
-					} else {
-						console.log(
-							`[MAIL SENT WITH SUCCESS: ${info.response}]`
-						);
-					}
-				});
+				emailConfig(
+					email,
+					data,
+					'Reset Password | COVID Tracking System'
+				);
 			}
 		}
 	);

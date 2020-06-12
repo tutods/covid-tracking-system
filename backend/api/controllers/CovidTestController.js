@@ -45,11 +45,8 @@ const covidTestController = () => {
 					autoSchedule(success.patient._id);
 					res.status(response.status).json(response.body);
 
-					if (await req.file) {
-						resultEmail(
-							success.patient,
-							success
-						);
+					if (req.file) {
+						resultEmail(success.patient, success);
 					}
 				}
 			);
