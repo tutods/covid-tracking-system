@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Patient } from '../../../../models/patient.model';
 import { PatientsService } from '../../../../services/patients/patients.service';
-import { UiService } from '../../../../services/ui/ui.service';
+import { UiService } from './../../../../services/ui/ui.service';
 
 @Component({
 	selector: 'app-patient-edit',

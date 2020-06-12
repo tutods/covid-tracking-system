@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { UsersService } from '../../services/users/users.service';
-import { SessionService } from '../../auth/session.service';
-import { UserAddComponent } from '../../components/dialogs/users/user-add/user-add.component';
-import { UserDeleteComponent } from '../../components/dialogs/users/user-delete/user-delete.component';
-import { UserEditComponent } from '../../components/dialogs/users/user-edit/user-edit.component';
-import { UserInfoComponent } from '../../components/dialogs/users/user-info/user-info.component';
-import { User } from '../../models/user.model';
-import { TitleService } from '../../services/title/title.service';
-import { UiService } from '../../services/ui/ui.service';
+import { SessionService } from './../../auth/session.service';
+import { UserAddComponent } from './../../components/dialogs/users/user-add/user-add.component';
+import { UserDeleteComponent } from './../../components/dialogs/users/user-delete/user-delete.component';
+import { UserEditComponent } from './../../components/dialogs/users/user-edit/user-edit.component';
+import { UserInfoComponent } from './../../components/dialogs/users/user-info/user-info.component';
+import { User } from './../../models/user.model';
+import { TitleService } from './../../services/title/title.service';
+import { UiService } from './../../services/ui/ui.service';
 
 @Component({
 	selector: 'app-users',

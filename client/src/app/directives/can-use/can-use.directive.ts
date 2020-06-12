@@ -6,7 +6,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { validateScopes } from 'src/app/functions/validateScopes';
-import { SessionService } from '../../auth/session.service';
+import { SessionService } from './../../auth/session.service';
 
 @Directive({
   selector: '[canUse]',

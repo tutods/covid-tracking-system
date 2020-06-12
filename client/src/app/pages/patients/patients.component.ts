@@ -5,12 +5,12 @@ import { ageToDate } from 'src/app/functions/ageToDate';
 import { formatDate } from '../../functions/formatDate';
 import { PatientsService } from '../../services/patients/patients.service';
 import { UiService } from '../../services/ui/ui.service';
-import { PatientAddComponent } from '../../components/dialogs/patients/patient-add/patient-add.component';
-import { PatientDeleteComponent } from '../../components/dialogs/patients/patient-delete/patient-delete.component';
-import { PatientEditComponent } from '../../components/dialogs/patients/patient-edit/patient-edit.component';
-import { PatientInfoComponent } from '../../components/dialogs/patients/patient-info/patient-info.component';
-import { Patient } from '../../models/patient.model';
-import { TitleService } from '../../services/title/title.service';
+import { PatientAddComponent } from './../../components/dialogs/patients/patient-add/patient-add.component';
+import { PatientDeleteComponent } from './../../components/dialogs/patients/patient-delete/patient-delete.component';
+import { PatientEditComponent } from './../../components/dialogs/patients/patient-edit/patient-edit.component';
+import { PatientInfoComponent } from './../../components/dialogs/patients/patient-info/patient-info.component';
+import { Patient } from './../../models/patient.model';
+import { TitleService } from './../../services/title/title.service';
 
 @Component({
 	selector: 'app-patients',

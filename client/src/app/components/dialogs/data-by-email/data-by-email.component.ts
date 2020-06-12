@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { PatientsService } from '../../../services/patients/patients.service';
-import { UiService } from '../../../services/ui/ui.service';
+import { UiService } from './../../../services/ui/ui.service';
 
 @Component({
 	selector: 'app-data-by-email',

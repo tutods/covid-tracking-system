@@ -1,6 +1,6 @@
 import { Directive, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { validateRoles } from '../../functions/validateRoles';
-import { SessionService } from '../../auth/session.service';
+import { SessionService } from './../../auth/session.service';
 
 @Directive({
 	selector: '[roleEnable]'

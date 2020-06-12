@@ -3,8 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { SessionService } from '../../../../auth/session.service';
-import { UpdatePasswordComponent } from '../../../../components/dialogs/users/update-password/update-password.component';
-import { User } from '../../../../models/user.model';
+import { UpdatePasswordComponent } from './../../../../components/dialogs/users/update-password/update-password.component';
+import { User } from './../../../../models/user.model';
 
 @Component({
 	selector: 'app-topbar',

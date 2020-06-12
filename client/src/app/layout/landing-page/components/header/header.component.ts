@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DataByEmailComponent } from '../../../../components/dialogs/data-by-email/data-by-email.component';
-import { UiService } from '../../../../services/ui/ui.service';
+import { UiService } from './../../../../services/ui/ui.service';
 
 @Component({
 	selector: 'app-header',

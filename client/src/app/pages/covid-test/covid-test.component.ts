@@ -8,9 +8,9 @@ import { CovidTestInformationComponent } from '../../components/dialogs/covid-te
 import { formatDate } from '../../functions/formatDate';
 import { CovidTest } from '../../models/covid-test.model';
 import { CovidTestService } from '../../services/covid-test/covid-test.service';
-import { PatientInfoComponent } from '../../components/dialogs/patients/patient-info/patient-info.component';
-import { TitleService } from '../../services/title/title.service';
-import { UiService } from '../../services/ui/ui.service';
+import { PatientInfoComponent } from './../../components/dialogs/patients/patient-info/patient-info.component';
+import { TitleService } from './../../services/title/title.service';
+import { UiService } from './../../services/ui/ui.service';
 
 @Component({
 	selector: 'app-covid-test',

@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UsersService } from '../../../../services/users/users.service';
-import { User } from '../../../../models/user.model';
-import { RolesService } from '../../../../services/roles/roles.service';
+import { User } from './../../../../models/user.model';
+import { RolesService } from './../../../../services/roles/roles.service';
 
 @Component({
 	selector: 'app-user-info',

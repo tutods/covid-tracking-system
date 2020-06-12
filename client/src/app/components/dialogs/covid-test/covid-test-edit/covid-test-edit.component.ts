@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CovidTest } from '../../../../models/covid-test.model';
 import { CovidTestService } from '../../../../services/covid-test/covid-test.service';
-import { UiService } from '../../../../services/ui/ui.service';
+import { UiService } from './../../../../services/ui/ui.service';
 
 @Component({
 	selector: 'app-covid-test-edit',

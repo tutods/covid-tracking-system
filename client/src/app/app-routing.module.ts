@@ -50,11 +50,19 @@ const routes: Routes = [
 			},
 			{
 				path: 'patients',
-				component: PatientsComponent
+				component: PatientsComponent,
+				canActivate: [ScopeGuard],
+				data: {
+					scopes: ['--view-all'],
+				},
 			},
 			{
 				path: 'covid-tests',
 				component: CovidTestComponent,
+				canActivate: [ScopeGuard],
+				data: {
+					scopes: ['--view-all'],
+				},
 			},
 			{
 				path: 'users',

@@ -1,6 +1,6 @@
 {
 	"name": "covid-tracking-system",
-	"version": "2.5.0",
+	"version": "3.0.0",
 	"description": "Covid tracking system for PAW project",
 	"keywords": [
 		"mean",
@@ -55,7 +55,7 @@
 	},
 	"devDependencies": {
 		"@angular-devkit/build-angular": "^0.901.7",
-		"@angular/cli": "^9.1.8",
+		"@angular/cli": "~9.1.7",
 		"@angular/compiler-cli": "~9.1.10",
 		"@angular/language-service": "~9.1.10",
 		"@types/jasmine": "~3.5.10",
