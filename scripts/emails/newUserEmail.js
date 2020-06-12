@@ -1,6 +1,6 @@
 // ENV
 
-const { EMAIL_USER, EMAIL_PWD } = process.env;
+const { EMAIL_USER, EMAIL_PWD,EMAIL_SERVICE } = process.env;
 
 //Nodemailer
 const nodemailer = require('nodemailer');
@@ -12,7 +12,7 @@ const newUserEmail = (token, email) => {
 
 	// URL
 	const transporter = nodemailer.createTransport({
-		service: 'gmail',
+		service: EMAIL_SERVICE,
 		auth: {
 			user: EMAIL_USER,
 			pass: EMAIL_PWD,
