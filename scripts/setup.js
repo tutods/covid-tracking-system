@@ -1,4 +1,4 @@
-
+require('dotenv').config();
 const { ADMIN_EMAIL, ADMIN_NAME, ADMIN_PWD } = process.env;
 
 // Mongoose Connection
@@ -34,7 +34,7 @@ mongoose
 				console.log('[USER ALREADY EXISTS]');
 			} else {
 				const admin = await Role.findOne({ name: 'ADMIN' });
-				console.log(await admin)
+
 				await new User({
 					name: ADMIN_NAME,
 					email: ADMIN_EMAIL,
