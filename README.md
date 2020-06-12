@@ -5,7 +5,7 @@
 
 COVID Tracking System
 
-[![Version](https://img.shields.io/badge/Version-3.0.0-blue)](#)
+[![Version](https://img.shields.io/badge/Version-3.1.0-blue)](#)
 
 </h1>
 
