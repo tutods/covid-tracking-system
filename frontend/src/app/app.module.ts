@@ -88,12 +88,9 @@ import { UsersComponent } from './pages/users/users.component';
 @NgModule({
 	declarations: [
 		AppComponent,
-		AuthComponent,
 
 		// Landing Page
 		LandingPageComponent,
-		PtChartComponent,
-		WorldChartComponent,
 		HeaderComponent,
 		DataByEmailComponent,
 
@@ -111,29 +108,8 @@ import { UsersComponent } from './pages/users/users.component';
 		UserInfoComponent,
 		UserAddComponent,
 		UpdatePasswordComponent,
-		PatientDeleteComponent,
 		PatientInfoComponent,
-		PatientEditComponent,
-		PatientAddComponent,
-
-		// Auth
-		LoginComponent,
-		ChangeComponent,
-		ResetComponent,
-
 		PatientDeleteComponent,
-		PatientInfoComponent,
-		PatientEditComponent,
-		PatientAddComponent,
-		CanUseDirective,
-		ByStatusComponent,
-		ByDayComponent,
-		ByMonthComponent,
-		BySymptomsComponent,
-
-		// Directives
-		CanUseDirective,
-		RoleEnableDirective,
 		PatientEditComponent,
 		PatientAddComponent,
 		CovidTestComponent,
@@ -141,7 +117,26 @@ import { UsersComponent } from './pages/users/users.component';
 		CovidTestDeleteComponent,
 		CovidTestEditComponent,
 		CovidTestInformationComponent,
-		ByGenderComponent
+
+		// Auth
+		LoginComponent,
+		ChangeComponent,
+		ResetComponent,
+		AuthComponent,
+
+		//Charts
+		ByStatusComponent,
+		ByDayComponent,
+		ByMonthComponent,
+		BySymptomsComponent,
+		ByGenderComponent,
+		PtChartComponent,
+		WorldChartComponent,
+
+
+		// Directives
+		CanUseDirective,
+		RoleEnableDirective,
 	],
 	imports: [
 		CommonModule,
