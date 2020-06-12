@@ -8,7 +8,7 @@ const nodemailer = require('nodemailer');
 const ejs = require('ejs');
 
 const resetEmail = (token, email) => {
-	const changeUrl = `http://localhost:4200/change-password/${token}`;
+	const changeUrl = `https://covid-tracking-system.herokuapp.com/change-password/${token}`;
 
 	// URL
 	const transporter = nodemailer.createTransport({
