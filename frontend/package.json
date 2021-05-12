@@ -46,7 +46,7 @@
 		"@angular/platform-browser": "~9.1.10",
 		"@angular/platform-browser-dynamic": "~9.1.10",
 		"@angular/router": "~9.1.10",
-		"chart.js": "^2.9.3",
+		"chart.js": "^2.9.4",
 		"ng2-charts": "^2.3.2",
 		"ng2-search-filter": "^0.5.1",
 		"rxjs": "~6.5.5",
