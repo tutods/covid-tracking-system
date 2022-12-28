@@ -38,7 +38,7 @@
 	},
 	"homepage": "https://github.com/TutoDS/covid-tracking-system#readme",
 	"devDependencies": {
-		"nodemon": "^2.0.3"
+		"nodemon": "^2.0.20"
 	},
 	"dependencies": {
 		"bcryptjs": "^2.4.3",
